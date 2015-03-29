@@ -35,14 +35,9 @@ public class RunGame {
         System.out.println(reason + "\n" + current.getName() + ": " + current.getStackTrace()[2] + "\n");
     }
 
-    public static synchronized void printStackTraceAndCrashTheProgram () {
-        final Thread current = Thread.currentThread();
-        System.err.println(current.getName() + ":");
-        throw new RuntimeException();
-    }
-
     /**
-     * @param reason - reason for crashing the program
+     * Throws a runtime exception containing the entire call stack
+     * @param reason - Your reason for crashing the program
      */
     public static synchronized void printStackTraceAndCrashTheProgramBecause ( String reason ) {
         final Thread current = Thread.currentThread();
