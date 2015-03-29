@@ -45,8 +45,12 @@ public class RunGame {
      */
     public static synchronized void printStackTraceAndCrashTheProgramBecause ( String reason ) {
         final Thread current = Thread.currentThread();
+        final StackTraceElement[] s = current.getStackTrace();
         System.err.println(reason + "\n" + current.getName() + ":");
-        throw new RuntimeException();
+        for(int i = 1; i < s.length; ++i) {
+            System.err.println(s[i].toString());
+        }
+        System.exit(-1);
     }
 
     /**
@@ -60,6 +64,11 @@ public class RunGame {
 // <editor-fold defaultstate="collapsed" desc="Main">
     public static void main ( String[] args ) {
         Thread.currentThread().setName("Main_Thread");
+        try {
+            Thread.sleep(10);
+        } catch(InterruptedException e) {
+            
+        }
         RunGame.printStackTraceAndCrashTheProgramBecause("Program finished");
     }
 // </editor-fold>
