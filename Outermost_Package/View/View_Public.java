@@ -10,13 +10,16 @@ import static java.util.concurrent.Executors.newFixedThreadPool;
  */
 public class View_Public {
 
-    // You can pass runnables to this thing using .exectute(Runnable r)
-
-    private final ExecutorService viewThread_ = newFixedThreadPool(1);
-    // This contains all the stuff you don't want the other packages to know about
-    private final View_Private privateView_ = new View_Private();
-    // This is the single instance of the enclosing Singleton
+// <editor-fold defaultstate="collapsed" desc="Static fields">
     private static View_Public singleton_ = null;
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Non-static fields">
+    // contains package private stuff
+    private final View_Private privateView_ = new View_Private();
+    // You can pass runnables to this thing using .exectute(Runnable r)
+    private final ExecutorService viewThread_ = newFixedThreadPool(1);
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Constructors">
 
     private View_Public () {
         viewThread_.execute(new Runnable() {
@@ -26,9 +29,11 @@ public class View_Public {
             }
         });
     }
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Accessors">
 
     /**
-     * Use this function to get a reference to the View
+     * Use this function to get a reference to the
      *
      * @return
      */
@@ -38,6 +43,9 @@ public class View_Public {
         }
         return singleton_;
     }
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Methods">
+// </editor-fold>
 }
 
 /**
@@ -45,5 +53,14 @@ public class View_Public {
  *
  */
 class View_Private {
-
+// <editor-fold defaultstate="collapsed" desc="Static fields">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Non-static fields">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Constructors">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Accessors">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Methods">
+// </editor-fold>
 }

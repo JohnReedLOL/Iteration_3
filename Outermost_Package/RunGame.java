@@ -15,9 +15,18 @@ import Outermost_Package.View.View_Public;
  */
 public class RunGame {
 
+// <editor-fold defaultstate="collapsed" desc="Static fields">
+    private static final Controller_Public controller_ = Controller_Public.getController();
     private static final Model_Public model_ = Model_Public.getModel();
     private static final View_Public view_ = View_Public.getView();
-    private static final Controller_Public controller_ = Controller_Public.getController();
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Non-static fields">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Constructors">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Accessors">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Methods">
 
     /**
      * Prints the thread name, class name, method name, and line number
@@ -26,17 +35,10 @@ public class RunGame {
         final Thread current = Thread.currentThread();
         System.out.println(current.getName() + ": " + current.getStackTrace()[2] + "\n");
     }
-    
-    /**
-     * @param reason - Your reason for printing a stack-trace
-     */
-    public static synchronized void printStackTraceBecause(String reason) {
-        final Thread current = Thread.currentThread();
-        System.out.println(reason + "\n" + current.getName() + ": " + current.getStackTrace()[2] + "\n");
-    }
 
     /**
      * Throws a runtime exception containing the entire call stack
+     *
      * @param reason - Your reason for crashing the program
      */
     public static synchronized void printStackTraceAndCrashTheProgramBecause ( String reason ) {
@@ -45,9 +47,30 @@ public class RunGame {
         throw new RuntimeException();
     }
 
+    /**
+     * @param reason - Your reason for printing a stack-trace
+     */
+    public static synchronized void printStackTraceBecause ( String reason ) {
+        final Thread current = Thread.currentThread();
+        System.out.println(reason + "\n" + current.getName() + ": " + current.getStackTrace()[2] + "\n");
+    }
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="main">
     public static void main ( String[] args ) {
         Thread.currentThread().setName("Main_Thread");
         RunGame.printStackTraceAndCrashTheProgramBecause("Program finished");
     }
-
+// </editor-fold>
 }
+
+// Copy and paste these folds when making new classes:
+// <editor-fold defaultstate="collapsed" desc="Static fields">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Non-static fields">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Constructors">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Accessors">
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Methods">
+// </editor-fold>
