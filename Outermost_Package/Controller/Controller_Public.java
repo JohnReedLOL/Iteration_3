@@ -1,6 +1,7 @@
 package Outermost_Package.Controller;
 import Outermost_Package.View.*;
 import Outermost_Package.Model.*;
+import Outermost_Package.RunGame;
 import java.util.concurrent.ExecutorService;
 import static java.util.concurrent.Executors.newFixedThreadPool;
 /**
@@ -15,7 +16,12 @@ public class Controller_Public {
     // This is the single instance of the enclosing Singleton
     private static Controller_Public singleton_ = null;
     private Controller_Public() {
-        
+        controllerThread_.execute(new Runnable() {
+            public void run () {
+                Thread.currentThread().setName("Controller_Thread");
+                RunGame.printStackTraceBecause("Controller thread started at:");
+            }
+        });
     }
     /**
      * Use this function to get a reference to the controller

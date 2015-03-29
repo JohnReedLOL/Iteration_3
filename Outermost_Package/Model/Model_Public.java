@@ -1,5 +1,6 @@
 package Outermost_Package.Model;
 import Outermost_Package.Controller.*;
+import Outermost_Package.RunGame;
 import java.util.concurrent.ExecutorService;
 import static java.util.concurrent.Executors.newFixedThreadPool;
 /**
@@ -14,7 +15,12 @@ public class Model_Public {
     // This is the single instance of the enclosing Singleton
     private static Model_Public singleton_ = null;
     private Model_Public() {
-        
+        modelThread_.execute(new Runnable() {
+            public void run () {
+                Thread.currentThread().setName("Model_Thread");
+                RunGame.printStackTraceBecause("Model thread started at:");
+            }
+        });
     }
     /**
      * Use this function to get a reference to the Model
