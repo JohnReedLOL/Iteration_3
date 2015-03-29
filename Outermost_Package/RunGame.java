@@ -48,7 +48,6 @@ public class RunGame {
         for(int i = 1; i < s.length; ++i) {
             System.err.println(s[i].toString());
         }
-        //throw new RuntimeException();
         System.exit(-1);
     }
 
