@@ -5,7 +5,9 @@
  */
 package View;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 /**
@@ -22,5 +24,6 @@ public class Minimap_JTextPanel extends JPanel {
 
         // Draw Text
         g.drawString("This is my custom Minimap_JTextPanel!",10,20);
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
     }  
 }

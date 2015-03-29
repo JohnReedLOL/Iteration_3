@@ -5,17 +5,417 @@
  */
 package View;
 
+import Outermost_Package.RunGame;
+
 /**
+ * The only way to write to this Singleton is to pass Runnables to it via
+ * java.awt.EventQueue.invokeLater( new Runnable() {public void run(...){}} )
  *
  * @author JohnReedLOL
  */
 public class JFrame_GUI extends javax.swing.JFrame {
 
+    private static JFrame_GUI singleton_ = null;
+
     /**
-     * Creates new form JFrame_GUI
+     * Creates new form JFrame_GUI. 
      */
-    public JFrame_GUI() {
+    private JFrame_GUI() {
         initComponents();
+    }
+// <editor-fold defaultstate="collapsed" desc="Getters">
+    /**
+     * @return the game_Screen_JPanel_
+     */
+    public View.Game_Screen_JPanel getGame_Screen_JPanel_() {
+        return game_Screen_JPanel_;
+    }
+
+    /**
+     * @param game_Screen_JPanel_ the game_Screen_JPanel_ to set
+     */
+    public void setGame_Screen_JPanel_(View.Game_Screen_JPanel game_Screen_JPanel_) {
+        this.game_Screen_JPanel_ = game_Screen_JPanel_;
+    }
+
+    /**
+     * @return the helmetjLabel_
+     */
+    public javax.swing.JLabel getHelmetjLabel_() {
+        return helmetjLabel_;
+    }
+
+    /**
+     * @param helmetjLabel_ the helmetjLabel_ to set
+     */
+    public void setHelmetjLabel_(javax.swing.JLabel helmetjLabel_) {
+        this.helmetjLabel_ = helmetjLabel_;
+    }
+
+    /**
+     * @return the incomingChatjScrollPane_
+     */
+    public javax.swing.JScrollPane getIncomingChatjScrollPane_() {
+        return incomingChatjScrollPane_;
+    }
+
+    /**
+     * @param incomingChatjScrollPane_ the incomingChatjScrollPane_ to set
+     */
+    public void setIncomingChatjScrollPane_(javax.swing.JScrollPane incomingChatjScrollPane_) {
+        this.incomingChatjScrollPane_ = incomingChatjScrollPane_;
+    }
+
+    /**
+     * @return the incomingChatjTextArea_
+     */
+    public javax.swing.JTextArea getIncomingChatjTextArea_() {
+        return incomingChatjTextArea_;
+    }
+
+    /**
+     * @param incomingChatjTextArea_ the incomingChatjTextArea_ to set
+     */
+    public void setIncomingChatjTextArea_(javax.swing.JTextArea incomingChatjTextArea_) {
+        this.incomingChatjTextArea_ = incomingChatjTextArea_;
+    }
+
+    /**
+     * @return the inventoryStatsEquipmentjTabbedPane_
+     */
+    public javax.swing.JTabbedPane getInventoryStatsEquipmentjTabbedPane_() {
+        return inventoryStatsEquipmentjTabbedPane_;
+    }
+
+    /**
+     * @param inventoryStatsEquipmentjTabbedPane_ the inventoryStatsEquipmentjTabbedPane_ to set
+     */
+    public void setInventoryStatsEquipmentjTabbedPane_(javax.swing.JTabbedPane inventoryStatsEquipmentjTabbedPane_) {
+        this.inventoryStatsEquipmentjTabbedPane_ = inventoryStatsEquipmentjTabbedPane_;
+    }
+
+    /**
+     * @return the item1jLabel_
+     */
+    public javax.swing.JLabel getItem1jLabel_() {
+        return item1jLabel_;
+    }
+
+    /**
+     * @param item1jLabel_ the item1jLabel_ to set
+     */
+    public void setItem1jLabel_(javax.swing.JLabel item1jLabel_) {
+        this.item1jLabel_ = item1jLabel_;
+    }
+
+    /**
+     * @return the item2jLabel_
+     */
+    public javax.swing.JLabel getItem2jLabel_() {
+        return item2jLabel_;
+    }
+
+    /**
+     * @param item2jLabel_ the item2jLabel_ to set
+     */
+    public void setItem2jLabel_(javax.swing.JLabel item2jLabel_) {
+        this.item2jLabel_ = item2jLabel_;
+    }
+
+    /**
+     * @return the item3jLabel_
+     */
+    public javax.swing.JLabel getItem3jLabel_() {
+        return item3jLabel_;
+    }
+
+    /**
+     * @param item3jLabel_ the item3jLabel_ to set
+     */
+    public void setItem3jLabel_(javax.swing.JLabel item3jLabel_) {
+        this.item3jLabel_ = item3jLabel_;
+    }
+
+    /**
+     * @return the item4jLabel_
+     */
+    public javax.swing.JLabel getItem4jLabel_() {
+        return item4jLabel_;
+    }
+
+    /**
+     * @param item4jLabel_ the item4jLabel_ to set
+     */
+    public void setItem4jLabel_(javax.swing.JLabel item4jLabel_) {
+        this.item4jLabel_ = item4jLabel_;
+    }
+
+    /**
+     * @return the minimap_JTextPanel_
+     */
+    public View.Minimap_JTextPanel getMinimap_JTextPanel_() {
+        return minimap_JTextPanel_;
+    }
+
+    /**
+     * @param minimap_JTextPanel_ the minimap_JTextPanel_ to set
+     */
+    public void setMinimap_JTextPanel_(View.Minimap_JTextPanel minimap_JTextPanel_) {
+        this.minimap_JTextPanel_ = minimap_JTextPanel_;
+    }
+
+    /**
+     * @return the musicOptionjRadioButton_
+     */
+    public javax.swing.JRadioButton getMusicOptionjRadioButton_() {
+        return musicOptionjRadioButton_;
+    }
+
+    /**
+     * @param musicOptionjRadioButton_ the musicOptionjRadioButton_ to set
+     */
+    public void setMusicOptionjRadioButton_(javax.swing.JRadioButton musicOptionjRadioButton_) {
+        this.musicOptionjRadioButton_ = musicOptionjRadioButton_;
+    }
+
+    /**
+     * @return the optionsjPanel_
+     */
+    public javax.swing.JPanel getOptionsjPanel_() {
+        return optionsjPanel_;
+    }
+
+    /**
+     * @param optionsjPanel_ the optionsjPanel_ to set
+     */
+    public void setOptionsjPanel_(javax.swing.JPanel optionsjPanel_) {
+        this.optionsjPanel_ = optionsjPanel_;
+    }
+
+    /**
+     * @return the outgoingChatjTextField_
+     */
+    public javax.swing.JTextField getOutgoingChatjTextField_() {
+        return outgoingChatjTextField_;
+    }
+
+    /**
+     * @param outgoingChatjTextField_ the outgoingChatjTextField_ to set
+     */
+    public void setOutgoingChatjTextField_(javax.swing.JTextField outgoingChatjTextField_) {
+        this.outgoingChatjTextField_ = outgoingChatjTextField_;
+    }
+
+    /**
+     * @return the playerControlsjScrollPane_
+     */
+    public javax.swing.JScrollPane getPlayerControlsjScrollPane_() {
+        return playerControlsjScrollPane_;
+    }
+
+    /**
+     * @param playerControlsjScrollPane_ the playerControlsjScrollPane_ to set
+     */
+    public void setPlayerControlsjScrollPane_(javax.swing.JScrollPane playerControlsjScrollPane_) {
+        this.playerControlsjScrollPane_ = playerControlsjScrollPane_;
+    }
+
+    /**
+     * @return the playerControlsjTextArea_
+     */
+    public javax.swing.JTextArea getPlayerControlsjTextArea_() {
+        return playerControlsjTextArea_;
+    }
+
+    /**
+     * @param playerControlsjTextArea_ the playerControlsjTextArea_ to set
+     */
+    public void setPlayerControlsjTextArea_(javax.swing.JTextArea playerControlsjTextArea_) {
+        this.playerControlsjTextArea_ = playerControlsjTextArea_;
+    }
+
+    /**
+     * @return the playerEquipmentjPanel_
+     */
+    public javax.swing.JPanel getPlayerEquipmentjPanel_() {
+        return playerEquipmentjPanel_;
+    }
+
+    /**
+     * @param playerEquipmentjPanel_ the playerEquipmentjPanel_ to set
+     */
+    public void setPlayerEquipmentjPanel_(javax.swing.JPanel playerEquipmentjPanel_) {
+        this.playerEquipmentjPanel_ = playerEquipmentjPanel_;
+    }
+
+    /**
+     * @return the playerSpecialjPanel_
+     */
+    public javax.swing.JPanel getPlayerSpecialjPanel_() {
+        return playerSpecialjPanel_;
+    }
+
+    /**
+     * @param playerSpecialjPanel_ the playerSpecialjPanel_ to set
+     */
+    public void setPlayerSpecialjPanel_(javax.swing.JPanel playerSpecialjPanel_) {
+        this.playerSpecialjPanel_ = playerSpecialjPanel_;
+    }
+
+    /**
+     * @return the playerStatsjScrollPane_
+     */
+    public javax.swing.JScrollPane getPlayerStatsjScrollPane_() {
+        return playerStatsjScrollPane_;
+    }
+
+    /**
+     * @param playerStatsjScrollPane_ the playerStatsjScrollPane_ to set
+     */
+    public void setPlayerStatsjScrollPane_(javax.swing.JScrollPane playerStatsjScrollPane_) {
+        this.playerStatsjScrollPane_ = playerStatsjScrollPane_;
+    }
+
+    /**
+     * @return the playerStatsjTextArea_
+     */
+    public javax.swing.JTextArea getPlayerStatsjTextArea_() {
+        return playerStatsjTextArea_;
+    }
+
+    /**
+     * @param playerStatsjTextArea_ the playerStatsjTextArea_ to set
+     */
+    public void setPlayerStatsjTextArea_(javax.swing.JTextArea playerStatsjTextArea_) {
+        this.playerStatsjTextArea_ = playerStatsjTextArea_;
+    }
+
+    /**
+     * @return the sheildSlotjLabel_
+     */
+    public javax.swing.JLabel getSheildSlotjLabel_() {
+        return sheildSlotjLabel_;
+    }
+
+    /**
+     * @param sheildSlotjLabel_ the sheildSlotjLabel_ to set
+     */
+    public void setSheildSlotjLabel_(javax.swing.JLabel sheildSlotjLabel_) {
+        this.sheildSlotjLabel_ = sheildSlotjLabel_;
+    }
+
+    /**
+     * @return the soundOptionjRadioButton_
+     */
+    public javax.swing.JRadioButton getSoundOptionjRadioButton_() {
+        return soundOptionjRadioButton_;
+    }
+
+    /**
+     * @param soundOptionjRadioButton_ the soundOptionjRadioButton_ to set
+     */
+    public void setSoundOptionjRadioButton_(javax.swing.JRadioButton soundOptionjRadioButton_) {
+        this.soundOptionjRadioButton_ = soundOptionjRadioButton_;
+    }
+
+    /**
+     * @return the spelljButton1_
+     */
+    public javax.swing.JButton getSpelljButton1_() {
+        return spelljButton1_;
+    }
+
+    /**
+     * @param spelljButton1_ the spelljButton1_ to set
+     */
+    public void setSpelljButton1_(javax.swing.JButton spelljButton1_) {
+        this.spelljButton1_ = spelljButton1_;
+    }
+
+    /**
+     * @return the spelljButton2_
+     */
+    public javax.swing.JButton getSpelljButton2_() {
+        return spelljButton2_;
+    }
+
+    /**
+     * @param spelljButton2_ the spelljButton2_ to set
+     */
+    public void setSpelljButton2_(javax.swing.JButton spelljButton2_) {
+        this.spelljButton2_ = spelljButton2_;
+    }
+
+    /**
+     * @return the spelljButton3_
+     */
+    public javax.swing.JButton getSpelljButton3_() {
+        return spelljButton3_;
+    }
+
+    /**
+     * @param spelljButton3_ the spelljButton3_ to set
+     */
+    public void setSpelljButton3_(javax.swing.JButton spelljButton3_) {
+        this.spelljButton3_ = spelljButton3_;
+    }
+
+    /**
+     * @return the spelljButton4_
+     */
+    public javax.swing.JButton getSpelljButton4_() {
+        return spelljButton4_;
+    }
+
+    /**
+     * @param spelljButton4_ the spelljButton4_ to set
+     */
+    public void setSpelljButton4_(javax.swing.JButton spelljButton4_) {
+        this.spelljButton4_ = spelljButton4_;
+    }
+
+    /**
+     * @return the weaponSlotjLabel_
+     */
+    public javax.swing.JLabel getWeaponSlotjLabel_() {
+        return weaponSlotjLabel_;
+    }
+
+    /**
+     * @param weaponSlotjLabel_ the weaponSlotjLabel_ to set
+     */
+    public void setWeaponSlotjLabel_(javax.swing.JLabel weaponSlotjLabel_) {
+        this.weaponSlotjLabel_ = weaponSlotjLabel_;
+    }
+// </editor-fold>
+
+    /**
+     * Returns a reference to the singleton.
+     * @return 
+     */
+    public static JFrame_GUI get_GUI() {
+        if (singleton_ == null) {
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Metal".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                java.util.logging.Logger.getLogger(JFrame_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    JFrame_GUI.singleton_ = new JFrame_GUI();
+                    singleton_.setVisible(true);
+                }
+            });
+        }
+        return JFrame_GUI.singleton_;
     }
 
     /**
@@ -24,6 +424,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="DO NOT READ WRITE OR MODIFY">
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -41,20 +442,20 @@ public class JFrame_GUI extends javax.swing.JFrame {
         item3jLabel_ = new javax.swing.JLabel();
         playerEquipmentjPanel_ = new javax.swing.JPanel();
         weaponSlotjLabel_ = new javax.swing.JLabel();
-        helmetjLabel_1 = new javax.swing.JLabel();
+        helmetjLabel_ = new javax.swing.JLabel();
         sheildSlotjLabel_ = new javax.swing.JLabel();
         playerSpecialjPanel_ = new javax.swing.JPanel();
-        specialjButton1_ = new javax.swing.JButton();
-        specialjButton2_ = new javax.swing.JButton();
-        specialjButton3_ = new javax.swing.JButton();
-        specialjButton4_ = new javax.swing.JButton();
+        spelljButton1_ = new javax.swing.JButton();
+        spelljButton2_ = new javax.swing.JButton();
+        spelljButton3_ = new javax.swing.JButton();
+        spelljButton4_ = new javax.swing.JButton();
         optionsjPanel_ = new javax.swing.JPanel();
         musicOptionjRadioButton_ = new javax.swing.JRadioButton();
         soundOptionjRadioButton_ = new javax.swing.JRadioButton();
         playerControlsjScrollPane_ = new javax.swing.JScrollPane();
         playerControlsjTextArea_ = new javax.swing.JTextArea();
-        game_Screen_JPanel1 = new View.Game_Screen_JPanel();
-        minimap_JTextPanel1 = new View.Minimap_JTextPanel();
+        game_Screen_JPanel_ = new View.Game_Screen_JPanel();
+        minimap_JTextPanel_ = new View.Minimap_JTextPanel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -95,32 +496,38 @@ public class JFrame_GUI extends javax.swing.JFrame {
             }
         });
 
-        outgoingChatjTextField_.setText("outgoingChatjTextField_");
+        outgoingChatjTextField_.setText("  outgoingChatjTextField_");
         outgoingChatjTextField_.setFocusable(false);
 
         incomingChatjTextArea_.setColumns(20);
         incomingChatjTextArea_.setRows(5);
-        incomingChatjTextArea_.setText("incomingChatjTextArea_");
+        incomingChatjTextArea_.setText("  incomingChatjTextArea_");
         incomingChatjScrollPane_.setViewportView(incomingChatjTextArea_);
 
         playerStatsjTextArea_.setColumns(20);
         playerStatsjTextArea_.setRows(5);
-        playerStatsjTextArea_.setText("playerStatsjTextArea_");
+        playerStatsjTextArea_.setText(" playerStatsjTextArea_ ");
         playerStatsjTextArea_.setFocusable(false);
         playerStatsjScrollPane_.setViewportView(playerStatsjTextArea_);
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Stats", playerStatsjScrollPane_);
 
+        playerInventoryjPanel.setFocusable(false);
+
         item2jLabel_.setText("item2jLabel_");
+        item2jLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         item2jLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
         item4jLabel_.setText("item4jLabel_");
+        item4jLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         item4jLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
         item1jLabel_.setText("item1jLabel_");
+        item1jLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         item1jLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
         item3jLabel_.setText("item3jLabel_");
+        item3jLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         item3jLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
         javax.swing.GroupLayout playerInventoryjPanelLayout = new javax.swing.GroupLayout(playerInventoryjPanel);
@@ -157,13 +564,18 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Items", playerInventoryjPanel);
 
+        playerEquipmentjPanel_.setFocusable(false);
+
         weaponSlotjLabel_.setText("weaponSlotjLabel_");
+        weaponSlotjLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         weaponSlotjLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        helmetjLabel_1.setText("helmetjLabel_");
-        helmetjLabel_1.setPreferredSize(new java.awt.Dimension(80, 80));
+        helmetjLabel_.setText("helmetjLabel_");
+        helmetjLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        helmetjLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
         sheildSlotjLabel_.setText("sheildSlotjLabel_");
+        sheildSlotjLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sheildSlotjLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
         javax.swing.GroupLayout playerEquipmentjPanel_Layout = new javax.swing.GroupLayout(playerEquipmentjPanel_);
@@ -173,20 +585,20 @@ public class JFrame_GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playerEquipmentjPanel_Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sheildSlotjLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(weaponSlotjLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playerEquipmentjPanel_Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(helmetjLabel_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addComponent(helmetjLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
         playerEquipmentjPanel_Layout.setVerticalGroup(
             playerEquipmentjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playerEquipmentjPanel_Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(helmetjLabel_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(helmetjLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(playerEquipmentjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sheildSlotjLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(weaponSlotjLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,13 +607,35 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Gear", playerEquipmentjPanel_);
 
-        specialjButton1_.setText("specialjButton1_");
+        playerSpecialjPanel_.setFocusable(false);
 
-        specialjButton2_.setText("specialjButton2_");
+        spelljButton1_.setText("spelljButton1_");
+        spelljButton1_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                spelljButton1_MousePressed(evt);
+            }
+        });
 
-        specialjButton3_.setText("specialjButton3_");
+        spelljButton2_.setText("spelljButton2_");
+        spelljButton2_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                spelljButton2_MousePressed(evt);
+            }
+        });
 
-        specialjButton4_.setText("specialjButton4_");
+        spelljButton3_.setText("spelljButton3_");
+        spelljButton3_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                spelljButton3_MousePressed(evt);
+            }
+        });
+
+        spelljButton4_.setText("spelljButton4_");
+        spelljButton4_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                spelljButton4_MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout playerSpecialjPanel_Layout = new javax.swing.GroupLayout(playerSpecialjPanel_);
         playerSpecialjPanel_.setLayout(playerSpecialjPanel_Layout);
@@ -210,27 +644,29 @@ public class JFrame_GUI extends javax.swing.JFrame {
             .addGroup(playerSpecialjPanel_Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(playerSpecialjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(specialjButton1_, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(specialjButton2_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(specialjButton3_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(specialjButton4_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(spelljButton1_, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(spelljButton2_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spelljButton3_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spelljButton4_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         playerSpecialjPanel_Layout.setVerticalGroup(
             playerSpecialjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(playerSpecialjPanel_Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(specialjButton1_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spelljButton1_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(specialjButton2_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spelljButton2_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(specialjButton3_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spelljButton3_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(specialjButton4_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spelljButton4_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Special", playerSpecialjPanel_);
+
+        optionsjPanel_.setFocusable(false);
 
         musicOptionjRadioButton_.setText("musicOptionjRadioButton_");
         musicOptionjRadioButton_.addActionListener(new java.awt.event.ActionListener() {
@@ -277,28 +713,28 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Controls", playerControlsjScrollPane_);
 
-        javax.swing.GroupLayout game_Screen_JPanel1Layout = new javax.swing.GroupLayout(game_Screen_JPanel1);
-        game_Screen_JPanel1.setLayout(game_Screen_JPanel1Layout);
-        game_Screen_JPanel1Layout.setHorizontalGroup(
-            game_Screen_JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout game_Screen_JPanel_Layout = new javax.swing.GroupLayout(game_Screen_JPanel_);
+        game_Screen_JPanel_.setLayout(game_Screen_JPanel_Layout);
+        game_Screen_JPanel_Layout.setHorizontalGroup(
+            game_Screen_JPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        game_Screen_JPanel1Layout.setVerticalGroup(
-            game_Screen_JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        game_Screen_JPanel_Layout.setVerticalGroup(
+            game_Screen_JPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        minimap_JTextPanel1.setPreferredSize(new java.awt.Dimension(200, 200));
+        minimap_JTextPanel_.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        javax.swing.GroupLayout minimap_JTextPanel1Layout = new javax.swing.GroupLayout(minimap_JTextPanel1);
-        minimap_JTextPanel1.setLayout(minimap_JTextPanel1Layout);
-        minimap_JTextPanel1Layout.setHorizontalGroup(
-            minimap_JTextPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+        javax.swing.GroupLayout minimap_JTextPanel_Layout = new javax.swing.GroupLayout(minimap_JTextPanel_);
+        minimap_JTextPanel_.setLayout(minimap_JTextPanel_Layout);
+        minimap_JTextPanel_Layout.setHorizontalGroup(
+            minimap_JTextPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 198, Short.MAX_VALUE)
         );
-        minimap_JTextPanel1Layout.setVerticalGroup(
-            minimap_JTextPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+        minimap_JTextPanel_Layout.setVerticalGroup(
+            minimap_JTextPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 198, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -306,25 +742,27 @@ public class JFrame_GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(outgoingChatjTextField_)
-                    .addComponent(incomingChatjScrollPane_, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-                    .addComponent(game_Screen_JPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(outgoingChatjTextField_, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(incomingChatjScrollPane_, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                    .addComponent(game_Screen_JPanel_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(minimap_JTextPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 14, Short.MAX_VALUE)
+                        .addComponent(minimap_JTextPanel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(inventoryStatsEquipmentjTabbedPane_, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(minimap_JTextPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(minimap_JTextPanel_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inventoryStatsEquipmentjTabbedPane_, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(game_Screen_JPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(game_Screen_JPanel_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(incomingChatjScrollPane_, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
@@ -333,85 +771,69 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    // <editor-fold>
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_formKeyTyped
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_formMousePressed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
+        // Add your event handling code here:
+        RunGame.printStackTraceAndCrashTheProgramBecause("Program is finished.");
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_formWindowLostFocus
 
     private void soundOptionjRadioButton_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soundOptionjRadioButton_ActionPerformed
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_soundOptionjRadioButton_ActionPerformed
 
     private void musicOptionjRadioButton_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicOptionjRadioButton_ActionPerformed
-        // TODO add your handling code here:
+        // Add your event handling code here:
     }//GEN-LAST:event_musicOptionjRadioButton_ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrame_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrame_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrame_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrame_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void spelljButton1_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelljButton1_MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spelljButton1_MousePressed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrame_GUI().setVisible(true);
-            }
-        });
-    }
+    private void spelljButton2_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelljButton2_MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spelljButton2_MousePressed
 
+    private void spelljButton3_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelljButton3_MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spelljButton3_MousePressed
+
+    private void spelljButton4_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spelljButton4_MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spelljButton4_MousePressed
+
+// <editor-fold defaultstate="collapsed" desc="DO NOT MODIFY">
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private View.Game_Screen_JPanel game_Screen_JPanel1;
-    private javax.swing.JLabel helmetjLabel_1;
+    private View.Game_Screen_JPanel game_Screen_JPanel_;
+    private javax.swing.JLabel helmetjLabel_;
     private javax.swing.JScrollPane incomingChatjScrollPane_;
     private javax.swing.JTextArea incomingChatjTextArea_;
     private javax.swing.JTabbedPane inventoryStatsEquipmentjTabbedPane_;
@@ -420,7 +842,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel item3jLabel_;
     private javax.swing.JLabel item4jLabel_;
     private javax.swing.JMenuItem jMenuItem1;
-    private View.Minimap_JTextPanel minimap_JTextPanel1;
+    private View.Minimap_JTextPanel minimap_JTextPanel_;
     private javax.swing.JRadioButton musicOptionjRadioButton_;
     private javax.swing.JPanel optionsjPanel_;
     private javax.swing.JTextField outgoingChatjTextField_;
@@ -433,10 +855,11 @@ public class JFrame_GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea playerStatsjTextArea_;
     private javax.swing.JLabel sheildSlotjLabel_;
     private javax.swing.JRadioButton soundOptionjRadioButton_;
-    private javax.swing.JButton specialjButton1_;
-    private javax.swing.JButton specialjButton2_;
-    private javax.swing.JButton specialjButton3_;
-    private javax.swing.JButton specialjButton4_;
+    private javax.swing.JButton spelljButton1_;
+    private javax.swing.JButton spelljButton2_;
+    private javax.swing.JButton spelljButton3_;
+    private javax.swing.JButton spelljButton4_;
     private javax.swing.JLabel weaponSlotjLabel_;
     // End of variables declaration//GEN-END:variables
+// <editor-fold>
 }

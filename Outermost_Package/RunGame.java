@@ -8,6 +8,7 @@ package Outermost_Package;
 import Outermost_Package.Controller.Controller_Public;
 import Outermost_Package.Model.Model_Public;
 import Outermost_Package.View.View_Public;
+import View.JFrame_GUI;
 
 /**
  *
@@ -19,6 +20,7 @@ public class RunGame {
     private static final Controller_Public controller_ = Controller_Public.getController();
     private static final Model_Public model_ = Model_Public.getModel();
     private static final View_Public view_ = View_Public.getView();
+    private static final JFrame_GUI gui_ = View.JFrame_GUI.get_GUI();
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="Non-static fields">
 // </editor-fold>
@@ -55,7 +57,7 @@ public class RunGame {
         System.out.println(reason + "\n" + current.getName() + ": " + current.getStackTrace()[2] + "\n");
     }
 // </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="main">
+// <editor-fold defaultstate="collapsed" desc="Main">
     public static void main ( String[] args ) {
         Thread.currentThread().setName("Main_Thread");
         RunGame.printStackTraceAndCrashTheProgramBecause("Program finished");
