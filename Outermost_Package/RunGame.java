@@ -55,7 +55,7 @@ public class RunGame {
         System.out.println(reason + "\n" + current.getName() + ": " + current.getStackTrace()[2] + "\n");
     }
 // </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="main">
+// <editor-fold defaultstate="collapsed" desc="Main">
     public static void main ( String[] args ) {
         Thread.currentThread().setName("Main_Thread");
         RunGame.printStackTraceAndCrashTheProgramBecause("Program finished");
