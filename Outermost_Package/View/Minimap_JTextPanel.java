@@ -23,7 +23,7 @@ public class Minimap_JTextPanel extends JPanel {
         super.paintComponent(g);       
 
         // Draw Text
-        g.drawString("This is my custom Minimap_JTextPanel!",10,20);
+        g.drawString("Custom Minimap_JTextPanel!",10,20);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
     }  
 }

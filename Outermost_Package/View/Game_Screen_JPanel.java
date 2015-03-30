@@ -24,7 +24,7 @@ public class Game_Screen_JPanel extends JPanel {
         super.paintComponent(g);       
 
         // Draw Text
-        g.drawString("This is my custom Game_Screen_JPanel!",10,20);
+        g.drawString("Custom Game_Screen_JPanel!",10,20);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
     }  
 }

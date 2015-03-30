@@ -65,7 +65,7 @@ public class RunGame {
     public static void main ( String[] args ) {
         Thread.currentThread().setName("Main_Thread");
         try {
-            Thread.sleep(10);
+            Thread.sleep(100000);
         } catch(InterruptedException e) {
             
         }
