@@ -435,7 +435,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
         inventoryStatsEquipmentjTabbedPane_ = new javax.swing.JTabbedPane();
         playerStatsjScrollPane_ = new javax.swing.JScrollPane();
         playerStatsjTextArea_ = new javax.swing.JTextArea();
-        playerInventoryjPanel = new javax.swing.JPanel();
+        playerInventoryjPanel_ = new javax.swing.JPanel();
         item2jLabel_ = new javax.swing.JLabel();
         item4jLabel_ = new javax.swing.JLabel();
         item1jLabel_ = new javax.swing.JLabel();
@@ -452,8 +452,12 @@ public class JFrame_GUI extends javax.swing.JFrame {
         optionsjPanel_ = new javax.swing.JPanel();
         musicOptionjRadioButton_ = new javax.swing.JRadioButton();
         soundOptionjRadioButton_ = new javax.swing.JRadioButton();
-        playerControlsjScrollPane_ = new javax.swing.JScrollPane();
-        playerControlsjTextArea_ = new javax.swing.JTextArea();
+        controlsSplitPane_ = new javax.swing.JSplitPane();
+        keyBindingsjScrollPane_ = new javax.swing.JScrollPane();
+        keyCommandsjScrollPane_ = new javax.swing.JScrollPane();
+        keyCommandsjTextArea_ = new javax.swing.JTextArea();
+        keyBindingsjScrollPane2_ = new javax.swing.JScrollPane();
+        keyBindingsjTextArea_ = new javax.swing.JTextArea();
         game_Screen_JPanel_ = new View.Game_Screen_JPanel();
         minimap_JTextPanel_ = new View.Minimap_JTextPanel();
 
@@ -499,11 +503,14 @@ public class JFrame_GUI extends javax.swing.JFrame {
         outgoingChatjTextField_.setText("  outgoingChatjTextField_");
         outgoingChatjTextField_.setFocusable(false);
 
+        incomingChatjTextArea_.setEditable(false);
         incomingChatjTextArea_.setColumns(20);
         incomingChatjTextArea_.setRows(5);
         incomingChatjTextArea_.setText("  incomingChatjTextArea_");
+        incomingChatjTextArea_.setFocusable(false);
         incomingChatjScrollPane_.setViewportView(incomingChatjTextArea_);
 
+        playerStatsjTextArea_.setEditable(false);
         playerStatsjTextArea_.setColumns(20);
         playerStatsjTextArea_.setRows(5);
         playerStatsjTextArea_.setText(" playerStatsjTextArea_ ");
@@ -512,7 +519,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Stats", playerStatsjScrollPane_);
 
-        playerInventoryjPanel.setFocusable(false);
+        playerInventoryjPanel_.setFocusable(false);
 
         item2jLabel_.setText("item2jLabel_");
         item2jLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -530,39 +537,39 @@ public class JFrame_GUI extends javax.swing.JFrame {
         item3jLabel_.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         item3jLabel_.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        javax.swing.GroupLayout playerInventoryjPanelLayout = new javax.swing.GroupLayout(playerInventoryjPanel);
-        playerInventoryjPanel.setLayout(playerInventoryjPanelLayout);
-        playerInventoryjPanelLayout.setHorizontalGroup(
-            playerInventoryjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(playerInventoryjPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout playerInventoryjPanel_Layout = new javax.swing.GroupLayout(playerInventoryjPanel_);
+        playerInventoryjPanel_.setLayout(playerInventoryjPanel_Layout);
+        playerInventoryjPanel_Layout.setHorizontalGroup(
+            playerInventoryjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playerInventoryjPanel_Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(playerInventoryjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(playerInventoryjPanelLayout.createSequentialGroup()
+                .addGroup(playerInventoryjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(playerInventoryjPanel_Layout.createSequentialGroup()
                         .addComponent(item1jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(item2jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playerInventoryjPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playerInventoryjPanel_Layout.createSequentialGroup()
                         .addComponent(item3jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(item4jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
-        playerInventoryjPanelLayout.setVerticalGroup(
-            playerInventoryjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(playerInventoryjPanelLayout.createSequentialGroup()
+        playerInventoryjPanel_Layout.setVerticalGroup(
+            playerInventoryjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(playerInventoryjPanel_Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addGroup(playerInventoryjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(playerInventoryjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(item1jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(item2jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(playerInventoryjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(playerInventoryjPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(item4jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(item3jLabel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
-        inventoryStatsEquipmentjTabbedPane_.addTab("Items", playerInventoryjPanel);
+        inventoryStatsEquipmentjTabbedPane_.addTab("Items", playerInventoryjPanel_);
 
         playerEquipmentjPanel_.setFocusable(false);
 
@@ -661,7 +668,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
                 .addComponent(spelljButton3_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(spelljButton4_, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Special", playerSpecialjPanel_);
@@ -700,18 +707,33 @@ public class JFrame_GUI extends javax.swing.JFrame {
                 .addComponent(musicOptionjRadioButton_, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(soundOptionjRadioButton_, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Options", optionsjPanel_);
 
-        playerControlsjTextArea_.setColumns(20);
-        playerControlsjTextArea_.setRows(5);
-        playerControlsjTextArea_.setText("playerControlsjTextArea_");
-        playerControlsjTextArea_.setFocusable(false);
-        playerControlsjScrollPane_.setViewportView(playerControlsjTextArea_);
+        controlsSplitPane_.setDividerLocation(60);
+        controlsSplitPane_.setFocusable(false);
+        controlsSplitPane_.setLeftComponent(keyBindingsjScrollPane_);
 
-        inventoryStatsEquipmentjTabbedPane_.addTab("Controls", playerControlsjScrollPane_);
+        keyCommandsjTextArea_.setEditable(false);
+        keyCommandsjTextArea_.setColumns(20);
+        keyCommandsjTextArea_.setRows(5);
+        keyCommandsjTextArea_.setText("Commands:\nWalk up\nWalk left\nWalk down\nWalk right\n...");
+        keyCommandsjScrollPane_.setViewportView(keyCommandsjTextArea_);
+
+        controlsSplitPane_.setRightComponent(keyCommandsjScrollPane_);
+
+        keyBindingsjTextArea_.setColumns(20);
+        keyBindingsjTextArea_.setRows(5);
+        keyBindingsjTextArea_.setText("Keys:\nW\nA\nS\nD\n...");
+        keyBindingsjScrollPane2_.setViewportView(keyBindingsjTextArea_);
+
+        controlsSplitPane_.setLeftComponent(keyBindingsjScrollPane2_);
+
+        inventoryStatsEquipmentjTabbedPane_.addTab("Controls", controlsSplitPane_);
+
+        game_Screen_JPanel_.setFocusable(false);
 
         javax.swing.GroupLayout game_Screen_JPanel_Layout = new javax.swing.GroupLayout(game_Screen_JPanel_);
         game_Screen_JPanel_.setLayout(game_Screen_JPanel_Layout);
@@ -724,6 +746,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        minimap_JTextPanel_.setFocusable(false);
         minimap_JTextPanel_.setPreferredSize(new java.awt.Dimension(200, 200));
 
         javax.swing.GroupLayout minimap_JTextPanel_Layout = new javax.swing.GroupLayout(minimap_JTextPanel_);
@@ -832,6 +855,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
 // <editor-fold defaultstate="collapsed" desc="DO NOT MODIFY">
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSplitPane controlsSplitPane_;
     private View.Game_Screen_JPanel game_Screen_JPanel_;
     private javax.swing.JLabel helmetjLabel_;
     private javax.swing.JScrollPane incomingChatjScrollPane_;
@@ -842,14 +866,17 @@ public class JFrame_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel item3jLabel_;
     private javax.swing.JLabel item4jLabel_;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane keyBindingsjScrollPane2_;
+    private javax.swing.JScrollPane keyBindingsjScrollPane_;
+    private javax.swing.JTextArea keyBindingsjTextArea_;
+    private javax.swing.JScrollPane keyCommandsjScrollPane_;
+    private javax.swing.JTextArea keyCommandsjTextArea_;
     private View.Minimap_JTextPanel minimap_JTextPanel_;
     private javax.swing.JRadioButton musicOptionjRadioButton_;
     private javax.swing.JPanel optionsjPanel_;
     private javax.swing.JTextField outgoingChatjTextField_;
-    private javax.swing.JScrollPane playerControlsjScrollPane_;
-    private javax.swing.JTextArea playerControlsjTextArea_;
     private javax.swing.JPanel playerEquipmentjPanel_;
-    private javax.swing.JPanel playerInventoryjPanel;
+    private javax.swing.JPanel playerInventoryjPanel_;
     private javax.swing.JPanel playerSpecialjPanel_;
     private javax.swing.JScrollPane playerStatsjScrollPane_;
     private javax.swing.JTextArea playerStatsjTextArea_;
