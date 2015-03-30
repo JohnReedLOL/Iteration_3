@@ -18,386 +18,376 @@ public class JFrame_GUI extends javax.swing.JFrame {
     private static JFrame_GUI singleton_ = null;
 
     /**
-     * Creates new form JFrame_GUI. 
+     * Creates new form JFrame_GUI.
      */
-    private JFrame_GUI() {
+    private JFrame_GUI () {
         initComponents();
     }
 // <editor-fold defaultstate="collapsed" desc="Getters">
+
     /**
      * @return the game_Screen_JPanel_
      */
-    public View.Game_Screen_JPanel getGame_Screen_JPanel_() {
+    public View.Game_Screen_JPanel getGame_Screen_JPanel_ () {
         return game_Screen_JPanel_;
     }
 
     /**
      * @param game_Screen_JPanel_ the game_Screen_JPanel_ to set
      */
-    public void setGame_Screen_JPanel_(View.Game_Screen_JPanel game_Screen_JPanel_) {
+    public void setGame_Screen_JPanel_ ( View.Game_Screen_JPanel game_Screen_JPanel_ ) {
         this.game_Screen_JPanel_ = game_Screen_JPanel_;
     }
 
     /**
      * @return the helmetjLabel_
      */
-    public javax.swing.JLabel getHelmetjLabel_() {
+    public javax.swing.JLabel getHelmetjLabel_ () {
         return helmetjLabel_;
     }
 
     /**
      * @param helmetjLabel_ the helmetjLabel_ to set
      */
-    public void setHelmetjLabel_(javax.swing.JLabel helmetjLabel_) {
+    public void setHelmetjLabel_ ( javax.swing.JLabel helmetjLabel_ ) {
         this.helmetjLabel_ = helmetjLabel_;
     }
 
     /**
      * @return the incomingChatjScrollPane_
      */
-    public javax.swing.JScrollPane getIncomingChatjScrollPane_() {
+    public javax.swing.JScrollPane getIncomingChatjScrollPane_ () {
         return incomingChatjScrollPane_;
     }
 
     /**
      * @param incomingChatjScrollPane_ the incomingChatjScrollPane_ to set
      */
-    public void setIncomingChatjScrollPane_(javax.swing.JScrollPane incomingChatjScrollPane_) {
+    public void setIncomingChatjScrollPane_ ( javax.swing.JScrollPane incomingChatjScrollPane_ ) {
         this.incomingChatjScrollPane_ = incomingChatjScrollPane_;
     }
 
     /**
      * @return the incomingChatjTextArea_
      */
-    public javax.swing.JTextArea getIncomingChatjTextArea_() {
+    public javax.swing.JTextArea getIncomingChatjTextArea_ () {
         return incomingChatjTextArea_;
     }
 
     /**
      * @param incomingChatjTextArea_ the incomingChatjTextArea_ to set
      */
-    public void setIncomingChatjTextArea_(javax.swing.JTextArea incomingChatjTextArea_) {
+    public void setIncomingChatjTextArea_ ( javax.swing.JTextArea incomingChatjTextArea_ ) {
         this.incomingChatjTextArea_ = incomingChatjTextArea_;
     }
 
     /**
      * @return the inventoryStatsEquipmentjTabbedPane_
      */
-    public javax.swing.JTabbedPane getInventoryStatsEquipmentjTabbedPane_() {
+    public javax.swing.JTabbedPane getInventoryStatsEquipmentjTabbedPane_ () {
         return inventoryStatsEquipmentjTabbedPane_;
     }
 
     /**
      * @param inventoryStatsEquipmentjTabbedPane_ the inventoryStatsEquipmentjTabbedPane_ to set
      */
-    public void setInventoryStatsEquipmentjTabbedPane_(javax.swing.JTabbedPane inventoryStatsEquipmentjTabbedPane_) {
+    public void setInventoryStatsEquipmentjTabbedPane_ ( javax.swing.JTabbedPane inventoryStatsEquipmentjTabbedPane_ ) {
         this.inventoryStatsEquipmentjTabbedPane_ = inventoryStatsEquipmentjTabbedPane_;
     }
 
     /**
      * @return the item1jLabel_
      */
-    public javax.swing.JLabel getItem1jLabel_() {
+    public javax.swing.JLabel getItem1jLabel_ () {
         return item1jLabel_;
     }
 
     /**
      * @param item1jLabel_ the item1jLabel_ to set
      */
-    public void setItem1jLabel_(javax.swing.JLabel item1jLabel_) {
+    public void setItem1jLabel_ ( javax.swing.JLabel item1jLabel_ ) {
         this.item1jLabel_ = item1jLabel_;
     }
 
     /**
      * @return the item2jLabel_
      */
-    public javax.swing.JLabel getItem2jLabel_() {
+    public javax.swing.JLabel getItem2jLabel_ () {
         return item2jLabel_;
     }
 
     /**
      * @param item2jLabel_ the item2jLabel_ to set
      */
-    public void setItem2jLabel_(javax.swing.JLabel item2jLabel_) {
+    public void setItem2jLabel_ ( javax.swing.JLabel item2jLabel_ ) {
         this.item2jLabel_ = item2jLabel_;
     }
 
     /**
      * @return the item3jLabel_
      */
-    public javax.swing.JLabel getItem3jLabel_() {
+    public javax.swing.JLabel getItem3jLabel_ () {
         return item3jLabel_;
     }
 
     /**
      * @param item3jLabel_ the item3jLabel_ to set
      */
-    public void setItem3jLabel_(javax.swing.JLabel item3jLabel_) {
+    public void setItem3jLabel_ ( javax.swing.JLabel item3jLabel_ ) {
         this.item3jLabel_ = item3jLabel_;
     }
 
     /**
      * @return the item4jLabel_
      */
-    public javax.swing.JLabel getItem4jLabel_() {
+    public javax.swing.JLabel getItem4jLabel_ () {
         return item4jLabel_;
     }
 
     /**
      * @param item4jLabel_ the item4jLabel_ to set
      */
-    public void setItem4jLabel_(javax.swing.JLabel item4jLabel_) {
+    public void setItem4jLabel_ ( javax.swing.JLabel item4jLabel_ ) {
         this.item4jLabel_ = item4jLabel_;
     }
 
     /**
      * @return the minimap_JTextPanel_
      */
-    public View.Minimap_JTextPanel getMinimap_JTextPanel_() {
+    public View.Minimap_JTextPanel getMinimap_JTextPanel_ () {
         return minimap_JTextPanel_;
     }
 
     /**
      * @param minimap_JTextPanel_ the minimap_JTextPanel_ to set
      */
-    public void setMinimap_JTextPanel_(View.Minimap_JTextPanel minimap_JTextPanel_) {
+    public void setMinimap_JTextPanel_ ( View.Minimap_JTextPanel minimap_JTextPanel_ ) {
         this.minimap_JTextPanel_ = minimap_JTextPanel_;
     }
 
     /**
      * @return the musicOptionjRadioButton_
      */
-    public javax.swing.JRadioButton getMusicOptionjRadioButton_() {
+    public javax.swing.JRadioButton getMusicOptionjRadioButton_ () {
         return musicOptionjRadioButton_;
     }
 
     /**
      * @param musicOptionjRadioButton_ the musicOptionjRadioButton_ to set
      */
-    public void setMusicOptionjRadioButton_(javax.swing.JRadioButton musicOptionjRadioButton_) {
+    public void setMusicOptionjRadioButton_ ( javax.swing.JRadioButton musicOptionjRadioButton_ ) {
         this.musicOptionjRadioButton_ = musicOptionjRadioButton_;
     }
 
     /**
      * @return the optionsjPanel_
      */
-    public javax.swing.JPanel getOptionsjPanel_() {
+    public javax.swing.JPanel getOptionsjPanel_ () {
         return optionsjPanel_;
     }
 
     /**
      * @param optionsjPanel_ the optionsjPanel_ to set
      */
-    public void setOptionsjPanel_(javax.swing.JPanel optionsjPanel_) {
+    public void setOptionsjPanel_ ( javax.swing.JPanel optionsjPanel_ ) {
         this.optionsjPanel_ = optionsjPanel_;
     }
 
     /**
      * @return the outgoingChatjTextField_
      */
-    public javax.swing.JTextField getOutgoingChatjTextField_() {
+    public javax.swing.JTextField getOutgoingChatjTextField_ () {
         return outgoingChatjTextField_;
     }
 
     /**
      * @param outgoingChatjTextField_ the outgoingChatjTextField_ to set
      */
-    public void setOutgoingChatjTextField_(javax.swing.JTextField outgoingChatjTextField_) {
+    public void setOutgoingChatjTextField_ ( javax.swing.JTextField outgoingChatjTextField_ ) {
         this.outgoingChatjTextField_ = outgoingChatjTextField_;
     }
 
-    /**
-     * @return the playerControlsjScrollPane_
-     */
-    public javax.swing.JScrollPane getPlayerControlsjScrollPane_() {
-        return playerControlsjScrollPane_;
+    public javax.swing.JScrollPane getKeyBindingsjScrollPane_ () {
+        return keyBindingsjScrollPane2_;
     }
 
-    /**
-     * @param playerControlsjScrollPane_ the playerControlsjScrollPane_ to set
-     */
-    public void setPlayerControlsjScrollPane_(javax.swing.JScrollPane playerControlsjScrollPane_) {
-        this.playerControlsjScrollPane_ = playerControlsjScrollPane_;
+    public javax.swing.JTextArea getKeyBindingsjTextArea_ () {
+        return keyBindingsjTextArea_;
     }
 
-    /**
-     * @return the playerControlsjTextArea_
-     */
-    public javax.swing.JTextArea getPlayerControlsjTextArea_() {
-        return playerControlsjTextArea_;
+    public javax.swing.JScrollPane getKeyCommandsjScrollPane_ () {
+        return keyCommandsjScrollPane_;
     }
-
-    /**
-     * @param playerControlsjTextArea_ the playerControlsjTextArea_ to set
-     */
-    public void setPlayerControlsjTextArea_(javax.swing.JTextArea playerControlsjTextArea_) {
-        this.playerControlsjTextArea_ = playerControlsjTextArea_;
+    
+    public javax.swing.JTextArea getKeyCommandsjTextArea_ () {
+        return keyCommandsjTextArea_;
     }
 
     /**
      * @return the playerEquipmentjPanel_
      */
-    public javax.swing.JPanel getPlayerEquipmentjPanel_() {
+    public javax.swing.JPanel getPlayerEquipmentjPanel_ () {
         return playerEquipmentjPanel_;
     }
 
     /**
      * @param playerEquipmentjPanel_ the playerEquipmentjPanel_ to set
      */
-    public void setPlayerEquipmentjPanel_(javax.swing.JPanel playerEquipmentjPanel_) {
+    public void setPlayerEquipmentjPanel_ ( javax.swing.JPanel playerEquipmentjPanel_ ) {
         this.playerEquipmentjPanel_ = playerEquipmentjPanel_;
     }
 
     /**
      * @return the playerSpecialjPanel_
      */
-    public javax.swing.JPanel getPlayerSpecialjPanel_() {
+    public javax.swing.JPanel getPlayerSpecialjPanel_ () {
         return playerSpecialjPanel_;
     }
 
     /**
      * @param playerSpecialjPanel_ the playerSpecialjPanel_ to set
      */
-    public void setPlayerSpecialjPanel_(javax.swing.JPanel playerSpecialjPanel_) {
+    public void setPlayerSpecialjPanel_ ( javax.swing.JPanel playerSpecialjPanel_ ) {
         this.playerSpecialjPanel_ = playerSpecialjPanel_;
     }
 
     /**
      * @return the playerStatsjScrollPane_
      */
-    public javax.swing.JScrollPane getPlayerStatsjScrollPane_() {
+    public javax.swing.JScrollPane getPlayerStatsjScrollPane_ () {
         return playerStatsjScrollPane_;
     }
 
     /**
      * @param playerStatsjScrollPane_ the playerStatsjScrollPane_ to set
      */
-    public void setPlayerStatsjScrollPane_(javax.swing.JScrollPane playerStatsjScrollPane_) {
+    public void setPlayerStatsjScrollPane_ ( javax.swing.JScrollPane playerStatsjScrollPane_ ) {
         this.playerStatsjScrollPane_ = playerStatsjScrollPane_;
     }
 
     /**
      * @return the playerStatsjTextArea_
      */
-    public javax.swing.JTextArea getPlayerStatsjTextArea_() {
+    public javax.swing.JTextArea getPlayerStatsjTextArea_ () {
         return playerStatsjTextArea_;
     }
 
     /**
      * @param playerStatsjTextArea_ the playerStatsjTextArea_ to set
      */
-    public void setPlayerStatsjTextArea_(javax.swing.JTextArea playerStatsjTextArea_) {
+    public void setPlayerStatsjTextArea_ ( javax.swing.JTextArea playerStatsjTextArea_ ) {
         this.playerStatsjTextArea_ = playerStatsjTextArea_;
     }
 
     /**
      * @return the sheildSlotjLabel_
      */
-    public javax.swing.JLabel getSheildSlotjLabel_() {
+    public javax.swing.JLabel getSheildSlotjLabel_ () {
         return sheildSlotjLabel_;
     }
 
     /**
      * @param sheildSlotjLabel_ the sheildSlotjLabel_ to set
      */
-    public void setSheildSlotjLabel_(javax.swing.JLabel sheildSlotjLabel_) {
+    public void setSheildSlotjLabel_ ( javax.swing.JLabel sheildSlotjLabel_ ) {
         this.sheildSlotjLabel_ = sheildSlotjLabel_;
     }
 
     /**
      * @return the soundOptionjRadioButton_
      */
-    public javax.swing.JRadioButton getSoundOptionjRadioButton_() {
+    public javax.swing.JRadioButton getSoundOptionjRadioButton_ () {
         return soundOptionjRadioButton_;
     }
 
     /**
      * @param soundOptionjRadioButton_ the soundOptionjRadioButton_ to set
      */
-    public void setSoundOptionjRadioButton_(javax.swing.JRadioButton soundOptionjRadioButton_) {
+    public void setSoundOptionjRadioButton_ ( javax.swing.JRadioButton soundOptionjRadioButton_ ) {
         this.soundOptionjRadioButton_ = soundOptionjRadioButton_;
     }
 
     /**
      * @return the spelljButton1_
      */
-    public javax.swing.JButton getSpelljButton1_() {
+    public javax.swing.JButton getSpelljButton1_ () {
         return spelljButton1_;
     }
 
     /**
      * @param spelljButton1_ the spelljButton1_ to set
      */
-    public void setSpelljButton1_(javax.swing.JButton spelljButton1_) {
+    public void setSpelljButton1_ ( javax.swing.JButton spelljButton1_ ) {
         this.spelljButton1_ = spelljButton1_;
     }
 
     /**
      * @return the spelljButton2_
      */
-    public javax.swing.JButton getSpelljButton2_() {
+    public javax.swing.JButton getSpelljButton2_ () {
         return spelljButton2_;
     }
 
     /**
      * @param spelljButton2_ the spelljButton2_ to set
      */
-    public void setSpelljButton2_(javax.swing.JButton spelljButton2_) {
+    public void setSpelljButton2_ ( javax.swing.JButton spelljButton2_ ) {
         this.spelljButton2_ = spelljButton2_;
     }
 
     /**
      * @return the spelljButton3_
      */
-    public javax.swing.JButton getSpelljButton3_() {
+    public javax.swing.JButton getSpelljButton3_ () {
         return spelljButton3_;
     }
 
     /**
      * @param spelljButton3_ the spelljButton3_ to set
      */
-    public void setSpelljButton3_(javax.swing.JButton spelljButton3_) {
+    public void setSpelljButton3_ ( javax.swing.JButton spelljButton3_ ) {
         this.spelljButton3_ = spelljButton3_;
     }
 
     /**
      * @return the spelljButton4_
      */
-    public javax.swing.JButton getSpelljButton4_() {
+    public javax.swing.JButton getSpelljButton4_ () {
         return spelljButton4_;
     }
 
     /**
      * @param spelljButton4_ the spelljButton4_ to set
      */
-    public void setSpelljButton4_(javax.swing.JButton spelljButton4_) {
+    public void setSpelljButton4_ ( javax.swing.JButton spelljButton4_ ) {
         this.spelljButton4_ = spelljButton4_;
     }
 
     /**
      * @return the weaponSlotjLabel_
      */
-    public javax.swing.JLabel getWeaponSlotjLabel_() {
+    public javax.swing.JLabel getWeaponSlotjLabel_ () {
         return weaponSlotjLabel_;
     }
 
     /**
      * @param weaponSlotjLabel_ the weaponSlotjLabel_ to set
      */
-    public void setWeaponSlotjLabel_(javax.swing.JLabel weaponSlotjLabel_) {
+    public void setWeaponSlotjLabel_ ( javax.swing.JLabel weaponSlotjLabel_ ) {
         this.weaponSlotjLabel_ = weaponSlotjLabel_;
     }
 // </editor-fold>
 
     /**
      * Returns a reference to the singleton.
-     * @return 
+     *
+     * @return
      */
-    public static JFrame_GUI get_GUI() {
-        if (singleton_ == null) {
+    public static JFrame_GUI get_GUI () {
+        if ( singleton_ == null ) {
             try {
-                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                    if ("Metal".equals(info.getName())) {
+                for ( javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels() ) {
+                    if ( "Metal".equals(info.getName()) ) {
                         javax.swing.UIManager.setLookAndFeel(info.getClassName());
                         break;
                     }
@@ -409,7 +399,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
+                public void run () {
                     JFrame_GUI.singleton_ = new JFrame_GUI();
                     singleton_.setVisible(true);
                 }
@@ -419,9 +409,8 @@ public class JFrame_GUI extends javax.swing.JFrame {
     }
 
     /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form. WARNING: Do NOT
+     * modify this code. The content of this method is always regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="DO NOT READ WRITE OR MODIFY">
