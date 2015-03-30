@@ -19,13 +19,14 @@ public class jDialog_GUI extends javax.swing.JDialog {
     public jDialog_GUI ( java.awt.Frame parent, boolean modal ) {
         super(parent, modal);
         initComponents();
+        uiThreadCheck();
     }
 
     /**
      * Checks to see if the program is running on the UI thread in the GUI.
      */
     private void uiThreadCheck () {
-        if ( java.awt.EventQueue.isDispatchThread() ) {
+        if ( ! java.awt.EventQueue.isDispatchThread() ) {
             RunGame.printStackTraceAndCrashTheProgramBecause("Only the UI thread can access this data");
         }
     }

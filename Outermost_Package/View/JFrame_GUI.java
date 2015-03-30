@@ -22,13 +22,24 @@ public class JFrame_GUI extends javax.swing.JFrame {
      */
     private JFrame_GUI () {
         initComponents();
+        uiThreadCheck();
     }
-// <editor-fold defaultstate="collapsed" desc="Getters">
 
+    /**
+     * Checks to see if the program is running on the UI thread in the GUI.
+     */
+    private void uiThreadCheck () {
+        if ( !java.awt.EventQueue.isDispatchThread() ) {
+            RunGame.printStackTraceAndCrashTheProgramBecause("Only the UI thread can access this data");
+        }
+    }
+
+// <editor-fold defaultstate="collapsed" desc="Getters">
     /**
      * @return the game_Screen_JPanel_
      */
     public View.Game_Screen_JPanel getGame_Screen_JPanel_ () {
+        uiThreadCheck();
         return game_Screen_JPanel_;
     }
 
@@ -36,6 +47,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param game_Screen_JPanel_ the game_Screen_JPanel_ to set
      */
     public void setGame_Screen_JPanel_ ( View.Game_Screen_JPanel game_Screen_JPanel_ ) {
+        uiThreadCheck();
         this.game_Screen_JPanel_ = game_Screen_JPanel_;
     }
 
@@ -43,6 +55,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the helmetjLabel_
      */
     public javax.swing.JLabel getHelmetjLabel_ () {
+        uiThreadCheck();
         return helmetjLabel_;
     }
 
@@ -50,6 +63,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param helmetjLabel_ the helmetjLabel_ to set
      */
     public void setHelmetjLabel_ ( javax.swing.JLabel helmetjLabel_ ) {
+        uiThreadCheck();
         this.helmetjLabel_ = helmetjLabel_;
     }
 
@@ -57,6 +71,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the incomingChatjScrollPane_
      */
     public javax.swing.JScrollPane getIncomingChatjScrollPane_ () {
+        uiThreadCheck();
         return incomingChatjScrollPane_;
     }
 
@@ -64,6 +79,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param incomingChatjScrollPane_ the incomingChatjScrollPane_ to set
      */
     public void setIncomingChatjScrollPane_ ( javax.swing.JScrollPane incomingChatjScrollPane_ ) {
+        uiThreadCheck();
         this.incomingChatjScrollPane_ = incomingChatjScrollPane_;
     }
 
@@ -71,6 +87,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the incomingChatjTextArea_
      */
     public javax.swing.JTextArea getIncomingChatjTextArea_ () {
+        uiThreadCheck();
         return incomingChatjTextArea_;
     }
 
@@ -78,6 +95,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param incomingChatjTextArea_ the incomingChatjTextArea_ to set
      */
     public void setIncomingChatjTextArea_ ( javax.swing.JTextArea incomingChatjTextArea_ ) {
+        uiThreadCheck();
         this.incomingChatjTextArea_ = incomingChatjTextArea_;
     }
 
@@ -85,6 +103,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the inventoryStatsEquipmentjTabbedPane_
      */
     public javax.swing.JTabbedPane getInventoryStatsEquipmentjTabbedPane_ () {
+        uiThreadCheck();
         return inventoryStatsEquipmentjTabbedPane_;
     }
 
@@ -92,6 +111,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param inventoryStatsEquipmentjTabbedPane_ the inventoryStatsEquipmentjTabbedPane_ to set
      */
     public void setInventoryStatsEquipmentjTabbedPane_ ( javax.swing.JTabbedPane inventoryStatsEquipmentjTabbedPane_ ) {
+        uiThreadCheck();
         this.inventoryStatsEquipmentjTabbedPane_ = inventoryStatsEquipmentjTabbedPane_;
     }
 
@@ -99,6 +119,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the item1jLabel_
      */
     public javax.swing.JLabel getItem1jLabel_ () {
+        uiThreadCheck();
         return item1jLabel_;
     }
 
@@ -106,6 +127,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param item1jLabel_ the item1jLabel_ to set
      */
     public void setItem1jLabel_ ( javax.swing.JLabel item1jLabel_ ) {
+        uiThreadCheck();
         this.item1jLabel_ = item1jLabel_;
     }
 
@@ -113,6 +135,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the item2jLabel_
      */
     public javax.swing.JLabel getItem2jLabel_ () {
+        uiThreadCheck();
         return item2jLabel_;
     }
 
@@ -120,6 +143,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param item2jLabel_ the item2jLabel_ to set
      */
     public void setItem2jLabel_ ( javax.swing.JLabel item2jLabel_ ) {
+        uiThreadCheck();
         this.item2jLabel_ = item2jLabel_;
     }
 
@@ -127,6 +151,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the item3jLabel_
      */
     public javax.swing.JLabel getItem3jLabel_ () {
+        uiThreadCheck();
         return item3jLabel_;
     }
 
@@ -134,6 +159,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param item3jLabel_ the item3jLabel_ to set
      */
     public void setItem3jLabel_ ( javax.swing.JLabel item3jLabel_ ) {
+        uiThreadCheck();
         this.item3jLabel_ = item3jLabel_;
     }
 
@@ -141,6 +167,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the item4jLabel_
      */
     public javax.swing.JLabel getItem4jLabel_ () {
+        uiThreadCheck();
         return item4jLabel_;
     }
 
@@ -148,6 +175,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param item4jLabel_ the item4jLabel_ to set
      */
     public void setItem4jLabel_ ( javax.swing.JLabel item4jLabel_ ) {
+        uiThreadCheck();
         this.item4jLabel_ = item4jLabel_;
     }
 
@@ -155,6 +183,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the minimap_JTextPanel_
      */
     public View.Minimap_JTextPanel getMinimap_JTextPanel_ () {
+        uiThreadCheck();
         return minimap_JTextPanel_;
     }
 
@@ -162,6 +191,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param minimap_JTextPanel_ the minimap_JTextPanel_ to set
      */
     public void setMinimap_JTextPanel_ ( View.Minimap_JTextPanel minimap_JTextPanel_ ) {
+        uiThreadCheck();
         this.minimap_JTextPanel_ = minimap_JTextPanel_;
     }
 
@@ -169,6 +199,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the musicOptionjRadioButton_
      */
     public javax.swing.JRadioButton getMusicOptionjRadioButton_ () {
+        uiThreadCheck();
         return musicOptionjRadioButton_;
     }
 
@@ -176,6 +207,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param musicOptionjRadioButton_ the musicOptionjRadioButton_ to set
      */
     public void setMusicOptionjRadioButton_ ( javax.swing.JRadioButton musicOptionjRadioButton_ ) {
+        uiThreadCheck();
         this.musicOptionjRadioButton_ = musicOptionjRadioButton_;
     }
 
@@ -183,6 +215,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the optionsjPanel_
      */
     public javax.swing.JPanel getOptionsjPanel_ () {
+        uiThreadCheck();
         return optionsjPanel_;
     }
 
@@ -190,6 +223,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param optionsjPanel_ the optionsjPanel_ to set
      */
     public void setOptionsjPanel_ ( javax.swing.JPanel optionsjPanel_ ) {
+        uiThreadCheck();
         this.optionsjPanel_ = optionsjPanel_;
     }
 
@@ -197,6 +231,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the outgoingChatjTextField_
      */
     public javax.swing.JTextField getOutgoingChatjTextField_ () {
+        uiThreadCheck();
         return outgoingChatjTextField_;
     }
 
@@ -204,22 +239,27 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param outgoingChatjTextField_ the outgoingChatjTextField_ to set
      */
     public void setOutgoingChatjTextField_ ( javax.swing.JTextField outgoingChatjTextField_ ) {
+        uiThreadCheck();
         this.outgoingChatjTextField_ = outgoingChatjTextField_;
     }
 
     public javax.swing.JScrollPane getKeyBindingsjScrollPane_ () {
+        uiThreadCheck();
         return keyBindingsjScrollPane2_;
     }
 
     public javax.swing.JTextArea getKeyBindingsjTextArea_ () {
+        uiThreadCheck();
         return keyBindingsjTextArea_;
     }
 
     public javax.swing.JScrollPane getKeyCommandsjScrollPane_ () {
+        uiThreadCheck();
         return keyCommandsjScrollPane_;
     }
-    
+
     public javax.swing.JTextArea getKeyCommandsjTextArea_ () {
+        uiThreadCheck();
         return keyCommandsjTextArea_;
     }
 
@@ -227,6 +267,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the playerEquipmentjPanel_
      */
     public javax.swing.JPanel getPlayerEquipmentjPanel_ () {
+        uiThreadCheck();
         return playerEquipmentjPanel_;
     }
 
@@ -234,6 +275,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param playerEquipmentjPanel_ the playerEquipmentjPanel_ to set
      */
     public void setPlayerEquipmentjPanel_ ( javax.swing.JPanel playerEquipmentjPanel_ ) {
+        uiThreadCheck();
         this.playerEquipmentjPanel_ = playerEquipmentjPanel_;
     }
 
@@ -241,6 +283,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the playerSpecialjPanel_
      */
     public javax.swing.JPanel getPlayerSpecialjPanel_ () {
+        uiThreadCheck();
         return playerSpecialjPanel_;
     }
 
@@ -248,6 +291,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param playerSpecialjPanel_ the playerSpecialjPanel_ to set
      */
     public void setPlayerSpecialjPanel_ ( javax.swing.JPanel playerSpecialjPanel_ ) {
+        uiThreadCheck();
         this.playerSpecialjPanel_ = playerSpecialjPanel_;
     }
 
@@ -255,6 +299,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the playerStatsjScrollPane_
      */
     public javax.swing.JScrollPane getPlayerStatsjScrollPane_ () {
+        uiThreadCheck();
         return playerStatsjScrollPane_;
     }
 
@@ -262,6 +307,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param playerStatsjScrollPane_ the playerStatsjScrollPane_ to set
      */
     public void setPlayerStatsjScrollPane_ ( javax.swing.JScrollPane playerStatsjScrollPane_ ) {
+        uiThreadCheck();
         this.playerStatsjScrollPane_ = playerStatsjScrollPane_;
     }
 
@@ -269,6 +315,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the playerStatsjTextArea_
      */
     public javax.swing.JTextArea getPlayerStatsjTextArea_ () {
+        uiThreadCheck();
         return playerStatsjTextArea_;
     }
 
@@ -276,6 +323,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param playerStatsjTextArea_ the playerStatsjTextArea_ to set
      */
     public void setPlayerStatsjTextArea_ ( javax.swing.JTextArea playerStatsjTextArea_ ) {
+        uiThreadCheck();
         this.playerStatsjTextArea_ = playerStatsjTextArea_;
     }
 
@@ -283,6 +331,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the sheildSlotjLabel_
      */
     public javax.swing.JLabel getSheildSlotjLabel_ () {
+        uiThreadCheck();
         return sheildSlotjLabel_;
     }
 
@@ -290,6 +339,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param sheildSlotjLabel_ the sheildSlotjLabel_ to set
      */
     public void setSheildSlotjLabel_ ( javax.swing.JLabel sheildSlotjLabel_ ) {
+        uiThreadCheck();
         this.sheildSlotjLabel_ = sheildSlotjLabel_;
     }
 
@@ -297,6 +347,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the soundOptionjRadioButton_
      */
     public javax.swing.JRadioButton getSoundOptionjRadioButton_ () {
+        uiThreadCheck();
         return soundOptionjRadioButton_;
     }
 
@@ -304,6 +355,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param soundOptionjRadioButton_ the soundOptionjRadioButton_ to set
      */
     public void setSoundOptionjRadioButton_ ( javax.swing.JRadioButton soundOptionjRadioButton_ ) {
+        uiThreadCheck();
         this.soundOptionjRadioButton_ = soundOptionjRadioButton_;
     }
 
@@ -311,6 +363,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the spelljButton1_
      */
     public javax.swing.JButton getSpelljButton1_ () {
+        uiThreadCheck();
         return spelljButton1_;
     }
 
@@ -318,6 +371,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param spelljButton1_ the spelljButton1_ to set
      */
     public void setSpelljButton1_ ( javax.swing.JButton spelljButton1_ ) {
+        uiThreadCheck();
         this.spelljButton1_ = spelljButton1_;
     }
 
@@ -325,6 +379,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the spelljButton2_
      */
     public javax.swing.JButton getSpelljButton2_ () {
+        uiThreadCheck();
         return spelljButton2_;
     }
 
@@ -332,6 +387,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param spelljButton2_ the spelljButton2_ to set
      */
     public void setSpelljButton2_ ( javax.swing.JButton spelljButton2_ ) {
+        uiThreadCheck();
         this.spelljButton2_ = spelljButton2_;
     }
 
@@ -339,6 +395,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the spelljButton3_
      */
     public javax.swing.JButton getSpelljButton3_ () {
+        uiThreadCheck();
         return spelljButton3_;
     }
 
@@ -346,6 +403,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param spelljButton3_ the spelljButton3_ to set
      */
     public void setSpelljButton3_ ( javax.swing.JButton spelljButton3_ ) {
+        uiThreadCheck();
         this.spelljButton3_ = spelljButton3_;
     }
 
@@ -353,6 +411,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the spelljButton4_
      */
     public javax.swing.JButton getSpelljButton4_ () {
+        uiThreadCheck();
         return spelljButton4_;
     }
 
@@ -360,6 +419,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param spelljButton4_ the spelljButton4_ to set
      */
     public void setSpelljButton4_ ( javax.swing.JButton spelljButton4_ ) {
+        uiThreadCheck();
         this.spelljButton4_ = spelljButton4_;
     }
 
@@ -367,6 +427,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @return the weaponSlotjLabel_
      */
     public javax.swing.JLabel getWeaponSlotjLabel_ () {
+        uiThreadCheck();
         return weaponSlotjLabel_;
     }
 
@@ -374,6 +435,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
      * @param weaponSlotjLabel_ the weaponSlotjLabel_ to set
      */
     public void setWeaponSlotjLabel_ ( javax.swing.JLabel weaponSlotjLabel_ ) {
+        uiThreadCheck();
         this.weaponSlotjLabel_ = weaponSlotjLabel_;
     }
 // </editor-fold>

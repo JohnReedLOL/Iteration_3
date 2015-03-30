@@ -47,7 +47,11 @@ public class RunGame {
         final Thread current = Thread.currentThread();
         final StackTraceElement[] s = current.getStackTrace();
         System.err.println(reason + "\n" + current.getName() + ":");
-        for(int i = 1; i < s.length; ++i) {
+        int num_rows = 6;
+        if(s.length < num_rows) {
+            num_rows = s.length;
+        }
+        for(int i = 1; i < num_rows; ++i) {
             System.err.println(s[i].toString());
         }
         System.exit(-1);
