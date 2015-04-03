@@ -52,14 +52,14 @@ public class jDialog_GUI extends javax.swing.JDialog {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     jDialog_GUI.singleton_ = new jDialog_GUI(new javax.swing.JFrame(), true);
+                    singleton_.requestFocusInWindow();
+                    singleton_.setVisible(true);
                     singleton_.addWindowListener(new java.awt.event.WindowAdapter() {
                         @Override
                         public void windowClosing(java.awt.event.WindowEvent e) {
                             System.exit(0);
                         }
                     });
-                    singleton_.requestFocusInWindow();
-                    singleton_.setVisible(true);
                 }
             });
         }
@@ -374,6 +374,8 @@ public class jDialog_GUI extends javax.swing.JDialog {
             }
         });
 
+        playerStatsjTextPane_.setEditable(false);
+        playerStatsjTextPane_.setFocusable(false);
         playerStatsjScrollPane_.setViewportView(playerStatsjTextPane_);
 
         statsItemsEquipmentjTabbedPane_.addTab("playerStats", playerStatsjScrollPane_);
@@ -546,11 +548,15 @@ public class jDialog_GUI extends javax.swing.JDialog {
 
         statsItemsEquipmentjTabbedPane_.addTab("playerSpells", playerSpellsjPanel_);
 
+        outgoingChatjTextField_.setEditable(false);
         outgoingChatjTextField_.setText("outgoingChatjTextField_");
+        outgoingChatjTextField_.setFocusable(false);
 
+        incomingChatjTextArea_.setEditable(false);
         incomingChatjTextArea_.setColumns(20);
         incomingChatjTextArea_.setRows(5);
         incomingChatjTextArea_.setText("incomingChatjTextArea_\n\n\n\n\n\ndf\ndfv");
+        incomingChatjTextArea_.setFocusable(false);
         incomingChatjTextArea_.setMinimumSize(new java.awt.Dimension(593, 123));
         incomingChatjTextArea_.setPreferredSize(new java.awt.Dimension(593, 123));
         outgoingChatjScrollPane.setViewportView(incomingChatjTextArea_);

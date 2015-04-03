@@ -10,6 +10,7 @@ import Outermost_Package.Model.Model_Public;
 import Outermost_Package.View.View_Public;
 import Outermost_Package.View.jDialog_GUI;
 import Outermost_Package.View.JFrame_GUI;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -35,7 +36,7 @@ public class RunGame {
     /**
      * Prints the thread name, class name, method name, and line number
      */
-    public static synchronized void printStackTrace () {
+    public static synchronized void printStackTrace() {
         final Thread current = Thread.currentThread();
         System.out.println(current.getName() + ": " + current.getStackTrace()[2] + "\n");
     }
@@ -45,15 +46,15 @@ public class RunGame {
      *
      * @param reason - Your reason for crashing the program
      */
-    public static synchronized void printStackTraceAndCrashTheProgramBecause ( String reason ) {
+    public static synchronized void printStackTraceAndCrashTheProgramBecause(String reason) {
         final Thread current = Thread.currentThread();
         final StackTraceElement[] s = current.getStackTrace();
         System.err.println(reason + "\n" + current.getName() + ":");
         int num_rows = 6;
-        if(s.length < num_rows) {
+        if (s.length < num_rows) {
             num_rows = s.length;
         }
-        for(int i = 1; i < num_rows; ++i) {
+        for (int i = 1; i < num_rows; ++i) {
             System.err.println(s[i].toString());
         }
         System.exit(-1);
@@ -62,20 +63,38 @@ public class RunGame {
     /**
      * @param reason - Your reason for printing a stack-trace
      */
-    public static synchronized void printStackTraceBecause ( String reason ) {
+    public static synchronized void printStackTraceBecause(String reason) {
         final Thread current = Thread.currentThread();
         System.out.println(reason + "\n" + current.getName() + ": " + current.getStackTrace()[2] + "\n");
     }
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="Main">
-    public static void main ( String[] args ) {
+
+    public static void main(String[] args) {
         Thread.currentThread().setName("Main_Thread");
+
+        while (true) {
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+
+            }
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    jDialog_GUI.get_GUI().requestFocusInWindow();
+                    if(! jDialog_GUI.get_GUI().isFocusOwner() ) {
+                        RunGame.printStackTraceAndCrashTheProgramBecause("JDialog must always be in focus.");
+                    }
+                }
+            });
+        }
+        /*
         try {
             Thread.sleep(100000);
-        } catch(InterruptedException e) {
-            
+        } catch (InterruptedException e) {
+
         }
-        RunGame.printStackTraceAndCrashTheProgramBecause("Program finished");
+        RunGame.printStackTraceAndCrashTheProgramBecause("Program finished");*/
     }
 // </editor-fold>
 }
