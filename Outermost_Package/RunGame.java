@@ -81,10 +81,10 @@ public class RunGame {
             }
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    if(! jDialog_GUI.get_GUI().isFocusOwner() ) {
-                        //jDialog_GUI.get_GUI().requestFocusInWindow();
-                        RunGame.printStackTraceAndCrashTheProgramBecause("JDialog must always be in focus.");
-                    }
+                    //if(! jDialog_GUI.get_GUI().getParent().isFocusOwner() ) {
+                    //    //jDialog_GUI.get_GUI().requestFocusInWindow();
+                    //    RunGame.printStackTraceAndCrashTheProgramBecause("JDialog must always be in focus.");
+                    //}
                 }
             });
         }

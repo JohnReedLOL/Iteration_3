@@ -6,7 +6,13 @@
 package Outermost_Package.View;
 
 import Outermost_Package.RunGame;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.KeyStroke;
+import javax.swing.*;
 
 /**
  *
@@ -27,6 +33,18 @@ public class jDialog_GUI extends javax.swing.JDialog {
         if (this.getModalityType() != jDialog_GUI.ModalityType.APPLICATION_MODAL) {
             RunGame.printStackTraceAndCrashTheProgramBecause("It was supposed to be modal.");
         }
+
+        // USE THIS CODE FOR REFERECE
+        // JRootPane A lightweight container used behind the scenes by JFrame, JDialog
+        final KeyStroke stroke = KeyStroke.getKeyStroke("ESCAPE");
+        final Action actionListener = new AbstractAction() {
+            public void actionPerformed(final ActionEvent actionEvent) {
+                outgoingChatjTextField_.setText(outgoingChatjTextField_.getText() + "Squirrel");
+            }
+        };
+        final InputMap inputMap = super.rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(stroke, "ESCAPE");
+        super.rootPane.getActionMap().put("ESCAPE", actionListener);
     }
 
     /**
@@ -639,11 +657,11 @@ public class jDialog_GUI extends javax.swing.JDialog {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
-        
+
         // You should only rely on the key char if the event is a key typed event.
         int id = evt.getID();
         String keyString;
-        if(id != KeyEvent.KEY_TYPED) {
+        if (id != KeyEvent.KEY_TYPED) {
             RunGame.printStackTraceAndCrashTheProgramBecause("Invalid key pressed event");
         }
         int keyCode = evt.getKeyCode();
@@ -667,6 +685,21 @@ public class jDialog_GUI extends javax.swing.JDialog {
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
         RunGame.printStackTraceBecause("Mouse was pressed");
+        /*
+         // USE THIS CODE FOR REFERECE
+         // JRootPane A lightweight container used behind the scenes by JFrame
+         final JRootPane rootPane=new JRootPane();
+         final KeyStroke stroke=KeyStroke.getKeyStroke("ESCAPE");
+         final Action actionListener=new AbstractAction(){
+         public void actionPerformed(    final ActionEvent actionEvent){
+         setVisible(false);
+         }
+         }
+         ;
+         final InputMap inputMap=rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+         inputMap.put(stroke,"ESCAPE");
+         rootPane.getActionMap().put("ESCAPE",actionListener);
+         */
     }//GEN-LAST:event_formMousePressed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
@@ -686,6 +719,7 @@ public class jDialog_GUI extends javax.swing.JDialog {
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
+        System.err.println("Window gained focus");
         RunGame.printStackTraceBecause("Window gained focus");
     }//GEN-LAST:event_formWindowGainedFocus
 
