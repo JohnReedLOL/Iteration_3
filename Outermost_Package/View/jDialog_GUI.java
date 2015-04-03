@@ -7,6 +7,7 @@ package Outermost_Package.View;
 
 import Outermost_Package.RunGame;
 import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
@@ -36,15 +37,45 @@ public class jDialog_GUI extends javax.swing.JDialog {
 
         // USE THIS CODE FOR REFERECE
         // JRootPane A lightweight container used behind the scenes by JFrame, JDialog
-        final KeyStroke stroke = KeyStroke.getKeyStroke("ESCAPE");
+        final int key_code = KeyEvent.VK_ESCAPE;
+        if (key_code > Character.MAX_VALUE || key_code < Character.MIN_VALUE) {
+            RunGame.printStackTraceAndCrashTheProgramBecause("Invalid input");
+        }
+        final KeyStroke stroke = KeyStroke.getKeyStroke((char) key_code);
+
         final Action actionListener = new AbstractAction() {
             public void actionPerformed(final ActionEvent actionEvent) {
                 outgoingChatjTextField_.setText(outgoingChatjTextField_.getText() + "Squirrel");
             }
         };
         final InputMap inputMap = super.rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        inputMap.put(stroke, "ESCAPE");
-        super.rootPane.getActionMap().put("ESCAPE", actionListener);
+        inputMap.put(stroke, "ES@CAPE");
+        super.rootPane.getActionMap().put("ES@CAPE", actionListener);
+        setUpLeftMovementBinding((char)KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK);//InputEvent.CTRL_DOWN_MASK);
+    }
+
+    /**
+     *
+     * @param key_typed - any keyboard or num
+     * @param modifier_mask - by default this should be
+     * InputEvent.CTRL_DOWN_MASK, but it can also be InputEvent.SHIFT_DOWN_MASK
+     * or InputEvent.ALT_DOWN_MASK. Specify "0" for no mask. 
+     */
+    public void setUpLeftMovementBinding(final char key_typed, int modifier_mask) {
+        if(modifier_mask != 0 && modifier_mask != InputEvent.CTRL_DOWN_MASK &&
+                modifier_mask != InputEvent.SHIFT_DOWN_MASK && modifier_mask != InputEvent.ALT_DOWN_MASK) {
+            throw new IllegalArgumentException("Invalid mask - see @param");
+        }
+        final KeyStroke stroke = KeyStroke.getKeyStroke(key_typed, modifier_mask);
+
+        final Action actionListener = new AbstractAction() {
+            public void actionPerformed(final ActionEvent actionEvent) {
+                outgoingChatjTextField_.setText(outgoingChatjTextField_.getText() + "Key");
+            }
+        };
+        final InputMap inputMap = super.rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(stroke, "poopoo");
+        super.rootPane.getActionMap().put("poopoo", actionListener);
     }
 
     /**
@@ -381,6 +412,11 @@ public class jDialog_GUI extends javax.swing.JDialog {
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
                 formWindowLostFocus(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -722,6 +758,11 @@ public class jDialog_GUI extends javax.swing.JDialog {
         System.err.println("Window gained focus");
         RunGame.printStackTraceBecause("Window gained focus");
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
