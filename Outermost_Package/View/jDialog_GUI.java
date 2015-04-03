@@ -51,22 +51,18 @@ public class jDialog_GUI extends javax.swing.JDialog {
         final InputMap inputMap = super.rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         inputMap.put(stroke, "ES@CAPE");
         super.rootPane.getActionMap().put("ES@CAPE", actionListener);
-        setUpLeftMovementBinding((char)KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK);//InputEvent.CTRL_DOWN_MASK);
+        setUpLeftMovementBinding('a');//InputEvent.CTRL_DOWN_MASK);
     }
 
     /**
      *
      * @param key_typed - any keyboard or num
-     * @param modifier_mask - by default this should be
-     * InputEvent.CTRL_DOWN_MASK, but it can also be InputEvent.SHIFT_DOWN_MASK
-     * or InputEvent.ALT_DOWN_MASK. Specify "0" for no mask. 
      */
-    public void setUpLeftMovementBinding(final char key_typed, int modifier_mask) {
-        if(modifier_mask != 0 && modifier_mask != InputEvent.CTRL_DOWN_MASK &&
-                modifier_mask != InputEvent.SHIFT_DOWN_MASK && modifier_mask != InputEvent.ALT_DOWN_MASK) {
-            throw new IllegalArgumentException("Invalid mask - see @param");
-        }
-        final KeyStroke stroke = KeyStroke.getKeyStroke(key_typed, modifier_mask);
+    public void setUpLeftMovementBinding(final char key_typed_input) {
+        // only works for upper case key presses
+        final char key_typed = Character.toUpperCase(key_typed_input);
+        //final KeyStroke stroke = KeyStroke.getKeyStroke(key_typed, modifier_mask);
+        final KeyStroke stroke = KeyStroke.getKeyStroke("control pressed " + key_typed);
 
         final Action actionListener = new AbstractAction() {
             public void actionPerformed(final ActionEvent actionEvent) {
@@ -74,9 +70,15 @@ public class jDialog_GUI extends javax.swing.JDialog {
             }
         };
         final InputMap inputMap = super.rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        inputMap.put(stroke, "poopoo");
-        super.rootPane.getActionMap().put("poopoo", actionListener);
+        inputMap.put(stroke, Character.toString(key_typed));
+        super.rootPane.getActionMap().put(Character.toString(key_typed), actionListener);
     }
+    
+    public void clearBindings() {
+        final InputMap inputMap = super.rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.clear();
+    }
+        
 
     /**
      * Returns a reference to the singleton.
