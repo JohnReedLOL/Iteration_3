@@ -22,7 +22,7 @@ public class RunGame {
     private static final Controller_Public controller_ = Controller_Public.getController();
     private static final Model_Public model_ = Model_Public.getModel();
     private static final View_Public view_ = Outermost_Package.View.View_Public.getView();
-    private static final JFrame_GUI gui_ = Outermost_Package.View.JFrame_GUI.get_GUI();
+    //private static final JFrame_GUI gui_ = Outermost_Package.View.JFrame_GUI.get_GUI();
     private static final jDialog_GUI gui2_ = Outermost_Package.View.jDialog_GUI.get_GUI(); // View.jDialog_GUI.get_GUI();
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="Non-static fields">
@@ -75,14 +75,14 @@ public class RunGame {
 
         while (true) {
             try {
-                Thread.sleep(150);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
 
             }
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    jDialog_GUI.get_GUI().requestFocusInWindow();
                     if(! jDialog_GUI.get_GUI().isFocusOwner() ) {
+                        //jDialog_GUI.get_GUI().requestFocusInWindow();
                         RunGame.printStackTraceAndCrashTheProgramBecause("JDialog must always be in focus.");
                     }
                 }
