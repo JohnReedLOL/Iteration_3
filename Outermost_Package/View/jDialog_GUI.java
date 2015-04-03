@@ -6,6 +6,7 @@
 package Outermost_Package.View;
 
 import Outermost_Package.RunGame;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -57,7 +58,7 @@ public class jDialog_GUI extends javax.swing.JDialog {
                             System.exit(0);
                         }
                     });
-                    singleton_.requestFocus();
+                    singleton_.requestFocusInWindow();
                     singleton_.setVisible(true);
                 }
             });
@@ -344,6 +345,9 @@ public class jDialog_GUI extends javax.swing.JDialog {
         setModal(true);
         setPreferredSize(new java.awt.Dimension(1280, 800));
         addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 formFocusLost(evt);
             }
@@ -355,6 +359,7 @@ public class jDialog_GUI extends javax.swing.JDialog {
         });
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
             }
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
                 formWindowLostFocus(evt);
@@ -611,6 +616,7 @@ public class jDialog_GUI extends javax.swing.JDialog {
 
     private void playerSpelljButton1_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerSpelljButton1_ActionPerformed
         // TODO add your handling code here:
+        RunGame.printStackTraceBecause("Button 1 was pressed");
     }//GEN-LAST:event_playerSpelljButton1_ActionPerformed
 
     private void playerSpelljButton2_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerSpelljButton2_ActionPerformed
@@ -627,23 +633,55 @@ public class jDialog_GUI extends javax.swing.JDialog {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
+        
+        // You should only rely on the key char if the event is a key typed event.
+        int id = evt.getID();
+        String keyString;
+        if(id != KeyEvent.KEY_TYPED) {
+            RunGame.printStackTraceAndCrashTheProgramBecause("Invalid key pressed event");
+        }
+        int keyCode = evt.getKeyCode();
+        keyString = "key code = " + keyCode
+                + " ("
+                + KeyEvent.getKeyText(keyCode)
+                + ")";
+        RunGame.printStackTraceBecause(keyString);
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
         // TODO add your handling code here:
+
+        int id = evt.getID();
+        String keyString;
+        char c = evt.getKeyChar();
+        keyString = "key character = '" + c + "'";
+        RunGame.printStackTraceBecause(keyString);
     }//GEN-LAST:event_formKeyTyped
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
+        RunGame.printStackTraceBecause("Mouse was pressed");
     }//GEN-LAST:event_formMousePressed
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
         // TODO add your handling code here:
+        RunGame.printStackTraceBecause("Window lost focus");
     }//GEN-LAST:event_formWindowLostFocus
 
     private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
         // TODO add your handling code here:
+        RunGame.printStackTraceBecause("Form lost focus");
     }//GEN-LAST:event_formFocusLost
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+        RunGame.printStackTraceBecause("Form gained focus");
+    }//GEN-LAST:event_formFocusGained
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        RunGame.printStackTraceBecause("Window gained focus");
+    }//GEN-LAST:event_formWindowGainedFocus
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
