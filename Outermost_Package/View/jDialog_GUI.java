@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package Outermost_Package.View;
 
 import Outermost_Package.RunGame;
 
@@ -13,259 +13,303 @@ import Outermost_Package.RunGame;
  */
 public class jDialog_GUI extends javax.swing.JDialog {
 
+    private static jDialog_GUI singleton_ = null;
+
     /**
      * Creates new form jDialog_GUI
      */
-    public jDialog_GUI ( java.awt.Frame parent, boolean modal ) {
+    public jDialog_GUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         uiThreadCheck();
+        this.setModalityType(jDialog_GUI.ModalityType.APPLICATION_MODAL);
+        if (this.getModalityType() != jDialog_GUI.ModalityType.APPLICATION_MODAL) {
+            RunGame.printStackTraceAndCrashTheProgramBecause("It was supposed to be modal.");
+        }
+    }
+
+    /**
+     * Returns a reference to the singleton.
+     *
+     * @return
+     */
+    public static jDialog_GUI get_GUI() {
+        if (singleton_ == null) {
+            try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                    if ("Metal".equals(info.getName())) {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                java.util.logging.Logger.getLogger(jDialog_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    jDialog_GUI.singleton_ = new jDialog_GUI(new javax.swing.JFrame(), true);
+                    singleton_.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            System.exit(0);
+                        }
+                    });
+                    singleton_.requestFocus();
+                    singleton_.setVisible(true);
+                }
+            });
+        }
+        return jDialog_GUI.singleton_;
     }
 
     /**
      * Checks to see if the program is running on the UI thread in the GUI.
      */
-    private void uiThreadCheck () {
-        if ( ! java.awt.EventQueue.isDispatchThread() ) {
+    private void uiThreadCheck() {
+        if (!java.awt.EventQueue.isDispatchThread()) {
             RunGame.printStackTraceAndCrashTheProgramBecause("Only the UI thread can access this data");
         }
     }
 
 // <editor-fold defaultstate="collapsed" desc="Accessors">
-    public javax.swing.JPanel getGameScreenjPanel_ () {
+    public javax.swing.JPanel getGameScreenjPanel_() {
         this.uiThreadCheck();
         return gameScreenjPanel_;
     }
 
-    public void setGameScreenjPanel_ ( javax.swing.JPanel gameScreenjPanel_ ) {
+    public void setGameScreenjPanel_(javax.swing.JPanel gameScreenjPanel_) {
         this.uiThreadCheck();
         this.gameScreenjPanel_ = gameScreenjPanel_;
     }
 
-    public javax.swing.JLabel getHelmetSlotEquipmentjLabel_ () {
+    public javax.swing.JLabel getHelmetSlotEquipmentjLabel_() {
         this.uiThreadCheck();
         return helmetSlotEquipmentjLabel_;
     }
 
-    public void setHelmetSlotEquipmentjLabel_ ( javax.swing.JLabel helmetSlotEquipmentjLabel_ ) {
+    public void setHelmetSlotEquipmentjLabel_(javax.swing.JLabel helmetSlotEquipmentjLabel_) {
         this.uiThreadCheck();
         this.helmetSlotEquipmentjLabel_ = helmetSlotEquipmentjLabel_;
     }
 
-    public javax.swing.JTextArea getIncomingChatjTextArea_ () {
+    public javax.swing.JTextArea getIncomingChatjTextArea_() {
         this.uiThreadCheck();
         return incomingChatjTextArea_;
     }
 
-    public void setIncomingChatjTextArea_ ( javax.swing.JTextArea incomingChatjTextArea_ ) {
+    public void setIncomingChatjTextArea_(javax.swing.JTextArea incomingChatjTextArea_) {
         this.uiThreadCheck();
         this.incomingChatjTextArea_ = incomingChatjTextArea_;
     }
 
-    public javax.swing.JLabel getItem1jLabel_ () {
+    public javax.swing.JLabel getItem1jLabel_() {
         this.uiThreadCheck();
         return item1jLabel_;
     }
 
-    public void setItem1jLabel_ ( javax.swing.JLabel item1jLabel_ ) {
+    public void setItem1jLabel_(javax.swing.JLabel item1jLabel_) {
         this.uiThreadCheck();
         this.item1jLabel_ = item1jLabel_;
     }
 
-    public javax.swing.JLabel getItem2jLabel_ () {
+    public javax.swing.JLabel getItem2jLabel_() {
         this.uiThreadCheck();
         return item2jLabel_;
     }
 
-    public void setItem2jLabel_ ( javax.swing.JLabel item2jLabel_ ) {
+    public void setItem2jLabel_(javax.swing.JLabel item2jLabel_) {
         this.uiThreadCheck();
         this.item2jLabel_ = item2jLabel_;
     }
 
-    public javax.swing.JLabel getItem3jLabel_ () {
+    public javax.swing.JLabel getItem3jLabel_() {
         this.uiThreadCheck();
         return item3jLabel_;
     }
 
-    public void setItem3jLabel_ ( javax.swing.JLabel item3jLabel_ ) {
+    public void setItem3jLabel_(javax.swing.JLabel item3jLabel_) {
         this.uiThreadCheck();
         this.item3jLabel_ = item3jLabel_;
     }
 
-    public javax.swing.JLabel getItem4jLabel_ () {
+    public javax.swing.JLabel getItem4jLabel_() {
         this.uiThreadCheck();
         return item4jLabel_;
     }
 
-    public void setItem4jLabel_ ( javax.swing.JLabel item4jLabel_ ) {
+    public void setItem4jLabel_(javax.swing.JLabel item4jLabel_) {
         this.uiThreadCheck();
         this.item4jLabel_ = item4jLabel_;
     }
 
-    public javax.swing.JPanel getMiniMapjPanel_ () {
+    public javax.swing.JPanel getMiniMapjPanel_() {
         this.uiThreadCheck();
         return miniMapjPanel_;
     }
 
-    public void setMiniMapjPanel_ ( javax.swing.JPanel miniMapjPanel_ ) {
+    public void setMiniMapjPanel_(javax.swing.JPanel miniMapjPanel_) {
         this.uiThreadCheck();
         this.miniMapjPanel_ = miniMapjPanel_;
     }
 
-    public javax.swing.JScrollPane getOutgoingChatjScrollPane () {
+    public javax.swing.JScrollPane getOutgoingChatjScrollPane() {
         this.uiThreadCheck();
         return outgoingChatjScrollPane;
     }
 
-    public void setOutgoingChatjScrollPane ( javax.swing.JScrollPane outgoingChatjScrollPane ) {
+    public void setOutgoingChatjScrollPane(javax.swing.JScrollPane outgoingChatjScrollPane) {
         this.uiThreadCheck();
         this.outgoingChatjScrollPane = outgoingChatjScrollPane;
     }
 
-    public javax.swing.JTextField getOutgoingChatjTextField_ () {
+    public javax.swing.JTextField getOutgoingChatjTextField_() {
         this.uiThreadCheck();
         return outgoingChatjTextField_;
     }
 
-    public void setOutgoingChatjTextField_ ( javax.swing.JTextField outgoingChatjTextField_ ) {
+    public void setOutgoingChatjTextField_(javax.swing.JTextField outgoingChatjTextField_) {
         this.uiThreadCheck();
         this.outgoingChatjTextField_ = outgoingChatjTextField_;
     }
 
-    public javax.swing.JPanel getPlayerEquipmentjPanel_ () {
+    public javax.swing.JPanel getPlayerEquipmentjPanel_() {
         this.uiThreadCheck();
         return playerEquipmentjPanel_;
     }
 
-    public void setPlayerEquipmentjPanel_ ( javax.swing.JPanel playerEquipmentjPanel_ ) {
+    public void setPlayerEquipmentjPanel_(javax.swing.JPanel playerEquipmentjPanel_) {
         this.uiThreadCheck();
         this.playerEquipmentjPanel_ = playerEquipmentjPanel_;
     }
 
-    public javax.swing.JPanel getPlayerItemsjPanel_ () {
+    public javax.swing.JPanel getPlayerItemsjPanel_() {
         this.uiThreadCheck();
         return playerItemsjPanel_;
     }
 
-    public void setPlayerItemsjPanel_ ( javax.swing.JPanel playerItemsjPanel_ ) {
+    public void setPlayerItemsjPanel_(javax.swing.JPanel playerItemsjPanel_) {
         this.uiThreadCheck();
         this.playerItemsjPanel_ = playerItemsjPanel_;
     }
 
-    public javax.swing.JPanel getPlayerItemsjPanel_1 () {
+    public javax.swing.JPanel getPlayerItemsjPanel_1() {
         this.uiThreadCheck();
         return playerItemsjPanel_1;
     }
 
-    public void setPlayerItemsjPanel_1 ( javax.swing.JPanel playerItemsjPanel_1 ) {
+    public void setPlayerItemsjPanel_1(javax.swing.JPanel playerItemsjPanel_1) {
         this.uiThreadCheck();
         this.playerItemsjPanel_1 = playerItemsjPanel_1;
     }
 
-    public javax.swing.JButton getPlayerSpelljButton1_ () {
+    public javax.swing.JButton getPlayerSpelljButton1_() {
         this.uiThreadCheck();
         return playerSpelljButton1_;
     }
 
-    public void setPlayerSpelljButton1_ ( javax.swing.JButton playerSpelljButton1_ ) {
+    public void setPlayerSpelljButton1_(javax.swing.JButton playerSpelljButton1_) {
         this.uiThreadCheck();
         this.playerSpelljButton1_ = playerSpelljButton1_;
     }
 
-    public javax.swing.JButton getPlayerSpelljButton2_ () {
+    public javax.swing.JButton getPlayerSpelljButton2_() {
         this.uiThreadCheck();
         return playerSpelljButton2_;
     }
 
-    public void setPlayerSpelljButton2_ ( javax.swing.JButton playerSpelljButton2_ ) {
+    public void setPlayerSpelljButton2_(javax.swing.JButton playerSpelljButton2_) {
         this.uiThreadCheck();
         this.playerSpelljButton2_ = playerSpelljButton2_;
     }
 
-    public javax.swing.JButton getPlayerSpelljButton3_ () {
+    public javax.swing.JButton getPlayerSpelljButton3_() {
         this.uiThreadCheck();
         return playerSpelljButton3_;
     }
 
-    public void setPlayerSpelljButton3_ ( javax.swing.JButton playerSpelljButton3_ ) {
+    public void setPlayerSpelljButton3_(javax.swing.JButton playerSpelljButton3_) {
         this.uiThreadCheck();
         this.playerSpelljButton3_ = playerSpelljButton3_;
     }
 
-    public javax.swing.JButton getPlayerSpelljButton4_ () {
+    public javax.swing.JButton getPlayerSpelljButton4_() {
         this.uiThreadCheck();
         return playerSpelljButton4_;
     }
 
-    public void setPlayerSpelljButton4_ ( javax.swing.JButton playerSpelljButton4_ ) {
+    public void setPlayerSpelljButton4_(javax.swing.JButton playerSpelljButton4_) {
         this.uiThreadCheck();
         this.playerSpelljButton4_ = playerSpelljButton4_;
     }
 
-    public javax.swing.JPanel getPlayerSpellsjPanel_ () {
+    public javax.swing.JPanel getPlayerSpellsjPanel_() {
         this.uiThreadCheck();
         return playerSpellsjPanel_;
     }
 
-    public void setPlayerSpellsjPanel_ ( javax.swing.JPanel playerSpellsjPanel_ ) {
+    public void setPlayerSpellsjPanel_(javax.swing.JPanel playerSpellsjPanel_) {
         this.uiThreadCheck();
         this.playerSpellsjPanel_ = playerSpellsjPanel_;
     }
 
-    public javax.swing.JScrollPane getPlayerStatsjScrollPane_ () {
+    public javax.swing.JScrollPane getPlayerStatsjScrollPane_() {
         this.uiThreadCheck();
         return playerStatsjScrollPane_;
     }
 
-    public void setPlayerStatsjScrollPane_ ( javax.swing.JScrollPane playerStatsjScrollPane_ ) {
+    public void setPlayerStatsjScrollPane_(javax.swing.JScrollPane playerStatsjScrollPane_) {
         this.uiThreadCheck();
         this.playerStatsjScrollPane_ = playerStatsjScrollPane_;
     }
 
-    public javax.swing.JTextPane getPlayerStatsjTextPane_ () {
+    public javax.swing.JTextPane getPlayerStatsjTextPane_() {
         this.uiThreadCheck();
         return playerStatsjTextPane_;
     }
 
-    public void setPlayerStatsjTextPane_ ( javax.swing.JTextPane playerStatsjTextPane_ ) {
+    public void setPlayerStatsjTextPane_(javax.swing.JTextPane playerStatsjTextPane_) {
         this.uiThreadCheck();
         this.playerStatsjTextPane_ = playerStatsjTextPane_;
     }
 
-    public javax.swing.JLabel getSheildSlotEquipmentjLabel_ () {
+    public javax.swing.JLabel getSheildSlotEquipmentjLabel_() {
         this.uiThreadCheck();
         return sheildSlotEquipmentjLabel_;
     }
 
-    public void setSheildSlotEquipmentjLabel_ ( javax.swing.JLabel sheildSlotEquipmentjLabel_ ) {
+    public void setSheildSlotEquipmentjLabel_(javax.swing.JLabel sheildSlotEquipmentjLabel_) {
         this.uiThreadCheck();
         this.sheildSlotEquipmentjLabel_ = sheildSlotEquipmentjLabel_;
     }
 
-    public javax.swing.JTabbedPane getStatsItemsEquipmentjTabbedPane_ () {
+    public javax.swing.JTabbedPane getStatsItemsEquipmentjTabbedPane_() {
         this.uiThreadCheck();
         return statsItemsEquipmentjTabbedPane_;
     }
 
-    public void setStatsItemsEquipmentjTabbedPane_ ( javax.swing.JTabbedPane statsItemsEquipmentjTabbedPane_ ) {
+    public void setStatsItemsEquipmentjTabbedPane_(javax.swing.JTabbedPane statsItemsEquipmentjTabbedPane_) {
         this.uiThreadCheck();
         this.statsItemsEquipmentjTabbedPane_ = statsItemsEquipmentjTabbedPane_;
     }
 
-    public javax.swing.JLabel getSwordSlotEquipmentjLabel_ () {
+    public javax.swing.JLabel getSwordSlotEquipmentjLabel_() {
         this.uiThreadCheck();
         return swordSlotEquipmentjLabel_;
     }
 
-    public void setSwordSlotEquipmentjLabel_ ( javax.swing.JLabel swordSlotEquipmentjLabel_ ) {
+    public void setSwordSlotEquipmentjLabel_(javax.swing.JLabel swordSlotEquipmentjLabel_) {
         this.uiThreadCheck();
         this.swordSlotEquipmentjLabel_ = swordSlotEquipmentjLabel_;
     }
 // </editor-fold>
 
     /**
-     * This method is called from within the constructor to initialize the form. WARNING: Do NOT
-     * modify this code. The content of this method is always regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -553,7 +597,7 @@ public class jDialog_GUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(miniMapjPanel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statsItemsEquipmentjTabbedPane_, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE))
+                .addComponent(statsItemsEquipmentjTabbedPane_))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(gameScreenjPanel_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -601,47 +645,6 @@ public class jDialog_GUI extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusLost
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main ( String args[] ) {
-        /* Set the Metal look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for ( javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels() ) {
-                if ( "Metal".equals(info.getName()) ) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jDialog_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jDialog_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jDialog_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jDialog_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run () {
-                jDialog_GUI dialog = new jDialog_GUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing ( java.awt.event.WindowEvent e ) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel gameScreenjPanel_;

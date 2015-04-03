@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package Outermost_Package.View;
 
 import Outermost_Package.RunGame;
+import java.awt.Panel;
+import javax.swing.JPanel;
 
 /**
  * The only way to write to this Singleton is to pass Runnables to it via
@@ -38,7 +40,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
     /**
      * @return the game_Screen_JPanel_
      */
-    public View.Game_Screen_JPanel getGame_Screen_JPanel_ () {
+    public JPanel getGame_Screen_JPanel_ () {
         uiThreadCheck();
         return game_Screen_JPanel_;
     }
@@ -46,7 +48,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
     /**
      * @param game_Screen_JPanel_ the game_Screen_JPanel_ to set
      */
-    public void setGame_Screen_JPanel_ ( View.Game_Screen_JPanel game_Screen_JPanel_ ) {
+    public void setGame_Screen_JPanel_ ( JPanel game_Screen_JPanel_ ) {
         uiThreadCheck();
         this.game_Screen_JPanel_ = game_Screen_JPanel_;
     }
@@ -182,15 +184,15 @@ public class JFrame_GUI extends javax.swing.JFrame {
     /**
      * @return the minimap_JTextPanel_
      */
-    public View.Minimap_JTextPanel getMinimap_JTextPanel_ () {
+    public JPanel getMinimap_JTextPanel_ () {
         uiThreadCheck();
-        return minimap_JTextPanel_;
+        return this.minimap_JTextPanel_;
     }
 
     /**
      * @param minimap_JTextPanel_ the minimap_JTextPanel_ to set
      */
-    public void setMinimap_JTextPanel_ ( View.Minimap_JTextPanel minimap_JTextPanel_ ) {
+    public void setMinimap_JTextPanel_ ( JPanel minimap_JTextPanel_ ) {
         uiThreadCheck();
         this.minimap_JTextPanel_ = minimap_JTextPanel_;
     }
@@ -509,8 +511,8 @@ public class JFrame_GUI extends javax.swing.JFrame {
         keyCommandsjTextArea_ = new javax.swing.JTextArea();
         keyBindingsjScrollPane2_ = new javax.swing.JScrollPane();
         keyBindingsjTextArea_ = new javax.swing.JTextArea();
-        game_Screen_JPanel_ = new View.Game_Screen_JPanel();
-        minimap_JTextPanel_ = new View.Minimap_JTextPanel();
+        minimap_JTextPanel_ = new javax.swing.JPanel();
+        game_Screen_JPanel_ = new javax.swing.JPanel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -784,7 +786,18 @@ public class JFrame_GUI extends javax.swing.JFrame {
 
         inventoryStatsEquipmentjTabbedPane_.addTab("Controls", controlsSplitPane_);
 
-        game_Screen_JPanel_.setFocusable(false);
+        minimap_JTextPanel_.setPreferredSize(new java.awt.Dimension(200, 200));
+
+        javax.swing.GroupLayout minimap_JTextPanel_Layout = new javax.swing.GroupLayout(minimap_JTextPanel_);
+        minimap_JTextPanel_.setLayout(minimap_JTextPanel_Layout);
+        minimap_JTextPanel_Layout.setHorizontalGroup(
+            minimap_JTextPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        minimap_JTextPanel_Layout.setVerticalGroup(
+            minimap_JTextPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout game_Screen_JPanel_Layout = new javax.swing.GroupLayout(game_Screen_JPanel_);
         game_Screen_JPanel_.setLayout(game_Screen_JPanel_Layout);
@@ -797,44 +810,30 @@ public class JFrame_GUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        minimap_JTextPanel_.setFocusable(false);
-        minimap_JTextPanel_.setPreferredSize(new java.awt.Dimension(200, 200));
-
-        javax.swing.GroupLayout minimap_JTextPanel_Layout = new javax.swing.GroupLayout(minimap_JTextPanel_);
-        minimap_JTextPanel_.setLayout(minimap_JTextPanel_Layout);
-        minimap_JTextPanel_Layout.setHorizontalGroup(
-            minimap_JTextPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
-        );
-        minimap_JTextPanel_Layout.setVerticalGroup(
-            minimap_JTextPanel_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(outgoingChatjTextField_, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(incomingChatjScrollPane_, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                     .addComponent(game_Screen_JPanel_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inventoryStatsEquipmentjTabbedPane_, javax.swing.GroupLayout.PREFERRED_SIZE, 204, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 14, Short.MAX_VALUE)
-                        .addComponent(minimap_JTextPanel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(inventoryStatsEquipmentjTabbedPane_, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(minimap_JTextPanel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(minimap_JTextPanel_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(minimap_JTextPanel_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inventoryStatsEquipmentjTabbedPane_, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(inventoryStatsEquipmentjTabbedPane_, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(game_Screen_JPanel_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -907,7 +906,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
 // <editor-fold defaultstate="collapsed" desc="DO NOT MODIFY">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane controlsSplitPane_;
-    private View.Game_Screen_JPanel game_Screen_JPanel_;
+    private javax.swing.JPanel game_Screen_JPanel_;
     private javax.swing.JLabel helmetjLabel_;
     private javax.swing.JScrollPane incomingChatjScrollPane_;
     private javax.swing.JTextArea incomingChatjTextArea_;
@@ -922,7 +921,7 @@ public class JFrame_GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea keyBindingsjTextArea_;
     private javax.swing.JScrollPane keyCommandsjScrollPane_;
     private javax.swing.JTextArea keyCommandsjTextArea_;
-    private View.Minimap_JTextPanel minimap_JTextPanel_;
+    private javax.swing.JPanel minimap_JTextPanel_;
     private javax.swing.JRadioButton musicOptionjRadioButton_;
     private javax.swing.JPanel optionsjPanel_;
     private javax.swing.JTextField outgoingChatjTextField_;

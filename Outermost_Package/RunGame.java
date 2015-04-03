@@ -8,7 +8,8 @@ package Outermost_Package;
 import Outermost_Package.Controller.Controller_Public;
 import Outermost_Package.Model.Model_Public;
 import Outermost_Package.View.View_Public;
-import View.JFrame_GUI;
+import Outermost_Package.View.jDialog_GUI;
+import Outermost_Package.View.JFrame_GUI;
 
 /**
  *
@@ -19,8 +20,9 @@ public class RunGame {
 // <editor-fold defaultstate="collapsed" desc="Static fields">
     private static final Controller_Public controller_ = Controller_Public.getController();
     private static final Model_Public model_ = Model_Public.getModel();
-    private static final View_Public view_ = View_Public.getView();
-    private static final JFrame_GUI gui_ = View.JFrame_GUI.get_GUI();
+    private static final View_Public view_ = Outermost_Package.View.View_Public.getView();
+    private static final JFrame_GUI gui_ = Outermost_Package.View.JFrame_GUI.get_GUI();
+    private static final jDialog_GUI gui2_ = Outermost_Package.View.jDialog_GUI.get_GUI(); // View.jDialog_GUI.get_GUI();
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="Non-static fields">
 // </editor-fold>
