@@ -116,6 +116,10 @@ public class jDialog_GUI extends javax.swing.JDialog {
         }
         return jDialog_GUI.singleton_;
     }
+    
+    public JRootPane getRootPane() {
+        return super.rootPane;
+    }
 
     /**
      * Checks to see if the program is running on the UI thread in the GUI.

@@ -10,6 +10,12 @@ import Outermost_Package.Model.Model_Public;
 import Outermost_Package.View.View_Public;
 import Outermost_Package.View.jDialog_GUI;
 import Outermost_Package.View.JFrame_GUI;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
 /**
@@ -81,10 +87,7 @@ public class RunGame {
             }
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    //if(! jDialog_GUI.get_GUI().getParent().isFocusOwner() ) {
-                    //    //jDialog_GUI.get_GUI().requestFocusInWindow();
-                    //    RunGame.printStackTraceAndCrashTheProgramBecause("JDialog must always be in focus.");
-                    //}
+                    
                 }
             });
         }
