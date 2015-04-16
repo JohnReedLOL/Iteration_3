@@ -13,51 +13,25 @@ import javax.swing.JTextField;
 import model.Model;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.ModelCommand;
-import mvc_bridgeway.control.SwingControl;
+import mvc_bridgeway.control.virtual_control.SwingControl;
+import mvc_bridgeway.control.virtual_control.VirtualControl;
 import mvc_bridgeway.control_map.ControlMap;
+import mvc_bridgeway.control_map.ControlMapSubtype;
+import utility.CollectionUtil;
 
 
-public class VirtualController extends Controller {
+public abstract class VirtualController<CtrlM extends ControlMap<VirtualControl, Command>> extends Controller {
 
     /*Properties*/
-    protected ArrayList<ControlMap> cms; 
+    protected ArrayList<CtrlM> cms; 
 
     /*Constructors*/
-    public VirtualController(Model model, ArrayList<ControlMap> ims) {
+    public VirtualController(Model model, ArrayList<CtrlM> paramCms) {
         super(model);
-        this.cms = ims;
-        setListenersForIMs();
+        this.cms = paramCms;
+        init(CollectionUtil.castToSuper(cms));
     }
 
     /*Methods*/
     
-    private final void setListenersForIMs() {
-        int numims = cms.size();
-        ControlMap im;
-        for (int i=0; i<numims ; i++) {
-            im = cms.get(i);
-            setListenerForIM(im);
-        }
-    }
-
-    private void setListenerForIM(ControlMap<SwingControl, ModelCommand> cm) {
-        JComponent component = cm.getControl().getJComponent();
-        final Command command = cm.getCommand();
-        ActionListener al = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onControlActivation(command);
-            }
-        };
-        setActionListener(al, component);
-    }
-    
-    private void setActionListener(ActionListener al, Component component) {
-        if (component instanceof AbstractButton) {
-            ((AbstractButton)component).addActionListener(al);
-        } else if (component instanceof JTextField) {
-            ((JTextField)component).addActionListener(al);
-        }
-    }
-
 }

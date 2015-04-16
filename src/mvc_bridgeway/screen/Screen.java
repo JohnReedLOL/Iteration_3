@@ -3,6 +3,7 @@ package mvc_bridgeway.screen;
 // @author comcc_000
 
 import controller.physicalController.PhysicalController;
+import controller.virtual_controller.SwingController;
 import controller.virtual_controller.VirtualController;
 import java.util.ArrayList;
 import model.Model;
@@ -30,12 +31,15 @@ public abstract class Screen {
     /*Methods*/
     
     protected abstract Viewport createView();
-    protected abstract VirtualController createVirtualController(Model model, ArrayList<ControlMap> virtualControlMaps);
     protected abstract PhysicalController createPhysicalController(Model model, PhysicalController physicalController, UserSettings userSettings);
     protected abstract ArrayList<ControlMap> getUserControls(UserSettings userSettings);
     protected abstract ArrayList<ControlMap> generateDefaultPhysicalControlMaps();
     protected abstract void setUserControls(UserSettings userSettings, ArrayList<ControlMap> defaultControls);
-            
+       
+    protected VirtualController createVirtualController(Model model, ArrayList<ControlMap> virtualControlMaps) {
+        return new SwingController(model, virtualControlMaps);
+    }
+    
     public void updateView(ModelViewBundle mvb) {
         viewport.update(mvb);
     }
@@ -72,11 +76,25 @@ public abstract class Screen {
     public Viewport getViewport() {
         return viewport;
     }
+    
+    protected PhysicalController getPhysicalController() {
+        return physicalController;
+    }
+
+    protected void setPhysicalController(PhysicalController physicalController) {
+        this.physicalController = physicalController;
+    }
+
+    protected VirtualController getVirtualController() {
+        return virtualController;
+    }
+
+    protected void setVirtualController(VirtualController virtualController) {
+        this.virtualController = virtualController;
+    }
 
     /*Inner-classes*/
 
     /*Test Main Method*/
-
-    
 
 }
