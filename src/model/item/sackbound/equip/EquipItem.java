@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class EquipItem extends SackboundItem {
     private ArrayList<Effect> equipEffects;
+    private ArrayList<Effect> unequipEffects;
     private ArrayList<Prerequisite> equipPrerequisites;
     private EquipSlot slot;
 
@@ -32,6 +33,10 @@ public class EquipItem extends SackboundItem {
         return this.equipEffects;
     }
 
+    public ArrayList<Effect> getUnequipEffects() {
+        return this.unequipEffects;
+    }
+
     public ArrayList<Prerequisite> getEquipPrerequisite() {
         return this.equipPrerequisites;
     }
@@ -44,6 +49,10 @@ public class EquipItem extends SackboundItem {
         this.equipEffects.add(effect);
     }
 
+    public void addUnequipEffect(Effect effect) {
+        this.unequipEffects.add(effect);
+    }
+
     public void addEquipPrerequisite(Prerequisite prereq) {
         this.equipPrerequisites.add(prereq);
     }
@@ -52,12 +61,20 @@ public class EquipItem extends SackboundItem {
         this.equipEffects.remove(effect);
     }
 
+    public void removeUnequipEffect(Effect effect) {
+        this.unequipEffects.remove(effect);
+    }
+
     public void removeEquipPrerequisite(Prerequisite prereq) {
         this.equipPrerequisites.remove(prereq);
     }
 
     public void setEquipEffects(ArrayList<Effect> effects) {
         this.equipEffects = effects;
+    }
+
+    public void setUnequipEffects(ArrayList<Effect> effects) {
+        this.unequipEffects = effects;
     }
 
     public void setEquipPrerequisites(ArrayList<Prerequisite> prereqs) {
@@ -74,7 +91,7 @@ public class EquipItem extends SackboundItem {
     }
 
     /**
-     * INNER-CLASS: EQUIPSLOT
+     * INNER-CONSTRUCTS
      */
 
     public enum EquipSlot {
@@ -87,5 +104,5 @@ public class EquipItem extends SackboundItem {
         protected int getSlot() {
             return ordinal();
         }
-    }
+    } // End EquipSlot inner-enum.
 }

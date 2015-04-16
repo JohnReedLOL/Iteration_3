@@ -16,8 +16,8 @@ public class WeaponItem extends EquipItem {
      * CONSTRUCTORS
      */
 
-    public WeaponItem(EquipSlot slot) {
-        super(slot);
+    public WeaponItem() {
+        super(EquipSlot.MAINHAND);
 
         this.attackEffects = new ArrayList<Effect>();
     }

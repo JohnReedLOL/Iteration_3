@@ -11,7 +11,7 @@ import mvc_bridgeway.screen.Screen;
 public class Model {
 
     /*Properties*/
-    //HEEEEERE'S TROY!
+    //HEEEEERE'S TROY
     
     private static Model singleton = null;
     //

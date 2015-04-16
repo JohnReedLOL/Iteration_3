@@ -1,5 +1,6 @@
 package model.item.sackbound;
 
+import model.effect.Effect;
 import model.entity.Entity;
 import model.prerequisite.Prerequisite;
 
@@ -11,6 +12,7 @@ public abstract class ConsumptionItem extends SackboundItem {
      */
 
     private ArrayList<Prerequisite> usePrerequisites;
+    private ArrayList<Effect> useEffects;
 
     /**
      * CONSTRUCTORS
@@ -20,6 +22,7 @@ public abstract class ConsumptionItem extends SackboundItem {
         super();
 
         this.usePrerequisites = new ArrayList<Prerequisite>();
+        this.useEffects = new ArrayList<Effect>();
     }
 
     /**
@@ -30,6 +33,10 @@ public abstract class ConsumptionItem extends SackboundItem {
         return this.usePrerequisites;
     }
 
+    public ArrayList<Effect> getUseEffects() {
+        return this.useEffects;
+    }
+
     /**
      * MUTATORS
      */
@@ -38,12 +45,24 @@ public abstract class ConsumptionItem extends SackboundItem {
         this.usePrerequisites = prereqs;
     }
 
+    public void setUseEffects(ArrayList<Effect> effects) {
+        this.useEffects = effects;
+    }
+
     public void addUsePrerequisite(Prerequisite prereq) {
         this.usePrerequisites.add(prereq);
     }
 
     public void removeUsePrerequisite(Prerequisite prereq) {
         this.usePrerequisites.remove(prereq);
+    }
+
+    public void addUseEffect(Effect effect) {
+        this.useEffects.add(effect);
+    }
+
+    public void removeUseEffect(Effect effect) {
+        this.useEffects.remove(effect);
     }
 
     /**
