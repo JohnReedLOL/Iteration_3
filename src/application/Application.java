@@ -48,8 +48,8 @@ public class Application {
     }
     
     public void launchScreen(Screen screen, UserSettings userSettings) {
-	screen.init(model, physicalController, userSettings);
-	mainWindow.displayScreen(screen);
+        screen.init(model, physicalController, userSettings);
+        mainWindow.displayScreen(screen);
     }   
     
     public void listenForRebind(RebindCommand rebindCommand) {

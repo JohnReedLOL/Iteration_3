@@ -41,30 +41,30 @@ public abstract class Screen {
     }
     
     public final void init(Model model, PhysicalController physicalController, UserSettings userSettings) {
-	viewport = createView();
-	initControllers(model, viewport, physicalController, userSettings);	
+        viewport = createView();
+        initControllers(model, viewport, physicalController, userSettings);
     }
     
     
 
     protected final void initControllers(Model model, Viewport vp, PhysicalController physicalController, UserSettings userSettings) {
-	ArrayList<ControlMap> viewCMs = viewport.getControlMaps();
-//	Controller_Model_Interface cmi = (Controller_Model_Interface)model; //for inital setup
+        ArrayList<ControlMap> viewCMs = viewport.getControlMaps();
+        //	Controller_Model_Interface cmi = (Controller_Model_Interface)model; //for inital setup
         Model cmi = model;
 
-	virtualController = createVirtualController(cmi, viewCMs);
-	initPhysicalController(cmi, physicalController, userSettings);
+        virtualController = createVirtualController(cmi, viewCMs);
+        initPhysicalController(cmi, physicalController, userSettings);
     }
 
     protected final void initPhysicalController(Model cmi, PhysicalController physicalController, UserSettings userSettings) {
-	ArrayList<ControlMap> userControls = getUserControls(userSettings);
-	if (userControls != null) {
-		physicalController.configure(userControls);
-	} else {
-		ArrayList<ControlMap> defaultControls = generateDefaultPhysicalControlMaps();
-		physicalController.configure(defaultControls);
-		setUserControls(userSettings, defaultControls); //make sure controls are persisted for rebinding
-	}
+        ArrayList<ControlMap> userControls = getUserControls(userSettings);
+        if (userControls != null) {
+            physicalController.configure(userControls);
+        } else {
+            ArrayList<ControlMap> defaultControls = generateDefaultPhysicalControlMaps();
+            physicalController.configure(defaultControls);
+            setUserControls(userSettings, defaultControls); //make sure controls are persisted for rebinding
+        }
     }
 
     /*Get-Sets*/
