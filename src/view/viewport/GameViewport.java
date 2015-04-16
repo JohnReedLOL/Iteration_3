@@ -15,12 +15,12 @@ import mvc_bridgeway.control_map.ControlMap;
  *
  * @author comcc_000
  */
-public class TextConsoleViewport extends Viewport {
+public class GameViewport extends Viewport {
 
     /**
      * Creates new form MainScreen
      */
-    public TextConsoleViewport() {
+    public GameViewport() {
         initComponents();
     }
     
