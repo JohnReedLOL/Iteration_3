@@ -5,4 +5,7 @@ package model.map.direction;
  */
 public abstract class Direction {
     //Simply defines an abstract type
+
+    public abstract Direction getClockwiseDirection();
+    public abstract Direction getCounterClockwiseDirection();
 }

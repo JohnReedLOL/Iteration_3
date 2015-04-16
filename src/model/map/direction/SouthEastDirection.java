@@ -14,6 +14,7 @@ public class SouthEastDirection extends HexMapDirection {
         return 1;
     }
 
+
     @Override
     public int getDeltaY() {
         return -1;
@@ -22,5 +23,15 @@ public class SouthEastDirection extends HexMapDirection {
     @Override
     public int getDeltaZ() {
         return 0;
+    }
+
+    @Override
+    public Direction getClockwiseDirection() {
+        return new SouthDirection();
+    }
+
+    @Override
+    public Direction getCounterClockwiseDirection() {
+        return new NorthEastDirection();
     }
 }

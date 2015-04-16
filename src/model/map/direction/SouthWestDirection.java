@@ -23,4 +23,14 @@ public class SouthWestDirection extends HexMapDirection {
     public int getDeltaZ() {
         return 1;
     }
+
+    @Override
+    public Direction getClockwiseDirection() {
+        return new NorthWestDirection();
+    }
+
+    @Override
+    public Direction getCounterClockwiseDirection() {
+        return new SouthDirection();
+    }
 }
