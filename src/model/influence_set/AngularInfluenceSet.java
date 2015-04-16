@@ -1,5 +1,7 @@
 package model.influence_set;
 
+import model.map.direction.Direction;
+
 import java.util.Collection;
 
 /**
@@ -7,12 +9,26 @@ import java.util.Collection;
  */
 public class AngularInfluenceSet extends DirectionalInfluenceSet {
 
-    public AngularInfluenceSet angularInfluenceSet;
+    public AngularInfluenceSet() {
+        super();
+    }
+
+    public AngularInfluenceSet( Direction direction, int radius ) {
+        super( direction, radius );
+    }
 
     @Override
     public Collection<InfluenceTile> getInfluenceSet() {
         //TODO
         //SUPER LOGICS HERE
+
+        return null;
+    }
+
+    @Override
+    public Collection<InfluenceTile> getInfluenceSetNoSource() {
+        //TODO
+        //LOGIC STUFFS HERE
 
         return null;
     }
