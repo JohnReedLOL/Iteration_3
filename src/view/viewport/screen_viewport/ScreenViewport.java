@@ -26,6 +26,10 @@ public abstract class ScreenViewport extends Viewport {
     public ScreenViewport() {
         initComponents();
     }
+
+    /*Constructors*/
+
+    /*Methods*/
     
     @Override
     protected final void addViewport(Viewport viewport) {
