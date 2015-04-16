@@ -18,7 +18,7 @@ public abstract class ScreenViewport extends Viewport {
 
     /*Properties*/
     
-    private ArrayList<Viewport> interiorViewports = new ArrayList<>();
+    private ArrayList<Viewport> interiorViewports = new ArrayList<Viewport>();
     
     /**
      * Creates new form ScreenViewport
