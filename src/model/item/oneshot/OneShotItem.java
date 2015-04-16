@@ -6,7 +6,7 @@ import model.item.Item;
 
 import java.util.ArrayList;
 
-public class OneShotItem implements Item {
+public class OneShotItem extends Item {
     /**
      *  PROPERTIES
      */

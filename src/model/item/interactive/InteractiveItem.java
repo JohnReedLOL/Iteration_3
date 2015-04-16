@@ -7,7 +7,7 @@ import model.prerequisite.Prerequisite;
 
 import java.util.ArrayList;
 
-public class InteractiveItem implements Item {
+public class InteractiveItem extends Item {
     /**
      * PROPERTIES
      */
