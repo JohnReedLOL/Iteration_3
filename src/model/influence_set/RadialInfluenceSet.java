@@ -7,20 +7,21 @@ import java.util.Collection;
 /**
  * Created by Troy on 4/16/2015.
  */
-public class LinearInfluenceSet extends DirectionalInfluenceSet {
+public class RadialInfluenceSet extends InfluenceSet {
 
-    public LinearInfluenceSet() {
+
+    public RadialInfluenceSet() {
         super();
     }
 
-    public LinearInfluenceSet( Direction direction, int radius ) {
-        super( direction, radius );
+    public RadialInfluenceSet( int radius ) {
+        super( radius );
     }
 
     @Override
     public Collection<InfluenceTile> getInfluenceSet() {
         //TODO
-        //ENTER SUPER LOGICS HERE
+        //LOGIC STUFFS HERE
 
         return null;
     }
