@@ -15,12 +15,12 @@ import mvc_bridgeway.control_map.ControlMap;
  *
  * @author comcc_000
  */
-public class PrototypeViewport extends Viewport {
+public class StatsViewport extends Viewport {
 
     /**
      * Creates new form MainScreen
      */
-    public PrototypeViewport() {
+    public StatsViewport() {
         initComponents();
     }
     

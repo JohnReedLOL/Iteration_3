@@ -27,6 +27,10 @@ public class MainWindow extends javax.swing.JFrame {
         setExtendedState(Frame.MAXIMIZED_BOTH); //fullscreen
     }
     
+    /**
+     * Renders the display?
+     * @param screen 
+     */
     public void displayScreen(Screen screen) {
         this.screen = screen;
         Viewport view = screen.getViewport();
