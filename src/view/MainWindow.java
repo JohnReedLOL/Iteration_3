@@ -12,7 +12,7 @@ import view.viewport.Viewport;
 
 /**
  *
- * @author comcc_000
+ * @author comcc_000: trivial change to test commit!
  */
 public class MainWindow extends javax.swing.JFrame {
 
