@@ -2,24 +2,23 @@ package mvc_bridgeway.screen;
 
 // @author comcc_000
 
-import mvc_bridgeway.screen.*;
 import controller.physicalController.PhysicalController;
 import controller.virtual_controller.VirtualController;
 import java.util.ArrayList;
 import model.Model;
 import model.UserSettings;
 import mvc_bridgeway.control_map.ControlMap;
-import view.viewport.HomeViewport;
+import view.viewport.NewGameViewport;
 import view.viewport.Viewport;
 
 
-public class HomeScreen extends Screen {
+public class NewGameScreen extends Screen {
 
     /*Properties*/
 
     /*Constructors*/
     
-    public HomeScreen() {
+    public NewGameScreen() {
         super();
     }
 
@@ -27,7 +26,7 @@ public class HomeScreen extends Screen {
     
     @Override
     protected Viewport createView() {
-        return new HomeViewport();
+        return new NewGameViewport();
     }
 
     @Override
@@ -42,14 +41,14 @@ public class HomeScreen extends Screen {
 
     @Override
     protected ArrayList<ControlMap> generateDefaultPhysicalControlMaps() {
-        return null;
+        return new ArrayList<ControlMap>();
     }
-    
+
     @Override
     protected void setUserControls(UserSettings userSettings, ArrayList<ControlMap> defaultControls) {
         //TODO
     }
-    
+
     /*Get-Sets*/
 
     /*Inner-classes*/

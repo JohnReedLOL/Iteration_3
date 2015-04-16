@@ -3,7 +3,6 @@ package model;
 // @author comcc_000
 
 import application.Application;
-import javax.jws.WebParam.Mode;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
@@ -12,6 +11,7 @@ import mvc_bridgeway.screen.Screen;
 public class Model {
 
     /*Properties*/
+    //HEEEEERE'S TROY
     
     private static Model singleton = null;
     //

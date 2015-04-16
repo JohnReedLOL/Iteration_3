@@ -1,11 +1,12 @@
-package mvc_bridgeway.control;
+package mvc_bridgeway.control.virtual_control;
 
 // @author comcc_000
 
 import javax.swing.JComponent;
+import mvc_bridgeway.control.Control;
 
 
-public class SwingControl extends Control {
+public class SwingControl extends VirtualControl {
 
     /*Properties*/
     
