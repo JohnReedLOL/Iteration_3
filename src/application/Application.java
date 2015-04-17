@@ -124,6 +124,10 @@ public class Application {
 
     /*Get-Sets*/
 
+    public UpdateTimings getUpdateTimings() {
+        return updateTimings;
+    }
+    
     /*Inner-classes*/
     
     public class UpdateTimings { //Begin UpdateTimings Inner-Class
@@ -143,6 +147,13 @@ public class Application {
         }
         
         /*Methods*/
+        
+        public int getFastestStep() {
+            if (environmentGameStepsPerSecond > standardGameStepsPerSecond) {
+                return environmentGameStepsPerSecond;
+            }
+            return standardGameStepsPerSecond;
+        }
 
         public int getViewUpdatesPerSecond() {
             return viewUpdatesPerSecond;

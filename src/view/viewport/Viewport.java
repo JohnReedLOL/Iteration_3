@@ -27,7 +27,7 @@ public abstract class Viewport extends JPanel {
     public abstract ArrayList<ControlMap> getControlMaps();
     protected abstract void generateView();
     
-    public static final void queueCommandForExecution(ViewCommand command) {
+    public final synchronized void queueCommandForExecution(ViewCommand command) {
         command.execute(); //for now
     }
     

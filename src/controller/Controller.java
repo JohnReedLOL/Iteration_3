@@ -26,10 +26,14 @@ public abstract class Controller<CtrlMp extends ControlMap> {
     
     protected abstract void setupCommandToExecuteOnControlActivation(CtrlMp controlMap);
     
-    public static final void onControlActivation(Command command) {
+    private static final void onControlActivation(Command command) {
         if (command != null) {
             command.forward(); 
         }
+    }
+    
+    public static final synchronized void queueCommandForExecution(Command command) {
+        onControlActivation(command); //for now
     }
     
     protected Model getModel() {

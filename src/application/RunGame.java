@@ -1,5 +1,8 @@
 package application;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class RunGame {
 
     /*Properties*/
@@ -16,6 +19,12 @@ public class RunGame {
         
 //        System.out.println("Still need to implement theads...");
 //        System.exit(0);
+        Application.print("Going to sleep");
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (InterruptedException ex) {
+            System.exit(0);
+        }
     }
     
     /*Methods*/

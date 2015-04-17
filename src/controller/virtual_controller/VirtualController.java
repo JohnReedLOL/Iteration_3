@@ -22,12 +22,10 @@ import utility.CollectionUtil;
 public abstract class VirtualController<CtrlM extends ControlMap<VirtualControl, Command>> extends Controller {
 
     /*Properties*/
-    protected ArrayList<CtrlM> cms; 
 
     /*Constructors*/
-    public VirtualController(Model model, ArrayList<CtrlM> paramCms) {
+    public VirtualController(Model model, ArrayList<CtrlM> cms) {
         super(model);
-        this.cms = paramCms;
         init(CollectionUtil.castToSuper(cms));
     }
 

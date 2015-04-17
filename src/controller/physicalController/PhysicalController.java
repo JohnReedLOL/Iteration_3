@@ -115,7 +115,7 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
         @Override
         public void actionPerformed(PCtrl control) {
             Command command = getCommand(control);
-            onControlActivation(command);
+            queueCommandForExecution(command);
         }
 
     }

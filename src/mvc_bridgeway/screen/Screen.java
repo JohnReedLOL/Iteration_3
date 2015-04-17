@@ -2,10 +2,13 @@ package mvc_bridgeway.screen;
 
 // @author comcc_000
 
+import application.Application;
 import controller.physicalController.PhysicalController;
 import controller.virtual_controller.SwingController;
 import controller.virtual_controller.VirtualController;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import model.Model;
 import model.ModelViewBundle;
 import model.UserSettings;
@@ -21,6 +24,19 @@ public abstract class Screen {
     private Viewport viewport;
     private PhysicalController physicalController;
     private VirtualController virtualController;
+    //
+    private static final ExecutorService view_thread_ = Executors.newSingleThreadExecutor();
+    private static final String view_thread_name_ = "View";
+    static {
+        Runnable name_setter = new Runnable() {
+            @Override
+            public void run() {
+                Thread.currentThread().setName(view_thread_name_);
+                Application.print("name set!");
+            }
+        };
+        view_thread_.execute(name_setter);
+    }
 
     /*Constructors*/
     
@@ -34,13 +50,23 @@ public abstract class Screen {
     protected abstract ArrayList<ControlMap> getUserControls(UserSettings userSettings);
     protected abstract ArrayList<ControlMap> generateDefaultPhysicalControlMaps();
     protected abstract void setUserControls(UserSettings userSettings, ArrayList<ControlMap> defaultControls);
-       
+      
+    public static String getViewThreadName() {
+        return view_thread_name_;
+    }
+    
     protected VirtualController createVirtualController(Model model, ArrayList<ControlMap> virtualControlMaps) {
         return new SwingController(model, virtualControlMaps);
     }
     
     public void updateView(ModelViewBundle mvb) {
-        viewport.update(mvb);
+        Runnable view_updater = new Runnable() {
+            @Override
+            public void run() {
+                viewport.update(mvb);
+            }
+        };
+        view_thread_.execute(view_updater);
     }
     
     public final void init(Model model, PhysicalController physicalController, UserSettings userSettings) {

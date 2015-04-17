@@ -22,7 +22,7 @@ public abstract class ViewCommand extends Command {
     
     @Override
     public final void forward() {
-        Viewport.queueCommandForExecution(this);
+        viewport.queueCommandForExecution(this);
     }
 
     /*Get-Sets*/
