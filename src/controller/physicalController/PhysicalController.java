@@ -5,12 +5,14 @@ package controller.physicalController;
 import controller.Controller;
 import java.util.ArrayList;
 import model.Model;
+import mvc_bridgeway.command.Command;
 import mvc_bridgeway.control.Control;
+import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 
 
-public abstract class PhysicalController<PCtrl extends PhysicalControl> extends Controller {
+public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp extends ControlMap<PCtrl, Command>> extends Controller<CtrlMp> {
 
     /*Properties*/
     
@@ -30,14 +32,36 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl> extends 
     
     public abstract void rebind(PCtrl physicalControl);
     
-    public void setMode(Mode mode) {
+    public final void setMode(Mode mode) {
         this.mode = mode;
     }
     
-    public void configure(ArrayList<ControlMap> userControls) {
+    public final void configure(ArrayList<CtrlMp> userControls) {
         init(userControls);
     }
-
+    
+    protected final Command getCommand(PCtrl control) {
+        ArrayList<CtrlMp> controlMaps = getControlMaps();
+        if (controlMaps == null) {
+            return null;
+        }
+        ControlMap cm = null;
+        Control c = null;
+        for (int i = 0; i < controlMaps.size(); i++) {
+            cm = controlMaps.get(i);
+            c = cm.getControl();
+            if (control.equals(c)) {
+                return cm.getCommand();
+            }
+        }
+        return null;
+    }
+    
+    protected final void activateCommand(PCtrl control) {
+        Command command = getCommand(control);
+        onControlActivation(command);
+    }
+    
     /*Get-Sets*/
 
     /*Inner-classes*/
@@ -57,7 +81,7 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl> extends 
         
         @Override
         public void actionPerformed(PCtrl control) {
-//            onControlActivated();
+            activateCommand(control);
         }
 
     }

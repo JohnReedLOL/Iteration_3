@@ -35,6 +35,10 @@ public class HomeScreen extends Screen {
         return null;
     }
 
+    /**
+     * Generates the screen's initial keyboard mappings
+     * @return The mapped keys
+     */
     @Override
     protected ArrayList<ControlMap> generateDefaultPhysicalControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();

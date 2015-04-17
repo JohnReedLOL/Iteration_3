@@ -8,13 +8,13 @@ import mvc_bridgeway.command.Command;
 import mvc_bridgeway.control_map.ControlMap;
 
 
-public abstract class Controller {
+public abstract class Controller<CtrlMp extends ControlMap> {
 
     /*Properties*/
     
     private Model model; //will be interface soon
     //
-    private ArrayList<ControlMap> controlMaps;
+    private ArrayList<CtrlMp> controlMaps;
 
     /*Constructors*/
     
@@ -24,7 +24,7 @@ public abstract class Controller {
 
     /*Methods*/
     
-    protected abstract void setupCommandToExecuteOnControlActivation(ControlMap controlMap);
+    protected abstract void setupCommandToExecuteOnControlActivation(CtrlMp controlMap);
     
     protected final void onControlActivation(Command command) {
         if (command != null) {
@@ -36,7 +36,7 @@ public abstract class Controller {
         return model;
     }
     
-    protected final void init(ArrayList<ControlMap> cms) {
+    protected final void init(ArrayList<CtrlMp> cms) {
         this.controlMaps = cms;
         for (int i=0; cms!= null && i<controlMaps.size(); i++) {
             setupCommandToExecuteOnControlActivation(controlMaps.get(i));
@@ -45,11 +45,11 @@ public abstract class Controller {
 
     /*Get-Sets*/
     
-    protected ArrayList<ControlMap> getControlMaps() {
+    protected ArrayList<CtrlMp> getControlMaps() {
         return controlMaps;
     }
 
-    protected void setControlMaps(ArrayList<ControlMap> controlMaps) {
+    protected void setControlMaps(ArrayList<CtrlMp> controlMaps) {
         this.controlMaps = controlMaps;
     }
 

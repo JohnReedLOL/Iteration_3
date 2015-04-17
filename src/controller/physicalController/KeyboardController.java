@@ -1,18 +1,17 @@
 package controller.physicalController;
 
-// @author comcc_000
-
 import java.awt.KeyEventPostProcessor;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import model.Model;
 import mvc_bridgeway.command.Command;
+import mvc_bridgeway.control.Control;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 // @author comcc_000
 
-public class KeyboardController extends PhysicalController<KeyboardControl> {
+public class KeyboardController extends PhysicalController<KeyboardControl, ControlMap<KeyboardControl, Command>> {
 
     /*Properties*/
 
@@ -51,24 +50,6 @@ public class KeyboardController extends PhysicalController<KeyboardControl> {
 //        JButton backButton = (JButton) ri.backButton;
 //        backButton.setEnabled(true); //re-enable back button 
     }
-
-    private Command getCommand(int keyCode) {
-        ArrayList<ControlMap> controlMaps = getControlMaps();
-        if (controlMaps == null) {
-            return null;
-        }
-        KeyboardControl control = new KeyboardControl(keyCode);
-        ControlMap cm = null;
-        KeyboardControl kc = null;
-        for (int i = 0; i < controlMaps.size(); i++) {
-            cm = controlMaps.get(i);
-            kc = (KeyboardControl) cm.getControl();
-            if (control.equals(kc)) {
-                return cm.getCommand();
-            }
-        }
-        return null;
-    }
     
     /*Get-Sets*/
 
@@ -86,8 +67,8 @@ public class KeyboardController extends PhysicalController<KeyboardControl> {
         public boolean postProcessKeyEvent(KeyEvent e) {
             int keyCode = e.getKeyCode();
             if (e.getID() == KeyEvent.KEY_PRESSED) {
-                Command command = getCommand(keyCode);
-                onControlActivation(command);
+                KeyboardControl control = new KeyboardControl(keyCode);
+                activateCommand(control);
             }
             return true;
         }
