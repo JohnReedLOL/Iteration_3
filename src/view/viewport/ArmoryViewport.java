@@ -15,12 +15,12 @@ import mvc_bridgeway.control_map.ControlMap;
  *
  * @author comcc_000
  */
-public class InventoryViewport extends Viewport {
+public class ArmoryViewport extends Viewport {
 
     /**
      * Creates new form MainScreen
      */
-    public InventoryViewport() {
+    public ArmoryViewport() {
         initComponents();
     }
     
@@ -50,20 +50,64 @@ public class InventoryViewport extends Viewport {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        left_side_slot_ = new javax.swing.JLabel();
+        right_side_slot_ = new javax.swing.JLabel();
+        body_slot_ = new javax.swing.JLabel();
+        legs_slot_ = new javax.swing.JLabel();
+        head_slot_ = new javax.swing.JLabel();
+
+        left_side_slot_.setText("Legs");
+
+        right_side_slot_.setText("Right");
+
+        body_slot_.setText("Body");
+
+        legs_slot_.setText("Legs");
+
+        head_slot_.setText("Head");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 759, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(left_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(head_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118))
+                    .addComponent(legs_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(body_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(right_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(head_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(right_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(body_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(left_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(legs_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel body_slot_;
+    private javax.swing.JLabel head_slot_;
+    private javax.swing.JLabel left_side_slot_;
+    private javax.swing.JLabel legs_slot_;
+    private javax.swing.JLabel right_side_slot_;
     // End of variables declaration//GEN-END:variables
   
 }
