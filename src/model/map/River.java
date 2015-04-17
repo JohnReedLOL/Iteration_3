@@ -16,6 +16,7 @@ public class River {
     private List<WaterTile> waterTileList;
     private WaterTile head;
     private Collection<River> branches;
+    private River parent;
     
     public River() {
         waterTileList = new ArrayList<WaterTile>();
@@ -61,10 +62,16 @@ public class River {
     }
 
     public boolean addBranch( River river ) {
-        branches.add( river );
+        //ensure no circular references
+        if ( parent != river ) {
+            branches.add(river);
+            river.setParent( this );
+        }
 
         return true;
     }
 
-
+    public void setParent( River parent ) {
+        this.parent = parent;
+    }
 }
