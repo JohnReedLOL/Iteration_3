@@ -7,10 +7,10 @@ package view.viewport;
 
 import java.util.ArrayList;
 import model.ModelViewBundle;
-import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
-import mvc_bridgeway.control.virtual_control.SwingControl;
+import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
+import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.NewGameScreen;
 
@@ -40,8 +40,8 @@ public class HomeViewport extends Viewport {
     @Override
     public ArrayList<ControlMap> getControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        controlMaps.add(new ControlMap(new SwingControl(newGameButton), new LaunchScreenCommand(new NewGameScreen()))); 
-        controlMaps.add(new ControlMap(new SwingControl(exitButton), new ExitCommand()));
+        controlMaps.add(new ControlMap(new ButtonSwingControl(newGameButton), new LaunchScreenCommand(new NewGameScreen()))); 
+        controlMaps.add(new ControlMap(new ButtonSwingControl(exitButton), new ExitCommand()));
         return controlMaps;
     }
 

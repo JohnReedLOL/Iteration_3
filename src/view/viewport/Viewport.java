@@ -5,6 +5,7 @@ package view.viewport;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import model.ModelViewBundle;
+import mvc_bridgeway.command.view_command.ViewCommand;
 import mvc_bridgeway.control_map.ControlMap;
 
 
@@ -25,6 +26,10 @@ public abstract class Viewport extends JPanel {
     public abstract void update(ModelViewBundle mvb);
     public abstract ArrayList<ControlMap> getControlMaps();
     protected abstract void generateView();
+    
+    public static final void queueCommandForExecution(ViewCommand command) {
+        command.execute(); //for now
+    }
     
     public final boolean isRefreshControllerNeeded() {
         return refreshControllerNeeded;

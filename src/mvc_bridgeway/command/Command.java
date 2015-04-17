@@ -11,6 +11,7 @@ public abstract class Command {
     /*Methods*/
     
     public abstract void execute();
+    public abstract void forward();
 
     /*Get-Sets*/
 

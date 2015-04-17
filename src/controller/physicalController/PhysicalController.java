@@ -20,7 +20,7 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     public final DisabledMode Disabled = new DisabledMode();
     public final RebindMode Rebind = new RebindMode();
     //
-    private Mode mode = Disabled;
+    private Mode mode = Enabled;
     //
     private CtrlMp rebindControlMap = null;
 
@@ -31,8 +31,6 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     }
     
     /*Methods*/
-    
-    public abstract void rebind(PCtrl control);
     
     public final void setMode(Mode mode) {
         this.mode = mode;
@@ -45,6 +43,14 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     public final void setupForRebind(CtrlMp controlMap) {
         setRebindControlMap(controlMap);
         setMode(Rebind);
+    }
+
+    public final void rebind(PCtrl control) {
+        clearMapping(control); //wipe any commands currently mapped to this control
+        CtrlMp rebindControlMap = getRebindControlMap();
+        rebindControlMap.setControl(control); //the actual rebinding part
+        addControlMap(rebindControlMap);
+        setMode(Enabled); //will be Disabled after testing
     }
     
     protected final Command getCommand(PCtrl control) {
@@ -65,8 +71,7 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     }
     
     protected final void activateCommand(PCtrl control) {
-        Command command = getCommand(control);
-        onControlActivation(command);
+        mode.actionPerformed(control);
     }
     
     protected final void clearMapping(PCtrl control) {
@@ -109,7 +114,8 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
         
         @Override
         public void actionPerformed(PCtrl control) {
-            activateCommand(control);
+            Command command = getCommand(control);
+            onControlActivation(command);
         }
 
     }

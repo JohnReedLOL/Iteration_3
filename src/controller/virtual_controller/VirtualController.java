@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import model.Model;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.ModelCommand;
-import mvc_bridgeway.control.virtual_control.SwingControl;
+import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control.virtual_control.VirtualControl;
 import mvc_bridgeway.control_map.ControlMap;
 import utility.CollectionUtil;

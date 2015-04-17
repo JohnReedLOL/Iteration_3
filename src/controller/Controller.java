@@ -26,9 +26,9 @@ public abstract class Controller<CtrlMp extends ControlMap> {
     
     protected abstract void setupCommandToExecuteOnControlActivation(CtrlMp controlMap);
     
-    protected final void onControlActivation(Command command) {
+    public static final void onControlActivation(Command command) {
         if (command != null) {
-            command.execute(); //soon will be forwarded
+            command.forward(); 
         }
     }
     
@@ -41,6 +41,10 @@ public abstract class Controller<CtrlMp extends ControlMap> {
         for (int i=0; cms!= null && i<controlMaps.size(); i++) {
             setupCommandToExecuteOnControlActivation(controlMaps.get(i));
         }
+    }
+    
+    protected final void addControlMap(CtrlMp controlMap) {
+        controlMaps.add(controlMap);
     }
 
     /*Get-Sets*/

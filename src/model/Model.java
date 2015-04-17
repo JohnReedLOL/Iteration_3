@@ -4,6 +4,7 @@ package model;
 
 import application.Application;
 import mvc_bridgeway.command.Command;
+import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
 
@@ -58,13 +59,17 @@ public class Model {
         //Controller Interface
     
     public void queueCommandForExecution(Command command) {
-        //TODO
+        command.execute(); //for now
     }
     
         //Command Interface
     
     public void exit() {
         System.exit(0);
+    }
+    
+    public void setupPhysicalControllerForRebind(ControlMap controlMap) {
+        application.listenForRebind(controlMap);
     }
     
         //Misc

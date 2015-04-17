@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import model.Model;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.ModelCommand;
-import mvc_bridgeway.control.virtual_control.SwingControl;
+import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 // @author comcc_000
 
@@ -35,23 +35,8 @@ public class SwingController extends VirtualController {
 
     private void setListenerForCM(ControlMap<SwingControl, ModelCommand> cm) {
         SwingControl control = cm.getControl();
-        JComponent component = control.getJComponent();
         final Command command = cm.getCommand();
-        ActionListener al = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onControlActivation(command);
-            }
-        };
-        setActionListener(al, component);
-    }
-    
-    private void setActionListener(ActionListener al, Component component) {
-        if (component instanceof AbstractButton) {
-            ((AbstractButton)component).addActionListener(al);
-        } else if (component instanceof JTextField) {
-            ((JTextField)component).addActionListener(al);
-        }
+        control.setListener(command);
     }
 
     /*Get-Sets*/

@@ -8,7 +8,7 @@ package view.viewport;
 import java.util.ArrayList;
 import model.ModelViewBundle;
 import mvc_bridgeway.command.model_command.ExitCommand;
-import mvc_bridgeway.control.virtual_control.SwingControl;
+import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 
 /**

@@ -15,6 +15,11 @@ public abstract class ModelCommand extends Command {
     /*Constructors*/
 
     /*Methods*/
+    
+    @Override
+    public final void forward() {
+        model.queueCommandForExecution(this);
+    }
 
     /*Get-Sets*/
     

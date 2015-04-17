@@ -2,22 +2,26 @@ package mvc_bridgeway.command.model_command;
 
 // @author comcc_000
 
-import mvc_bridgeway.command.Command;
+import mvc_bridgeway.control_map.ControlMap;
 
 
 public class RebindCommand extends ModelCommand {
 
-    
-
     /*Properties*/
+    
+    private ControlMap controlMap;
 
     /*Constructors*/
+    
+    public RebindCommand(ControlMap controlMap) {
+        this.controlMap = controlMap;
+    }
 
     /*Methods*/
     
     @Override
     public void execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getModel().setupPhysicalControllerForRebind(controlMap);
     }
     
     /*Get-Sets*/

@@ -4,9 +4,9 @@ package mvc_bridgeway.screen;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javafx.scene.input.KeyCode;
 import model.UserSettings;
 import mvc_bridgeway.command.model_command.ExitCommand;
+import mvc_bridgeway.command.model_command.RebindCommand;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.HomeViewport;
@@ -42,7 +42,9 @@ public class HomeScreen extends Screen {
     @Override
     protected ArrayList<ControlMap> generateDefaultPhysicalControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_X), new ExitCommand()));
+        ControlMap exitMap = new ControlMap(new KeyboardControl(KeyEvent.VK_X), new ExitCommand());
+        controlMaps.add(exitMap);
+        controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_Y), new RebindCommand(exitMap)));
         return controlMaps;
     }
     

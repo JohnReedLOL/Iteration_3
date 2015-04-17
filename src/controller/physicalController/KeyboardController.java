@@ -21,28 +21,18 @@ public class KeyboardController extends PhysicalController<KeyboardControl, Cont
     
     public KeyboardController(Model model) {
         super(model);
-        
-        initKeyboardManager();
     }
 
     /*Methods*/
     
     @Override
     protected void setupCommandToExecuteOnControlActivation(ControlMap controlMap) {
-        //do nothing in this case...
+        initKeyboardManager();
     }
     
     private void initKeyboardManager() {
         keyboardManager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
         keyboardManager.addKeyEventPostProcessor(new EnterKeyListener(getModel()));
-    }
-    
-    @Override
-    public void rebind(KeyboardControl control) {
-        clearMapping(control); //wipe any commands currently mapped to this control
-        ControlMap rebindControlMap = getRebindControlMap();
-        rebindControlMap.setControl(control); //the actual rebinding part
-        setMode(Disabled); 
     }
     
     /*Get-Sets*/
@@ -67,11 +57,8 @@ public class KeyboardController extends PhysicalController<KeyboardControl, Cont
             return true;
         }
 
-        
     }
 
     /*Test Main Method*/
-
-    
 
 }
