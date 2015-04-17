@@ -39,16 +39,10 @@ public class KeyboardController extends PhysicalController<KeyboardControl, Cont
     
     @Override
     public void rebind(KeyboardControl control) {
-//        int keyCode = ((KeyboardControl) control).getKeyCode();
-//        OptionsVirtualController ovc = ((OptionsVirtualController) virtualController);
-//        RebindInfo ri = ovc.getRebindInfo();
-//        reassignControlWithIntent(new KeyboardControl(keyCode), ri.object, ri.intent);
-//        //label key appropriately
-//        JButton button = (JButton) ri.component;
-//        button.setText(KeyEvent.getKeyText(keyCode));
-//        setMode(PhysicalControllerMode.DISABLED); //rebindMode = false; //remember to do this /*Derpy face*/
-//        JButton backButton = (JButton) ri.backButton;
-//        backButton.setEnabled(true); //re-enable back button 
+        clearMapping(control); //wipe any commands currently mapped to this control
+        ControlMap rebindControlMap = getRebindControlMap();
+        rebindControlMap.setControl(control); //the actual rebinding part
+        setMode(Disabled); 
     }
     
     /*Get-Sets*/

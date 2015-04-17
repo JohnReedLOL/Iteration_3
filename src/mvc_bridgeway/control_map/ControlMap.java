@@ -21,6 +21,10 @@ public class ControlMap<Ctrl extends Control, Cmd extends Command> {
     }
 
     /*Methods*/
+    
+    public boolean hasControl(Ctrl control) {
+        return this.control.equals(control);
+    }
 
     /*Get-Sets*/
     
