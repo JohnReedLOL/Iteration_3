@@ -17,7 +17,11 @@ public class WeaponItem extends EquipItem {
      */
 
     public WeaponItem() {
-        super(EquipSlot.MAINHAND);
+        this("WeaponItem", "Weapon Desc", EquipSlot.MAINHAND);
+    }
+
+    public WeaponItem(String name, String descrption, EquipSlot slot) {
+        super(name, descrption, slot);
 
         this.attackEffects = new ArrayList<Effect>();
     }

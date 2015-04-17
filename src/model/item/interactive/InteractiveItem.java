@@ -21,7 +21,11 @@ public class InteractiveItem extends Item {
      */
 
     public InteractiveItem() {
-        super();
+        this("InteractiveItem", "Interactive Item Desc");
+    }
+
+    public InteractiveItem(String name, String description) {
+        super(name, description);
 
         this.activationRequirements = new ArrayList<Prerequisite>();
         this.activationEffects = new ArrayList<Effect>();

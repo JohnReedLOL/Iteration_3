@@ -14,12 +14,17 @@ public class EquipItem extends SackboundItem {
     private EquipSlot equipSlot;
 
     public EquipItem(EquipSlot equipSlot) {
-        super();
+        this("EquipItem", "Equip Desc", equipSlot);
+    }
+
+    public EquipItem(String name, String description, EquipSlot equipSlot) {
+        super(name, description);
 
         this.equipEffects = new ArrayList<Effect>();
         this.equipPrerequisites = new ArrayList<Prerequisite>();
         this.equipSlot = equipSlot;
     }
+
 
     /**
      * GETTERS
@@ -85,12 +90,15 @@ public class EquipItem extends SackboundItem {
     // similar cases that require multiple items to be unequipped for a particular EquipItem
     // to be equip()'d.
     public EquipmentPair equip(Entity user) {
-        return equipItem(user, getEquipSlot());
+        return equipItem(user, this, getEquipSlot());
     }
 
-    public EquipmentPair unequip(Entity equipper) {
-        // TODO
-        return null;
+    public EquipItem unequip(Entity equipper) {
+        if (willSackOverflow(equipper, this.getEquipSlot())) {
+            return null;
+        }
+
+        return equipper.unequipItem(this);
     }
 
     /**
@@ -107,13 +115,13 @@ public class EquipItem extends SackboundItem {
         return true;
     }
 
-    protected EquipmentPair equipItem(Entity equipper, EquipSlot... slots) {
+    protected EquipmentPair equipItem(Entity equipper, EquipItem item, EquipSlot... slots) {
         // Doesn't meet requirements.
         if (!meetsEquipRequirements(equipper, this)) {
             return new EquipmentPair(null, false);
         }
         // The number of items that need to be un-equipped exceed the capacity of the inventory.
-        else if ((slots.length + equipper.getArmoryOwnership().getSize()) > equipper.getArmoryOwnership().getCapacity()) {
+        if (willSackOverflow(equipper, slots)) { // <== LOL
             return new EquipmentPair(null, false);
         }
 
@@ -124,8 +132,33 @@ public class EquipItem extends SackboundItem {
             equippedItems.add(equipper.unequipItem(slot));
         }
 
-        equipper.equipItem(this);
+        equipper.equipItem(item);
         return new EquipmentPair(equippedItems, true);
+    }
+
+    private int getFilledSlotCount(Entity equipper, EquipSlot... slots) {
+        int count = 0;
+
+        for (EquipSlot slot : slots) {
+            if (isSlotFilled(equipper, slot)) {
+                ++count;
+            }
+        }
+
+        return count;
+    }
+
+    private boolean isSlotFilled(Entity equipper, EquipSlot slot) {
+        boolean result = (equipper.getArmoryOwnership().getItemAtSlot(slot) != null);
+
+        return result;
+    }
+
+    private boolean willSackOverflow(Entity equipper, EquipSlot... slots) {
+        int potentialSize = getFilledSlotCount(equipper, slots);
+        potentialSize += equipper.getInventoryOwnership().getSize();
+
+        return (potentialSize > equipper.getInventoryOwnership().getPermittedCapacity());
     }
 
     /**

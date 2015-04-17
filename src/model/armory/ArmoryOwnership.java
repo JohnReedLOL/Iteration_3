@@ -40,6 +40,10 @@ public class ArmoryOwnership {
         return getEquipment().getCapacity();
     }
 
+    public EquipItem getItemAtSlot(EquipItem.EquipSlot slot) {
+        return getEquipment().getItemAtSlot(slot);
+    }
+
     /**
      * MUTATORS
      */
@@ -59,6 +63,4 @@ public class ArmoryOwnership {
     /**
      * IMPLEMENTATIONS
      */
-
-
 }

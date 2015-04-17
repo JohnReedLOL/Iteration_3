@@ -36,6 +36,10 @@ public class Armory {
         return MAX_CAPACITY;
     }
 
+    public EquipItem getItemAtSlot(EquipItem.EquipSlot slot) {
+        return getEquipment().get(slot.getSlot());
+    }
+
     /**
      * MUTATORS
      */

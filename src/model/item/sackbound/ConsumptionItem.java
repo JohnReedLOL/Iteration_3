@@ -19,7 +19,11 @@ public abstract class ConsumptionItem extends SackboundItem {
      */
 
     public ConsumptionItem() {
-        super();
+        this("ConsumptionItem", "Consumption Desc");
+    }
+
+    public ConsumptionItem(String name, String description) {
+        super(name, description);
 
         this.usePrerequisites = new ArrayList<Prerequisite>();
         this.useEffects = new ArrayList<Effect>();

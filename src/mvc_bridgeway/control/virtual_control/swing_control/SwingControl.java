@@ -27,7 +27,7 @@ public abstract class SwingControl<Cmpnt extends JComponent> extends VirtualCont
     
     public abstract void setListener(Command command);
     
-    protected final ActionListener generateActionListener(Command command) {
+    protected final ActionListener generateActionListener(final Command command) {
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -4,7 +4,11 @@ import model.entity.Entity;
 
 public class UnlimitedConsumptionItem extends ConsumptionItem {
     public UnlimitedConsumptionItem() {
-        super();
+        this("UnlimitedConsumptionItem", "UnlimitedConsumption Desc");
+    }
+
+    public UnlimitedConsumptionItem(String name, String description) {
+        super(name, description);
     }
 
     @Override

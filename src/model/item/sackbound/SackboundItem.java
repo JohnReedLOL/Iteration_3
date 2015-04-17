@@ -20,6 +20,12 @@ public class SackboundItem extends Item {
      */
 
     public SackboundItem() {
+        this("SackboundItem", "Sackbound Desc");
+    }
+
+    public SackboundItem(String name, String description) {
+        super(name, description);
+
         this.pickUpPrerequisites = new ArrayList<Prerequisite>();
         this.pickUpEffects = new ArrayList<Effect>();
     }

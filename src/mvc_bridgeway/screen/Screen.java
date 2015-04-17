@@ -59,7 +59,7 @@ public abstract class Screen {
         return new SwingController(model, virtualControlMaps);
     }
     
-    public void updateView(ModelViewBundle mvb) {
+    public void updateView(final ModelViewBundle mvb) {
         Runnable view_updater = new Runnable() {
             @Override
             public void run() {

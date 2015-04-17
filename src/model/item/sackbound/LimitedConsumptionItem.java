@@ -12,7 +12,11 @@ public class LimitedConsumptionItem extends ConsumptionItem {
      */
 
     public LimitedConsumptionItem() {
-        super();
+        this("LimitedConsumptionItem", "LimitedConsumption Desc");
+    }
+
+    public LimitedConsumptionItem(String name, String description) {
+        super(name, description);
     }
 
     /**

@@ -18,7 +18,11 @@ public class OneShotItem extends Item {
      */
 
     public OneShotItem() {
-        super();
+        this("OneShotItem", "OneShot Desc");
+    }
+
+    public OneShotItem(String name, String description) {
+        super(name, description);
 
         this.activationEffects = new ArrayList<Effect>();
     }

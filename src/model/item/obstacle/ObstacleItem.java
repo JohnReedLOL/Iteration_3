@@ -18,7 +18,11 @@ public class ObstacleItem extends Item {
      */
 
     public ObstacleItem() {
-        super();
+        this("ObstacleItem", "Obstacle Desc");
+    }
+
+    public ObstacleItem(String name, String description) {
+        super(name, description);
 
         this.activationEffects = new ArrayList<Effect>();
     }
