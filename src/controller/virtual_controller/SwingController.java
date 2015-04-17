@@ -34,7 +34,8 @@ public class SwingController extends VirtualController {
     }
 
     private void setListenerForCM(ControlMap<SwingControl, ModelCommand> cm) {
-        JComponent component = cm.getControl().getJComponent();
+        SwingControl control = cm.getControl();
+        JComponent component = control.getJComponent();
         final Command command = cm.getCommand();
         ActionListener al = new ActionListener() {
             @Override
