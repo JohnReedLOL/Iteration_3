@@ -25,12 +25,4 @@ public class RadialInfluenceSet extends InfluenceSet {
 
         return null;
     }
-
-    @Override
-    public Collection<InfluenceTile> getInfluenceSetNoSource() {
-        //TODO
-        //LOGIC STUFFS HERE
-
-        return null;
-    }
 }

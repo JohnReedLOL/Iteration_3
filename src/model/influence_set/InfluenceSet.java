@@ -10,6 +10,7 @@ public abstract class InfluenceSet {
 //    private GameMap map;
 //    private Tile source;
     private int radius;
+    private boolean source = false; //most Influence sets need not return source tile. reset this if needed.
 
     public InfluenceSet() {
         //DON'T USE DEFAULT CONSTRUCTOR.
@@ -19,8 +20,11 @@ public abstract class InfluenceSet {
     public InfluenceSet( int radius ) {
         this.radius = radius;
     }
+    public void setSource( boolean source ) {
+        this.source = source;
+    }
 
     public abstract Collection<InfluenceTile> getInfluenceSet();
-    public abstract Collection<InfluenceTile> getInfluenceSetNoSource();
+
 
 }
