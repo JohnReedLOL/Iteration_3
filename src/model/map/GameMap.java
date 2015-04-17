@@ -14,7 +14,7 @@ public class GameMap extends DiscreteMap {
 
 
     public GameMap() {
-
+        setName( generateNextMapName() );
     }
 
     @Override

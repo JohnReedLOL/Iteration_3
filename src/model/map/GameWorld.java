@@ -10,6 +10,9 @@ public class GameWorld {
 
     //A SINGLETON CLASS USED FOR GLOBAL ACCESS TO CURRENT MAP, AS WELL AS SETTING IT
 
+    //this constant used for naming new maps.
+    private static int numMaps = 0;
+
     private static GameWorld singleton = null;
     private Collection<DiscreteMap> maps = new ArrayList<DiscreteMap>();
     private DiscreteMap currentMap = null;
@@ -24,6 +27,11 @@ public class GameWorld {
         }
         else
             return singleton;
+    }
+
+    public static int incrementMaps() {
+        //FOR USE IN MAP NAMING
+        return numMaps++;
     }
 
     public DiscreteMap getCurrentMap() {

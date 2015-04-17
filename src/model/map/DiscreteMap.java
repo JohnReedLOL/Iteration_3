@@ -32,5 +32,8 @@ public abstract class DiscreteMap {
         this.locations = locations;
     }
 
+    public String generateNextMapName() {
+        return "MAP_" + GameWorld.incrementMaps();
+    }
 
 }
