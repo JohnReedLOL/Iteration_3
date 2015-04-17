@@ -2,12 +2,12 @@ package mvc_bridgeway.screen;
 
 // @author comcc_000
 
-import mvc_bridgeway.screen.*;
-import controller.physicalController.PhysicalController;
-import controller.virtual_controller.VirtualController;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import model.Model;
+import javafx.scene.input.KeyCode;
 import model.UserSettings;
+import mvc_bridgeway.command.model_command.ExitCommand;
+import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.HomeViewport;
 import view.viewport.Viewport;
@@ -31,18 +31,15 @@ public class HomeScreen extends Screen {
     }
 
     @Override
-    protected PhysicalController createPhysicalController(Model model, PhysicalController physicalController, UserSettings userSettings) {
-        return physicalController;
-    }
-
-    @Override
     protected ArrayList<ControlMap> getUserControls(UserSettings userSettings) {
         return null;
     }
 
     @Override
     protected ArrayList<ControlMap> generateDefaultPhysicalControlMaps() {
-        return null;
+        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
+        controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_X), new ExitCommand()));
+        return controlMaps;
     }
     
     @Override

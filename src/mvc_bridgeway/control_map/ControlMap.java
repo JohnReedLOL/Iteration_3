@@ -6,7 +6,7 @@ import mvc_bridgeway.command.Command;
 import mvc_bridgeway.control.Control;
 
 
-public class ControlMap<Ctrl, Cmd> {
+public class ControlMap<Ctrl extends Control, Cmd extends Command> {
 
     /*Properties*/
     

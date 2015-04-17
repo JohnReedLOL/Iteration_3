@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import model.Model;
 import model.UserSettings;
 import mvc_bridgeway.control_map.ControlMap;
-import view.viewport.NewGameViewport;
+import view.viewport.OptionsViewport;
 import view.viewport.Viewport;
 
 
-public class NewGameScreen extends Screen {
+public class OptionsScreen extends Screen {
 
     /*Properties*/
 
     /*Constructors*/
     
-    public NewGameScreen() {
+    public OptionsScreen() {
         super();
     }
 
@@ -26,7 +26,7 @@ public class NewGameScreen extends Screen {
     
     @Override
     protected Viewport createView() {
-        return new NewGameViewport();
+        return new OptionsViewport();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class NewGameScreen extends Screen {
 
     @Override
     protected void setUserControls(UserSettings userSettings, ArrayList<ControlMap> defaultControls) {
-        //TODO
+        //TODO: throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /*Get-Sets*/

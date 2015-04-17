@@ -7,6 +7,7 @@ package view.viewport;
 
 import java.util.ArrayList;
 import model.ModelViewBundle;
+import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
 import mvc_bridgeway.control.virtual_control.SwingControl;

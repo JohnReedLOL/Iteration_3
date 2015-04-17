@@ -6,14 +6,19 @@ import controller.Controller;
 import java.util.ArrayList;
 import model.Model;
 import mvc_bridgeway.control.Control;
+import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 
 
-public class PhysicalController extends Controller {
+public abstract class PhysicalController<PCtrl extends PhysicalControl> extends Controller {
 
     /*Properties*/
     
-    protected PhysicalControllerMode mode = new DisabledMode();
+    public final EnabledMode Enabled = new EnabledMode();
+    public final DisabledMode Disabled = new DisabledMode();
+    public final RebindMode Rebind = new RebindMode();
+    //
+    protected Mode mode = Disabled;
 
     /*Constructors*/
     
@@ -23,13 +28,14 @@ public class PhysicalController extends Controller {
     
     /*Methods*/
     
-    public void configure(ArrayList<ControlMap> userControls) {
-        //TODO
+    public abstract void rebind(PCtrl physicalControl);
+    
+    public void setMode(Mode mode) {
+        this.mode = mode;
     }
-
-    @Override
-    protected void setupCommandToExecuteOnControlActivation(ControlMap controlMap) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public void configure(ArrayList<ControlMap> userControls) {
+        init(userControls);
     }
 
     /*Get-Sets*/
@@ -37,58 +43,47 @@ public class PhysicalController extends Controller {
     /*Inner-classes*/
     
     /*Inner Classes*//////////////////////////////////////////////////////////////////////////////
-    public abstract class PhysicalControllerMode {
+    private abstract class Mode {
         
-        /*Properties*/
-        
-        public static final String ENABLED = "ENABLED";
-        public static final String DISABLED = "DISABLED";
-        public static final String REBIND = "REBIND";
-        
-        /*Constructors*/
-        
-        /*Methods*/
-
-        //Perform tasks on different timings
-        public abstract void actionPerformed(Control control);
+        public abstract void actionPerformed(PCtrl control);
 
     }
 
-    private class EnabledMode extends PhysicalControllerMode {
+    private class EnabledMode extends Mode {
 
         public EnabledMode() {
             //
         }
         
         @Override
-        public void actionPerformed(Control control) {
+        public void actionPerformed(PCtrl control) {
 //            onControlActivated();
         }
 
     }
 
-    private class DisabledMode extends PhysicalControllerMode {
+    private class DisabledMode extends Mode {
 
         public DisabledMode() {
             //
         }
         
         @Override
-        public void actionPerformed(Control control) {
+        public void actionPerformed(PCtrl control) {
             //do nothing
         }
 
     }
     
-    private class RebindMode extends PhysicalControllerMode {
+    private class RebindMode extends Mode {
         
         public RebindMode() {
             //
         }
         
         @Override
-        public void actionPerformed(Control control) {
-//            rebind(control);
+        public void actionPerformed(PCtrl control) {
+            rebind(control);
         }
         
     }

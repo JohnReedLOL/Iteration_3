@@ -29,11 +29,6 @@ public class PrototypeScreen extends Screen {
     }
 
     @Override
-    protected PhysicalController createPhysicalController(Model model, PhysicalController physicalController, UserSettings userSettings) {
-        return physicalController;
-    }
-
-    @Override
     protected ArrayList<ControlMap> getUserControls(UserSettings userSettings) {
         return null;
     }

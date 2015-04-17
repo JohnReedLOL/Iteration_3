@@ -31,7 +31,6 @@ public abstract class Screen {
     /*Methods*/
     
     protected abstract Viewport createView();
-    protected abstract PhysicalController createPhysicalController(Model model, PhysicalController physicalController, UserSettings userSettings);
     protected abstract ArrayList<ControlMap> getUserControls(UserSettings userSettings);
     protected abstract ArrayList<ControlMap> generateDefaultPhysicalControlMaps();
     protected abstract void setUserControls(UserSettings userSettings, ArrayList<ControlMap> defaultControls);

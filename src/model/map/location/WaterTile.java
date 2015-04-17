@@ -14,4 +14,24 @@ public class WaterTile extends Tile {
     public boolean canPass( Entity entity ) {
         return false;
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public int getFlowRate() {
+        return flowRate;
+    }
+
+    public void setDirection( Direction direction ) {
+        this.direction = direction;
+    }
+
+    public void setFlowRate(int flowRate) {
+        this.flowRate = flowRate;
+    }
+
+    public void reverseDirection() {
+        this.direction = direction.getOppositeDirection();
+    }
 }
