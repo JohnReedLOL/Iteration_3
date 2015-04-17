@@ -12,7 +12,6 @@ import java.util.Collection;
  */
 public class GameMap extends DiscreteMap {
 
-    private Collection<Tile> tiles;
 
     public GameMap() {
 
@@ -29,13 +28,18 @@ public class GameMap extends DiscreteMap {
     }
 
     @Override
-    public void move( MapObject m, Location l ) {
+    public void relocate( MapObject m, Location l ) {
 
     }
 
     @Override
     public void move( MapObject m, Direction l ) {
 
+    }
+
+    @Override
+    public Tile getLocationFromDirection(Location l, Direction d) {
+        return null;
     }
 
 //    @Override
