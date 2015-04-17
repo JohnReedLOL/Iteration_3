@@ -40,11 +40,11 @@ public class ObstacleItem extends Item {
     }
 
     public void addActivationEffect(Effect effect) {
-        this.activationEffects.add(effect);
+        getActivationEffects().add(effect);
     }
 
     public void removeActivationEffect(Effect effect) {
-        this.activationEffects.remove(effect);
+        getActivationEffects().remove(effect);
     }
 
     /**

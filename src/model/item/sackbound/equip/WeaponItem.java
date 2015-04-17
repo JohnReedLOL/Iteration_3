@@ -39,11 +39,11 @@ public class WeaponItem extends EquipItem {
     }
 
     public void addAttackEffect(Effect effect) {
-        this.attackEffects.add(effect);
+        getAttackEffects().add(effect);
     }
 
     public void removeAttackEffect(Effect effect) {
-        this.attackEffects.remove(effect);
+        getAttackEffects().remove(effect);
     }
 
     /**

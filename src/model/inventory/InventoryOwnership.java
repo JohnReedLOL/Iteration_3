@@ -61,8 +61,19 @@ public class InventoryOwnership {
         return this.inventory;
     }
 
+    public SackboundItem getItem(int position) {
+        return getOwnerInventory().getItem(position);
+    }
+
+    public SackboundItem takeItemFromInvetory(int position) {
+        SackboundItem item = getItem(position);
+        removeItem(item);
+
+        return item;
+    }
+
     public ArrayList<SackboundItem> getAllItems() {
-        return this.inventory.getItems();
+        return getOwnerInventory().getContents();
     }
 
     /**
@@ -74,7 +85,7 @@ public class InventoryOwnership {
     }
 
     public void setInventoryCapacity(int inventoryCapacity) {
-        this.inventory.setCapacity(inventoryCapacity);
+        getOwnerInventory().setCapacity(inventoryCapacity);
     }
 
     public void setOwner(Entity owner) {
@@ -86,11 +97,11 @@ public class InventoryOwnership {
     }
 
     public boolean addItem(SackboundItem item) {
-        return this.inventory.addItem(item);
+        return getOwnerInventory().addItem(item);
     }
 
     public SackboundItem removeItem(SackboundItem item) {
-        return this.inventory.removeItem(item);
+        return getOwnerInventory().removeItem(item);
     }
 
     /**

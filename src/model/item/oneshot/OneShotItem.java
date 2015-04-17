@@ -40,11 +40,11 @@ public class OneShotItem extends Item {
     }
 
     public void addActivationEffect(Effect effect) {
-        this.activationEffects.add(effect);
+        getActivationEffects().add(effect);
     }
 
     public void removeActivationEffect(Effect effect) {
-        this.activationEffects.remove(effect);
+        getActivationEffects().remove(effect);
     }
 
     /**
@@ -59,8 +59,8 @@ public class OneShotItem extends Item {
     }
 
     protected void applyActivationEffects(Entity target) {
-        for (Effect effect : activationEffects) {
-            effect.affect(target);
+        for (Effect effect : getActivationEffects()) {
+            effect.performEffect(target);
         }
     }
 }
