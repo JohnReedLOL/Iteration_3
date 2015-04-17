@@ -8,4 +8,5 @@ public abstract class Direction {
 
     public abstract Direction getClockwiseDirection();
     public abstract Direction getCounterClockwiseDirection();
+    public abstract Direction getOppositeDirection();
 }
