@@ -42,27 +42,21 @@ public class Armory {
 
     public EquipItem equip(EquipItem item) {
         EquipItem equipped = unequip(item.getEquipSlot());
+        setItem(item);
 
         return equipped;
     }
 
     public EquipItem unequip(EquipItem item) {
-        return unequip(item.getEquipSlot());
+        return removeItem(item);
     }
 
     public EquipItem unequip(EquipItem.EquipSlot slot) {
-        EquipItem equipped = getEquipment().get(slot.getSlot());
-        getEquipment().remove(slot.getSlot());
-
-        return equipped;
+        return removeItem(slot);
     }
 
     /**
      * IMPLEMENTATIONS
-     */
-
-    /**
-     * INNER-CLASS: EquipmentPair
      */
 
     private EquipItem removeItem(EquipItem item) {
@@ -70,7 +64,11 @@ public class Armory {
     }
 
     private EquipItem removeItem(EquipItem.EquipSlot slot) {
-        // placeholder.
-        return null;
+        return getEquipment().remove(slot.getSlot());
+    }
+
+    private void setItem(EquipItem item) {
+        EquipItem.EquipSlot slot = item.getEquipSlot();
+        getEquipment().set(slot.getSlot(), item);
     }
 }
