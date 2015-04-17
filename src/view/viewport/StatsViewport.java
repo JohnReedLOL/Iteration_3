@@ -5,8 +5,21 @@
  */
 package view.viewport;
 
+import application.Application;
 import java.util.ArrayList;
+
 import model.ModelViewBundle;
+import model.entity.Entity;
+import model.entity.stats.SmasherStats;
+import model.entity.stats.SmasherStatsVisitor;
+import model.entity.stats.SneakStats;
+import model.entity.stats.SneakStatsOwnership;
+import model.entity.stats.SneakStatsVisitor;
+import model.entity.stats.Stats;
+import model.entity.stats.StatsOwnership;
+import model.entity.stats.StatsVisitor;
+import model.entity.stats.SummonerStats;
+import model.entity.stats.SummonerStatsVisitor;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
@@ -15,15 +28,22 @@ import mvc_bridgeway.control_map.ControlMap;
  *
  * @author comcc_000
  */
-public class StatsViewport extends Viewport {
+public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
 
     /**
      * Creates new form MainScreen
      */
     public StatsViewport() {
+        // TODO: 
+        StatsOwnership s = new SneakStatsOwnership(new Entity());
+        s.accept(this);
+        
+        
+        //
         initComponents();
     }
     
+        
     @Override
     protected void generateView() {
         //TODO
@@ -65,5 +85,25 @@ public class StatsViewport extends Viewport {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void visit(Stats stats) {
+        Application.print("Regular "+stats.toString());
+    }
+
+    @Override
+    public void visit(SneakStats stats) {
+        Application.print("Sneak "+stats.toString());
+    }
+
+    @Override
+    public void visit(SummonerStats stats) {
+        Application.print("Summoner "+stats.toString());
+    }
+
+    @Override
+    public void visit(SmasherStats stats) {
+        Application.print("Smasher "+stats.toString());
+    }
   
 }

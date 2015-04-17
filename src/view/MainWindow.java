@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Frame;
 import javax.swing.JPanel;
 import mvc_bridgeway.screen.Screen;
@@ -45,7 +46,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     public void addViewport(Viewport view) {
-        this.getContentPane().add(view);
+        this.getContentPane().add(view, BorderLayout.CENTER);
         view.updateUI();
     }
     
@@ -66,18 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 800));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

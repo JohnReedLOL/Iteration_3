@@ -16,6 +16,7 @@ public class GameScreenViewport extends ScreenViewport {
      */
     public GameScreenViewport() {
         initComponents();
+        revalidate();
     }
 
     /**
@@ -26,21 +27,80 @@ public class GameScreenViewport extends ScreenViewport {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        gameViewport2 = new view.viewport.GameViewport();
+        textConsoleViewport1 = new view.viewport.TextConsoleViewport();
+        side_pane_ = new javax.swing.JPanel();
+        miniMapViewport2 = new view.viewport.MiniMapViewport();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        statsViewport2 = new view.viewport.StatsViewport();
+        skillsViewport1 = new view.viewport.SkillsViewport();
+        inventoryViewport1 = new view.viewport.InventoryViewport();
+        armoryViewport1 = new view.viewport.ArmoryViewport();
+
+        setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.weighty = 0.9;
+        add(gameViewport2, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.weighty = 0.1;
+        add(textConsoleViewport1, gridBagConstraints);
+
+        side_pane_.setMinimumSize(new java.awt.Dimension(100, 50));
+        side_pane_.setName(""); // NOI18N
+        side_pane_.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.3;
+        side_pane_.add(miniMapViewport2, gridBagConstraints);
+
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(100, 100));
+        jTabbedPane1.addTab("Stats", statsViewport2);
+        jTabbedPane1.addTab("Skills", skillsViewport1);
+        jTabbedPane1.addTab("Inventory", inventoryViewport1);
+        jTabbedPane1.addTab("Armory", armoryViewport1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.7;
+        side_pane_.add(jTabbedPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.15;
+        gridBagConstraints.weighty = 0.5;
+        add(side_pane_, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.viewport.ArmoryViewport armoryViewport1;
+    private view.viewport.GameViewport gameViewport2;
+    private view.viewport.InventoryViewport inventoryViewport1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private view.viewport.MiniMapViewport miniMapViewport2;
+    private javax.swing.JPanel side_pane_;
+    private view.viewport.SkillsViewport skillsViewport1;
+    private view.viewport.StatsViewport statsViewport2;
+    private view.viewport.TextConsoleViewport textConsoleViewport1;
     // End of variables declaration//GEN-END:variables
 
     @Override
