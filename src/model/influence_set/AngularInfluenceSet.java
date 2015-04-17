@@ -24,12 +24,4 @@ public class AngularInfluenceSet extends DirectionalInfluenceSet {
 
         return null;
     }
-
-    @Override
-    public Collection<InfluenceTile> getInfluenceSetNoSource() {
-        //TODO
-        //LOGIC STUFFS HERE
-
-        return null;
-    }
 }
