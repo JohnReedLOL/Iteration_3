@@ -50,20 +50,38 @@ public class TextConsoleViewport extends Viewport {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        outgoing_chat_ = new javax.swing.JTextField();
+        incoming_chat_scroll_pane = new javax.swing.JScrollPane();
+        incoming_chat_ = new javax.swing.JTextArea();
+
+        outgoing_chat_.setText("outgoing_chat_");
+
+        incoming_chat_.setColumns(20);
+        incoming_chat_.setRows(5);
+        incoming_chat_.setText("incoming_chat_");
+        incoming_chat_scroll_pane.setViewportView(incoming_chat_);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 759, Short.MAX_VALUE)
+            .addComponent(outgoing_chat_)
+            .addComponent(incoming_chat_scroll_pane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(incoming_chat_scroll_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(outgoing_chat_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea incoming_chat_;
+    private javax.swing.JScrollPane incoming_chat_scroll_pane;
+    private javax.swing.JTextField outgoing_chat_;
     // End of variables declaration//GEN-END:variables
   
 }
