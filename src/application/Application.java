@@ -34,6 +34,41 @@ public class Application {
 
     /*Methods*/
     
+    /**
+     * Checks to see if an assertion is true. Prints stack trace and crashes the program if not true.
+     * USE THIS INSTEAD OF REGULAR "assert" STATEMENTS.
+     * @param assertion - assertion to be checked
+     */
+    public static synchronized void check(boolean assertion) {
+        check(assertion, "");
+    }
+    
+    /**
+     * Checks to see if an assertion is true and prints an error message if false.
+     * Also prints a stack trace and crashes the program if false.
+     * @param assertion - assertion to be checked
+     * @param message - error message to print
+     */
+    public static synchronized void check(boolean assertion, String message) {
+        if(! assertion) {
+            final StackTraceElement stack_trace[] = Thread.currentThread().getStackTrace();
+            final int max_rows = 6;
+            final int first_row = 2;
+            System.err.println(message);
+            System.err.println("Assertion failed in Thread: " +  Thread.currentThread().getName());
+            if(stack_trace.length > max_rows) {
+                for(int i = first_row; i < max_rows; ++i) {
+                    System.err.println(stack_trace[i].toString());
+                }
+            } else {
+                for(int i = first_row; i < stack_trace.length; ++i) {
+                    System.err.println(stack_trace[i].toString());
+                }
+            }
+            System.exit(-1);
+        }
+    }
+    
     public static Application getApplication() {
         if (singleton == null) {
             return new Application();

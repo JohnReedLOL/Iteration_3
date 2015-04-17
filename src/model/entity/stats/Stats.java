@@ -18,6 +18,7 @@ public class Stats {
 	private int intellect;
 	private int hardiness;
 	private int experience;
+	private int movement;
 	private int bindWounds;
 	private int observation;
 	private int bargain;
@@ -93,6 +94,7 @@ public class Stats {
 		intellect = 0;
 		hardiness = 0;
 		experience = 0;
+		movement = 0;
 		bindWounds = 0;
 		observation = 0;
 		bargain = 0;
@@ -422,6 +424,51 @@ public class Stats {
 		experience = value;
 	}
 	
+	/* ---------- MOVEMENT ---------- */
+	/**
+	 * Getter for movement.
+	 * @return amount of movement.
+	 */
+	public int getMovement(){
+		return movement;
+	}
+	/**
+	 * Applies a mitigated modifier to movement.
+	 * Negative movement debuffs are mitigated and then applied as a buff.
+	 * @param modifier amount to be mitigated. 
+	 * @return actual movement change after mitigation.
+	 */
+	public int debuffMovement(int modifier){
+		int amount = mitigateEffect(modifier);
+		movement -= amount;
+		return amount;
+	}
+	/**
+	 * Applies an intensified modifier to movement.
+	 * Negative movement buffs are intensified and then applied as a debuff.
+	 * @param modifier amount to be intensified. 
+	 * @return actual movement change after intensification.
+	 */
+	public int buffMovement(int modifier){
+		int amount = intensify(modifier);
+		movement += amount;
+		return amount;
+	}
+	/**
+	 * Modifies movement by specified amount.
+	 * @param modifier amount of change. 
+	 */
+	public void modifyMovement(int modifier){
+		movement += modifier;
+	}
+	/**
+	 * Sets movement to specified amount.
+	 * @param value the new movement
+	 */
+	public void setMovement(int value){
+		movement = value;
+	}
+	
 	/* ---------- BIND WOUNDS ---------- */
 	/**
 	 * Getter for bindWounds.
@@ -636,6 +683,9 @@ public class Stats {
 	 */
 	public int getAffinity(){
 		return getIntellect() + getLevel() + getAgility();
+	}
+	public void accept(StatsVisitor visitor){
+		visitor.visit(this);
 	}
 
 }

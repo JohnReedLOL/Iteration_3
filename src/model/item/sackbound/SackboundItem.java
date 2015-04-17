@@ -7,7 +7,7 @@ import model.prerequisite.Prerequisite;
 
 import java.util.ArrayList;
 
-public class SackboundItem implements Item {
+public class SackboundItem extends Item {
     /**
      * PROPERTIES
      */

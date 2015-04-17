@@ -11,5 +11,16 @@ public abstract class InfluenceSet {
 //    private Tile source;
     private int radius;
 
+    public InfluenceSet() {
+        //DON'T USE DEFAULT CONSTRUCTOR.
+        this.radius = 0;
+    }
+
+    public InfluenceSet( int radius ) {
+        this.radius = radius;
+    }
+
     public abstract Collection<InfluenceTile> getInfluenceSet();
+    public abstract Collection<InfluenceTile> getInfluenceSetNoSource();
+
 }
