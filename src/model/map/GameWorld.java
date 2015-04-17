@@ -31,6 +31,7 @@ public class GameWorld {
     }
 
     public boolean setCurrentMap( DiscreteMap map ) {
+        //WILL ADD IF NOT THERE, AND THEN SET CURRENT
         if ( map == null ) {
             return false;
         }
