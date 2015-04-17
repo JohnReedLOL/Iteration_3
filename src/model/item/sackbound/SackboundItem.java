@@ -41,19 +41,19 @@ public class SackboundItem extends Item {
      */
 
     public void addPrerequisite(Prerequisite prereq) {
-        this.pickUpPrerequisites.add(prereq);
+        getPickUpPrerequisites().add(prereq);
     }
 
     public void removePrerequisite(Prerequisite prereq) {
-        this.pickUpPrerequisites.remove(prereq);
+        getPickUpPrerequisites().remove(prereq);
     }
 
     public void addPickUpEffect(Effect effect) {
-        this.pickUpEffects.add(effect);
+        getPickUpEffects().add(effect);
     }
 
     public void removePickUpEffect(Effect effect) {
-        this.pickUpEffects.remove(effect);
+        getPickUpEffects().remove(effect);
     }
 
     public boolean activateOnMap(Entity activator) {

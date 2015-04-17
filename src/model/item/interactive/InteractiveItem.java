@@ -33,11 +33,11 @@ public class InteractiveItem extends Item {
      */
 
     public ArrayList<Prerequisite> getActivationRequirements() {
-        return activationRequirements;
+        return this.activationRequirements;
     }
 
     public ArrayList<Effect> getActivationEffects() {
-        return activationEffects;
+        return this.activationEffects;
     }
 
     public boolean getHasActivated() {
@@ -61,19 +61,19 @@ public class InteractiveItem extends Item {
     }
 
     public void addActivationEffect(Effect effect) {
-        this.activationEffects.add(effect);
+        getActivationEffects().add(effect);
     }
 
     public void removeActivationEffect(Effect effect) {
-        this.activationEffects.remove(effect);
+        getActivationEffects().remove(effect);
     }
 
-    public void addActivationRequirements(Prerequisite prereq) {
-        this.activationRequirements.add(prereq);
+    public void addActivationRequirement(Prerequisite prereq) {
+        getActivationRequirements().add(prereq);
     }
 
     public void removeActivationRequirement(Prerequisite prereq) {
-        this.activationRequirements.remove(prereq);
+        getActivationRequirements().remove(prereq);
     }
 
     /**
@@ -91,12 +91,12 @@ public class InteractiveItem extends Item {
             setHasActivated(true);
         }
 
-        return hasActivated;
+        return getHasActivated();
     }
 
     protected void applyActivationEffects(Entity target) {
         for (Effect effect : getActivationEffects()) {
-            effect.affect(target);
+            effect.performEffect(target);
         }
     }
 

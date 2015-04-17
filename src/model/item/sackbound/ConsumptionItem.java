@@ -50,19 +50,19 @@ public abstract class ConsumptionItem extends SackboundItem {
     }
 
     public void addUsePrerequisite(Prerequisite prereq) {
-        this.usePrerequisites.add(prereq);
+        getUsePrerequisites().add(prereq);
     }
 
     public void removeUsePrerequisite(Prerequisite prereq) {
-        this.usePrerequisites.remove(prereq);
+        getUsePrerequisites().remove(prereq);
     }
 
     public void addUseEffect(Effect effect) {
-        this.useEffects.add(effect);
+        getUseEffects().add(effect);
     }
 
     public void removeUseEffect(Effect effect) {
-        this.useEffects.remove(effect);
+        getUseEffects().remove(effect);
     }
 
     /**

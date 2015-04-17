@@ -11,7 +11,7 @@ public class Sack {
 
     private int size;
     private int capacity;
-    private ArrayList<SackboundItem> items;
+    private ArrayList<SackboundItem> contents;
 
     public static final int DEFAULT_CAPACITY = 25;
 
@@ -22,13 +22,13 @@ public class Sack {
     public Sack() {
         this.capacity = DEFAULT_CAPACITY;
         this.size = 0;
-        this.items = new ArrayList<SackboundItem>();
+        this.contents = new ArrayList<SackboundItem>();
     }
 
     public Sack(int capacity) {
         this.capacity = capacity;
         this.size = 0;
-        this.items = new ArrayList<SackboundItem>();
+        this.contents = new ArrayList<SackboundItem>();
     }
 
     /**
@@ -43,18 +43,18 @@ public class Sack {
         return this.capacity;
     }
 
-    public ArrayList<SackboundItem> getItems() {
-        return this.items;
+    public ArrayList<SackboundItem> getContents() {
+        return this.contents;
     }
 
     public SackboundItem getItem(SackboundItem item) {
-        int index = this.items.indexOf(item);
+        int index = getContents().indexOf(item);
 
         return getItem(index);
     }
 
     public SackboundItem getItem(int index) {
-        return this.items.get(index);
+        return getContents().get(index);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Sack {
 
     public boolean addItem(SackboundItem item) {
         if (!isFull()) {
-            this.items.add(item);
+            getContents().add(item);
             incrementSize();
 
             return true;
@@ -78,7 +78,7 @@ public class Sack {
 
     public SackboundItem removeItem(SackboundItem item) {
         SackboundItem equipped = getItem(item);
-        this.items.remove(item);
+        getContents().remove(item);
         decrementSize();
 
         return equipped;
@@ -97,10 +97,10 @@ public class Sack {
     }
 
     public boolean isEmpty() {
-        return this.items.isEmpty();
+        return getContents().isEmpty();
     }
 
     public boolean isFull() {
-        return this.size == capacity;
+        return getSize() == capacity;
     }
 }
