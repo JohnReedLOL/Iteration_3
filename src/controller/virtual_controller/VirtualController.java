@@ -16,7 +16,6 @@ import mvc_bridgeway.command.model_command.ModelCommand;
 import mvc_bridgeway.control.virtual_control.SwingControl;
 import mvc_bridgeway.control.virtual_control.VirtualControl;
 import mvc_bridgeway.control_map.ControlMap;
-import mvc_bridgeway.control_map.ControlMapSubtype;
 import utility.CollectionUtil;
 
 

@@ -27,7 +27,9 @@ public abstract class Controller {
     protected abstract void setupCommandToExecuteOnControlActivation(ControlMap controlMap);
     
     protected final void onControlActivation(Command command) {
-        command.execute(); //soon will be forwarded
+        if (command != null) {
+            command.execute(); //soon will be forwarded
+        }
     }
     
     protected Model getModel() {
@@ -36,15 +38,25 @@ public abstract class Controller {
     
     protected final void init(ArrayList<ControlMap> cms) {
         this.controlMaps = cms;
-        for (int i=0; i<controlMaps.size(); i++) {
+        for (int i=0; cms!= null && i<controlMaps.size(); i++) {
             setupCommandToExecuteOnControlActivation(controlMaps.get(i));
         }
     }
 
     /*Get-Sets*/
+    
+    protected ArrayList<ControlMap> getControlMaps() {
+        return controlMaps;
+    }
+
+    protected void setControlMaps(ArrayList<ControlMap> controlMaps) {
+        this.controlMaps = controlMaps;
+    }
 
     /*Inner-classes*/
 
     /*Test Main Method*/
+
+    
 
 }

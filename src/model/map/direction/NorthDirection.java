@@ -34,4 +34,9 @@ public class NorthDirection extends HexMapDirection {
     public Direction getCounterClockwiseDirection() {
         return new NorthWestDirection();
     }
+
+    @Override
+    public Direction getOppositeDirection() {
+        return new SouthDirection();
+    }
 }

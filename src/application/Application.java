@@ -69,6 +69,16 @@ public class Application {
         }
     }
     
+    /**
+     * Prints the name of the current thread and where the print statement comes from.
+     * @param message - message to be printed
+     */
+    public static synchronized void print(String message) {
+        final String thread_name = Thread.currentThread().getName() + " thread";
+        final String location_of_print_statement = Thread.currentThread().getStackTrace()[2].toString();
+        System.out.println(thread_name + ": " + location_of_print_statement + "\n" + message + "\n");
+    }
+    
     public static Application getApplication() {
         if (singleton == null) {
             return new Application();
@@ -78,7 +88,7 @@ public class Application {
     }
     
     public void launch() {
-        System.out.println("Application launched");
+        Application.print("Application launched");
         model.launch(this);
     }
     
