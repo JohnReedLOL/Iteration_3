@@ -63,7 +63,7 @@ public class KeyboardController extends PhysicalController<KeyboardControl> {
         for (int i = 0; i < controlMaps.size(); i++) {
             cm = controlMaps.get(i);
             kc = (KeyboardControl) cm.getControl();
-            if (control.equals(control)) {
+            if (control.equals(kc)) {
                 return cm.getCommand();
             }
         }
