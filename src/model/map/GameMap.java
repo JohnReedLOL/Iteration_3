@@ -59,6 +59,11 @@ public class GameMap extends DiscreteMap {
     }
 
     @Override
+    public void teleport(MapObject m, DiscreteMap d) {
+        //TODO
+    }
+
+    @Override
     public Tile getLocationFromDirection(Location l, Direction d) {
         return null;
     }
