@@ -50,7 +50,10 @@ public class GameViewport extends Viewport {
             return darkened_image;
         }
         
-        // 0 corresponds to pitch black, 1 corresponds to double darkened, 2 corresponds to regular rendering.
+        /**
+         * 100 corresponds to pitch black, 50 corresponds to 50% darkened, and 0 corresponds to regular rendering.
+         * Do not go over 100 or under 0% brightness.
+         */
         private final int[][] brightness_map_;
 
 	/**
