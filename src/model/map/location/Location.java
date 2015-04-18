@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 public abstract class Location {
 
-    public abstract boolean createAssociation( MapObject m );
-    public abstract boolean removeAssociation( MapObject m );
+    public abstract boolean createMapObjectAssociation(MapObject m);
+    public abstract boolean removeMapObjectAssociation(MapObject m);
     public abstract Collection<MapObject> getMapObjects();
 }

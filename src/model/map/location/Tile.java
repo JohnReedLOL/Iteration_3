@@ -25,7 +25,7 @@ public class Tile extends Location {
     }
 
     @Override
-    public boolean createAssociation( MapObject m ) {
+    public boolean createMapObjectAssociation(MapObject m) {
         for (TileMapObjectAssociation t: mapObjects ) {
             if ( t.getMapObject().equals( m ) ) {   //we cannot add the same MapObject to more than one Tile.
                 return false;
@@ -34,12 +34,11 @@ public class Tile extends Location {
 
         TileMapObjectAssociation association = new TileMapObjectAssociation( this, m );
         mapObjects.add( association );
-
         return true;
     }
 
     @Override
-    public boolean removeAssociation( MapObject m ) {
+    public boolean removeMapObjectAssociation(MapObject m) {
         for (TileMapObjectAssociation t: mapObjects ) {
             if ( t.getMapObject().equals( m ) ) {   //we cannot add the same MapObject to more than one Tile.
                 mapObjects.remove( t );

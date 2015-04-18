@@ -6,7 +6,6 @@ import model.map.location.Location;
  * Created by Troy on 4/16/2015.
  */
 public abstract class MapObject implements Derivable {
-
     private String name;
     private String description;
 
@@ -40,5 +39,7 @@ public abstract class MapObject implements Derivable {
      * IMPLEMENTATIONS
      */
 
-    public abstract void createAssociation( Location location );
+    // Eric - Leaving for Troy todo.
+    public abstract boolean createLocationAssociation(Location location);
+    public abstract boolean removeLocationAssociation(Location location);
 }

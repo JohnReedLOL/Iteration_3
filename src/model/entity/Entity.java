@@ -12,7 +12,7 @@ import model.item.sackbound.SackboundItem;
 import model.item.sackbound.equip.EquipItem;
 import model.map.location.Location;
 
-public class Entity extends MapObject {
+public abstract class Entity extends MapObject {
 	// TODO: Most of it.
 
 	/**
@@ -69,8 +69,5 @@ public class Entity extends MapObject {
 
 	public void accept(StatsVisitor visitor){
 		// TODO
-	}
-	public void createAssociation(Location location){
-		//TODO
 	}
 }
