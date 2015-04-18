@@ -1,21 +1,21 @@
 package model.item;
 
-import model.MapObject;
+import model.map.location.Location;
 
 public class ItemLocationAssociation {
     /**
      * PROPERTIES
      */
 
-    private MapObject mapObject;
+    private Location location;
     private Item item;
 
     /**
      * CONSTRUCTORS
      */
 
-    public ItemLocationAssociation(Item item, MapObject mapObject) {
-        this.mapObject = mapObject;
+    public ItemLocationAssociation(Item item, Location location) {
+        this.location = location;
         this.item = item;
     }
 
@@ -23,8 +23,8 @@ public class ItemLocationAssociation {
      * GETTERS
      */
 
-    public MapObject getMapObject() {
-        return this.mapObject;
+    public Location getLocation() {
+        return this.location;
     }
 
     public Item getItem() {
