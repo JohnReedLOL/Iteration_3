@@ -4,6 +4,7 @@ package mvc_bridgeway.command.model_command;
 
 import model.Model;
 import mvc_bridgeway.command.Command;
+import mvc_bridgeway.command.macro_command.MacroCommand;
 
 
 public abstract class ModelCommand extends Command {

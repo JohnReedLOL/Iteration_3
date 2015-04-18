@@ -19,7 +19,7 @@ import mvc_bridgeway.control_map.ControlMap;
 import utility.CollectionUtil;
 
 
-public abstract class VirtualController<CtrlM extends ControlMap<VirtualControl, Command>> extends Controller {
+public abstract class VirtualController<CtrlM extends ControlMap<VirtualControl>> extends Controller {
 
     /*Properties*/
 

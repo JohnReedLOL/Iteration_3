@@ -2,9 +2,8 @@ package mvc_bridgeway.control.virtual_control.swing_control;
 
 // @author comcc_000
 
-import controller.Controller;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import mvc_bridgeway.command.Command;
 

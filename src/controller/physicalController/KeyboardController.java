@@ -11,7 +11,7 @@ import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 // @author comcc_000
 
-public class KeyboardController extends PhysicalController<KeyboardControl, ControlMap<KeyboardControl, Command>> {
+public class KeyboardController extends PhysicalController<KeyboardControl, ControlMap<KeyboardControl>> {
 
     /*Properties*/
 

@@ -2,28 +2,35 @@ package mvc_bridgeway.control_map;
 
 // @author comcc_000
 
+import java.util.ArrayList;
 import mvc_bridgeway.command.Command;
+import mvc_bridgeway.command.macro_command.MacroCommand;
 import mvc_bridgeway.control.Control;
 
 
-public class ControlMap<Ctrl extends Control, Cmd extends Command> {
+public class ControlMap<Ctrl extends Control> {
 
     /*Properties*/
     
     private Ctrl control;
-    private Cmd command;
+    private MacroCommand command;
 
     /*Constructors*/
     
-    public ControlMap(Ctrl control, Cmd command) {
+    public ControlMap(Ctrl control, Command command, Command... cmds) { 
+        //Cmd is vararg
         this.control = control;
-        this.command = command;
+        this.command = initMacroCommand(command, cmds);
     }
 
     /*Methods*/
     
     public boolean hasControl(Ctrl control) {
         return this.control.equals(control);
+    }
+    
+    private MacroCommand initMacroCommand(Command command, Command... cmds) {
+        return new MacroCommand(command, cmds);
     }
 
     /*Get-Sets*/
@@ -36,11 +43,11 @@ public class ControlMap<Ctrl extends Control, Cmd extends Command> {
         this.control = control;
     }
 
-    public Cmd getCommand() {
+    public MacroCommand getCommand() {
         return command;
     }
 
-    public void setCommand(Cmd command) {
+    public void setCommand(MacroCommand command) {
         this.command = command;
     }
 

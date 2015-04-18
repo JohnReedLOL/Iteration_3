@@ -33,7 +33,7 @@ public class SwingController extends VirtualController {
         setListenerForCM(controlMap);
     }
 
-    private void setListenerForCM(ControlMap<SwingControl, ModelCommand> cm) {
+    private void setListenerForCM(ControlMap<SwingControl> cm) {
         SwingControl control = cm.getControl();
         final Command command = cm.getCommand();
         control.setListener(command);

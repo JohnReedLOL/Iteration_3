@@ -3,14 +3,19 @@ package model;
 // @author comcc_000
 import application.Application;
 import application.Application.UpdateTimings;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import model.entity.Entity;
+import model.entity.ability.Ability;
+import model.entity.avatar.Avatar;
+import model.entity.occupation.Occupation;
 import model.item.Item;
 import model.map.GameWorld;
 import model.map.direction.Direction;
 import mvc_bridgeway.command.Command;
+import mvc_bridgeway.command.model_command.ModelCommand;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
@@ -25,7 +30,7 @@ public class Model {
     private static final String model_clock_thread_name_ = "Model Clock";
     private static final ExecutorService model_thread_ = Executors.newSingleThreadExecutor();
     private static final ExecutorService model_clock_ = Executors.newSingleThreadExecutor();
-    private static volatile Command to_execute_ = null;
+    private static volatile ArrayList<ModelCommand> to_execute_ = null;
     static {
         // name model thread
         Runnable name_setter = new Runnable() {
@@ -84,7 +89,9 @@ public class Model {
                         @Override
                         public void run() {
                             if (to_execute_ != null) {
-                                to_execute_.execute();
+                                for (ModelCommand command : to_execute_) {
+                                    command.execute();
+                                }
                                 // After executing, set it to null
                                 // probabaly better to implement commands in a queue 
                                 // and remove done command from queue
@@ -136,9 +143,12 @@ public class Model {
 
         //Controller Interface
     
-    public synchronized void queueCommandForExecution(Command command) {
+    public synchronized void queueCommandForExecution(ModelCommand command) {
         // TODO: better to implement as a queue?
-        to_execute_ = command; // store command to be executed when the model clock tells it to execute AKA lag compensation
+        if (to_execute_ == null) {
+            to_execute_ = new ArrayList<ModelCommand>();
+        }
+        to_execute_.add(command); // store command to be executed when the model clock tells it to execute AKA lag compensation
         //command.execute(); //for now
     }
 
@@ -160,9 +170,9 @@ public class Model {
         //TODO
     }
     
-//    public void setOccupation(Entity entity, Occupation occupation) {
-//        //TODO
-//    }
+    public void setOccupation(Entity entity, Occupation occupation) {
+        //TODO
+    }
     
     public void beginNewGame() {
         //TODO
@@ -173,33 +183,33 @@ public class Model {
         return false;
     }
     
-//    public boolean storeInInventory(Avatar avatar, Item item) {
-//        //TODO
-//        return false;
-//    }
-//    
-//    public boolean equip(Avatar avatar, Item item) {
-//        //TODO
-//        return false;
-//    }
-//    
-//    public void drop(Avatar avatar, Item item) {
-//        //TODO
-//    }
-//    
-//    public boolean activateAbility(Avatar avatar, Ability ability) {
-//        //TODO
-//        return false;
-//    }
-//    
-//    public void talk(Avatar avatar, Ability ability) {
-//        //TOdO
-//    }
-//    
-//    public boolean purchase(Avatar avatar, Item item, int price) {
-//        //TODO
-//        return false;
-//    }
+    public boolean storeInInventory(Avatar avatar, Item item) {
+        //TODO
+        return false;
+    }
+    
+    public boolean equip(Avatar avatar, Item item) {
+        //TODO
+        return false;
+    }
+    
+    public void drop(Avatar avatar, Item item) {
+        //TODO
+    }
+    
+    public boolean activateAbility(Avatar avatar, Ability ability) {
+        //TODO
+        return false;
+    }
+    
+    public void talk(Avatar avatar, Ability ability) {
+        //TOdO
+    }
+    
+    public boolean purchase(Avatar avatar, Item item, int price) {
+        //TODO
+        return false;
+    }
 
         //Misc
     
