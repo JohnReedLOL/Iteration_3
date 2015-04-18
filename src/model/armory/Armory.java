@@ -63,6 +63,10 @@ public class Armory {
      * IMPLEMENTATIONS
      */
 
+    public boolean containsItem(EquipItem item) {
+        return getContents().contains(item);
+    }
+
     private EquipItem removeItem(EquipItem item) {
         return removeItem(item.getEquipSlot());
     }

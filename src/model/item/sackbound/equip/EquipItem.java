@@ -179,7 +179,7 @@ public class EquipItem extends SackboundItem {
     }
 
     protected boolean isWearing(Entity target, EquipItem item) {
-        return target.getArmoryOwnership().getEquipment().getContents().contains(item);
+        return target.getArmoryOwnership().containsEquipItem(item);
     }
 
     /**
