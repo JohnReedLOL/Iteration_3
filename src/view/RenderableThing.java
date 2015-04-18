@@ -20,6 +20,18 @@ import view.viewport.screen_viewport.GameScreenViewport;
  */
 public class RenderableThing <T extends MapObject> implements Renderable {
     final T to_render_;
+    
+    /**
+     * Gets the file name of this object's image without the leading "/" but with the trailing ".png"
+     * @return File name corresponding to this object.
+     */
+    protected String getMyImagesFileName() {
+        final String[] substrings = to_render_.getClass().getCanonicalName().split(".");
+        Application.check(substrings.length > 1);
+        // remove dollar signs from class name and append .png
+        return substrings[substrings.length - 1].replaceAll("$", "") + ".png";
+    }
+    
     public RenderableThing(T thing) {
         to_render_ = thing;
     }

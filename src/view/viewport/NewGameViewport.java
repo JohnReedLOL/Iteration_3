@@ -7,16 +7,11 @@ package view.viewport;
 
 import java.util.ArrayList;
 import model.ModelViewBundle;
-import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
-import mvc_bridgeway.command.model_command.StartNewSmasherGameCommand;
-import mvc_bridgeway.command.model_command.StartNewSneakGameCommand;
-import mvc_bridgeway.command.model_command.StartNewSummonerGameCommand;
+import mvc_bridgeway.command.model_command.SetOccupationCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
-import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.GameScreen;
-import mvc_bridgeway.screen.NewGameScreen;
 
 /**
  *
@@ -44,9 +39,9 @@ public class NewGameViewport extends Viewport {
     @Override
     public ArrayList<ControlMap> getControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new StartNewSmasherGameCommand(new GameScreen()))); 
-            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new StartNewSneakGameCommand(new GameScreen()))); 
-            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new StartNewSummonerGameCommand(new GameScreen()))); 
+            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new SetOccupationCommand(null, null), new LaunchScreenCommand(new GameScreen()))); 
+            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new SetOccupationCommand(null, null), new LaunchScreenCommand(new GameScreen()))); 
+            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new SetOccupationCommand(null, null), new LaunchScreenCommand(new GameScreen()))); 
             return controlMaps;
     }
 

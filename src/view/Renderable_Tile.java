@@ -5,6 +5,7 @@
  */
 package view;
 
+import application.Application;
 import model.map.location.Tile;
 import view.Renderable;
 
@@ -12,18 +13,31 @@ import view.Renderable;
  *
  * @author John
  */
-public class Renderable_Tile implements Renderable{
-    
-    final Tile tile_;
-    
-    Renderable_Tile(Tile t) {
-        tile_ = t;
+public class Renderable_Tile<T extends Tile> implements Renderable {
+
+    final T tile_to_render_;
+
+    /**
+     * Gets the file name of this object's image without the leading "/" but with the trailing
+     * ".png"
+     *
+     * @return File name corresponding to this object.
+     */
+    protected String getMyImagesFileName() {
+        final String[] substrings = tile_to_render_.getClass().getCanonicalName().split(".");
+        Application.check(substrings.length > 1);
+        // remove dollar signs from class name and append .png
+        return substrings[substrings.length - 1].replaceAll("$", "") + ".png";
     }
-    
+
+    Renderable_Tile(T t) {
+        tile_to_render_ = t;
+    }
+
     public int renderAsImageToJPanel(view.viewport.GameViewport game_viewport, int x, int y) {
         return 0;
     }
-    
+
     public int renderAsDotToJPanel(view.viewport.MiniMapViewport game_viewport, int x, int y) {
         return 0;
     }

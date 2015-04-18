@@ -2,6 +2,9 @@ package mvc_bridgeway.command;
 
 // @author comcc_000
 
+import mvc_bridgeway.command.macro_command.MacroCommand;
+
+
 public abstract class Command {
 
     /*Properties*/

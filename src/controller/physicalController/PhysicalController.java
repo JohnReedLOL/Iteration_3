@@ -12,7 +12,7 @@ import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 
 
-public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp extends ControlMap<PCtrl, Command>> extends Controller<CtrlMp> {
+public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp extends ControlMap<PCtrl>> extends Controller<CtrlMp> {
 
     /*Properties*/
     
