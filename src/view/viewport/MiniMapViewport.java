@@ -5,6 +5,8 @@
  */
 package view.viewport;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import model.ModelViewBundle;
 import mvc_bridgeway.command.model_command.ExitCommand;
@@ -12,8 +14,10 @@ import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 
 /**
- *
- * @author comcc_000
+ * Represents the mini-map. 
+ * Note that to draw points on the minimap, you have to use Graphics.drawLine(x1, y1, x1, y1). 
+ * See http://stackoverflow.com/questions/13656296/drawing-a-point-on-a-jpanel
+ * @author comcc_000 & John-Michael Reed
  */
 public class MiniMapViewport extends Viewport {
 
@@ -40,6 +44,17 @@ public class MiniMapViewport extends Viewport {
         //TODOD
         return controlMaps;
     }
+    
+    @Override
+	public void paint(Graphics g) {
+		super.paint(g);
+                g.drawLine(5, 5, 5, 5);
+                g.setColor(Color.red);
+                g.drawLine(10, 10, 10, 10);
+                g.setColor(Color.blue);
+                g.drawLine(20, 20, 20, 20);
+		//displayMap(g, map, 0, 0);
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
