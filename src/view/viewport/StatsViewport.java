@@ -9,6 +9,7 @@ import application.Application;
 import java.util.ArrayList;
 
 import model.ModelViewBundle;
+import model.armory.Armory;
 import model.entity.Entity;
 import model.entity.stats.SmasherStats;
 import model.entity.stats.SmasherStatsVisitor;
@@ -20,6 +21,7 @@ import model.entity.stats.StatsOwnership;
 import model.entity.stats.StatsVisitor;
 import model.entity.stats.SummonerStats;
 import model.entity.stats.SummonerStatsVisitor;
+import model.inventory.Sack;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
@@ -30,13 +32,12 @@ import mvc_bridgeway.control_map.ControlMap;
  */
 public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
 
+    
     /**
      * Creates new form MainScreen
      */
     public StatsViewport() {
         // TODO: 
-        StatsOwnership s = new SneakStatsOwnership(new Entity());
-        s.accept(this);
         
         
         //

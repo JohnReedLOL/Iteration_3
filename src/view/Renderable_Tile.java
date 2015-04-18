@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.view.viewport;
+package view;
 
 import model.map.location.Tile;
-import src.view.Renderable;
+import view.Renderable;
 
 /**
  *

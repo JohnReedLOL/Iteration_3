@@ -2,10 +2,12 @@ package model.entity;
 
 
 import model.MapObject;
+import model.armory.Armory;
 import model.armory.ArmoryOwnership;
 import model.entity.detection.Detection;
 import model.entity.stats.StatsVisitor;
 import model.inventory.InventoryOwnership;
+import model.inventory.Sack;
 import model.item.sackbound.SackboundItem;
 import model.item.sackbound.equip.EquipItem;
 import model.map.location.Location;
@@ -24,6 +26,13 @@ public class Entity extends MapObject {
 	/**
 	 * CONSTRUCTORS
 	 */
+        
+	public Entity(Armory armory, Sack sack) {
+		super();
+		this.armoryOwnership = new ArmoryOwnership(this, armory);
+		this.inventoryOwnership = new InventoryOwnership(this, sack, 10);
+		this.detectionMechanism = new Detection();
+	}   
 
 	/**
 	 * GETTERS
