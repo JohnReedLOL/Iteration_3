@@ -1,6 +1,5 @@
 package model.entity.ability;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.effect.Effect;

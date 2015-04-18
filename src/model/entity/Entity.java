@@ -1,12 +1,15 @@
 package model.entity;
 
+
+import model.MapObject;
 import model.armory.ArmoryOwnership;
 import model.entity.detection.Detection;
 import model.entity.stats.StatsVisitor;
 import model.inventory.InventoryOwnership;
 import model.item.sackbound.equip.EquipItem;
+import model.map.location.Location;
 
-public class Entity {
+public class Entity extends MapObject {
 	// TODO: Most of it.
 
 	/**
@@ -63,5 +66,8 @@ public class Entity {
 
 	public void accept(StatsVisitor visitor){
 		// TODO
+	}
+	public void createAssociation(Location location){
+		//TODO
 	}
 }
