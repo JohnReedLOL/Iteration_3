@@ -1,6 +1,7 @@
 package model.entity;
 
 import model.armory.ArmoryOwnership;
+import model.entity.detection.Detection;
 import model.entity.stats.StatsVisitor;
 import model.inventory.InventoryOwnership;
 import model.item.sackbound.equip.EquipItem;
@@ -14,6 +15,7 @@ public class Entity {
 
 	private ArmoryOwnership armoryOwnership;
 	private InventoryOwnership inventoryOwnership;
+	private Detection detectionMechanism;
 
 	/**
 	 * CONSTRUCTORS
@@ -31,6 +33,10 @@ public class Entity {
 		return this.inventoryOwnership;
 	}
 
+	public Detection getDetectionMechanism() {
+		return this.detectionMechanism;
+	}
+
 	/**
 	 * MUTATORS
 	 */
@@ -45,6 +51,10 @@ public class Entity {
 
 	public EquipItem unequipItem(EquipItem.EquipSlot slot) {
 		return getArmoryOwnership().unequip(slot);
+	}
+
+	public void setDetectionMechanism(Detection detection) {
+		this.detectionMechanism = detection;
 	}
 
 	/**
