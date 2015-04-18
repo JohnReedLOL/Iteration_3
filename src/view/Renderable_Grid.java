@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.view;
+package view;
 
 import model.map.GameMap;
 import view.viewport.GameViewport;
@@ -13,7 +13,7 @@ import view.viewport.MiniMapViewport;
  *
  * @author John
  */
-public class Renderable_Grid implements Renderable{
+public class Renderable_Grid implements Renderable {
     
     // MapTile[][] map_tiles = null;
     GameMap m = null;

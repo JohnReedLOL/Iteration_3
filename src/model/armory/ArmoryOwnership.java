@@ -63,4 +63,8 @@ public class ArmoryOwnership {
     /**
      * IMPLEMENTATIONS
      */
+
+    public boolean containsEquipItem(EquipItem item) {
+        return getEquipment().containsItem(item);
+    }
 }

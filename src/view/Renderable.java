@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.view;
+package view;
 
 import view.viewport.GameViewport;
 import view.viewport.MiniMapViewport;

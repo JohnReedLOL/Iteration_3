@@ -91,7 +91,7 @@ public class EquipItem extends SackboundItem {
             return null;
         }
 
-        return equipper.unequipItem(this);
+        return equipper.getArmoryOwnership().unequip(this);
     }
 
     /**
@@ -108,7 +108,7 @@ public class EquipItem extends SackboundItem {
             if (equip.success) {
                 for (EquipItem item : equip.equipItems) {
                     if (item != null) {
-                        target.addItemToInventory(item);
+                        target.getInventoryOwnership().addItem(item);
                     }
                 }
             }
@@ -117,7 +117,7 @@ public class EquipItem extends SackboundItem {
             EquipItem item = unequip(target);
 
             if (item != null) {
-                target.addItemToInventory(item);
+                target.getInventoryOwnership().addItem(item);
             }
         }
     }
@@ -146,10 +146,10 @@ public class EquipItem extends SackboundItem {
 
         // Un-equip necessary equipped Items.
         for (EquipSlot slot : slots) {
-            equippedItems.add(equipper.unequipItem(slot));
+            equippedItems.add(equipper.getArmoryOwnership().unequip(slot));
         }
 
-        equipper.equipItem(item);
+        equipper.getArmoryOwnership().equip(item);
         return new EquipmentPair(equippedItems, true);
     }
 
@@ -179,7 +179,7 @@ public class EquipItem extends SackboundItem {
     }
 
     protected boolean isWearing(Entity target, EquipItem item) {
-        return target.getArmoryOwnership().getEquipment().getContents().contains(item);
+        return target.getArmoryOwnership().containsEquipItem(item);
     }
 
     /**

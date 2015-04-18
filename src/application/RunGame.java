@@ -12,13 +12,17 @@ public class RunGame {
     /*Constructors*/
     
     public static void main(String[] args) {
-        Application.print("test");
         Application.print("RunGame started");
         application = Application.getApplication();
         application.launch(); //leads to looping threads
         
-//        System.out.println("Still need to implement theads...");
-//        System.exit(0);
+        putMainThreadToSleep();
+    }
+    
+    /*Methods*/
+    
+    private static void putMainThreadToSleep() {
+        //Safely put main thread to sleep; background threads will take it from here
         Application.print("Going to sleep");
         try {
             Thread.sleep(Long.MAX_VALUE);
@@ -26,7 +30,5 @@ public class RunGame {
             System.exit(0);
         }
     }
-    
-    /*Methods*/
     
 }

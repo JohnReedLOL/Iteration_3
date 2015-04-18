@@ -35,7 +35,7 @@ public class LimitedConsumptionItem extends ConsumptionItem {
     public void apply(Entity owner) {
         if (meetsUseRequirements(owner)) {
             applyEffects(owner);
-            owner.removeItemFromInventory(this);
+            owner.getInventoryOwnership().removeItem(this);
         }
     }
 }
