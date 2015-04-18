@@ -35,7 +35,7 @@ public class MacroCommand extends Command {
     }
     
     private ArrayList<Command> initCommands(Command command, Command[] cmds) {
-        ArrayList<Command> temp = new ArrayList<>();
+        ArrayList<Command> temp = new ArrayList<Command>();
         temp.add(command);
         for (int i=0; i<cmds.length; i++) {
             temp.add(cmds[i]);
