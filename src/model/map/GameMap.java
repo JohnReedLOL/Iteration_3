@@ -8,6 +8,7 @@ import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
 import model.map.location.Location;
 import model.map.location.Tile;
+import utility.BidirectionalMap;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class GameMap extends DiscreteMap {
 
     private Tile[][] tiles;
-    private Map<HexCoordinate, Tile> tileMap = new HashMap<HexCoordinate, Tile>();
+    private BidirectionalMap<HexCoordinate, Tile> tileMap = new BidirectionalMap<HexCoordinate, Tile>();
 
 
     public GameMap() {
@@ -30,7 +31,7 @@ public class GameMap extends DiscreteMap {
         for ( int i = 0; i < tiles.length; ++i ) {
             for (int j=0; j < tiles[0].length; ++j ) {
                 HexCoordinate c = new HexCoordinate(i, j);
-                tileMap.put(c, tiles[i][j]);
+                tileMap.insert(c, tiles[i][j]);
             }
         }
 
