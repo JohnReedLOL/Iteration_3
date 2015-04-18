@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.view;
+package view;
 
 import application.Application;
 import java.awt.image.BufferedImage;
@@ -32,6 +32,12 @@ public class RenderableThing <T extends MapObject> implements Renderable {
         return substrings[substrings.length - 1].replaceAll("$", "") + ".png";
     }
     
+    protected char getMyCharacterRepresentation() {
+        final String name = getMyImagesFileName();
+        Application.check(name != null && !name.equals(""));
+        return name.charAt(0);
+    }
+    
     public RenderableThing(T thing) {
         to_render_ = thing;
     }
@@ -54,9 +60,7 @@ public class RenderableThing <T extends MapObject> implements Renderable {
     }
     
     public void printMeToTheTerminal() {
-    }
-    
-    public void getMyCharacterRepresentation() {
+        System.out.print(getMyCharacterRepresentation());
     }
     
     public BufferedImage getMyImageRepresentation() {

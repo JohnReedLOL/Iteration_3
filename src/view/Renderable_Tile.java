@@ -30,6 +30,12 @@ public class Renderable_Tile<T extends Tile> implements Renderable {
         return substrings[substrings.length - 1].replaceAll("$", "") + ".png";
     }
 
+    protected char getMyCharacterRepresentation() {
+        final String name = getMyImagesFileName();
+        Application.check(name != null && !name.equals(""));
+        return name.charAt(0);
+    }
+
     Renderable_Tile(T t) {
         tile_to_render_ = t;
     }
@@ -40,5 +46,9 @@ public class Renderable_Tile<T extends Tile> implements Renderable {
 
     public int renderAsDotToJPanel(view.viewport.MiniMapViewport game_viewport, int x, int y) {
         return 0;
+    }
+
+    public void printMeToTheTerminal() {
+        System.out.print(getMyCharacterRepresentation());
     }
 }
