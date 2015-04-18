@@ -29,6 +29,7 @@ public abstract class Entity extends MapObject {
         
 	public Entity(Armory armory, Sack sack) {
 		super();
+
 		this.armoryOwnership = new ArmoryOwnership(this, armory);
 		this.inventoryOwnership = new InventoryOwnership(this, sack, 10);
 		this.detectionMechanism = new Detection();
