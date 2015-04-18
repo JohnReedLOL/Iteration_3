@@ -6,6 +6,7 @@ import model.map.AreaEffect;
 import model.map.TileMapObjectAssociation;
 import model.map.decal.Decal;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -15,9 +16,13 @@ import java.util.Collection;
 public class Tile extends Location {
 
 
-    private Collection<AreaEffect> areaEffects;
-    private Collection<TileMapObjectAssociation> mapObjects;
+    private Collection<AreaEffect> areaEffects = new ArrayList<AreaEffect>();
+    private Collection<TileMapObjectAssociation> mapObjects = new ArrayList<TileMapObjectAssociation>();
     private Decal decal;
+
+    public Tile() {
+
+    }
 
     @Override
     public boolean createAssociation( MapObject m ) {
@@ -67,5 +72,14 @@ public class Tile extends Location {
 
     public void removeDecal() {
         decal = null;
+    }
+
+    public void addAreaEffect( AreaEffect aoe ) {
+        areaEffects.add( aoe );
+    }
+
+    public void removeAreaEffect( AreaEffect aoe ) {
+        //NEEDS REFACTOR, PROBABLY WON'T REMOVE ANYTHING
+        areaEffects.remove( aoe );
     }
 }
