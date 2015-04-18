@@ -60,19 +60,19 @@ public class BidirectionalMap<K, V> {
     }
 
     public void replace( K key, V value ) {
-        keyToValueMap.replace(key, value);
-        valueToKeyMap.replace(value, key);
+        keyToValueMap.replace( key, value );
+        valueToKeyMap.replace( value, key );
     }
 
     public int size() {
         return keyToValueMap.size();
     }
 
-    public Collection<K> getKeyValues() {
+    public Collection<K> keys() {
         return valueToKeyMap.values();
     }
 
-    public Collection<V> getValueValues() {
+    public Collection<V> values() {
         return keyToValueMap.values();
     }
 }
