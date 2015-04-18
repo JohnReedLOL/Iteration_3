@@ -43,11 +43,11 @@ public class River {
 
     public void reverseDirection() {
         for( WaterTile t : waterTileList ) {
-            t.reverseDirection();
+            //t.reverseDirection();
         }
 
         for (River r: branches ) {
-            r.reverseDirection();
+            //r.reverseDirection();
         }
     }
 

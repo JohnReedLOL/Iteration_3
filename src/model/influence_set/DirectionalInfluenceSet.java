@@ -14,7 +14,7 @@ public abstract class DirectionalInfluenceSet extends InfluenceSet {
 
     public DirectionalInfluenceSet() {
         //Default for safety - DO NOT USE!
-        this.direction = new NorthDirection();
+        //this.direction = new NorthDirection();
     }
 
     public DirectionalInfluenceSet( Direction direction, int radius ) {

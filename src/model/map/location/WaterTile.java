@@ -1,6 +1,7 @@
 package model.map.location;
 
 import model.entity.Entity;
+import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
 
 /**
@@ -31,7 +32,7 @@ public class WaterTile extends Tile {
         this.flowRate = flowRate;
     }
 
-    public void reverseDirection() {
-        this.direction = direction.getOppositeDirection();
+    public void reverseDirection( HexCoordinate coordinate ) {
+        this.direction = direction.getOppositeDirection( coordinate );
     }
 }

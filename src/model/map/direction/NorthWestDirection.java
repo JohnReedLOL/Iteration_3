@@ -1,41 +1,36 @@
 package model.map.direction;
 
+import model.map.coordinate.HexCoordinate;
+
 /**
  * Created by Troy on 4/16/2015.
  */
 public class NorthWestDirection extends HexMapDirection {
 
-    public NorthWestDirection() {
+    public NorthWestDirection( HexCoordinate coordinate ) {
+        super( coordinate );
+    }
 
+
+    @Override
+    public Direction getClockwiseDirection( HexCoordinate coordinate ) {
+        return new NorthDirection( coordinate );
     }
 
     @Override
-    public int getDeltaX() {
-        return -1;
+    public Direction getCounterClockwiseDirection( HexCoordinate coordinate ) {
+        return new SouthWestDirection( coordinate );
     }
 
     @Override
-    public int getDeltaY() {
-        return 1;
+    public Direction getOppositeDirection( HexCoordinate coordinate ) {
+        return new SouthEastDirection( coordinate );
     }
 
     @Override
-    public int getDeltaZ() {
-        return 0;
-    }
-
-    @Override
-    public Direction getClockwiseDirection() {
-        return new NorthDirection();
-    }
-
-    @Override
-    public Direction getCounterClockwiseDirection() {
-        return new SouthWestDirection();
-    }
-
-    @Override
-    public Direction getOppositeDirection() {
-        return new SouthEastDirection();
+    public HexCoordinate deriveCoordinate( HexCoordinate coordinate ) {
+        return ( coordinate.getY() % 2 == 0) ?
+                new HexCoordinate( coordinate.getX() -1, coordinate.getY() - 1) :   //IF IT'S AN EVEN Y
+                new HexCoordinate( coordinate.getX(), coordinate.getY() - 1);    //IF IT'S AN ODD Y
     }
 }
