@@ -5,7 +5,7 @@ import model.map.location.Location;
 /**
  * Created by Troy on 4/16/2015.
  */
-public abstract class MapObject {
+public abstract class MapObject implements Derivable {
 
     private String name;
     private String description;
@@ -19,8 +19,6 @@ public abstract class MapObject {
         this.name = name;
         this.description = description;
     }
-
-    public abstract void createAssociation( Location location );
 
     public String getDescription() {
         return description;
@@ -37,4 +35,10 @@ public abstract class MapObject {
     public void setName( String name ) {
         this.name = name;
     }
+
+    /**
+     * IMPLEMENTATIONS
+     */
+
+    public abstract void createAssociation( Location location );
 }

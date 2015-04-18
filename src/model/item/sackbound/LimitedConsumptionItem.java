@@ -32,6 +32,11 @@ public class LimitedConsumptionItem extends ConsumptionItem {
      */
 
     @Override
+    public LimitedConsumptionItem getDerivedClass() {
+        return this;
+    }
+
+    @Override
     public void apply(Entity owner) {
         if (meetsUseRequirements(owner)) {
             applyEffects(owner);

@@ -73,6 +73,11 @@ public abstract class ConsumptionItem extends SackboundItem {
      * IMPLEMENTATIONS
      */
 
+    @Override
+    public ConsumptionItem getDerivedClass() {
+        return this;
+    }
+
     protected void applyEffects(Entity owner) {
         for (Effect effect : getUseEffects()) {
             effect.performEffect(owner);

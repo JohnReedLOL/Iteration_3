@@ -67,6 +67,11 @@ public abstract class SackboundItem extends Item {
      */
 
     @Override
+    public SackboundItem getDerivedClass() {
+        return this;
+    }
+
+    @Override
     public boolean activateOnMap(Entity activator) {
         if (!meetsPickUpRequirements(activator)) {
             return false;
