@@ -41,4 +41,8 @@ public class HexCoordinate {
     public HexCoordinate getCoordinateByDirection( Direction direction ) {
         return direction.deriveCoordinate( this );
     }
+
+    public boolean equals( HexCoordinate coordinate ) {
+        return ( (this.getX() == coordinate.getX() ) && ( this.getY() == coordinate.getY() ) );
+    }
 }

@@ -29,14 +29,23 @@ public class DirectionTest {
                 new SouthWestDirection( oddSrc )
         };
 
-        System.out.println("EVEN Y TILE");
+//        System.out.println("EVEN Y TILE");
+//        for( int i=0; i < evenDirs.length; ++i ) {
+//            System.out.println(evenDirs[i].getClass().toString() + ": " + evenDirs[i].getDeltaX() + ", " + evenDirs[i].getDeltaY());
+//        }
+//
+//        System.out.println("ODD Y TILE");
+//        for( int i=0; i < oddDirs.length; ++i ) {
+//            System.out.println(oddDirs[i].getClass().toString() + ": " + oddDirs[i].getDeltaX() + ", " + oddDirs[i].getDeltaY());
+//        }
+
         for( int i=0; i < evenDirs.length; ++i ) {
-            System.out.println(evenDirs[i].getClass().toString() + ": " + evenDirs[i].getDeltaX() + ", " + evenDirs[i].getDeltaY());
+            System.out.println(evenDirs[i].getClass().toString() + ": " + evenDirs[i].deriveCoordinate(evenSrc).getX() + ", " + evenDirs[i].deriveCoordinate( evenSrc ).getY());
         }
 
         System.out.println("ODD Y TILE");
         for( int i=0; i < oddDirs.length; ++i ) {
-            System.out.println(oddDirs[i].getClass().toString() + ": " + oddDirs[i].getDeltaX() + ", " + oddDirs[i].getDeltaY());
+            System.out.println(oddDirs[i].getClass().toString() + ": " + oddDirs[i].deriveCoordinate(oddSrc).getX() + ", " + oddDirs[i].deriveCoordinate( oddSrc ).getY());
         }
 
 //        HexCoordinate coord = new HexCoordinate( 4,4 );
