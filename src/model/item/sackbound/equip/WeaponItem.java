@@ -54,6 +54,11 @@ public class WeaponItem extends EquipItem {
      * IMPLEMENTATIONS
      */
 
+    @Override
+    public WeaponItem getDerivedClass() {
+        return this;
+    }
+
     public void attack(Entity user) {
         // TODO: Once Entity has all of its functionality.
     }

@@ -62,6 +62,11 @@ public class Entity extends MapObject {
 	 * IMPLEMENTATIONS
 	 */
 
+	@Override
+	public Entity getDerivedClass() {
+		return this;
+	}
+
 	public void accept(StatsVisitor visitor){
 		// TODO
 	}

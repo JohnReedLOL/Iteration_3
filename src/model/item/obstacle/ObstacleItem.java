@@ -3,6 +3,7 @@ package model.item.obstacle;
 import model.effect.Effect;
 import model.entity.Entity;
 import model.item.Item;
+import mvc_bridgeway.screen.PauseScreen;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,11 @@ public class ObstacleItem extends Item {
     /**
      * IMPLEMENTATIONS
      */
+
+    @Override
+    public ObstacleItem getDerivedClass() {
+        return this;
+    }
 
     @Override
     public void apply(Entity target) {

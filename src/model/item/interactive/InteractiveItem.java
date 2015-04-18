@@ -85,6 +85,11 @@ public class InteractiveItem extends Item {
      */
 
     @Override
+    public InteractiveItem getDerivedClass() {
+        return this;
+    }
+
+    @Override
     public void apply(Entity target) {
         activateOnMap(target);
     }

@@ -99,6 +99,11 @@ public class EquipItem extends SackboundItem {
      */
 
     @Override
+    public EquipItem getDerivedClass() {
+        return this;
+    }
+
+    @Override
     public void apply(Entity target) {
         boolean alreadyEquipped = isWearing(target, this);
 

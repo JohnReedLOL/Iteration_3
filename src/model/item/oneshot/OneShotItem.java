@@ -56,6 +56,11 @@ public class OneShotItem extends Item {
      */
 
     @Override
+    public OneShotItem getDerivedClass() {
+        return this;
+    }
+
+    @Override
     public void apply(Entity target) {
         applyActivationEffects(target);
     }

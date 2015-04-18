@@ -33,6 +33,11 @@ public abstract class Item extends MapObject {
         getLocationAssociations().add(new ItemLocationAssociation(this, tile));
     }
 
+    @Override
+    public Item getDerivedClass() {
+        return this;
+    }
+
     public abstract boolean activateOnMap(Entity activator);
     public abstract void apply(Entity owner);
 }
