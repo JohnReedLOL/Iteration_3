@@ -45,28 +45,8 @@ public class Entity extends MapObject {
 	 * MUTATORS
 	 */
 
-	public EquipItem equipItem(EquipItem item) {
-		return getArmoryOwnership().equip(item);
-	}
-
-	public EquipItem unequipItem(EquipItem item) {
-		return getArmoryOwnership().unequip(item);
-	}
-
-	public EquipItem unequipItem(EquipItem.EquipSlot slot) {
-		return getArmoryOwnership().unequip(slot);
-	}
-
 	public void setDetectionMechanism(Detection detection) {
 		this.detectionMechanism = detection;
-	}
-
-	public boolean addItemToInventory(SackboundItem item) {
-		return getInventoryOwnership().addItem(item);
-	}
-
-	public void removeItemFromInventory(SackboundItem item) {
-		getInventoryOwnership().removeItem(item);
 	}
 
 	/**

@@ -72,7 +72,7 @@ public abstract class SackboundItem extends Item {
             return false;
         }
 
-        return activator.addItemToInventory(this);
+        return activator.getInventoryOwnership().addItem(this);
     }
 
     protected boolean meetsPickUpRequirements(Entity target) {
