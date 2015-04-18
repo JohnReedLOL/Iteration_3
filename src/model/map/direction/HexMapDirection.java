@@ -18,8 +18,8 @@ public abstract class HexMapDirection extends Direction {
 
     public HexMapDirection( HexCoordinate coordinate ) {
         HexCoordinate c = deriveCoordinate( coordinate );
-        setDeltaX( c.getX() - coordinate.getX() );
-        setDeltaY( c.getY() - coordinate.getY() );
+        setDeltaX(c.getX() - coordinate.getX());
+        setDeltaY(c.getY() - coordinate.getY());
     }
 
     //FINAL GET METHODS
@@ -29,6 +29,10 @@ public abstract class HexMapDirection extends Direction {
 
     public int getDeltaY() {
         return deltaY;
+    }
+
+    public boolean equals( HexMapDirection direction ) {
+        return ( ( this.getDeltaX() == direction.getDeltaX() ) && ( this.getDeltaY() == direction.getDeltaY() ) );
     }
 
     private void setDeltaX(int deltaX) {
