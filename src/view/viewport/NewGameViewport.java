@@ -65,12 +65,15 @@ public class NewGameViewport extends Viewport {
 
         setLayout(new java.awt.GridLayout(1, 3));
 
+        sneak_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         sneak_button_.setText("Sneak");
         add(sneak_button_);
 
+        smasher_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         smasher_button_.setText("Smasher");
         add(smasher_button_);
 
+        summoner_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         summoner_button_.setText("Summoner");
         add(summoner_button_);
     }// </editor-fold>//GEN-END:initComponents

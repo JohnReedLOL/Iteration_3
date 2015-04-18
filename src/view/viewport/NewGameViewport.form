@@ -20,16 +20,25 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="sneak_button_">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Sneak"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="smasher_button_">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Smasher"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="summoner_button_">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Summoner"/>
       </Properties>
     </Component>

@@ -19,6 +19,9 @@ public class StartNewSmasherGameCommand extends ModelCommand {
     
     public StartNewSmasherGameCommand(Screen screen) {
         this.screen = screen;
+        // TODO: create a new smasher entity
+        // Create the Map
+        // place the Game objects on the map
         
     }
 
