@@ -20,7 +20,7 @@ public abstract class Screen {
 
     /*Properties*/
     
-    private Model mode;
+    private Model model;
     private Viewport viewport;
     private PhysicalController physicalController;
     private VirtualController virtualController;
