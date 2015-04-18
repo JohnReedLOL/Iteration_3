@@ -18,16 +18,9 @@ import java.util.Collection;
 public class GameMap extends DiscreteMap {
 
     private Tile[][] tiles;
-    private int height;
-    private int width;
     private BidirectionalMap<HexCoordinate, Tile> tileMap = new BidirectionalMap<HexCoordinate, Tile>();
 
-
     public GameMap() {
-        this(ScalingUtil.MAP_DEFAULT_HEIGHT, ScalingUtil.MAP_DEFAULT_WIDTH);
-    }
-
-    public GameMap(int h, int w) {
         super();
 
         setName( generateNextMapName() );
@@ -41,6 +34,8 @@ public class GameMap extends DiscreteMap {
             }
         }
 
+        setHeight(tiles.length);
+        setWidth(tiles[0].length);
     }
 
     @Override
@@ -60,9 +55,7 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void move( MapObject m, Direction d ) {
-        if (!withinBounds(m, d)) {
-            return;
-        }
+
     }
 
     @Override
@@ -76,14 +69,6 @@ public class GameMap extends DiscreteMap {
         return tile;
     }
 
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
     public Tile[][] getTiles() {
         return tiles;
     }
@@ -92,8 +77,13 @@ public class GameMap extends DiscreteMap {
         return new FirstLevelMapBuilder();
     }
 
+    @Override
     public boolean withinBounds(MapObject m, Direction d) {
-        return true;
+        HexCoordinate coord = getMapObjectCoordinate(m);
+        HexCoordinate candidate = d.deriveCoordinate(coord);
+
+        return (candidate.getX() > -1 && candidate.getX() < getWidth() &&
+                candidate.getY() > -1 && candidate.getY() < getHeight());
     }
 
     public HexCoordinate getMapObjectCoordinate( MapObject mapObject ) {

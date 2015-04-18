@@ -9,8 +9,6 @@ import utility.ScalingUtil;
  * Created by Troy on 4/17/2015.
  */
 public class FirstLevelMapBuilder extends MapBuilder {
-
-
     @Override
     public Tile[][] generateMap() {
         return generateMap(ScalingUtil.MAP_DEFAULT_HEIGHT, ScalingUtil.MAP_DEFAULT_WIDTH);

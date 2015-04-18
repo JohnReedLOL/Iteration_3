@@ -3,6 +3,7 @@ package model.entity.behavior.movement;
 import model.entity.Entity;
 import model.map.DiscreteMap;
 import model.map.GameMap;
+import model.map.GameWorld;
 import model.map.direction.Direction;
 
 public class FlyingBehavior extends MovementBehavior {
@@ -46,6 +47,10 @@ public class FlyingBehavior extends MovementBehavior {
 
     @Override
     public void move(Entity entity, Direction direction) {
-        // TODO: Once GameMap has more functionality.
+        DiscreteMap map = GameWorld.getCurrentMap();
+
+        if (map.withinBounds(entity, direction)) {
+            map.move(entity, direction);
+        }
     }
 }
