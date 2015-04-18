@@ -79,6 +79,15 @@ public class Tile extends Location {
 
     public void removeAreaEffect( AreaEffect aoe ) {
         //NEEDS REFACTOR, PROBABLY WON'T REMOVE ANYTHING
-        areaEffects.remove( aoe );
+        areaEffects.remove(aoe);
+    }
+
+    public boolean contains( MapObject mapObject ) {
+        for ( TileMapObjectAssociation a: mapObjects ) {
+            if( a.getMapObject().equals( mapObject ) ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

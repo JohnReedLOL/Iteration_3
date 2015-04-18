@@ -10,6 +10,8 @@ import model.map.location.Tile;
 import utility.BidirectionalMap;
 import utility.ScalingUtil;
 
+import java.util.Collection;
+
 /**
  * Created by Troy on 4/16/2015.
  */
@@ -94,6 +96,16 @@ public class GameMap extends DiscreteMap {
         return true;
     }
 
+    public HexCoordinate getMapObjectCoordinate( MapObject mapObject ) {
+        //FIND IF MAPOBJECT IS CONTAINED, ELSE RETURNS NULL
+        Collection<Tile> tiles = tileMap.values();
+        for ( Tile t: tiles ) {
+            if (t.contains( mapObject ) ) {
+                return tileMap.getKey(t);
+            }
+        }
+        return null;
+    }
 //    @Override
 //    public void insert(MapObject m, Tile l) {
 //
