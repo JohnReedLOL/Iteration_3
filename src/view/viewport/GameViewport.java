@@ -5,9 +5,11 @@
  */
 package view.viewport;
 
+import application.Application;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -29,12 +31,36 @@ public class GameViewport extends Viewport {
 	private BufferedImage img3;
 	private int[][] map;
 	private int[][] map2;
+        
+        /**
+         * Takes in a BufferedImage and a percentage and produces a new BufferedImage that is darker by that percentage amount.
+         * @param bufferedImage - image to be copied and darkened.
+         * @param percentage - percentage to darken that BufferedImage by. If this value were 10 it would darken the image by 10%.
+         * @return The darkened image.
+         */
+        public BufferedImage produceBufferedImageDarkenedByPercentage(BufferedImage bufferedImage, int percentage) {
+            if(percentage < 0 || percentage > 100) {
+                throw new IllegalArgumentException("Illegal percentage");
+            }
+            final int remainder = 100 - percentage;
+            final float remaining_light = (float) remainder;
+            RescaleOp op = new RescaleOp(remaining_light, 0, null);
+            // If the destination image (second parameter of op.filter) is null, a [new] BufferedImage will be created.
+            BufferedImage darkened_image = op.filter(bufferedImage, null);
+            return darkened_image;
+        }
+        
+        // 0 corresponds to pitch black, 1 corresponds to double darkened, 2 corresponds to regular rendering.
+        private final int[][] brightness_map_;
 
 	/**
 	 * Creates new form MainScreen
 	 */
 	public GameViewport() {
 		initComponents();
+                brightness_map_ = new int[1000][1000];
+                Application.check(brightness_map_[0][0] == 0, "Invalid assumption");
+                
 		int[][] map = {
 				{ 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0 }, 
 				{ 2, 0, 1, 0, 3, 0, 1, 0, 3, 0, 2, 0, 2 },
