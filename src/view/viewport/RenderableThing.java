@@ -9,7 +9,7 @@ import application.Application;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import model.MapObject;
-import src.view.Renderable;
+import view.Renderable;
 import view.viewport.screen_viewport.GameScreenViewport;
 
 /**
