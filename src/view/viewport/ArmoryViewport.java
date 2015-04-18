@@ -7,7 +7,6 @@ package view.viewport;
 
 import java.util.ArrayList;
 import model.ModelViewBundle;
-import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 
@@ -37,6 +36,9 @@ public class ArmoryViewport extends Viewport {
     @Override
     public ArrayList<ControlMap> getControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
+        //controlMaps.add(new ControlMap(new ButtonSwingControl(newGameButton), new LaunchScreenCommand(new NewGameScreen())));
+        //
+        
         //TODOD
         return controlMaps;
     }
@@ -50,62 +52,62 @@ public class ArmoryViewport extends Viewport {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        left_side_slot_ = new javax.swing.JLabel();
-        right_side_slot_ = new javax.swing.JLabel();
-        body_slot_ = new javax.swing.JLabel();
-        legs_slot_ = new javax.swing.JLabel();
-        head_slot_ = new javax.swing.JLabel();
+        head_slot_ = new javax.swing.JButton();
+        body_slot_ = new javax.swing.JButton();
+        legs_slot_ = new javax.swing.JButton();
+        right_slot_ = new javax.swing.JButton();
+        left_slot_ = new javax.swing.JButton();
 
-        left_side_slot_.setText("Legs");
-
-        right_side_slot_.setText("Right");
+        head_slot_.setText("Head");
 
         body_slot_.setText("Body");
 
         legs_slot_.setText("Legs");
 
-        head_slot_.setText("Head");
+        right_slot_.setText("Right");
+
+        left_slot_.setText("Left");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(left_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(left_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(legs_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(head_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(body_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(right_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(right_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addComponent(head_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(right_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(body_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(left_side_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                    .addComponent(left_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(right_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(legs_slot_, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel body_slot_;
-    private javax.swing.JLabel head_slot_;
-    private javax.swing.JLabel left_side_slot_;
-    private javax.swing.JLabel legs_slot_;
-    private javax.swing.JLabel right_side_slot_;
+    private javax.swing.JButton body_slot_;
+    private javax.swing.JButton head_slot_;
+    private javax.swing.JButton left_slot_;
+    private javax.swing.JButton legs_slot_;
+    private javax.swing.JButton right_slot_;
     // End of variables declaration//GEN-END:variables
   
 }
