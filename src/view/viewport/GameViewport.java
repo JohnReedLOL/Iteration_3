@@ -122,10 +122,17 @@ public class GameViewport extends Viewport {
 	}
 
 	/*
-	 * TODO CHANGE INT MAP TO GAMEMAP TYPE
+	 * TODO CHANGE INT MAP TO GAMEMAP TYPE - PLEASE USE JAVADOC I DO NOT KNOW WHAT STARTX OR STARTY DO>
 	 * TODO CHANGE CHECKS THINGS, MAYBE ADD VISITOR PATTER
 	 * TODO FIX HOW IMAGES TO RETREIVED REMOVE FROM CONSTRUCTOR?
 	 */
+        /**
+         * 
+         * @param g
+         * @param map - moc of a 2D array of tiles to be rendered
+         * @param startx - ?
+         * @param starty  - ?
+         */
 	private void displayMap(Graphics g, int[][] map, int startx, int starty) {
 		// two types of maps b/c at index 0,0, it can be null or not
 		if (map[0][0] == 0) {
