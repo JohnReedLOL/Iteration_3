@@ -55,31 +55,45 @@ public class HomeViewport extends Viewport {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jPanel3 = new javax.swing.JPanel();
         newGameButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.GridBagLayout());
+        jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
         newGameButton.setText("New Game");
-        jPanel1.add(newGameButton, java.awt.BorderLayout.CENTER);
+        jPanel3.add(newGameButton);
 
         loadButton.setText("Load");
-        jPanel1.add(loadButton, java.awt.BorderLayout.PAGE_END);
+        jPanel3.add(loadButton);
 
         exitButton.setText("Exit");
-        jPanel1.add(exitButton, java.awt.BorderLayout.PAGE_START);
+        jPanel3.add(exitButton);
 
-        add(jPanel1, new java.awt.GridBagConstraints());
+        jLayeredPane1.add(jPanel3);
+        jLayeredPane1.setLayer(jPanel3, javax.swing.JLayeredPane.POPUP_LAYER);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/gif/main_menu_bg.gif"))); // NOI18N
+        jPanel2.add(jLabel1);
+
+        jLayeredPane1.add(jPanel2);
+
+        add(jLayeredPane1);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JButton loadButton;
     private javax.swing.JButton newGameButton;
     // End of variables declaration//GEN-END:variables
