@@ -99,11 +99,11 @@ public class GameViewport extends Viewport {
 		try {
             System.out.println();
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            URL url = classLoader.getResource("Game_Art/grass.png");
+            URL url = classLoader.getResource("resources/png/grass.png");
 			img1 = ImageIO.read(new File(url.getPath()));
-            url = classLoader.getResource("Game_Art/mountain.png");
+            url = classLoader.getResource("resources/png/mountain.png");
 			img2 = ImageIO.read(new File(url.getPath()));
-            url = classLoader.getResource("Game_Art/water.png");
+            url = classLoader.getResource("resources/png/water.png");
 			img3 = ImageIO.read(new File(url.getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
