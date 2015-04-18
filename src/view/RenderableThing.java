@@ -26,7 +26,7 @@ public class RenderableThing <T extends MapObject> implements Renderable {
      * @return File name corresponding to this object.
      */
     protected String getMyImagesFileName() {
-        final String[] substrings = to_render_.getClass().getCanonicalName().split(".");
+        final String[] substrings = to_render_.getDerivedClass().getClass().getCanonicalName().split(".");
         Application.check(substrings.length > 1);
         // remove dollar signs from class name and append .png
         return substrings[substrings.length - 1].replaceAll("$", "") + ".png";
