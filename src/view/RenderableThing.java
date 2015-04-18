@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import model.MapObject;
 import view.Renderable;
+import view.viewport.GameViewport;
+import view.viewport.MiniMapViewport;
 import view.viewport.screen_viewport.GameScreenViewport;
 
 /**
