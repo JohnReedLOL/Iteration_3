@@ -4,6 +4,8 @@ package model.entity;
 import model.MapObject;
 import model.armory.Armory;
 import model.armory.ArmoryOwnership;
+import model.entity.behavior.combat.CombatBehavior;
+import model.entity.behavior.movement.MovementBehavior;
 import model.entity.detection.Detection;
 import model.entity.occupation.Occupation;
 import model.entity.stats.StatsVisitor;
@@ -21,22 +23,26 @@ public abstract class Entity extends MapObject {
 	private InventoryOwnership inventoryOwnership;
 	private Detection detectionMechanism;
 	private Occupation occupation;
+	private MovementBehavior movementBehavior;
+	private CombatBehavior combatBehavior;
 
 	/**
 	 * CONSTRUCTORS
 	 */
         
-	public Entity(Armory armory, Sack sack, Occupation occupation) {
-		this("Entity", "Entity Desc", armory, sack, occupation);
+	public Entity(Armory armory, Sack sack, Occupation occupation, MovementBehavior movementBehavior) {
+		this("Entity", "Entity Desc", armory, sack, occupation, movementBehavior);
 	}
 
-	public Entity(String name, String description, Armory armory, Sack sack, Occupation occupation) {
+	public Entity(String name, String description, Armory armory, Sack sack, Occupation occupation,
+				  MovementBehavior movementBehavior) {
 		super(name, description);
 
 		this.armoryOwnership = new ArmoryOwnership(this, armory);
 		this.inventoryOwnership = new InventoryOwnership(this, sack, 10);
 		this.detectionMechanism = new Detection();
 		this.occupation = occupation;
+		this.movementBehavior = movementBehavior;
 	}
 
 	/**
@@ -59,6 +65,10 @@ public abstract class Entity extends MapObject {
 		return this.occupation;
 	}
 
+	public MovementBehavior getMovementBehavior() {
+		return this.movementBehavior;
+	}
+
 	/**
 	 * MUTATORS
 	 */
@@ -69,6 +79,10 @@ public abstract class Entity extends MapObject {
 
 	public void setOccupation(Occupation occupation) {
 		this.occupation = occupation;
+	}
+
+	public void setMovementBehavior(MovementBehavior movement) {
+		this.movementBehavior = movement;
 	}
 
 	/**

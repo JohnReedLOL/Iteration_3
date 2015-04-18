@@ -1,6 +1,5 @@
 package model.map;
 
-import com.sun.xml.internal.bind.v2.runtime.Coordinator;
 import model.MapObject;
 import model.map.builder.FirstLevelMapBuilder;
 import model.map.builder.MapBuilder;
@@ -9,10 +8,7 @@ import model.map.direction.Direction;
 import model.map.location.Location;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import utility.ScalingUtil;
 
 /**
  * Created by Troy on 4/16/2015.
@@ -20,10 +16,18 @@ import java.util.Map;
 public class GameMap extends DiscreteMap {
 
     private Tile[][] tiles;
+    private int height;
+    private int width;
     private BidirectionalMap<HexCoordinate, Tile> tileMap = new BidirectionalMap<HexCoordinate, Tile>();
 
 
     public GameMap() {
+        this(ScalingUtil.MAP_DEFAULT_HEIGHT, ScalingUtil.MAP_DEFAULT_WIDTH);
+    }
+
+    public GameMap(int h, int w) {
+        super();
+
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
@@ -53,8 +57,10 @@ public class GameMap extends DiscreteMap {
     }
 
     @Override
-    public void move( MapObject m, Direction l ) {
-
+    public void move( MapObject m, Direction d ) {
+        if (!withinBounds(m, d)) {
+            return;
+        }
     }
 
     @Override
@@ -64,8 +70,16 @@ public class GameMap extends DiscreteMap {
 
     public Location getLocationByCoordinate ( HexCoordinate coordinate ) {
         //COULD BE RETURNED NULL! CHECK THIS
-        Tile tile = tileMap.get( coordinate );
+        Tile tile = tileMap.getValue( coordinate );
         return tile;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getWidth() {
+        return this.width;
     }
 
     public Tile[][] getTiles() {
@@ -74,6 +88,10 @@ public class GameMap extends DiscreteMap {
 
     private MapBuilder getMapBuilder() {
         return new FirstLevelMapBuilder();
+    }
+
+    public boolean withinBounds(MapObject m, Direction d) {
+        return true;
     }
 
 //    @Override

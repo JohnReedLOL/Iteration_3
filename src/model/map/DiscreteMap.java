@@ -2,11 +2,10 @@ package model.map;
 
 import model.MapObject;
 import model.entity.Entity;
+import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
 import model.map.location.Location;
-
-import java.util.Collection;
-import java.util.Map;
+import utility.ScalingUtil;
 
 /**
  * Created by Troy on 4/16/2015.
@@ -40,5 +39,4 @@ public abstract class DiscreteMap {
     public String generateNextMapName() {
         return "MAP_" + GameWorld.incrementMaps();
     }
-
 }
