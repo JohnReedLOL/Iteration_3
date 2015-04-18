@@ -18,6 +18,7 @@ public abstract class DiscreteMap {
     public abstract void remove( MapObject m );
     public abstract void relocate( MapObject m, Location l);
     public abstract void move( MapObject m, Direction l);
+    public abstract void teleport( MapObject m, DiscreteMap d);
     public abstract Location getLocationFromDirection( Location l, Direction d );
 
     public String getName() {
