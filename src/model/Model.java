@@ -5,6 +5,9 @@ import application.Application;
 import application.Application.UpdateTimings;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import model.entity.Entity;
+import model.map.GameWorld;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
@@ -52,7 +55,7 @@ public class Model {
     public final PauseMode PAUSE = new PauseMode();
 
     /*Constructors*/
-    public Model() {
+    private Model() {
         //defaults
     }
 
@@ -100,10 +103,17 @@ public class Model {
     //Singleton
     public static Model getModel() {
         if (singleton == null) {
-            return new Model();
-        } else {
-            throw new RuntimeException("Why are you trying to create the model again!!!???");
+            singleton = new Model();
         }
+//       else {
+//            throw new RuntimeException("Why are you trying to create the model again!!!???");
+//        }
+
+        return singleton;
+    }
+
+    public static Entity getAvatar() {
+        return GameWorld.getAvatar();
     }
 
     //Thread operations

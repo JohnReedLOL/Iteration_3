@@ -1,5 +1,7 @@
 package model.map;
 
+import model.entity.Entity;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -15,7 +17,7 @@ public class GameWorld {
 
     private static GameWorld singleton = null;
     private Collection<DiscreteMap> maps = new ArrayList<DiscreteMap>();
-    private DiscreteMap currentMap = null;
+    private static DiscreteMap currentMap = null;
 
     private GameWorld() {
         //DEFAULTS ARE FINE
@@ -23,10 +25,14 @@ public class GameWorld {
 
     public static GameWorld getInstance() {
         if ( singleton == null ) {
-            return new GameWorld();
+            singleton = new GameWorld();
         }
-        else
-            return singleton;
+
+        return singleton;
+    }
+
+    public static Entity getAvatar() {
+        return getCurrentMap().getAvatar();
     }
 
     public static int incrementMaps() {
@@ -34,7 +40,7 @@ public class GameWorld {
         return numMaps++;
     }
 
-    public DiscreteMap getCurrentMap() {
+    public static DiscreteMap getCurrentMap() {
         return currentMap;
     }
 
