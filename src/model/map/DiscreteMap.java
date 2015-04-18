@@ -1,6 +1,7 @@
 package model.map;
 
 import model.MapObject;
+import model.entity.Entity;
 import model.map.direction.Direction;
 import model.map.location.Location;
 
@@ -10,9 +11,9 @@ import java.util.Collection;
  * Created by Troy on 4/16/2015.
  */
 public abstract class DiscreteMap {
-
     private String name;
     private Collection<? extends Location> locations;
+    private Entity avatar;
 
     public abstract void insert( MapObject m, Location l );
     public abstract void remove( MapObject m );
@@ -24,12 +25,20 @@ public abstract class DiscreteMap {
         return name;
     }
 
+    public Entity getAvatar() {
+        return this.avatar;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setLocations( Collection<? extends Location> locations ) {
         this.locations = locations;
+    }
+
+    public void setAvatar(Entity avatar) {
+        this.avatar = avatar;
     }
 
     public String generateNextMapName() {
