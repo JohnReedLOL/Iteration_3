@@ -57,14 +57,7 @@ public class Detection {
      */
 
     public boolean canSee(Entity spectator, Entity target) {
-        if (!meetsOpposingDetectionRequirements(spectator, target.getDetectionMechanism())) {
-            return false;
-        }
-        else if (!meetsOpposingDetectionRequirements(target, spectator.getDetectionMechanism())) {
-            return false;
-        }
-
-        return true;
+        return meetsOpposingDetectionRequirements(spectator, target.getDetectionMechanism());
     }
 
     private boolean meetsOpposingDetectionRequirements(Entity target, Detection opposingReqs) {
