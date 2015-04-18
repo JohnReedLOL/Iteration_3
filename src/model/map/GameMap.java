@@ -94,7 +94,7 @@ public class GameMap extends DiscreteMap {
                 return tileMap.getKey(t);
             }
         }
-        return null;
+        return new HexCoordinate(-1,-1);
     }
 //    @Override
 //    public void insert(MapObject m, Tile l) {
