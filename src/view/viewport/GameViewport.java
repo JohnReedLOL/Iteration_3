@@ -5,7 +5,6 @@
  */
 package view.viewport;
 
-import application.Application;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -18,7 +17,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import model.ModelViewBundle;
+import model.map.GameMap;
+import model.map.location.Tile;
 import mvc_bridgeway.control_map.ControlMap;
+import application.Application;
 
 /**
  *
@@ -29,8 +31,7 @@ public class GameViewport extends Viewport {
 	private BufferedImage img1;
 	private BufferedImage img2;
 	private BufferedImage img3;
-	private int[][] map;
-	private int[][] map2;
+	private GameMap gameMap;
         
         /**
          * Takes in a BufferedImage and a percentage and produces a new BufferedImage that is darker by that percentage amount.
@@ -63,39 +64,8 @@ public class GameViewport extends Viewport {
 		initComponents();
                 brightness_map_ = new int[1000][1000];
                 Application.check(brightness_map_[0][0] == 0, "Invalid assumption");
-                
-		int[][] map = {
-				{ 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0 }, 
-				{ 2, 0, 1, 0, 3, 0, 1, 0, 3, 0, 2, 0, 2 },
-				{ 0, 1, 0, 2, 0, 3, 0, 1, 0, 3, 0, 1, 0 }, 
-				{ 2, 0, 2, 0, 1, 0, 1, 0, 3, 0, 1, 0, 2 },
-				{ 0, 1, 0, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0 },
-				{ 2, 0, 1, 0, 3, 0, 1, 0, 1, 0, 2, 0, 2 },
-				{ 0, 1, 0, 2, 0, 1, 0, 1, 0, 3, 0, 1, 0 }, 
-				{ 2, 0, 1, 0, 1, 0, 1, 0, 3, 0, 2, 0, 2 },
-				{ 0, 2, 0, 1, 0, 3, 0, 3, 0, 1, 0, 1, 0 },
-				{ 2, 0, 1, 0, 3, 0, 1, 0, 1, 0, 2, 0, 2 },
-				{ 0, 1, 0, 2, 0, 3, 0, 3, 0, 1, 0, 1, 0 }, 
-				{ 2, 0, 2, 0, 3, 0, 1, 0, 3, 0, 1, 0, 2 },
-				{ 0, 2, 0, 2, 0, 3, 0, 2, 0, 2, 0, 2, 0 }
-			};
-		this.map = map;
-		int[][] map2 = {				 
-				{ 2, 0, 1, 0, 3, 0, 1, 0, 3, 0, 2, 0, 2 },
-				{ 0, 1, 0, 2, 0, 3, 0, 1, 0, 3, 0, 1, 0 }, 
-				{ 2, 0, 2, 0, 1, 0, 1, 0, 3, 0, 1, 0, 2 },
-				{ 0, 1, 0, 2, 0, 1, 0, 1, 0, 1, 0, 1, 0 },
-				{ 2, 0, 1, 0, 3, 0, 1, 0, 1, 0, 2, 0, 2 },
-				{ 0, 1, 0, 2, 0, 1, 0, 1, 0, 3, 0, 1, 0 }, 
-				{ 2, 0, 1, 0, 1, 0, 1, 0, 3, 0, 2, 0, 2 },
-				{ 0, 2, 0, 1, 0, 3, 0, 3, 0, 1, 0, 1, 0 },
-				{ 2, 0, 1, 0, 3, 0, 1, 0, 1, 0, 2, 0, 2 },
-				{ 0, 1, 0, 2, 0, 3, 0, 3, 0, 1, 0, 1, 0 }, 
-				{ 2, 0, 2, 0, 3, 0, 1, 0, 3, 0, 1, 0, 2 },
-				{ 0, 2, 0, 2, 0, 3, 0, 2, 0, 2, 0, 2, 0 },
-				{ 2, 0, 2, 0, 3, 0, 1, 0, 3, 0, 1, 0, 2 }
-			};
-		this.map2 = map2;
+        gameMap = new GameMap();
+        gameMap.getTiles();
 		try {
             System.out.println();
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -117,7 +87,7 @@ public class GameViewport extends Viewport {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		displayMap(g, map, 0, 0);
+		displayMap(g, gameMap.getTiles(), 30, 30);
 		//displayMap(g, map2, 500, 100);
 	}
 
@@ -128,85 +98,42 @@ public class GameViewport extends Viewport {
 	 */
         /**
          * 
-         * @param g
-         * @param map - moc of a 2D array of tiles to be rendered
-         * @param startx - ?
-         * @param starty  - ?
+         * @param g - this components Graphics object
+         * @param map - Tile[][] of the GameMap
+         * @param startx - left pixel to start rendering from
+         * @param starty  - top pixel to start rendering from
          */
-	private void displayMap(Graphics g, int[][] map, int startx, int starty) {
-		// two types of maps b/c at index 0,0, it can be null or not
-		if (map[0][0] == 0) {
-			// change check for null
-			for (int y = 0; y < map.length; y++) {
-				for (int x = 0; x < map[y].length; x++) {
-					int drawx = 0;
-					int drawy = 0;
-					if (y % 2 == 0) { 
-						drawx = startx + (x / 2) * 150 + 75;
-						drawy = starty + y * 43;
-					} else {
-						drawx = startx + (x / 2) * 150;
-						drawy = starty + y * 43;
-					}
-					switch (map[y][x]) {
-					case 1:
-						g.drawImage(img1, drawx, drawy, 100, 100, null);
-						g.setColor(Color.RED);
-						g.drawRect(drawx, drawy, 100, 100);
-						g.drawString("x: " + x + ",y: " + y, drawx, drawy);
-						break;
-					case 2:
-						g.drawImage(img2, drawx, drawy, 100, 100, null);
-						g.setColor(Color.RED);
-						g.drawRect(drawx, drawy, 100, 100);
-						g.drawString("x: " + x + ",y: " + y, drawx, drawy);
-						break;
-					case 3:
-						g.drawImage(img3, drawx, drawy, 100, 100, null);
-						g.setColor(Color.RED);
-						g.drawRect(drawx, drawy, 100, 100);
-						g.drawString("x: " + x + ",y: " + y, drawx, drawy);
-						break;
-					default:
-						break;
-					}
+	private void displayMap(Graphics g, Tile[][] map, int startx, int starty) {
+		/**
+		 * Tile[x][y]
+		 * for a Game map the first index is the x and the second index is y
+		 *   ____      ____ 
+		 *  / 0,0\____/ 0,2\   x,y
+		 *  \____/ 0,1\____/
+		 *  / 1,0\____/ 1,2\
+		 *  \____/ 1,1\____/
+		 *  / 2,0\____/ 2,2\
+		 *  \____/    \____/
+		 *  
+		 *  BECAUSE OF THIS, we need to translate the Tile x and y
+		 *  to the Graphics x and y
+		 */
+		for (int x = 0; x < map.length; x++) {
+			for (int y = 0; y < map[x].length; y++) {
+				int drawx = 0;
+				int drawy = 0;
+				if (y % 2 == 0) {
+					drawx = startx + y * 75;
+					drawy = starty + x * 86;
+				} else {
+					drawx = startx + y * 75;
+					drawy = starty + x * 86 + 43;
 				}
-			}
-		} else {
-			for (int y = 0; y < map.length; y++) {
-				for (int x = 0; x < map[y].length; x++) {
-					int drawx = 0;
-					int drawy = 0;
-					if (y % 2 == 0) {
-						drawx = startx + (x / 2) * 150;
-						drawy = starty + y * 43;
-					} else {
-						drawx = startx + (x / 2) * 150 + 75;
-						drawy = starty + y * 43;
-					}
-					switch (map[y][x]) {
-					case 1:
-						g.drawImage(img1, drawx, drawy, 100, 100, null);
-						g.setColor(Color.RED);
-						g.drawRect(drawx, drawy, 100, 100);
-						g.drawString("x: " + x + ",y: " + y, drawx, drawy);
-						break;
-					case 2:
-						g.drawImage(img2, drawx, drawy, 100, 100, null);
-						g.setColor(Color.RED);
-						g.drawRect(drawx, drawy, 100, 100);
-						g.drawString("x: " + x + ",y: " + y, drawx, drawy);
-						break;
-					case 3:
-						g.drawImage(img3, drawx, drawy, 100, 100, null);
-						g.setColor(Color.RED);
-						g.drawRect(drawx, drawy, 100, 100);
-						g.drawString("x: " + x + ",y: " + y, drawx, drawy);
-						break;
-					default:
-						break;
-					}
-				}
+					g.drawImage(img1, drawx, drawy, 100, 100, null);
+					g.setColor(Color.RED);
+					g.drawRect(drawx, drawy, 100, 100);
+					g.drawString("x: " + x + ",y: " + y, drawx, drawy);
+				
 			}
 		}
 	}
