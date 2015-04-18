@@ -7,7 +7,7 @@ import model.prerequisite.Prerequisite;
 
 import java.util.ArrayList;
 
-public class SackboundItem extends Item {
+public abstract class SackboundItem extends Item {
     /**
      * PROPERTIES
      */
@@ -46,11 +46,11 @@ public class SackboundItem extends Item {
      * MUTATORS
      */
 
-    public void addPrerequisite(Prerequisite prereq) {
+    public void addPickUpPrerequisite(Prerequisite prereq) {
         getPickUpPrerequisites().add(prereq);
     }
 
-    public void removePrerequisite(Prerequisite prereq) {
+    public void removePickUpPrerequisite(Prerequisite prereq) {
         getPickUpPrerequisites().remove(prereq);
     }
 
@@ -62,8 +62,26 @@ public class SackboundItem extends Item {
         getPickUpEffects().remove(effect);
     }
 
+    /**]
+     * IMPLEMENTATIONS
+     */
+
+    @Override
     public boolean activateOnMap(Entity activator) {
-        // TODO
-        return false;
+        if (!meetsPickUpRequirements(activator)) {
+            return false;
+        }
+
+        return activator.addItemToInventory(this);
+    }
+
+    protected boolean meetsPickUpRequirements(Entity target) {
+        for (Prerequisite req : getPickUpPrerequisites()) {
+            if (!req.meetsRequirement(target)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

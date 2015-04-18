@@ -32,14 +32,10 @@ public class LimitedConsumptionItem extends ConsumptionItem {
      */
 
     @Override
-    public boolean activateOnMap(Entity activator) {
-        // placeholder.
-        return false;
-    }
-
-    @Override
-    public boolean use(Entity user) {
-        // placeholder.
-        return false;
+    public void apply(Entity owner) {
+        if (meetsUseRequirements(owner)) {
+            applyEffects(owner);
+            owner.removeItemFromInventory(this);
+        }
     }
 }

@@ -86,13 +86,6 @@ public class EquipItem extends SackboundItem {
         this.equipPrerequisites = prereqs;
     }
 
-    // This method will need to overridden the corner case of a Two-Handed Weapon and all of the
-    // similar cases that require multiple items to be unequipped for a particular EquipItem
-    // to be equip()'d.
-    public EquipmentPair equip(Entity user) {
-        return equipItem(user, this, getEquipSlot());
-    }
-
     public EquipItem unequip(Entity equipper) {
         if (willSackOverflow(equipper, this.getEquipSlot())) {
             return null;
@@ -104,6 +97,30 @@ public class EquipItem extends SackboundItem {
     /**
      * IMPLEMENTATIONS
      */
+
+    @Override
+    public void apply(Entity target) {
+        boolean alreadyEquipped = isWearing(target, this);
+
+        if (!alreadyEquipped) {
+            EquipmentPair equip = equipItem(target, this, getEquipSlot());
+
+            if (equip.success) {
+                for (EquipItem item : equip.equipItems) {
+                    if (item != null) {
+                        target.addItemToInventory(item);
+                    }
+                }
+            }
+        }
+        else {
+            EquipItem item = unequip(target);
+
+            if (item != null) {
+                target.addItemToInventory(item);
+            }
+        }
+    }
 
     protected boolean meetsEquipRequirements(Entity equipper, EquipItem toEquip) {
         for (Prerequisite prereq : toEquip.getEquipPrerequisites()) {
@@ -159,6 +176,10 @@ public class EquipItem extends SackboundItem {
         potentialSize += equipper.getInventoryOwnership().getSize();
 
         return (potentialSize > equipper.getInventoryOwnership().getPermittedCapacity());
+    }
+
+    protected boolean isWearing(Entity target, EquipItem item) {
+        return target.getArmoryOwnership().getEquipment().getContents().contains(item);
     }
 
     /**

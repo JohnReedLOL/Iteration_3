@@ -11,15 +11,14 @@ public class UnlimitedConsumptionItem extends ConsumptionItem {
         super(name, description);
     }
 
-    @Override
-    public boolean activateOnMap(Entity activator) {
-        // placeholder.
-        return false;
-    }
+    /**
+     * IMPLEMENTATIONS
+     */
 
     @Override
-    public boolean use(Entity user) {
-        // placeholder.
-        return false;
+    public void apply(Entity owner) {
+        if (meetsUseRequirements(owner)) {
+            applyEffects(owner);
+        }
     }
 }

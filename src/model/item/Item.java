@@ -3,7 +3,6 @@ package model.item;
 import model.MapObject;
 import model.entity.Entity;
 import model.map.location.Location;
-import model.map.location.Tile;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,4 +34,5 @@ public abstract class Item extends MapObject {
     }
 
     public abstract boolean activateOnMap(Entity activator);
+    public abstract void apply(Entity owner);
 }

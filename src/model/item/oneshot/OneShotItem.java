@@ -56,9 +56,12 @@ public class OneShotItem extends Item {
      */
 
     @Override
-    public boolean activateOnMap(Entity activator) {
-        applyActivationEffects(activator);
+    public void apply(Entity target) {
+        applyActivationEffects(target);
+    }
 
+    @Override
+    public boolean activateOnMap(Entity activator) {
         return true;
     }
 

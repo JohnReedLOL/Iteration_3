@@ -85,9 +85,14 @@ public class InteractiveItem extends Item {
      */
 
     @Override
+    public void apply(Entity target) {
+        activateOnMap(target);
+    }
+
+    @Override
     public boolean activateOnMap(Entity activator) {
         if (!getHasActivated()) {
-            if (!checkActivationRequirements(activator)) {
+            if (!meetsActivationRequirements(activator)) {
                 return false;
             }
 
@@ -104,7 +109,7 @@ public class InteractiveItem extends Item {
         }
     }
 
-    protected boolean checkActivationRequirements(Entity target) {
+    protected boolean meetsActivationRequirements(Entity target) {
         for (Prerequisite prereq : getActivationRequirements()) {
             if (!prereq.meetsRequirement(target)) {
                 return false;

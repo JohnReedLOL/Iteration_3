@@ -70,9 +70,22 @@ public abstract class ConsumptionItem extends SackboundItem {
     }
 
     /**
-     * ABSTRACT METHODS
+     * IMPLEMENTATIONS
      */
 
-    public abstract boolean activateOnMap(Entity activator);
-    public abstract boolean use(Entity user);
+    protected void applyEffects(Entity owner) {
+        for (Effect effect : getUseEffects()) {
+            effect.performEffect(owner);
+        }
+    }
+
+    protected boolean meetsUseRequirements(Entity target) {
+        for (Prerequisite req : getUsePrerequisites()) {
+            if (!req.meetsRequirement(target)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

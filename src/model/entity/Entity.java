@@ -6,6 +6,7 @@ import model.armory.ArmoryOwnership;
 import model.entity.detection.Detection;
 import model.entity.stats.StatsVisitor;
 import model.inventory.InventoryOwnership;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.equip.EquipItem;
 import model.map.location.Location;
 
@@ -58,6 +59,14 @@ public class Entity extends MapObject {
 
 	public void setDetectionMechanism(Detection detection) {
 		this.detectionMechanism = detection;
+	}
+
+	public boolean addItemToInventory(SackboundItem item) {
+		return getInventoryOwnership().addItem(item);
+	}
+
+	public void removeItemFromInventory(SackboundItem item) {
+		getInventoryOwnership().removeItem(item);
 	}
 
 	/**

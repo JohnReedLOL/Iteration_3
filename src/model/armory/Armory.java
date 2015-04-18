@@ -9,7 +9,7 @@ public class Armory {
      * PROPERTIES
      */
 
-    private ArrayList<EquipItem> equipment;
+    private ArrayList<EquipItem> contents;
     private static final int MAX_CAPACITY = 5;
 
     /**
@@ -17,19 +17,19 @@ public class Armory {
      */
 
     public Armory() {
-        this.equipment = new ArrayList<EquipItem>();
+        this.contents = new ArrayList<EquipItem>();
     }
 
     /**
      * GETTERS
      */
 
-    public ArrayList<EquipItem> getEquipment() {
-        return this.equipment;
+    public ArrayList<EquipItem> getContents() {
+        return this.contents;
     }
 
     public int getSize() {
-        return getEquipment().size();
+        return getContents().size();
     }
 
     public int getCapacity() {
@@ -37,7 +37,7 @@ public class Armory {
     }
 
     public EquipItem getItemAtSlot(EquipItem.EquipSlot slot) {
-        return getEquipment().get(slot.getSlot());
+        return getContents().get(slot.getSlot());
     }
 
     /**
@@ -68,11 +68,11 @@ public class Armory {
     }
 
     private EquipItem removeItem(EquipItem.EquipSlot slot) {
-        return getEquipment().remove(slot.getSlot());
+        return getContents().remove(slot.getSlot());
     }
 
     private void setItem(EquipItem item) {
         EquipItem.EquipSlot slot = item.getEquipSlot();
-        getEquipment().set(slot.getSlot(), item);
+        getContents().set(slot.getSlot(), item);
     }
 }

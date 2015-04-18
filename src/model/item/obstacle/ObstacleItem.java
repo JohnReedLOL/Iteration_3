@@ -56,8 +56,18 @@ public class ObstacleItem extends Item {
      */
 
     @Override
+    public void apply(Entity target) {
+        applyActivationEffects(target);
+    }
+
+    @Override
     public boolean activateOnMap(Entity activator) {
-        // TODO
         return false;
+    }
+
+    protected void applyActivationEffects(Entity target) {
+        for (Effect effect : getActivationEffects()) {
+            effect.performEffect(target);
+        }
     }
 }
