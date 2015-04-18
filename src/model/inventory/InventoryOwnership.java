@@ -24,7 +24,6 @@ public class InventoryOwnership {
     }
 
     public InventoryOwnership(Entity entity, Sack sack) {
-        this.owner = entity;
         this.inventory = sack;
         this.permittedCapacity = Sack.DEFAULT_CAPACITY;
     }
