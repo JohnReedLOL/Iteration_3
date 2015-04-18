@@ -13,7 +13,7 @@ import view.viewport.MiniMapViewport;
  *
  * @author John
  */
-public class Renderable_Grid implements Renderable{
+public class Renderable_Grid implements Renderable {
     
     // MapTile[][] map_tiles = null;
     GameMap m = null;
