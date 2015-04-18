@@ -202,7 +202,7 @@ public class Model {
         return false;
     }
     
-    public void talk(Avatar avatar, Ability ability) {
+    public void talk(Avatar avatar, Entity entity) {
         //TOdO
     }
     
