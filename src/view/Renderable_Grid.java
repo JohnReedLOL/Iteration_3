@@ -18,10 +18,11 @@ public class Renderable_Grid implements Renderable {
     // MapTile[][] map_tiles = null;
     GameMap m = null;
     
+    @Override
     public int renderAsImageToJPanel(GameViewport game_viewport, int x, int y) {
         return 0;
     }
-    
+    @Override
     public int renderAsDotToJPanel(MiniMapViewport game_viewport, int x, int y) {
         return 0;
     }

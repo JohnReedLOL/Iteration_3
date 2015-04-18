@@ -9,14 +9,14 @@ import application.Application;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import model.MapObject;
-import src.view.Renderable;
+import view.Renderable;
 import view.viewport.screen_viewport.GameScreenViewport;
 
 /**
  *
  * @author johnmichaelreed2
  */
-public class RenderableThing<T extends MapObject> implements Renderable {
+public class RenderableThing <T extends MapObject> implements Renderable {
     final T to_render_;
     public RenderableThing(T thing) {
         to_render_ = thing;
@@ -26,7 +26,6 @@ public class RenderableThing<T extends MapObject> implements Renderable {
     public int renderAsImageToJPanel(GameViewport game_viewport, int x, int y) {
         return 0;
     }
-    
     @Override
     public int renderAsDotToJPanel(MiniMapViewport game_viewport, int x, int y) {
         return 0;
