@@ -46,6 +46,7 @@ public class GameScreenViewport extends ScreenViewport {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.6;
         gridBagConstraints.weighty = 0.9;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(gameViewport2, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -53,6 +54,7 @@ public class GameScreenViewport extends ScreenViewport {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.6;
         gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(textConsoleViewport1, gridBagConstraints);
 
         side_pane_.setMinimumSize(new java.awt.Dimension(100, 50));
@@ -64,6 +66,7 @@ public class GameScreenViewport extends ScreenViewport {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         side_pane_.add(miniMapViewport2, gridBagConstraints);
 
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -78,6 +81,7 @@ public class GameScreenViewport extends ScreenViewport {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         side_pane_.add(jTabbedPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

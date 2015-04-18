@@ -80,6 +80,12 @@ public class Model {
                         public void run() {
                             if (to_execute_ != null) {
                                 to_execute_.execute();
+                                // After executing, set it to null
+                                // probabaly better to implement commands in a queue 
+                                // and remove done command from queue
+                                to_execute_ = null;
+                                // update the screen after executing command.
+                                currentScreen.getViewport().update(mvb);
                             }
                         }
                     };
@@ -115,7 +121,7 @@ public class Model {
 
     //Controller Interface
     public synchronized void queueCommandForExecution(Command command) {
-
+        // TODO: better to implement as a queue?
         to_execute_ = command; // store command to be executed when the model clock tells it to execute AKA lag compensation
         //command.execute(); //for now
     }
