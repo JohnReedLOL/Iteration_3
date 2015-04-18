@@ -7,7 +7,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import model.entity.Entity;
+import model.item.Item;
 import model.map.GameWorld;
+import model.map.direction.Direction;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
@@ -16,14 +18,14 @@ import mvc_bridgeway.screen.Screen;
 public class Model {
 
     /*Properties*/
-    //HEEEEERE'S TROY
+
     private static Model singleton = null;
+    //
     private static final String model_thread_name_ = "Model Modifier";
     private static final String model_clock_thread_name_ = "Model Clock";
     private static final ExecutorService model_thread_ = Executors.newSingleThreadExecutor();
     private static final ExecutorService model_clock_ = Executors.newSingleThreadExecutor();
     private static volatile Command to_execute_ = null;
-
     static {
         // name model thread
         Runnable name_setter = new Runnable() {
@@ -100,7 +102,9 @@ public class Model {
     }
 
     /*Methods*/
-    //Singleton
+    
+        //Singleton
+    
     public static Model getModel() {
         if (singleton == null) {
             singleton = new Model();
@@ -116,7 +120,8 @@ public class Model {
         return GameWorld.getAvatar();
     }
 
-    //Thread operations
+        //Thread operations
+    
     private synchronized void updateView() {
         currentMode.updateView();
     }
@@ -129,14 +134,16 @@ public class Model {
         currentMode.takeStandardGameStep();
     }
 
-    //Controller Interface
+        //Controller Interface
+    
     public synchronized void queueCommandForExecution(Command command) {
         // TODO: better to implement as a queue?
         to_execute_ = command; // store command to be executed when the model clock tells it to execute AKA lag compensation
         //command.execute(); //for now
     }
 
-    //Command Interface
+        //Command Interface
+    
     public void exit() {
         System.exit(0);
     }
@@ -144,8 +151,58 @@ public class Model {
     public void setupPhysicalControllerForRebind(ControlMap controlMap) {
         application.listenForRebind(controlMap);
     }
+    
+    public void save() {
+        //TODO
+    }
+    
+    public void load() {
+        //TODO
+    }
+    
+//    public void setOccupation(Entity entity, Occupation occupation) {
+//        //TODO
+//    }
+    
+    public void beginNewGame() {
+        //TODO
+    }
+    
+    public boolean move(Entity entity, Direction direction) {
+        //TODO
+        return false;
+    }
+    
+//    public boolean storeInInventory(Avatar avatar, Item item) {
+//        //TODO
+//        return false;
+//    }
+//    
+//    public boolean equip(Avatar avatar, Item item) {
+//        //TODO
+//        return false;
+//    }
+//    
+//    public void drop(Avatar avatar, Item item) {
+//        //TODO
+//    }
+//    
+//    public boolean activateAbility(Avatar avatar, Ability ability) {
+//        //TODO
+//        return false;
+//    }
+//    
+//    public void talk(Avatar avatar, Ability ability) {
+//        //TOdO
+//    }
+//    
+//    public boolean purchase(Avatar avatar, Item item, int price) {
+//        //TODO
+//        return false;
+//    }
 
-    //Misc
+        //Misc
+    
     public void setMode(Mode mode) {
         currentMode = mode;
     }
