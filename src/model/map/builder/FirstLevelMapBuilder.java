@@ -10,7 +10,6 @@ public class FirstLevelMapBuilder extends MapBuilder {
 
     @Override
     public GameMap generateMap() {
-        //TODO: MAKE THIS DO SOMETHING USEFUL
         return new GameMap();
     }
 }
