@@ -1,9 +1,11 @@
 package model;
 
+import model.map.location.Location;
+
 /**
  * Created by Troy on 4/16/2015.
  */
-public class MapObject {
+public abstract class MapObject {
 
     private String name;
     private String description;
@@ -17,6 +19,8 @@ public class MapObject {
         this.name = name;
         this.description = description;
     }
+
+    public abstract void createAssociation( Location location );
 
     public String getDescription() {
         return description;

@@ -6,6 +6,7 @@ import model.map.AreaEffect;
 import model.map.TileMapObjectAssociation;
 import model.map.decal.Decal;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -20,27 +21,48 @@ public class Tile extends Location {
 
     @Override
     public boolean createAssociation( MapObject m ) {
-        //TODO
+        for (TileMapObjectAssociation t: mapObjects ) {
+            if ( t.getMapObject().equals( m ) ) {   //we cannot add the same MapObject to more than one Tile.
+                return false;
+            }
+        }
+
+        TileMapObjectAssociation association = new TileMapObjectAssociation( this, m );
+        mapObjects.add( association );
+
+        return true;
+    }
+
+    @Override
+    public boolean removeAssociation( MapObject m ) {
+        for (TileMapObjectAssociation t: mapObjects ) {
+            if ( t.getMapObject().equals( m ) ) {   //we cannot add the same MapObject to more than one Tile.
+                mapObjects.remove( t );
+                return true;
+            }
+        }
 
         return false;
     }
 
     @Override
-    public boolean removeAssociation( MapObject m ) {
-        //TODO
+    public Collection<MapObject> getMapObjects() {
+        Collection<MapObject> objects = new ArrayList<MapObject>();
+        for (TileMapObjectAssociation t: mapObjects ) {
+            objects.add( t.getMapObject() );
+        }
 
-        return false;
+        return objects;
     }
 
     public boolean canPass( Entity e ) {
         //TODO
-
-        return false;
+        //REASONABLE DEFAULT: UNLESS SUBCLASS PREVENTS IT, RETURN TRUE
+        return true;
     }
 
-    public boolean addDecal( Decal decal ) {
-        //TODO
-        return false;
+    public void addDecal( Decal decal ) {
+        this.decal = decal;
     }
 
     public void removeDecal() {

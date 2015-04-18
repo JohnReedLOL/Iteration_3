@@ -2,6 +2,8 @@ package model.item;
 
 import model.MapObject;
 import model.entity.Entity;
+import model.map.location.Location;
+import model.map.location.Tile;
 
 public abstract class Item extends MapObject {
     public Item() {
@@ -13,4 +15,10 @@ public abstract class Item extends MapObject {
     }
 
     public abstract boolean activateOnMap(Entity activator);
+
+    public void createAssociation( Location tile ) {
+        //TODO
+
+
+    }
 }
