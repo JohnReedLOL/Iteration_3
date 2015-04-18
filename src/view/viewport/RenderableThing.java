@@ -37,5 +37,6 @@ public class RenderableThing<T extends MapObject> {
     
     public BufferedImage getMyImageRepresentation() {
         Application.check(false, "not yet implemented");
+        return null;
     }
 }
