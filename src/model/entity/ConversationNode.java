@@ -7,6 +7,7 @@ package model.entity;
 
 /**
  * This class represents a node in a conversation tree. Entities communicate by passing nodes back and forth.
+ * Reply options cannot be null. No reply is represented by the empty String, "".
  * @author JohnReedLOL
  */
 public class ConversationNode {
