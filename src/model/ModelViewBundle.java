@@ -7,6 +7,7 @@ public class ModelViewBundle {
     /*Properties*/
     
     private UserSettings userSettings;
+    
 
     /*Constructors*/
 

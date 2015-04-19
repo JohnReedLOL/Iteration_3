@@ -33,7 +33,7 @@ public class HomeViewport extends Viewport {
     
     @Override
     protected void generateView() {
-   
+        //no need in this case
     }
     
     @Override
