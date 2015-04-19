@@ -7,6 +7,11 @@ import model.map.coordinate.HexCoordinate;
  */
 public class NorthEastDirection extends HexMapDirection {
 
+    public NorthEastDirection() {
+        //IF YOU USE THIS, BE SURE TO SET YOUR REAL DIRECTION ASAP!!!!!
+        super( new HexCoordinate( 0, 0 ) );
+    }
+
     public NorthEastDirection( HexCoordinate coordinate ) {
         super( coordinate );
     }
