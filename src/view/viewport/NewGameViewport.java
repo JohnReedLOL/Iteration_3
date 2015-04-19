@@ -10,6 +10,7 @@ import model.ModelViewBundle;
 import model.armory.Armory;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
+import model.entity.stats.StatsOwnership;
 import model.inventory.Sack;
 import mvc_bridgeway.command.model_command.*;
 import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
@@ -42,9 +43,9 @@ public class NewGameViewport extends Viewport {
     @Override
     public ArrayList<ControlMap> getControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new SetSmasherOccupationCommand(new Avatar("Smasher", "Smasher Desc", new Armory(), new Sack(), ClassicMovementBehavior.getInstance())), new LaunchScreenCommand(new GameScreen())));
-            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new SetSneakOccupationCommand(new Avatar("Sneak", "Sneak Desc", new Armory(), new Sack(), ClassicMovementBehavior.getInstance())), new LaunchScreenCommand(new GameScreen())));
-            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new SetSummonerOccupationCommand(new Avatar("Summoner", "Summoner Desc", new Armory(), new Sack(), ClassicMovementBehavior.getInstance())), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new SetSmasherOccupationCommand(new Avatar("Smasher", "Smasher Desc")), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new SetSneakOccupationCommand(new Avatar("Sneak", "Sneak Desc")), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new SetSummonerOccupationCommand(new Avatar("Summoner", "Summoner Desc")), new LaunchScreenCommand(new GameScreen())));
             return controlMaps;
     }
 

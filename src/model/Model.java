@@ -19,6 +19,7 @@ import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
+import utility.OccupationFactory;
 
 public class Model {
 
@@ -174,20 +175,17 @@ public class Model {
     
     public void setSneakOccupation(Entity entity) {
         Application.print("User created Sneak");
-        // TODO: Use Factory to generate the correct Entity with the corresponding
-//        entity.setInstance(OccupationFactory.generateSneakOccupation());
+        entity.setInstance(OccupationFactory.generateAvatarSneakOccupation());
     }
 
     public void setSummonerOccupation(Entity entity) {
         Application.print("User created Summoner");
-        // TODO: Use Factory to generate the correct Entity with the corresponding
-//        entity.setInstance(OccupationFactory.generateSummonerOccupation());
+        entity.setInstance(OccupationFactory.generateAvatarSummonerOccupation());
     }
 
-    public void setSmasherOccupation(Entity entiyy) {
+    public void setSmasherOccupation(Entity entity) {
         Application.print("User created Smasher");
-        // TODO: Use Factory to generate the correct Entity with the corresponding
-//        entity.setInstance(OccupationFactory.generateSmasherOccupation());
+        entity.setInstance(OccupationFactory.generateAvatarSmasherOccupation());
     }
     
     public void beginNewGame() {
