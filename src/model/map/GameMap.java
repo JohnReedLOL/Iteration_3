@@ -113,7 +113,7 @@ public class GameMap extends DiscreteMap {
         return brightness;
     }
 
-    private MapBuilder getMapBuilder() {
+    protected MapBuilder getMapBuilder() {
         return new FirstLevelMapBuilder();
     }
 

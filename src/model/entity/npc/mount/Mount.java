@@ -29,12 +29,18 @@ public class Mount extends NPC {
     }
 
     public void createMountOwnership( Entity entity ) {
-        entity.getStatsOwnership().getStats().buffMovement(speedBonus);
+        entity.getStatsOwnership().getStats().buffMovement( getSpeedBonus() );
         ownership = new MountOwnership( entity, this );
     }
 
     public void removeMountOwnership() {
-        ownership.getOwner().getStatsOwnership().getStats().debuffMovement( speedBonus );
+        //ONLY A GETTER SO IT'S OKAY
+        ownership.getOwner().getStatsOwnership().getStats().debuffMovement( getSpeedBonus() );
         ownership = null;
+    }
+
+    public int getSpeedBonus() {
+        //YOU MAY OVERRIDE THIS TO CHANGE A MOUNT'S SPEED BONUS.
+        return speedBonus;
     }
 }
