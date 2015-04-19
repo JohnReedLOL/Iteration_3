@@ -21,7 +21,7 @@ public class ConversationNode {
     /**
      * This constructor will not allow a field to be set to null.
      */
-    ConversationNode(String s1, String s2, String s3, String s4, String s5) {
+    public ConversationNode(String s1, String s2, String s3, String s4, String s5) {
         if(s1 == null) {
             s1 = "";
         }

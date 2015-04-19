@@ -37,6 +37,7 @@ public class GameViewport extends Viewport {
         
         //TODO fake map
         gameMap = new GameMap();
+        Application.check(gameMap.getAvatar() != null, "Avatar is null cannot get brightness table");
         brightness = gameMap.getAvatar().getBrightnessTable();
 	}
 
