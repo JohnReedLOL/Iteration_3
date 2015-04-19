@@ -51,10 +51,10 @@ public class FlyingBehavior extends MovementBehavior {
         DiscreteMap map = GameWorld.getCurrentMap();
 
         if (map.withinBounds(entity, direction)) {
-            Coordinate2D coord = map.getMapObjectCoordinate(entity);
-            Coordinate2D toMove = direction.deriveCoordinate((HexCoordinate) coord);
+            Coordinate2D previous = map.getMapObjectCoordinate(entity);
+            Coordinate2D toMove = direction.deriveCoordinate((HexCoordinate) previous);
 
-            map.move(entity, toMove);
+            map.move(entity, previous, toMove);
         }
     }
 }
