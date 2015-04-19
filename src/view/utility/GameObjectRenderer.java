@@ -16,6 +16,13 @@ import model.item.sackbound.equip.WeaponItem;
 
 public class GameObjectRenderer extends GameScreenRenderer implements ObjectRenderer{
 
+
+
+	public GameObjectRenderer(Graphics g) {
+		super(g);
+		this.startx = 0;
+		this.starty = 0;
+	}
 	
 	public GameObjectRenderer(Graphics g, int startx, int starty) {
 		super(g);

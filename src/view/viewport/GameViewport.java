@@ -50,7 +50,7 @@ public class GameViewport extends Viewport {
 	public void paint(Graphics g) {
 		super.paint(g);
 		// Tile visitor
-        tileRendererVisitor = new GameTileRenderer(g, 30, 30);
+        tileRendererVisitor = new GameTileRenderer(g);
 		displayMap(tileRendererVisitor, gameMap.getTiles());
 	}
 

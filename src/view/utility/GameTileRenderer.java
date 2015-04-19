@@ -29,12 +29,23 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 	// FOR DEBUG
 	private final boolean DEBUG = false;
 
+
+	public GameTileRenderer(Graphics g) {
+		super(g);
+		this.startx = 0;
+		this.starty = 0;
+		mapObjectRenderer = new GameObjectRenderer(g);
+		initializeImages();
+	}
 	public GameTileRenderer(Graphics g, int startx, int starty) {
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
 		mapObjectRenderer = new GameObjectRenderer(g,startx, starty);
+		initializeImages();
+	}
 
+	private void initializeImages(){
 		try {
 			System.out.println();
 			ClassLoader classLoader = Thread.currentThread()
@@ -49,7 +60,7 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void visit(GrassTile grassTile) {
 		drawTileAlgorithm(grass, grassTile.getMapObjects());
 	}
