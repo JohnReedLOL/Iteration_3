@@ -14,6 +14,6 @@ public class MountainTerrain extends Tile {
 
 	@Override
 	public void accept(TileRenderer tileRendererVisitor) {
-		tileRendererVisitor.visit(this);
+		(tileRendererVisitor).visit(this);
 	}
 }

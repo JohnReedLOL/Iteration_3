@@ -13,6 +13,7 @@ import model.Model;
 import model.ModelViewBundle;
 import model.UserSettings;
 import mvc_bridgeway.control_map.ControlMap;
+import view.MainWindow;
 import view.viewport.Viewport;
 
 
@@ -112,24 +113,8 @@ public abstract class Screen {
 
     /*Get-Sets*/
     
-    public Viewport getViewport() {
+    public Viewport getViewport(MainWindow mainWindow) { //only MainWindow should use this
         return viewport;
-    }
-    
-    protected PhysicalController getPhysicalController() {
-        return physicalController;
-    }
-
-    protected void setPhysicalController(PhysicalController physicalController) {
-        this.physicalController = physicalController;
-    }
-
-    protected VirtualController getVirtualController() {
-        return virtualController;
-    }
-
-    protected void setVirtualController(VirtualController virtualController) {
-        this.virtualController = virtualController;
     }
 
     /*Inner-classes*/

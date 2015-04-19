@@ -34,6 +34,15 @@ public class MacroCommand extends Command {
         }
     }
     
+    @Override
+    public String getDisplayString() {
+        String display = "";
+        for (Command command : commands) {
+            display += " " + command.getDisplayString();
+        }
+        return display;
+    }
+    
     private ArrayList<Command> initCommands(Command command, Command[] cmds) {
         ArrayList<Command> temp = new ArrayList<Command>();
         temp.add(command);

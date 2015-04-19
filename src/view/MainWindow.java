@@ -38,7 +38,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowFocusListene
      */
     public void displayScreen(Screen screen) {
         this.screen = screen;
-        Viewport view = screen.getViewport();
+        Viewport view = screen.getViewport(this);
         
         setSize(view);
         this.getContentPane().removeAll();

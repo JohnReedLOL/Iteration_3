@@ -2,11 +2,9 @@ package mvc_bridgeway.screen;
 
 // @author comcc_000
 
-import controller.physicalController.PhysicalController;
-import controller.virtual_controller.VirtualController;
 import java.util.ArrayList;
-import model.Model;
 import model.UserSettings;
+import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.Viewport;
 
