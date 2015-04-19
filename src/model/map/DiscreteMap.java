@@ -27,6 +27,7 @@ public abstract class DiscreteMap {
     public abstract Coordinate2D getMapObjectCoordinate( MapObject m );
     public abstract Location getLocationByCoordinate( Coordinate2D c );
     public abstract Coordinate2D getCoordinateByLocation( Location l );
+    public abstract Location getLocationByMapObject( MapObject m );
 
     public String getName() {
         return name;

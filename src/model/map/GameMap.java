@@ -147,6 +147,11 @@ public class GameMap extends DiscreteMap {
         }
         return new HexCoordinate( -1, -1 );
     }
+
+    @Override
+    public Location getLocationByMapObject( MapObject m ) {
+        return getLocationByCoordinate( getMapObjectCoordinate( m ) );
+    }
 //    @Override
 //    public void insert(MapObject m, Tile l) {
 //
