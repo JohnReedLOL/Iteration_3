@@ -5,12 +5,10 @@ import model.MapObject;
 import model.armory.Armory;
 import model.armory.ArmoryOwnership;
 import model.effect.Effect;
-import model.entity.behavior.combat.CombatBehavior;
 import model.entity.behavior.movement.MovementBehavior;
 import model.entity.detection.Detection;
 import model.entity.memory.RememberedMap;
 import model.entity.memory.VisibleMap;
-import model.entity.occupation.Occupation;
 import model.entity.stats.StatsVisitor;
 import model.inventory.InventoryOwnership;
 import model.inventory.Sack;
@@ -25,9 +23,7 @@ public abstract class Entity extends MapObject {
 	private ArmoryOwnership armoryOwnership;
 	private InventoryOwnership inventoryOwnership;
 	private Detection detectionMechanism;
-	private Occupation occupation;
 	private MovementBehavior movementBehavior;
-	private CombatBehavior combatBehavior;
 	private RememberedMap memory;
 	private VisibleMap sight;
 
@@ -35,18 +31,16 @@ public abstract class Entity extends MapObject {
 	 * CONSTRUCTORS
 	 */
         
-	public Entity(Armory armory, Sack sack, Occupation occupation, MovementBehavior movementBehavior) {
-		this("Entity", "Entity Desc", armory, sack, occupation, movementBehavior);
+	public Entity(Armory armory, Sack sack, MovementBehavior movementBehavior) {
+		this("Entity", "Entity Desc", armory, sack, movementBehavior);
 	}
 
-	public Entity(String name, String description, Armory armory, Sack sack, Occupation occupation,
-				  MovementBehavior movementBehavior) {
+	public Entity(String name, String description, Armory armory, Sack sack, MovementBehavior movementBehavior) {
 		super(name, description);
 
 		this.armoryOwnership = new ArmoryOwnership(this, armory);
 		this.inventoryOwnership = new InventoryOwnership(this, sack, 10);
 		this.detectionMechanism = new Detection();
-		this.occupation = occupation;
 		this.movementBehavior = movementBehavior;
 	}
 
@@ -66,10 +60,6 @@ public abstract class Entity extends MapObject {
 		return this.detectionMechanism;
 	}
 
-	public Occupation getOccupation() {
-		return this.occupation;
-	}
-
 	public MovementBehavior getMovementBehavior() {
 		return this.movementBehavior;
 	}
@@ -82,12 +72,23 @@ public abstract class Entity extends MapObject {
 		this.detectionMechanism = detection;
 	}
 
-	public void setOccupation(Occupation occupation) {
-		this.occupation = occupation;
-	}
-
 	public void setMovementBehavior(MovementBehavior movement) {
 		this.movementBehavior = movement;
+	}
+
+	private void setArmoryOwnership(ArmoryOwnership ownership) {
+		this.armoryOwnership = ownership;
+	}
+
+	private void setInventoryOwnership(InventoryOwnership ownership) {
+		this.inventoryOwnership = ownership;
+	}
+
+	public void setInstance(Entity entity) {
+		setDetectionMechanism(entity.getDetectionMechanism());
+		setMovementBehavior(entity.getMovementBehavior());
+		setInventoryOwnership(entity.getInventoryOwnership());
+		setArmoryOwnership(entity.getArmoryOwnership());
 	}
 
 	/**

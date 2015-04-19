@@ -4,7 +4,6 @@ import model.armory.Armory;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.npc.NPC;
-import model.entity.occupation.SneakOccupation;
 import model.influence_set.InfluenceSet;
 import model.inventory.Sack;
 import model.item.interactive.InteractiveItem;
@@ -49,8 +48,8 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[5][5] = new WaterTile();
 
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
-        tiles[1][2].createMapObjectAssociation(new NPC(new Armory(),new Sack(), new SneakOccupation(), ClassicMovementBehavior.getInstance()));
-        tiles[1][3].createMapObjectAssociation(new Avatar(new Armory(),new Sack(), new SneakOccupation(),ClassicMovementBehavior.getInstance()));
+        tiles[1][2].createMapObjectAssociation(new NPC(new Armory(),new Sack(), ClassicMovementBehavior.getInstance()));
+        tiles[1][3].createMapObjectAssociation(new Avatar(new Armory(),new Sack(), ClassicMovementBehavior.getInstance()));
         tiles[1][4].createMapObjectAssociation(new InteractiveItem());
         tiles[1][5].createMapObjectAssociation(new OneShotItem());
         tiles[1][6].createMapObjectAssociation(new LimitedConsumptionItem());

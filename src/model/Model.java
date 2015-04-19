@@ -10,10 +10,8 @@ import java.util.concurrent.Executors;
 import model.entity.Entity;
 import model.entity.ability.Ability;
 import model.entity.avatar.Avatar;
-import model.entity.occupation.Occupation;
 import model.item.Item;
 import model.item.sackbound.SackboundItem;
-import model.item.sackbound.equip.EquipItem;
 import model.map.GameWorld;
 import model.map.direction.Direction;
 import mvc_bridgeway.command.model_command.ModelCommand;
@@ -173,8 +171,22 @@ public class Model {
         //TODO
     }
     
-    public void setOccupation(Entity entity, Occupation occupation) {
-        entity.setOccupation(occupation);
+    public void setSneakOccupation(Entity entity) {
+        Application.print("User created Sneak");
+        // TODO: Use Factory to generate the correct Entity with the corresponding
+//        entity.setInstance(OccupationFactory.generateSneakOccupation());
+    }
+
+    public void setSummonerOccupation(Entity entity) {
+        Application.print("User created Summoner");
+        // TODO: Use Factory to generate the correct Entity with the corresponding
+//        entity.setInstance(OccupationFactory.generateSummonerOccupation());
+    }
+
+    public void setSmasherOccupation(Entity entiyy) {
+        Application.print("User created Smasher");
+        // TODO: Use Factory to generate the correct Entity with the corresponding
+//        entity.setInstance(OccupationFactory.generateSmasherOccupation());
     }
     
     public void beginNewGame() {
