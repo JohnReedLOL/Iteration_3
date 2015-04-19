@@ -5,6 +5,7 @@ import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.npc.NPC;
 import model.entity.occupation.SneakOccupation;
+import model.influence_set.InfluenceSet;
 import model.inventory.Sack;
 import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
@@ -19,6 +20,8 @@ import model.map.location.MountainTerrain;
 import model.map.location.Tile;
 import model.map.location.WaterTile;
 import utility.ScalingUtil;
+
+import java.util.ArrayList;
 
 /**
  * Created by Troy on 4/17/2015.
@@ -53,7 +56,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[1][6].createMapObjectAssociation(new LimitedConsumptionItem());
         tiles[1][7].createMapObjectAssociation(new UnlimitedConsumptionItem());
         tiles[1][8].createMapObjectAssociation(new EquipItem(EquipSlot.HEAD));
-        tiles[1][9].createMapObjectAssociation(new WeaponItem());
+        tiles[1][9].createMapObjectAssociation(new WeaponItem("Weapon", "Wespon Desc", EquipSlot.MAINHAND, new ArrayList<InfluenceSet>()));
         
         return tiles;
     }

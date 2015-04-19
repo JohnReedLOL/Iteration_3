@@ -32,7 +32,7 @@ public class NewGameViewport extends Viewport {
     public NewGameViewport() {
         initComponents();
     }
-    !
+
     @Override
     protected void generateView() {
         //TODO
