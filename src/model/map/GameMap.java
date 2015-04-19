@@ -57,7 +57,7 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void relocate( MapObject m, Location l ) {
-        l.createMapObjectAssociation( m );
+        l.createMapObjectAssociation(m);
     }
 
     @Override

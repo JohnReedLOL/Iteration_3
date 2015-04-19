@@ -27,6 +27,14 @@ public class HexCoordinate extends Coordinate2D {
         return direction.deriveCoordinate( this );
     }
 
+    public int hashCode() {
+        int res = 0;
+        res += getX() * 31;
+        res += getY() * 23;
+
+        return res;
+    }
+
     @Override
     public boolean equals( Object object ) {
         if ( object instanceof HexCoordinate ) {
