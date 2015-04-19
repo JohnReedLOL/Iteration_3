@@ -50,7 +50,7 @@ public class FlyingBehavior extends MovementBehavior {
         DiscreteMap map = GameWorld.getCurrentMap();
 
         if (map.withinBounds(entity, direction)) {
-            map.move(entity, direction);
+            //map.move(entity, direction);
         }
     }
 }

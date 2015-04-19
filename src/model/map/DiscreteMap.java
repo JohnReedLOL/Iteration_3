@@ -20,11 +20,12 @@ public abstract class DiscreteMap {
     public abstract void insert( MapObject m, Location l );
     public abstract void remove( MapObject m );
     public abstract void relocate( MapObject m, Location l);
-    public abstract void move( MapObject m, Direction l);
+    public abstract void move( MapObject m, Coordinate2D c);
     public abstract void teleport( MapObject m, DiscreteMap d);
     public abstract Location getLocationFromDirection( Location l, Direction d );
     public abstract boolean withinBounds( MapObject m, Direction d );
-    public abstract Coordinate2D getMapObjectCoordinate( MapObject m ) ;
+    public abstract Coordinate2D getMapObjectCoordinate( MapObject m );
+    public abstract Location getLocationByCoordinate( Coordinate2D c );
 
     public String getName() {
         return name;

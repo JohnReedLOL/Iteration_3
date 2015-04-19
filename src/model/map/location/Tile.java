@@ -10,10 +10,12 @@ import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import view.utility.TileRenderer;
+
 /**
  * Created by Troy on 4/16/2015.
  */
-public class Tile extends Location {
+public abstract class Tile extends Location {
 
 
     private Collection<AreaEffect> areaEffects = new ArrayList<AreaEffect>();
@@ -90,4 +92,6 @@ public class Tile extends Location {
         }
         return false;
     }
+
+	public abstract void accept(TileRenderer tileRendererVisitor);
 }

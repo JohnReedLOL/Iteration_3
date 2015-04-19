@@ -1,6 +1,7 @@
 package model.map.builder;
 
 import model.map.location.GrassTile;
+import model.map.location.MountainTerrain;
 import model.map.location.Tile;
 import model.map.location.WaterTile;
 import utility.ScalingUtil;
@@ -23,6 +24,11 @@ public class FirstLevelMapBuilder extends MapBuilder {
             }
         }
 
+        tiles[1][3] = new MountainTerrain();
+        tiles[2][2] = new WaterTile();
+        tiles[3][3] = new WaterTile();
+        tiles[4][4] = new WaterTile();
+        tiles[4][1] = new WaterTile();
         tiles[5][5] = new WaterTile();
         return tiles;
     }

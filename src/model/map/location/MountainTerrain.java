@@ -1,5 +1,6 @@
 package model.map.location;
 
+import view.utility.TileRenderer;
 import model.entity.Entity;
 
 /**
@@ -10,4 +11,9 @@ public class MountainTerrain extends Tile {
     public boolean canPass(Entity entity) {
         return false;
     }
+
+	@Override
+	public void accept(TileRenderer tileRendererVisitor) {
+		tileRendererVisitor.visit(this);
+	}
 }

@@ -3,6 +3,7 @@ package model.map;
 import model.MapObject;
 import model.map.builder.FirstLevelMapBuilder;
 import model.map.builder.MapBuilder;
+import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
 import model.map.location.Location;
@@ -40,12 +41,13 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void insert( MapObject m, Location l ) {
-
+        l.createMapObjectAssociation(m);
     }
 
     @Override
     public void remove( MapObject m ) {
-
+        Tile tile = tileMap.getValue( getMapObjectCoordinate( m ) );
+        tile.removeMapObjectAssociation(m);
     }
 
     @Override
@@ -54,8 +56,16 @@ public class GameMap extends DiscreteMap {
     }
 
     @Override
-    public void move( MapObject m, Direction d ) {
+    public void move( MapObject m, Coordinate2D coordinate ) {
+        Tile tile = tileMap.getValue( (HexCoordinate) coordinate );
+        if (tile.removeMapObjectAssociation( m ) ) {
+            tile.createMapObjectAssociation( m );
+        }
+    }
 
+    public void move( MapObject m, Direction d ) {
+        HexCoordinate coordinate = d.deriveCoordinate( getMapObjectCoordinate( m ) );
+        move( m, coordinate );
     }
 
     @Override
@@ -104,6 +114,11 @@ public class GameMap extends DiscreteMap {
             }
         }
         return new HexCoordinate(-1,-1);
+    }
+
+    @Override
+    public Location getLocationByCoordinate(Coordinate2D c) {
+        return tileMap.getValue( (HexCoordinate) c );
     }
 //    @Override
 //    public void insert(MapObject m, Tile l) {

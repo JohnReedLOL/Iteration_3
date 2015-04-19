@@ -1,5 +1,6 @@
 package model.map.location;
 
+import view.utility.TileRenderer;
 import model.entity.Entity;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
@@ -35,4 +36,9 @@ public class WaterTile extends Tile {
     public void reverseDirection( HexCoordinate coordinate ) {
         this.direction = direction.getOppositeDirection( coordinate );
     }
+
+	@Override
+	public void accept(TileRenderer tileRendererVisitor) {
+		tileRendererVisitor.visit(this);
+	}
 }
