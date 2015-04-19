@@ -39,11 +39,11 @@ public class TextConsoleViewport extends Viewport {
     }
 
     public void renderCurrentConversationNode(ConversationNode n) {
-        incoming_chat_.append(n.getMyReplyToWhatYouSaidToMe_() + "\n");
-        incoming_chat_.append("Press 0: " + n.getYourFirstReplyOption_() + "/n");
-        incoming_chat_.append("Press 1: " + n.getYourSecondReplyOption_() + "/n");
-        incoming_chat_.append("Press 2: " + n.getYourThirdReplyOption_() + "/n");
-        incoming_chat_.append("Press 3: " + n.getYourFourthReplyOption_() + "/n");
+        incoming_chat_.append("\n" + n.getMyReplyToWhatYouSaidToMe_() + "\n");
+        incoming_chat_.append("Press 0: " + n.getYourFirstReplyOption_() + "\n");
+        incoming_chat_.append("Press 1: " + n.getYourSecondReplyOption_() + "\n");
+        incoming_chat_.append("Press 2: " + n.getYourThirdReplyOption_() + "\n");
+        incoming_chat_.append("Press 3: " + n.getYourFourthReplyOption_() + "\n");
         incoming_chat_.append("\n");
     }
 
@@ -68,6 +68,7 @@ public class TextConsoleViewport extends Viewport {
 
         outgoing_chat_.setText("outgoing_chat_");
 
+        incoming_chat_.setEditable(false);
         incoming_chat_.setColumns(20);
         incoming_chat_.setRows(5);
         incoming_chat_.setText("incoming_chat_");
