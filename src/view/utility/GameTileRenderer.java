@@ -24,17 +24,14 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	private BufferedImage grass;
 	private BufferedImage mountain;
 	private BufferedImage water;
-
-	private BufferedImage grassDim;
-	private BufferedImage mountainDim;
-	private BufferedImage waterDim;
+	private BufferedImage dim;
 
 	// brightness
 	private int brightness;
 
 	// TODO
-	private int avatarx = 5;
-	private int avatary = 5;
+	private int avatarx = 1;
+	private int avatary = 3;
 
 	// MapObjectsRenderer
 	private ObjectRenderer mapObjectRenderer;
@@ -69,42 +66,22 @@ public class GameTileRenderer extends GameScreenRenderer implements
 			mountain = ImageIO.read(new File(url.getPath()));
 			url = classLoader.getResource("resources/png/water.png");
 			water = ImageIO.read(new File(url.getPath()));
-
-			// grassDim = produceBufferedImageDarkenedByPercentage(grass, 50);
-			// waterDim = produceBufferedImageDarkenedByPercentage(water, 50);
-			// mountainDim = produceBufferedImageDarkenedByPercentage(mountain, 50);
+			url = classLoader.getResource("resources/png/dim.png");
+			dim = ImageIO.read(new File(url.getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void visit(GrassTile grassTile) {
-		BufferedImage img;
-		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
-				&& avatary + 5 > y)
-			img = grass;
-		else
-			img = grass;
-		drawTileAlgorithm(img, grassTile.getMapObjects());
+		drawTileAlgorithm(grass, grassTile.getMapObjects());
 	}
 
 	public void visit(MountainTerrain mountainTerrain) {
-		BufferedImage img;
-		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
-				&& avatary + 5 > y)
-			img = mountain;
-		else
-			img = mountain;
 		drawTileAlgorithm(mountain, mountainTerrain.getMapObjects());
 	}
 
 	public void visit(WaterTile waterTile) {
-		BufferedImage img;
-		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
-				&& avatary + 5 > y)
-			img = water;
-		else
-			img = water;
 		drawTileAlgorithm(water, waterTile.getMapObjects());
 	}
 
@@ -112,6 +89,11 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		scaleXandY(x, y);
 		g.drawImage(img, drawx, drawy, 100, 100, null);
 		drawMapObjects(mapObjects);
+		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
+				&& avatary + 5 > y) {
+		} else {
+			g.drawImage(dim, drawx, drawy, 100, 100, null);
+		}
 		drawDebug();
 	}
 
@@ -123,8 +105,7 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		}
 	}
 
-	
-	//TODO NOT WORKING
+	// TODO NOT WORKING
 	/**
 	 *
 	 * Takes in a BufferedImage and a percentage and produces a new
@@ -139,24 +120,26 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	 */
 	public BufferedImage produceBufferedImageDarkenedByPercentage(
 			BufferedImage bufferedImage, int percentage) {
-//		if (percentage < 0 || percentage > 100) {
-//			throw new IllegalArgumentException("Illegal percentage");
-//		}
-//		/**
-//		 * 100 corresponds to pitch black, 50 corresponds to 50% darkened, and 0
-//		 * corresponds to regular rendering. Do not go over 100 or under 0%
-//		 * brightness.
-//		 */
-//		int remainder = 100 - percentage;
-//		float remaining_light = (float) remainder/100;
-//		RescaleOp op = new RescaleOp(remaining_light, 0, null);
-//		// If the destination image (second parameter of op.filter) is null, a
-//		// [new] BufferedImage will be created.
-//		BufferedImage darkened_image = op.filter(bufferedImage, null);
-//		return darkened_image;
+		// if (percentage < 0 || percentage > 100) {
+		// throw new IllegalArgumentException("Illegal percentage");
+		// }
+		// /**
+		// * 100 corresponds to pitch black, 50 corresponds to 50% darkened, and
+		// 0
+		// * corresponds to regular rendering. Do not go over 100 or under 0%
+		// * brightness.
+		// */
+		// int remainder = 100 - percentage;
+		// float remaining_light = (float) remainder/100;
+		// RescaleOp op = new RescaleOp(remaining_light, 0, null);
+		// // If the destination image (second parameter of op.filter) is null,
+		// a
+		// // [new] BufferedImage will be created.
+		// BufferedImage darkened_image = op.filter(bufferedImage, null);
+		// return darkened_image;
 		RescaleOp op = new RescaleOp(.5f, 0, null);
-	    bufferedImage = op.filter(bufferedImage, null);
-	    return bufferedImage;
+		bufferedImage = op.filter(bufferedImage, null);
+		return bufferedImage;
 	}
 
 	private void drawDebug() {

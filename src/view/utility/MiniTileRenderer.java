@@ -56,7 +56,6 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		g.setColor(c);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawMapObjects(mapObjects);
-
 		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
 				&& avatary + 5 > y) {
 
