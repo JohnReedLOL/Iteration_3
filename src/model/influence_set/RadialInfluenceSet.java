@@ -42,7 +42,7 @@ public class RadialInfluenceSet extends InfluenceSet {
 
         Queue<QueueInfluenceTile> queue = new ArrayDeque<QueueInfluenceTile>();
 
-        queue.add(iTile);
+        queue.offer(iTile);
 
         while( !queue.isEmpty() ) {
             iTile = queue.poll();                                                                   //GRAB QUEUE ITEM

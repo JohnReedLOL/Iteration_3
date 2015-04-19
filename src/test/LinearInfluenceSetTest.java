@@ -20,7 +20,7 @@ public class LinearInfluenceSetTest {
         GameWorld world = GameWorld.getInstance();
 //        GameMap game = new GameMap();
         DiscreteMap map = GameWorld.getCurrentMap();
-        AngularInfluenceSet lis = new AngularInfluenceSet( new SouthDirection( new HexCoordinate(1,1)), 4, map.getLocationByCoordinate(new HexCoordinate(1, 1)));
+        AngularInfluenceSet lis = new AngularInfluenceSet( new SouthEastDirection( new HexCoordinate(0,2)), 4, map.getLocationByCoordinate(new HexCoordinate(0, 2)));
         lis.setUseSourceLocation( true );
         //lis.setUseSourceLocation( true );
 
