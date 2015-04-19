@@ -27,7 +27,7 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 	private ObjectRenderer mapObjectRenderer;
 
 	// FOR DEBUG
-	private final boolean DEBUG = true;
+	private final boolean DEBUG = false;
 
 	public GameTileRenderer(Graphics g, int startx, int starty) {
 		super(g);
