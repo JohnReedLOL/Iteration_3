@@ -7,6 +7,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import javax.swing.JPanel;
 import mvc_bridgeway.screen.Screen;
 import view.viewport.Viewport;
@@ -15,7 +17,7 @@ import view.viewport.Viewport;
  *
  * @author comcc_000: trivial change to test commit!
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements WindowFocusListener {
 
     /*Properties*/
     
@@ -26,6 +28,8 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         setExtendedState(Frame.MAXIMIZED_BOTH); //fullscreen
+        //add the listeners that shouldn't even exist because WHY ORACLE!!!???
+        addWindowFocusListener(this);
     }
     
     /**
@@ -55,6 +59,16 @@ public class MainWindow extends javax.swing.JFrame {
         int width = this.getWidth();
         int height = this.getHeight();
         panel.setBounds(0, 0, width, height); //x,y top right coordinate, then width, height
+    }
+    
+    @Override
+    public void windowGainedFocus(WindowEvent e) {
+        screen.onFocusGained();
+    }
+
+    @Override
+    public void windowLostFocus(WindowEvent e) {
+        screen.onFocusLost();
     }
 
     /**
@@ -109,4 +123,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    
 }

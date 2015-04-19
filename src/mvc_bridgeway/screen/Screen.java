@@ -55,6 +55,14 @@ public abstract class Screen {
         return view_thread_name_;
     }
     
+    public final void onFocusLost() {
+        model.setMode(model.PAUSE);
+    }
+    
+    public final void onFocusGained() {
+        model.setMode(model.RUN);
+    }
+    
     protected VirtualController createVirtualController(Model model, ArrayList<ControlMap> virtualControlMaps) {
         return new SwingController(model, virtualControlMaps);
     }

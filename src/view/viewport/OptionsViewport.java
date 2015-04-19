@@ -5,11 +5,12 @@
  */
 package view.viewport;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import model.ModelViewBundle;
-import mvc_bridgeway.command.model_command.ExitCommand;
-import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
+import utility.ImageUtil;
 
 /**
  *
@@ -22,11 +23,19 @@ public class OptionsViewport extends Viewport {
      */
     public OptionsViewport() {
         initComponents();
+        generateView();
     }
     
     @Override
     protected void generateView() {
-        //TODO
+        this.validate();
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image background = ImageUtil.getImage("./src/resources/png/campus0a.gif");
+        g.drawImage(background, 0, 0, null);
     }
     
     @Override
