@@ -3,6 +3,7 @@ package mvc_bridgeway.command.model_command;
 // @author comcc_000
 
 import model.entity.Entity;
+import model.map.GameWorld;
 import model.map.direction.Direction;
 
 
@@ -10,13 +11,11 @@ public class MoveCommand extends ModelCommand {
 
     /*Properties*/
 
-    private Entity entity;
     private Direction direction;
     
     /*Constructors*/
 
-    public MoveCommand(Entity entity, Direction direction) {
-        this.entity = entity;
+    public MoveCommand(Direction direction) {
         this.direction = direction;
     }
     
@@ -25,7 +24,7 @@ public class MoveCommand extends ModelCommand {
     @Override
     public void execute() {
         // TODO (maybe?): Have a check to make sure the move was successfull, if not, display a message to the user using a Logging system.
-        getModel().move(entity, direction);
+        getModel().move(GameWorld.getAvatar(), direction);
     }
 
     /*Get-Sets*/
