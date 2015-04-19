@@ -17,15 +17,33 @@ public class ConversationNodeWithChildren {
         /**
          * These are null when the conversation node has no reply nodes underneath (or above) it.
          */
-        private ConversationNodeWithChildren parent_;
+        private ConversationNodeWithChildren parentNode_;
         private ConversationNodeWithChildren childNode1_;
         private ConversationNodeWithChildren childNode2_;
         private ConversationNodeWithChildren childNode3_;
         private ConversationNodeWithChildren childNode4_;
 
+        /**
+         * All children are initially null. Parent is null too.
+         * @param conversation_node - the Node that this conversation tree element wraps
+         */
         ConversationNodeWithChildren(ConversationNode conversation_node) {
             conversationNode_ = conversation_node;
-            parent_ = null;
+            parentNode_ = null;
+            childNode1_ = null;
+            childNode2_ = null;
+            childNode3_ = null;
+            childNode4_ = null;
+        }
+        
+        /**
+         * All children are initially null. Parent is set in constructor.
+         * @param conversation_node - the Node that this conversation tree element wraps
+         * @param parent - the parent of this node in the tree. The node that leads to this node in a conversation.
+         */
+        ConversationNodeWithChildren(ConversationNode conversation_node, ConversationNodeWithChildren parent) {
+            conversationNode_ = conversation_node;
+            parentNode_ = parent;
             childNode1_ = null;
             childNode2_ = null;
             childNode3_ = null;
@@ -67,4 +85,8 @@ public class ConversationNodeWithChildren {
         public void setChildNode4_(ConversationNodeWithChildren childNode4_) {
             this.childNode4_ = childNode4_;
         }
+
+    public ConversationNodeWithChildren getParentNode_() {
+        return parentNode_;
+    }
     }
