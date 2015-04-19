@@ -1,11 +1,12 @@
 package model.item.interactive;
 
+import java.util.ArrayList;
+
 import model.effect.Effect;
 import model.entity.Entity;
 import model.item.Item;
 import model.prerequisite.Prerequisite;
-
-import java.util.ArrayList;
+import view.utility.ObjectRenderer;
 
 public class InteractiveItem extends Item {
     /**
@@ -123,4 +124,9 @@ public class InteractiveItem extends Item {
 
         return true;
     }
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

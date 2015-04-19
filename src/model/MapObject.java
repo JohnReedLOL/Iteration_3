@@ -1,5 +1,8 @@
 package model;
 
+import view.utility.GameObjectRenderer;
+import view.utility.MiniGameObjectRenderer;
+import view.utility.ObjectRenderer;
 import model.map.location.Location;
 
 /**
@@ -42,4 +45,6 @@ public abstract class MapObject implements Derivable {
     // Eric - Leaving for Troy todo.
     public abstract boolean createLocationAssociation(Location location);
     public abstract boolean removeLocationAssociation(Location location);
+
+	public abstract void accept(ObjectRenderer mapObjectRenderer);
 }

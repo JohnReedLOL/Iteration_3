@@ -11,21 +11,17 @@ import java.util.Collection;
 
 import javax.imageio.ImageIO;
 
-import application.Application;
 import model.MapObject;
 import model.map.location.GrassTile;
 import model.map.location.MountainTerrain;
 import model.map.location.WaterTile;
 
-public class GameTileRenderer extends TileRenderer {
+public class GameTileRenderer extends GameScreenRenderer implements TileRenderer {
 
 	// Tile images
 	private BufferedImage grass;
 	private BufferedImage mountain;
 	private BufferedImage water;
-
-	// SIZE
-	private final int HEXAGON_SIZE = 100;
 
 	// MapObjectsRenderer
 	private GameObjectRenderer mapObjectRenderer;
@@ -33,9 +29,11 @@ public class GameTileRenderer extends TileRenderer {
 	// FOR DEBUG
 	private final boolean DEBUG = true;
 
-	public GameTileRenderer(Graphics g) {
+	public GameTileRenderer(Graphics g, int startx, int starty) {
 		super(g);
-		mapObjectRenderer = new GameObjectRenderer(g);
+		this.startx = startx;
+		this.starty = starty;
+		mapObjectRenderer = new GameObjectRenderer(g,startx, starty);
 
 		try {
 			System.out.println();
@@ -95,8 +93,10 @@ public class GameTileRenderer extends TileRenderer {
 	}
 
 	private void drawMapObjects(Collection<MapObject> mapObjects) {
+		mapObjectRenderer.setX(x);
+		mapObjectRenderer.setY(y);
 		for (MapObject mapObject : mapObjects) {
-			//mapObject.accept(mapObjectRenderer);
+			mapObject.accept(mapObjectRenderer);
 		}
 	}
 

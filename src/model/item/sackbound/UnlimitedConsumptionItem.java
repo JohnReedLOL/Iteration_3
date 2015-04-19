@@ -1,6 +1,7 @@
 package model.item.sackbound;
 
 import model.entity.Entity;
+import view.utility.ObjectRenderer;
 
 public class UnlimitedConsumptionItem extends ConsumptionItem {
     public UnlimitedConsumptionItem() {
@@ -26,4 +27,9 @@ public class UnlimitedConsumptionItem extends ConsumptionItem {
             applyEffects(owner);
         }
     }
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

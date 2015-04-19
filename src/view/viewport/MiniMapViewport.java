@@ -63,8 +63,8 @@ public class MiniMapViewport extends Viewport {
 	public void paint(Graphics g) {
 		super.paint(g);
 		// Tile visitor
-        tileRendererVisitor = new MiniTileRenderer(g);
-		displayMap(tileRendererVisitor, gameMap.getTiles(), 0, 0);
+        tileRendererVisitor = new MiniTileRenderer(g,0,0);
+		displayMap(tileRendererVisitor, gameMap.getTiles());
 	}
     
     /**
@@ -74,7 +74,7 @@ public class MiniMapViewport extends Viewport {
 	 * @param starty - where to begin rendering on y axis
 	 * @param startx - where to begin rendering on x axis
 	 */
-	private void displayMap(TileRenderer tileRendererVisitor, Tile[][] map, int startx, int starty) {
+	private void displayMap(TileRenderer tileRendererVisitor, Tile[][] map) {
 		/**
 		 * Tile[x][y]
 		 * for a Game map the first index is the x and the second index is y
@@ -89,8 +89,6 @@ public class MiniMapViewport extends Viewport {
 		 *  BECAUSE OF THIS, we need to translate the Tile x and y
 		 *  to the Graphics x and y
 		 */
-		tileRendererVisitor.setStartX(startx);
-		tileRendererVisitor.setStartY(starty);
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[x].length; y++) {
 				tileRendererVisitor.setX(x);

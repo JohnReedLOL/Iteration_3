@@ -1,6 +1,7 @@
 package model.item.sackbound;
 
 import model.entity.Entity;
+import view.utility.ObjectRenderer;
 
 public class LimitedConsumptionItem extends ConsumptionItem {
     /**
@@ -43,4 +44,9 @@ public class LimitedConsumptionItem extends ConsumptionItem {
             owner.getInventoryOwnership().removeItem(this);
         }
     }
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

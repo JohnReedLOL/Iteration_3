@@ -50,8 +50,8 @@ public class GameViewport extends Viewport {
 	public void paint(Graphics g) {
 		super.paint(g);
 		// Tile visitor
-        tileRendererVisitor = new GameTileRenderer(g);
-		displayMap(tileRendererVisitor, gameMap.getTiles(), 30, 30);
+        tileRendererVisitor = new GameTileRenderer(g, 30, 30);
+		displayMap(tileRendererVisitor, gameMap.getTiles());
 	}
 
 	/**
@@ -61,9 +61,7 @@ public class GameViewport extends Viewport {
 	 * @param starty - where to begin rendering on y axis
 	 * @param startx - where to begin rendering on x axis
 	 */
-	private void displayMap(TileRenderer tileRendererVisitor, Tile[][] map, int startx, int starty) {
-		tileRendererVisitor.setStartX(startx);
-		tileRendererVisitor.setStartY(starty);
+	private void displayMap(TileRenderer tileRendererVisitor, Tile[][] map) {
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[x].length; y++) {
 				tileRendererVisitor.setX(x);

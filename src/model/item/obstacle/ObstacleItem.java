@@ -1,11 +1,11 @@
 package model.item.obstacle;
 
+import java.util.ArrayList;
+
 import model.effect.Effect;
 import model.entity.Entity;
 import model.item.Item;
-import mvc_bridgeway.screen.PauseScreen;
-
-import java.util.ArrayList;
+import view.utility.ObjectRenderer;
 
 public class ObstacleItem extends Item {
     /**
@@ -76,4 +76,9 @@ public class ObstacleItem extends Item {
             effect.performEffect(target);
         }
     }
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

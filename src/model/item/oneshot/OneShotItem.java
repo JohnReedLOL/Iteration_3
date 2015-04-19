@@ -6,6 +6,10 @@ import model.item.Item;
 
 import java.util.ArrayList;
 
+import view.utility.GameObjectRenderer;
+import view.utility.MiniGameObjectRenderer;
+import view.utility.ObjectRenderer;
+
 public class OneShotItem extends Item {
     /**
      *  PROPERTIES
@@ -75,4 +79,9 @@ public class OneShotItem extends Item {
             effect.performEffect(target);
         }
     }
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

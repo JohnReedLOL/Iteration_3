@@ -1,11 +1,12 @@
 package model.item.sackbound.equip;
 
+import java.util.ArrayList;
+
 import model.effect.Effect;
 import model.entity.Entity;
 import model.item.sackbound.SackboundItem;
 import model.prerequisite.Prerequisite;
-
-import java.util.ArrayList;
+import view.utility.ObjectRenderer;
 
 public class EquipItem extends SackboundItem {
     private ArrayList<Effect> equipEffects;
@@ -212,4 +213,9 @@ public class EquipItem extends SackboundItem {
             this.success = success;
         }
     } // End EquipmentPair inner-class.
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

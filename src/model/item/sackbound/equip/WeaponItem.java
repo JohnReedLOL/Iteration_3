@@ -1,9 +1,10 @@
 package model.item.sackbound.equip;
 
+import java.util.ArrayList;
+
 import model.effect.Effect;
 import model.entity.Entity;
-
-import java.util.ArrayList;
+import view.utility.ObjectRenderer;
 
 public class WeaponItem extends EquipItem {
     /**
@@ -62,4 +63,9 @@ public class WeaponItem extends EquipItem {
     public void attack(Entity user) {
         // TODO: Once Entity has all of its functionality.
     }
+    
+    @Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

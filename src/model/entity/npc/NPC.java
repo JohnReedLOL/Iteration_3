@@ -6,6 +6,7 @@ import model.entity.behavior.movement.MovementBehavior;
 import model.entity.occupation.Occupation;
 import model.inventory.Sack;
 import model.map.location.Location;
+import view.utility.ObjectRenderer;
 
 public class NPC extends Entity {
     /**
@@ -48,4 +49,9 @@ public class NPC extends Entity {
         // TODO
         return false;
     }
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

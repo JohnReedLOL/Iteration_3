@@ -2,61 +2,33 @@ package view.utility;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Collection;
 
+import model.MapObject;
 import model.map.location.GrassTile;
 import model.map.location.MountainTerrain;
 import model.map.location.WaterTile;
 
-public class MiniTileRenderer extends TileRenderer {
+public class MiniTileRenderer extends MiniRenderer implements TileRenderer{
+
+	private ObjectRenderer mapObjectRenderer;
 
 	// FOR DEBUG
 	private final boolean DEBUG = false;
 	
-	private final int SIZE_OF_MAP_PIXEL = 10;
-	
-	
-	public MiniTileRenderer(Graphics g) {
+	public MiniTileRenderer(Graphics g, int startx, int starty) {
 		super(g);
+		this.startx = startx;
+		this.starty = starty;
+		mapObjectRenderer = new MiniGameObjectRenderer(g,startx, starty);
 	}
 
-	@Override
-	protected void scaleXandY(int x, int y) {
-		/**
-		 * Tile[x][y]
-		 * for a Game map the first index is the x and the second index is y
-		 *   ____      ____ 
-		 *  / 0,0\____/ 0,2\   x,y
-		 *  \____/ 0,1\____/
-		 *  / 1,0\____/ 1,2\
-		 *  \____/ 1,1\____/
-		 *  / 2,0\____/ 2,2\
-		 *  \____/    \____/
-		 *  
-		 *  BECAUSE OF THIS, we need to translate the Tile indexes x and y
-		 *  to the scaled drawx and drawy for the Graphics
-		 *  
-		 *  For minimap, we will display as squares like so
-		 *   ____      ____ 
-		 *  | 0,0|____| 0,2|   x,y
-		 *  |____| 0,1|____|
-		 *  | 1,0|____| 1,2|
-		 *  |____| 1,1|____|
-		 *  | 2,0|____| 2,2|
-		 *  |____|    |____|
-		 */
-		drawx = startx + y * SIZE_OF_MAP_PIXEL;
-		if (y % 2 == 0) {
-			drawy = starty + x * SIZE_OF_MAP_PIXEL;
-		} else {
-			drawy = starty + x * SIZE_OF_MAP_PIXEL + SIZE_OF_MAP_PIXEL/2;
-		}
-	}
-	
 	@Override
 	public void visit(WaterTile waterTile) {
 		scaleXandY(x, y);
 		g.setColor(Color.BLUE);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
+		drawMapObjects(waterTile.getMapObjects());
 		drawDebug();
 	}
 
@@ -65,6 +37,7 @@ public class MiniTileRenderer extends TileRenderer {
 		scaleXandY(x, y);
 		g.setColor(Color.GREEN);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
+		drawMapObjects(grassTile.getMapObjects());
 		drawDebug();
 		
 	}
@@ -74,8 +47,17 @@ public class MiniTileRenderer extends TileRenderer {
 		scaleXandY(x, y);
 		g.setColor(Color.GRAY);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
+		drawMapObjects(mountainTile.getMapObjects());
 		drawDebug();
 		
+	}
+	
+	private void drawMapObjects(Collection<MapObject> mapObjects) {
+		mapObjectRenderer.setX(x);
+		mapObjectRenderer.setY(y);
+		for (MapObject mapObject : mapObjects) {
+			mapObject.accept(mapObjectRenderer);
+		}
 	}
 
 	private void drawDebug() {
