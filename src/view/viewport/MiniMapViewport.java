@@ -8,7 +8,13 @@ package view.viewport;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+
+import view.utility.GameTileRenderer;
+import view.utility.MiniTileRenderer;
+import view.utility.TileRenderer;
 import model.ModelViewBundle;
+import model.map.GameMap;
+import model.map.location.Tile;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
@@ -21,21 +27,29 @@ import mvc_bridgeway.control_map.ControlMap;
  */
 public class MiniMapViewport extends Viewport {
 
+	private GameMap gameMap;
+	
+	private TileRenderer tileRendererVisitor;
+	
     /**
      * Creates new form MainScreen
      */
     public MiniMapViewport() {
         initComponents();
+        
+        //TODO fake map
+        gameMap = new GameMap();
     }
-    
+
     @Override
     protected void generateView() {
         //TODO
     }
-    
+
+
     @Override
     public void update(ModelViewBundle mvb) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        repaint();
     }
 
     @Override
@@ -48,12 +62,43 @@ public class MiniMapViewport extends Viewport {
     @Override
 	public void paint(Graphics g) {
 		super.paint(g);
-                g.drawLine(5, 5, 5, 5);
-                g.setColor(Color.red);
-                g.drawLine(10, 10, 10, 10);
-                g.setColor(Color.blue);
-                g.drawLine(20, 20, 20, 20);
-		//displayMap(g, map, 0, 0);
+		// Tile visitor
+        tileRendererVisitor = new MiniTileRenderer(g);
+		displayMap(tileRendererVisitor, gameMap.getTiles(), 0, 0);
+	}
+    
+    /**
+	 * 
+	 * @param tileRendererVisitor - this components Graphics object
+	 * @param map - Tile[][] of the GameMap
+	 * @param starty - where to begin rendering on y axis
+	 * @param startx - where to begin rendering on x axis
+	 */
+	private void displayMap(TileRenderer tileRendererVisitor, Tile[][] map, int startx, int starty) {
+		/**
+		 * Tile[x][y]
+		 * for a Game map the first index is the x and the second index is y
+		 *   ____      ____ 
+		 *  / 0,0\____/ 0,2\   x,y
+		 *  \____/ 0,1\____/
+		 *  / 1,0\____/ 1,2\
+		 *  \____/ 1,1\____/
+		 *  / 2,0\____/ 2,2\
+		 *  \____/    \____/
+		 *  
+		 *  BECAUSE OF THIS, we need to translate the Tile x and y
+		 *  to the Graphics x and y
+		 */
+		tileRendererVisitor.setStartX(startx);
+		tileRendererVisitor.setStartY(starty);
+		for (int x = 0; x < map.length; x++) {
+			for (int y = 0; y < map[x].length; y++) {
+				tileRendererVisitor.setX(x);
+				tileRendererVisitor.setY(y);
+				map[x][y].accept(tileRendererVisitor);
+				
+			}
+		}
 	}
 
     /**
@@ -65,40 +110,20 @@ public class MiniMapViewport extends Viewport {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-
-        jTextField1.setText("Minimap");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(689, Short.MAX_VALUE))
+            .addGap(0, 759, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(501, Short.MAX_VALUE))
+            .addGap(0, 555, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-  
+
 }
