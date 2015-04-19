@@ -28,4 +28,16 @@ public class RememberedMap {
 			mapObjects.set(index,sight.getMapObjects().get(i));
 		}
 	}
+	
+	public List<Tile> getTiles(){
+		return tiles;
+	}
+	
+	public List<List<MapObject>> getMapObjects(){
+		return mapObjects;
+	}
+	
+	public List<Coordinate2D> getCoordinates(){
+		return coordinates;
+	}
 }

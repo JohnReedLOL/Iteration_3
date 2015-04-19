@@ -37,7 +37,7 @@ public class GameViewport extends Viewport {
         
         //TODO fake map
         gameMap = new GameMap();
-        brightness = gameMap.getBrightness();
+        brightness = gameMap.getAvatar().getBrightnessTable();
 	}
 
 	@Override

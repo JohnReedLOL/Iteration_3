@@ -47,6 +47,7 @@ public class VisibleMap {
 	
 	public void update(){
 		owner.remember(this);
+		vision.setSourceLocation(GameWorld.getCurrentMap().getLocationByMapObject(owner));
 		Collection<InfluenceTile> iTilesSeen = vision.getInfluenceSet();
 		ArrayList<Tile> tilesSeen = new ArrayList<Tile>();
 		for(InfluenceTile i : iTilesSeen){
