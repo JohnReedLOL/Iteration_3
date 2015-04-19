@@ -1,5 +1,6 @@
 package model.entity.memory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.MapObject;
@@ -15,6 +16,9 @@ public class RememberedMap {
 	
 	public RememberedMap(Entity o){
 		owner = o;
+		tiles = new ArrayList<Tile>();
+		mapObjects = new ArrayList<List<MapObject>>();
+		coordinates = new ArrayList<Coordinate2D>();
 	}
 	
 	public void remember(VisibleMap sight){

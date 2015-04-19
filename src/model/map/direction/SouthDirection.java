@@ -7,6 +7,10 @@ import model.map.coordinate.HexCoordinate;
  */
 public class SouthDirection extends HexMapDirection {
 
+    public SouthDirection() {
+        super(new HexCoordinate(0, 0));
+    }
+
     public SouthDirection( HexCoordinate coordinate ) {
         super( coordinate );
     }

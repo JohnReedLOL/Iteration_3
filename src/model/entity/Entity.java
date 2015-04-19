@@ -5,30 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.MapObject;
-import model.armory.Armory;
 import model.armory.ArmoryOwnership;
 import model.effect.Effect;
+import model.entity.ability.Ability;
+import model.entity.ability.AbilityLibrary;
+import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.behavior.movement.MovementBehavior;
 import model.entity.detection.Detection;
 import model.entity.memory.RememberedMap;
 import model.entity.memory.VisibleMap;
 import model.entity.stats.StatsOwnership;
 import model.entity.stats.StatsVisitor;
+import model.influence_set.RadialInfluenceSet;
 import model.inventory.InventoryOwnership;
-import model.inventory.Sack;
+import model.item.sackbound.SackboundItem;
 import model.map.GameMap;
 import model.map.GameWorld;
 import model.map.coordinate.Coordinate2D;
-import model.map.location.Location;
-import view.utility.ObjectRenderer;
+import model.map.coordinate.HexCoordinate;
+import model.map.direction.Direction;
+import model.map.direction.NorthEastDirection;
+import model.map.direction.SouthEastDirection;
+import model.map.location.GrassTile;
+import utility.CoordUtil;
 
 public abstract class Entity extends MapObject {
-	// TODO: Most of it.
-
-	/**
-	 * PROPERTIES
-	 */
-
 	private ArmoryOwnership armoryOwnership;
 	private InventoryOwnership inventoryOwnership;
 	private StatsOwnership statsOwnership;
@@ -36,31 +37,27 @@ public abstract class Entity extends MapObject {
 	private MovementBehavior movementBehavior;
 	private RememberedMap memory;
 	private VisibleMap sight;
-
-	/**
-	 * CONSTRUCTORS
-	 */
+	private AbilityLibrary abilities;
+	private Direction direction;
+	private int booty;
         
-	public Entity(Armory armory, Sack sack, MovementBehavior movementBehavior, StatsOwnership stats) {
-		this("Entity", "Entity Desc", armory, sack, movementBehavior, stats);
+	/* -------------------- CONSTRUCTORS -------------------- */
+	public Entity(HexCoordinate location){
+		GameWorld.getCurrentMap().insert(this, GameWorld.getCurrentMap().getLocationByCoordinate(location));
+		armoryOwnership = new ArmoryOwnership(this);
+		inventoryOwnership = new InventoryOwnership(this);
+		statsOwnership = new StatsOwnership(this);
+		detectionMechanism = new Detection();
+		movementBehavior = ClassicMovementBehavior.getInstance();
+		memory = new RememberedMap(this);
+		sight = new VisibleMap(new RadialInfluenceSet(5,GameWorld.getCurrentMap().getLocationByMapObject(this)),this);
+		abilities = new AbilityLibrary(this);
+		direction = new NorthEastDirection((HexCoordinate) (GameWorld.getCurrentMap().getCoordinateByLocation(GameWorld.getCurrentMap().getLocationByMapObject(this))));
+
+		this.booty = 0;
 	}
 
-	public Entity(String name, String description, Armory armory, Sack sack, MovementBehavior movementBehavior, StatsOwnership stats) {
-		super(name, description);
-
-		this.armoryOwnership = new ArmoryOwnership(this, armory);
-		this.inventoryOwnership = new InventoryOwnership(this, sack, 10);
-		this.statsOwnership = new StatsOwnership(this);
-		this.detectionMechanism = new Detection();
-		this.movementBehavior = movementBehavior;
-		this.memory = new RememberedMap(this);
-		this.statsOwnership = stats;
-		this.statsOwnership.setOwner(this);
-	}
-
-	/**
-	 * GETTERS
-	 */
+	/* -------------------- GETTERS -------------------- */
 
 	public ArmoryOwnership getArmoryOwnership() {
 		return this.armoryOwnership;
@@ -81,10 +78,20 @@ public abstract class Entity extends MapObject {
 	public StatsOwnership getStatsOwnership() {
 		return this.statsOwnership;
 	}
+	
+	public List<Ability> getLearnedAbilities(){
+		return abilities.getLearnedAbilities();
+	}
+	
+	public List<Ability> getUnlearnedAbilities(){
+		return abilities.getUnlearnedAbilities();
+	}
 
-	/**
-	 * MUTATORS
-	 */
+	public int getBooty() {
+		return this.booty;
+	}
+
+	/* -------------------- SETTERS -------------------- */
 
 	public void setDetectionMechanism(Detection detection) {
 		this.detectionMechanism = detection;
@@ -94,7 +101,7 @@ public abstract class Entity extends MapObject {
 		this.movementBehavior = movement;
 	}
 
-	public void setStatsownership(StatsOwnership ownership) {
+	public void setStatsOwnership(StatsOwnership ownership) {
 		this.statsOwnership = ownership;
 	}
 
@@ -121,20 +128,46 @@ public abstract class Entity extends MapObject {
 		setArmoryOwnership(entity.getArmoryOwnership());
 	}
 
-	/**
-	 * IMPLEMENTATIONS
-	 */
-
-	@Override
+	public void setBooty(int booty) {
+		this.booty = booty;
+	}
+	/* -------------------- COMMANDS -------------------- */
+	public void move(Direction direction){
+		this.direction = direction;
+		movementBehavior.move(this, direction);
+	}
+	
+	public void drop(SackboundItem item){
+		GameWorld.getCurrentMap().insert(inventoryOwnership.removeItem(item),GameWorld.getCurrentMap().getLocationByMapObject(this));
+	}
+	
+	public void useAbility(Ability ability){
+		abilities.useAbility(ability);
+	}
+	
+	/* -------------------- MID LEVEL OPERATIONS -------------------- */
+	public void insert(SackboundItem item){
+		inventoryOwnership.addItem(item);
+	}
+	
+	public void remove(SackboundItem item){
+		inventoryOwnership.removeItem(item);
+	}
+	
+	public boolean canSee(Entity spectator){
+		return detectionMechanism.canSee(spectator);
+	}
+	
+	
+	/* -------------------- IMPLEMENTATIONS -------------------- */
 	public Entity getDerivedClass() {
 		return this;
 	}
 
 	public void accept(StatsVisitor visitor){
-		// TODO
+		statsOwnership.accept(visitor);
 	}
 
-	@Override
 	public void accept(Effect effect) {
 		effect.performEffect(this);
 	}
@@ -143,6 +176,7 @@ public abstract class Entity extends MapObject {
 		memory.remember(m);
 	}
 	
+	/* -------------------- OVERENCUMBERED GARBAGE -------------------- */
 	public int[][] getBrightnessTable(){
 		int xSize = ((GameMap) (GameWorld.getCurrentMap())) .getTiles().length;
 		int ySize = ((GameMap) (GameWorld.getCurrentMap())) .getTiles()[0].length;

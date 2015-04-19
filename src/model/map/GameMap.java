@@ -29,7 +29,10 @@ public class GameMap extends DiscreteMap {
 
     public GameMap() {
         super();
+    }
 
+    @Override
+    public void populate() {
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
@@ -51,7 +54,9 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void insert( MapObject m, Location l ) {
-        l.createMapObjectAssociation(m);
+        if (l != null) {
+            l.createMapObjectAssociation(m);
+        }
     }
 
     @Override
@@ -113,7 +118,7 @@ public class GameMap extends DiscreteMap {
         return brightness;
     }
 
-    private MapBuilder getMapBuilder() {
+    protected MapBuilder getMapBuilder() {
         return new FirstLevelMapBuilder();
     }
 
@@ -144,11 +149,13 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public HexCoordinate getCoordinateByLocation(Location l) {
-        Tile t = (Tile) l;
-        for ( int i = 0; i < tiles.length; ++i ) {
-            for (int j = 0; j < tiles[0].length; ++j ) {
-                if ( tiles[i][j].equals( t ) ) {
-                    return new HexCoordinate( i, j );
+        if (l != null) {
+            Tile t = (Tile) l;
+            for (int i = 0; i < tiles.length; ++i) {
+                for (int j = 0; j < tiles[0].length; ++j) {
+                    if (tiles[i][j].equals(t)) {
+                        return new HexCoordinate(i, j);
+                    }
                 }
             }
         }
@@ -183,6 +190,14 @@ public class GameMap extends DiscreteMap {
         System.out.println( t.getX() + ", " + t.getY() );
     }
 
+    public boolean inBounds( HexCoordinate coord ) {
+        if ( coord.getX() >= 0 && coord.getX() < getHeight()  &&
+           ( coord.getY() >= 0 && coord.getY() < getWidth() ) ) {
+            return true;
+        }
+        return false;
+
+    }
 
 
     // CAN WE DELETE THIS ALREADY?

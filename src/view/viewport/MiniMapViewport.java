@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import model.map.GameWorld;
 import view.utility.GameTileRenderer;
 import view.utility.MiniTileRenderer;
 import view.utility.TileRenderer;
@@ -39,8 +40,8 @@ public class MiniMapViewport extends Viewport {
         initComponents();
         
         //TODO fake map
-        gameMap = new GameMap();
-        brightness = gameMap.getBrightness();
+        gameMap = (GameMap) GameWorld.getCurrentMap();
+        brightness = ((GameMap) GameWorld.getCurrentMap()).getAvatar().getBrightnessTable();
     }
 
     @Override
@@ -66,7 +67,7 @@ public class MiniMapViewport extends Viewport {
 		super.paint(g);
 		// Tile visitor
         tileRendererVisitor = new MiniTileRenderer(g);
-		displayMap(tileRendererVisitor, gameMap.getTiles());
+		displayMap(tileRendererVisitor, ((GameMap) GameWorld.getCurrentMap()).getTiles());
 	}
     
     /**
