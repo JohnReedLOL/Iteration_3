@@ -63,7 +63,7 @@ public class MiniMapViewport extends Viewport {
 	public void paint(Graphics g) {
 		super.paint(g);
 		// Tile visitor
-        tileRendererVisitor = new MiniTileRenderer(g,0,0);
+        tileRendererVisitor = new MiniTileRenderer(g);
 		displayMap(tileRendererVisitor, gameMap.getTiles());
 	}
     

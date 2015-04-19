@@ -9,6 +9,7 @@ import model.inventory.Sack;
 import model.map.DiscreteMap;
 import model.map.GameMap;
 import model.map.coordinate.HexCoordinate;
+import model.map.location.Location;
 
 /**
  * Created by Troy on 4/18/2015.
@@ -16,17 +17,11 @@ import model.map.coordinate.HexCoordinate;
 public class MapTest {
 
     public static void main(String[] args) {
-
         DiscreteMap map = new GameMap();
-        System.out.println(map.getName()+" " +map.getWidth());
 
-        HexCoordinate coord = new HexCoordinate(1,1);
+        HexCoordinate coord = new HexCoordinate(1, 1);
         Entity entity = new Avatar("AVATAR", "TROY", new Armory(), new Sack(), new SneakOccupation(), ClassicMovementBehavior.getInstance());
 
-        //map.insert( entity, map.getLocationByCoordinate(coord) );
-
-
-
-
+        map.insert( entity, map.getLocationByCoordinate(coord) );
     }
 }

@@ -1,5 +1,6 @@
 package model.map;
 
+import application.Application;
 import model.MapObject;
 import model.map.builder.FirstLevelMapBuilder;
 import model.map.builder.MapBuilder;
@@ -31,9 +32,11 @@ public class GameMap extends DiscreteMap {
             for (int j=0; j < tiles[0].length; ++j ) {
                 HexCoordinate c = new HexCoordinate(i, j);
                 tileMap.insert(c, tiles[i][j]);
+
+                boolean assertion = (tileMap.getValue(c) != null);
+                Application.check(assertion);
             }
         }
-        //System.out.println( tileMap.getValue(new HexCoordinate(5, 5)).getClass().toString());
 
         setHeight(tiles.length);
         setWidth(tiles[0].length);

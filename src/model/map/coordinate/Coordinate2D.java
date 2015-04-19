@@ -19,6 +19,10 @@ public abstract class Coordinate2D {
         this.y = y;
     }
 
+    public Coordinate2D(Coordinate2D coord) {
+        this(coord.getX(), coord.getY());
+    }
+
     public abstract Coordinate2D getCoordinateByDirection( Direction direction );
 
     public int getX() {
@@ -33,7 +37,7 @@ public abstract class Coordinate2D {
     public boolean equals( Object object ) {
         if ( object instanceof Coordinate2D ) {
             Coordinate2D c = (Coordinate2D) object;
-            if (x == c.getX() && y == c.getY()) {
+            if (getX() == c.getX() && getY() == c.getY()) {
                 return true;
             }
         }

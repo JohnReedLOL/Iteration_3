@@ -2,28 +2,6 @@ package model.entity.behavior.combat;
 
 import model.entity.behavior.Behavior;
 
-public class CombatBehavior extends Behavior {
-    /**
-     * PROPERTIES
-     */
+public abstract class CombatBehavior extends Behavior {
 
-    /**
-     * CONSTRUCTORS
-     */
-
-    protected CombatBehavior() {
-
-    }
-
-    /**
-     * GETTERS
-     */
-
-    /**
-     * MUTATORS
-     */
-
-    /**
-     * IMPLEMENTATIONS
-     */
 }

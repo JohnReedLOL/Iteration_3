@@ -19,6 +19,10 @@ public class HexCoordinate extends Coordinate2D {
         super( x, y );
     }
 
+    public HexCoordinate(HexCoordinate coord) {
+        super(coord);
+    }
+
     public Coordinate2D getCoordinateByDirection( Direction direction ) {
         return direction.deriveCoordinate( this );
     }
@@ -31,6 +35,7 @@ public class HexCoordinate extends Coordinate2D {
                 return true;
             }
         }
+
         return false;
     }
 }

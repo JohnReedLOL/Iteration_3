@@ -18,8 +18,8 @@ public class BidirectionalMap<K, V> {
     }
 
     public void insert( K key, V value ) {
-        keyToValueMap.put( key, value );
-        valueToKeyMap.put( value, key );
+        keyToValueMap.put(key, value);
+        valueToKeyMap.put(value, key);
     }
 
     public void clear() {
@@ -28,7 +28,7 @@ public class BidirectionalMap<K, V> {
     }
 
     public boolean containsKey( K key  ) {
-        return keyToValueMap.containsKey( key );
+        return keyToValueMap.containsKey(key);
     }
 
     public boolean containsValue( V value ) {
@@ -36,10 +36,22 @@ public class BidirectionalMap<K, V> {
     }
 
     public V getValue( K key ) {
+        for (K k : keys()) { // <== LOLOLOLOLOL
+            if (k.equals(key)) {
+                return keyToValueMap.get(k);
+            }
+        }
+
         return keyToValueMap.get(key);
     }
 
     public K getKey( V value ) {
+        for (V v : values()) { // <== LOLOLOLOLOL
+            if (v.equals(value)) {
+                return valueToKeyMap.get(v);
+            }
+        }
+
         return valueToKeyMap.get(value);
     }
 

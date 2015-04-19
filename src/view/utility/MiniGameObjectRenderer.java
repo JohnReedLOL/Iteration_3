@@ -20,6 +20,11 @@ public class MiniGameObjectRenderer extends MiniRenderer implements ObjectRender
 		this.startx = startx;
 		this.starty = starty;
 	}
+	public MiniGameObjectRenderer(Graphics g) {
+		super(g);
+		this.startx = 0;
+		this.starty = 0;
+	}
 	public void visit(Avatar avatar) {
 		scaleXandY(x, y);
 		g.setColor(Color.YELLOW);
