@@ -73,6 +73,8 @@ public class GameMap extends DiscreteMap {
         previous.removeMapObjectAssociation( m );
         newPos.removeMapObjectAssociation(m);
         newPos.createMapObjectAssociation(m);
+
+        GameWorld.updateVisibleMap();
     }
 
     // Leaving here just in case it might need to be used. //
@@ -180,6 +182,7 @@ public class GameMap extends DiscreteMap {
         HexCoordinate t = tileMap.getKey( mountainTile );
         System.out.println( t.getX() + ", " + t.getY() );
     }
+
 
 
     // CAN WE DELETE THIS ALREADY?
