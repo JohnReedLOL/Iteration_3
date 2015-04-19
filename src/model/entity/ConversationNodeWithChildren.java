@@ -15,8 +15,9 @@ public class ConversationNodeWithChildren {
         private final ConversationNode conversationNode_;
         
         /**
-         * These are null when the conversation node has no reply nodes underneath it.
+         * These are null when the conversation node has no reply nodes underneath (or above) it.
          */
+        private ConversationNodeWithChildren parent_;
         private ConversationNodeWithChildren childNode1_;
         private ConversationNodeWithChildren childNode2_;
         private ConversationNodeWithChildren childNode3_;
@@ -24,6 +25,7 @@ public class ConversationNodeWithChildren {
 
         ConversationNodeWithChildren(ConversationNode conversation_node) {
             conversationNode_ = conversation_node;
+            parent_ = null;
             childNode1_ = null;
             childNode2_ = null;
             childNode3_ = null;

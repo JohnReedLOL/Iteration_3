@@ -12,9 +12,11 @@ import application.Application;
  * composed of zero or more ConversationNodeWithChildren objects. Each node consists of one reply
  * and four reply options. Empty strings in a node denote no reply.
  *
- * Internally, this tree uses a reference to keep track of the current node. When nodes are added under one of the four reply options,
- * The reference is updated to point to that child node newly added to the bottom of the tree. 
- * New Conversation nodes cannot be added to the middle of the tree, they can only be added at the bottom. 
+ * Internally, this tree uses a reference to keep track of the current node. When nodes are added
+ * under one of the four reply options, The reference is updated to point to that child node newly
+ * added to the bottom of the tree. New Conversation nodes cannot be added to the middle of the
+ * tree, they can only be added at the bottom.
+ *
  * @author JohnReedLOL
  */
 public class ConversationTree {
@@ -73,6 +75,32 @@ public class ConversationTree {
         Application.check(currentNodeReference_ != null);
         Application.check(currentNodeReference_.getChildNode4_() == null);
         currentNodeReference_.setChildNode4_(currentNodeReference_ = new ConversationNodeWithChildren(to_add));
+    }
+
+    /**
+     * Gets the height of this conversation tree. If the tree is completely empty (no initial node
+     * specified in constructor), its height is zero. Else, if the tree has the initial node at the
+     * top of the tree but no other nodes, its height it one. Else, its height is the number of
+     * layers in the tree, with the first node corresponding to the first layer.
+     *
+     * @return
+     */
+    int getHeight() {
+        if (firstNode_ == null) {
+            Application.check(currentNodeReference_ == firstNode_);
+            return 0;
+        } else {
+            if (firstNode_.getChildNode1_() == null && firstNode_.getChildNode2_() == null
+                    && firstNode_.getChildNode3_() == null && firstNode_.getChildNode4_() == null) {
+                Application.check(currentNodeReference_ == firstNode_);
+                return 1;
+            }
+            else {
+                // This reference starts at the bottom of the tree and works its way up.
+                ConversationNodeWithChildren tree_height_iterator = currentNodeReference_;
+                throw new UnsupportedOperationException("This function is not yet availible");
+            }
+        }
     }
 
     public ConversationNodeWithChildren getFirstNode_() {
