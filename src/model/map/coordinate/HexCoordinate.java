@@ -10,39 +10,27 @@ public class HexCoordinate extends Coordinate2D {
     //POSITIVE X AXIS = DOWN
     //POSITIVE Y AXIS = NORTHEAST/WEST DEPENDING ON COORDINATE LOL
 
-    private int x, y;
 
     public HexCoordinate() {
-        this.x = 0;
-        this.y = 0;
+        super(0,0);
     }
 
     public HexCoordinate( int x, int y ) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setX( int x ) {
-        this.x = x;
-    }
-
-    public void setY( int y ) {
-        this.y = y;
+        super( x, y );
     }
 
     public Coordinate2D getCoordinateByDirection( Direction direction ) {
         return direction.deriveCoordinate( this );
     }
 
-    public boolean equals( HexCoordinate coordinate ) {
-        return ( (this.getX() == coordinate.getX() ) && ( this.getY() == coordinate.getY() ) );
+    @Override
+    public boolean equals( Object object ) {
+        if ( object instanceof HexCoordinate ) {
+            HexCoordinate c = ( HexCoordinate ) object;
+            if ( getX() == c.getX() && getY() == c.getY() ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

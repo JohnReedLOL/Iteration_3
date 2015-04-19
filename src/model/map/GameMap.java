@@ -33,6 +33,7 @@ public class GameMap extends DiscreteMap {
                 tileMap.insert(c, tiles[i][j]);
             }
         }
+        //System.out.println( tileMap.getValue(new HexCoordinate(5, 5)).getClass().toString());
 
         setHeight(tiles.length);
         setWidth(tiles[0].length);
