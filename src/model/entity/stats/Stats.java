@@ -623,6 +623,10 @@ public class Stats {
 	 * Getter for armor modifier to damage mitigation
 	 * @return current armor modifier
 	 */
+
+	public void setWeaponModifier(int wm) {
+		weaponModifier = wm;
+	}
 	public int getArmorModifier(){
 		return armorModifier;
 	}
@@ -639,6 +643,10 @@ public class Stats {
 	 * Getter for level
 	 * @return current level
 	 */
+
+	public void setArmorModifier(int am) {
+		armorModifier = am;
+	}
 	public int getLevel(){
 		return getExperience() / 10000;
 	}
