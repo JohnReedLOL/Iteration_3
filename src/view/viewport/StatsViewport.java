@@ -15,6 +15,7 @@ import javax.swing.text.StyledDocument;
 import model.ModelViewBundle;
 import model.armory.Armory;
 import model.entity.Entity;
+import model.entity.avatar.Avatar;
 import model.entity.stats.SmasherStats;
 import model.entity.stats.SmasherStatsVisitor;
 import model.entity.stats.SneakStats;
@@ -35,6 +36,8 @@ import mvc_bridgeway.control_map.ControlMap;
  * @author comcc_000
  */
 public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
+    
+    final Avatar mocAvatar_ = null;
 
     /**
      * Creates new form MainScreen
@@ -58,6 +61,9 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
         try {
             //doc.insertString(0, "Start of text\n", null);
             doc.insertString(doc.getLength(), "Start of stats:\n", null);
+            doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getSkillPoints()) , null);
+            doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getStatPoints()) , null);
+            doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getStats().getAffinity()) , null);
             doc.insertString(doc.getLength(), "\nEnd of stats", keyWord);
         } catch (Exception e) {
             System.out.println(e);
