@@ -37,7 +37,7 @@ import mvc_bridgeway.control_map.ControlMap;
  */
 public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
     
-    final Avatar mocAvatar_ = null;
+    //final Avatar mocAvatar_ = null;
 
     /**
      * Creates new form MainScreen
@@ -61,9 +61,11 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
         try {
             //doc.insertString(0, "Start of text\n", null);
             doc.insertString(doc.getLength(), "Start of stats:\n", null);
+            /*
             doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getSkillPoints()) , null);
             doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getStatPoints()) , null);
             doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getStats().getAffinity()) , null);
+            */
             doc.insertString(doc.getLength(), "\nEnd of stats", keyWord);
         } catch (Exception e) {
             System.out.println(e);
