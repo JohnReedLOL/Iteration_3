@@ -1,6 +1,7 @@
 package model.map;
 
 import model.entity.Entity;
+import model.entity.avatar.Avatar;
 import model.entity.memory.VisibleMap;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class GameWorld {
         return singleton;
     }
 
-    public static Entity getAvatar() {
+    public static Avatar getAvatar() {
         return getCurrentMap().getAvatar();
     }
 
@@ -42,9 +43,10 @@ public class GameWorld {
         return numMaps++;
     }
 
-    public static DiscreteMap getCurrentMap() {
+    public static synchronized DiscreteMap getCurrentMap() {
         if (currentMap == null) {
             currentMap = new GameMap();
+            currentMap.populate();
         }
 
         updateVisibleMap();

@@ -25,6 +25,9 @@ import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
 import model.map.direction.NorthEastDirection;
+import model.map.direction.SouthEastDirection;
+import model.map.location.GrassTile;
+import utility.CoordUtil;
 
 public abstract class Entity extends MapObject {
 	private ArmoryOwnership armoryOwnership;
@@ -36,9 +39,10 @@ public abstract class Entity extends MapObject {
 	private VisibleMap sight;
 	private AbilityLibrary abilities;
 	private Direction direction;
+	private int booty;
         
 	/* -------------------- CONSTRUCTORS -------------------- */
-	public Entity(Coordinate2D location){
+	public Entity(HexCoordinate location){
 		GameWorld.getCurrentMap().insert(this, GameWorld.getCurrentMap().getLocationByCoordinate(location));
 		armoryOwnership = new ArmoryOwnership(this);
 		inventoryOwnership = new InventoryOwnership(this);
@@ -49,6 +53,8 @@ public abstract class Entity extends MapObject {
 		sight = new VisibleMap(new RadialInfluenceSet(5,GameWorld.getCurrentMap().getLocationByMapObject(this)),this);
 		abilities = new AbilityLibrary(this);
 		direction = new NorthEastDirection((HexCoordinate) (GameWorld.getCurrentMap().getCoordinateByLocation(GameWorld.getCurrentMap().getLocationByMapObject(this))));
+
+		this.booty = 0;
 	}
 
 	/* -------------------- GETTERS -------------------- */
@@ -79,6 +85,10 @@ public abstract class Entity extends MapObject {
 	
 	public List<Ability> getUnlearnedAbilities(){
 		return abilities.getUnlearnedAbilities();
+	}
+
+	public int getBooty() {
+		return this.booty;
 	}
 
 	/* -------------------- SETTERS -------------------- */
@@ -116,6 +126,10 @@ public abstract class Entity extends MapObject {
 		setMovementBehavior(entity.getMovementBehavior());
 		setInventoryOwnership(entity.getInventoryOwnership());
 		setArmoryOwnership(entity.getArmoryOwnership());
+	}
+
+	public void setBooty(int booty) {
+		this.booty = booty;
 	}
 	/* -------------------- COMMANDS -------------------- */
 	public void move(Direction direction){

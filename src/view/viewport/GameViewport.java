@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import model.ModelViewBundle;
 import model.map.GameMap;
+import model.map.GameWorld;
 import model.map.location.Tile;
 import mvc_bridgeway.control_map.ControlMap;
 import view.utility.GameTileRenderer;
@@ -36,7 +37,7 @@ public class GameViewport extends Viewport {
 		initComponents();
         
         //TODO fake map
-        gameMap = new GameMap();
+        gameMap = (GameMap) GameWorld.getCurrentMap();
         Application.check(gameMap.getAvatar() != null, "Avatar is null cannot get brightness table");
         brightness = gameMap.getAvatar().getBrightnessTable();
 	}

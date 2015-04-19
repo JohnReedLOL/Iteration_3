@@ -3,6 +3,7 @@ package model.entity.memory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import model.MapObject;
 import model.entity.Entity;
@@ -22,6 +23,9 @@ public class VisibleMap {
 	public VisibleMap(InfluenceSet i, Entity o){
 		vision = i;
 		owner = o;
+		tiles = new ArrayList<Tile>();
+		mapObjects = new ArrayList<List<MapObject>>();
+		coordinates = new ArrayList<Coordinate2D>();
 	}
 	
 	public void setVision(InfluenceSet i){
