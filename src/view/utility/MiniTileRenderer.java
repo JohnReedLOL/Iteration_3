@@ -16,6 +16,8 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 	// FOR DEBUG
 	private final boolean DEBUG = false;
 
+	private int brightness;
+
 	public MiniTileRenderer(Graphics g, int startx, int starty) {
 		super(g);
 		this.startx = startx;
@@ -73,8 +75,7 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 
 	@Override
 	public void setBrightness(int i) {
-		// TODO Auto-generated method stub
-		
+		brightness = i;
 	}
 
 }
