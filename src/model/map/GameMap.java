@@ -93,7 +93,7 @@ public class GameMap extends DiscreteMap {
 
     public Location getLocationByCoordinate ( HexCoordinate coordinate ) {
         //COULD BE RETURNED NULL! CHECK THIS
-        Tile tile = tileMap.getValue( coordinate );
+        Tile tile = tileMap.getValue(coordinate);
         return tile;
     }
 
@@ -133,6 +133,19 @@ public class GameMap extends DiscreteMap {
     @Override
     public Location getLocationByCoordinate(Coordinate2D c) {
         return tileMap.getValue( (HexCoordinate) c );
+    }
+
+    @Override
+    public HexCoordinate getCoordinateByLocation(Location l) {
+        Tile t = (Tile) l;
+        for ( int i = 0; i < tiles.length; ++i ) {
+            for (int j = 0; j < tiles[0].length; ++j ) {
+                if ( tiles[i][j].equals( t ) ) {
+                    return new HexCoordinate( i, j );
+                }
+            }
+        }
+        return new HexCoordinate( -1, -1 );
     }
 //    @Override
 //    public void insert(MapObject m, Tile l) {

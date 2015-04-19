@@ -1,5 +1,6 @@
 package test;
 
+import model.influence_set.AngularInfluenceSet;
 import model.influence_set.InfluenceTile;
 import model.influence_set.LinearInfluenceSet;
 import model.map.DiscreteMap;
@@ -17,7 +18,7 @@ public class LinearInfluenceSetTest {
 
         GameWorld world = GameWorld.getInstance();
         GameMap game = new GameMap();
-        LinearInfluenceSet lis = new LinearInfluenceSet(new SouthEastDirection(new HexCoordinate(0, 0)), 5, game.getLocationByCoordinate(new HexCoordinate(0, 0)));
+        AngularInfluenceSet lis = new AngularInfluenceSet(new SouthEastDirection(new HexCoordinate(0, 5)), 5, game.getLocationByCoordinate(new HexCoordinate(0, 5)));
         //lis.setUseSourceLocation( true );
         DiscreteMap map = GameWorld.getCurrentMap();
 
