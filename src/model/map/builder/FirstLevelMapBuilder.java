@@ -16,7 +16,7 @@ import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
 import model.item.sackbound.equip.WeaponItem;
 import model.map.location.GrassTile;
-import model.map.location.MountainTerrain;
+import model.map.location.MountainTile;
 import model.map.location.Tile;
 import model.map.location.WaterTile;
 import utility.ScalingUtil;
@@ -41,7 +41,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
             }
         }
 
-        tiles[1][3] = new MountainTerrain();
+        tiles[1][3] = new MountainTile();
         tiles[2][2] = new WaterTile();
         tiles[3][3] = new WaterTile();
         tiles[4][4] = new WaterTile();

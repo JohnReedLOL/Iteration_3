@@ -3,7 +3,6 @@ package model.map;
 import application.Application;
 import model.MapObject;
 import model.effect.Effect;
-import model.entity.Entity;
 import model.influence_set.InfluenceSet;
 import model.influence_set.InfluenceTile;
 import model.map.builder.FirstLevelMapBuilder;
@@ -11,11 +10,12 @@ import model.map.builder.MapBuilder;
 import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
+import model.map.location.GrassTile;
 import model.map.location.Location;
+import model.map.location.MountainTile;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -167,6 +167,18 @@ public class GameMap extends DiscreteMap {
                 obj.accept(effect);
             }
         }
+    }
+
+    public void testBiMap() {
+        tileMap = new BidirectionalMap< HexCoordinate, Tile >();
+
+        GrassTile grassTile = new GrassTile();
+        MountainTile mountainTile = new MountainTile();
+        tileMap.insert( new HexCoordinate( 3, 9 ), grassTile );
+        tileMap.insert( new HexCoordinate( 5, 5 ), mountainTile );
+
+        HexCoordinate t = tileMap.getKey( mountainTile );
+        System.out.println( t.getX() + ", " + t.getY() );
     }
 
 

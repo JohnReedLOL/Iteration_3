@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 
 import model.MapObject;
 import model.map.location.GrassTile;
-import model.map.location.MountainTerrain;
+import model.map.location.MountainTile;
 import model.map.location.WaterTile;
 
 public class GameTileRenderer extends GameScreenRenderer implements
@@ -75,7 +75,7 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		drawTileAlgorithm(grass, grassTile.getMapObjects());
 	}
 
-	public void visit(MountainTerrain mountainTerrain) {
+	public void visit(MountainTile mountainTerrain) {
 		drawTileAlgorithm(mountain, mountainTerrain.getMapObjects());
 	}
 
