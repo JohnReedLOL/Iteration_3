@@ -24,6 +24,6 @@ public abstract class StatsEffect implements Effect, StatsVisitor{
 	
 	/* -------------------- INTERFACE IMPLEMENTATIONS -------------------- */
 	public void performEffect(Entity target){
-		target.accept(this);
+		target.accept((StatsVisitor) this);
 	}
 }

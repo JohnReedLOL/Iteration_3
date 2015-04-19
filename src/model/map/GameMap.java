@@ -2,6 +2,10 @@ package model.map;
 
 import application.Application;
 import model.MapObject;
+import model.effect.Effect;
+import model.entity.Entity;
+import model.influence_set.InfluenceSet;
+import model.influence_set.InfluenceTile;
 import model.map.builder.FirstLevelMapBuilder;
 import model.map.builder.MapBuilder;
 import model.map.coordinate.Coordinate2D;
@@ -11,6 +15,7 @@ import model.map.location.Location;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -147,6 +152,21 @@ public class GameMap extends DiscreteMap {
         }
         return new HexCoordinate( -1, -1 );
     }
+
+    @Override
+    public void performEffect(Effect effect, InfluenceSet influence) {
+        for (InfluenceTile tile : influence.getInfluenceSet()) {
+            Tile t = tile.getTile();
+            Collection<MapObject> objs = t.getMapObjects();
+
+            for (MapObject obj : objs) {
+                obj.accept(effect);
+            }
+        }
+    }
+
+
+    // CAN WE DELETE THIS ALREADY?
 //    @Override
 //    public void insert(MapObject m, Tile l) {
 //
