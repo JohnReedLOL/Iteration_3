@@ -19,6 +19,7 @@ import java.util.Collection;
 public class GameMap extends DiscreteMap {
 
     private Tile[][] tiles;
+    private int[][] brightness;
     private BidirectionalMap<HexCoordinate, Tile> tileMap = new BidirectionalMap<HexCoordinate, Tile>();
 
     public GameMap() {
@@ -27,6 +28,7 @@ public class GameMap extends DiscreteMap {
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
+        brightness = new int[tiles.length][tiles[0].length];
 
         for ( int i = 0; i < tiles.length; ++i ) {
             for (int j=0; j < tiles[0].length; ++j ) {
@@ -97,6 +99,11 @@ public class GameMap extends DiscreteMap {
 
     public Tile[][] getTiles() {
         return tiles;
+    }
+    
+    
+    public int[][] getBrightness() {
+        return brightness;
     }
 
     private MapBuilder getMapBuilder() {
