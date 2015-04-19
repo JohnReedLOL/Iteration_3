@@ -13,8 +13,9 @@ import java.util.Collection;
 import javax.imageio.ImageIO;
 
 import model.MapObject;
+import model.map.GameWorld;
 import model.map.location.GrassTile;
-import model.map.location.MountainTerrain;
+import model.map.location.MountainTile;
 import model.map.location.WaterTile;
 
 public class GameTileRenderer extends GameScreenRenderer implements
@@ -75,7 +76,7 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		drawTileAlgorithm(grass, grassTile.getMapObjects());
 	}
 
-	public void visit(MountainTerrain mountainTerrain) {
+	public void visit(MountainTile mountainTerrain) {
 		drawTileAlgorithm(mountain, mountainTerrain.getMapObjects());
 	}
 
@@ -96,7 +97,7 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		mapObjectRenderer.setX(x);
 		mapObjectRenderer.setY(y);
 		for (MapObject mapObject : mapObjects) {
-			mapObject.accept(mapObjectRenderer);
+			if(GameWorld.getCurrentMap().getAvatar().getVisibleMapObjects().contains(mapObject)) mapObject.accept(mapObjectRenderer);
 		}
 	}
 

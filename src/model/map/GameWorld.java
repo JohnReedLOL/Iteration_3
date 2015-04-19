@@ -1,6 +1,7 @@
 package model.map;
 
 import model.entity.Entity;
+import model.entity.memory.VisibleMap;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,6 +19,7 @@ public class GameWorld {
     private static GameWorld singleton = null;
     private Collection<DiscreteMap> maps = new ArrayList<DiscreteMap>();
     private static DiscreteMap currentMap = null;
+    private static ArrayList<VisibleMap> visibleMaps = new ArrayList<VisibleMap>();
 
     private GameWorld() {
         //DEFAULTS ARE FINE
@@ -45,6 +47,7 @@ public class GameWorld {
             currentMap = new GameMap();
         }
 
+        updateVisibleMap();
         return currentMap;
     }
 
@@ -59,6 +62,7 @@ public class GameWorld {
         }
 
         currentMap = map;
+        updateVisibleMap();
         return true;
     }
 
@@ -68,6 +72,7 @@ public class GameWorld {
                 //DOES NOT VIOLATE TDA OR LOD: GETTING MAP (FRIEND) ATTRIBUTE
                 //DOESN'T MODIFY MAP
                 currentMap = m;
+                updateVisibleMap();
                 return true;
             }
         }
@@ -78,6 +83,7 @@ public class GameWorld {
         if ( index < maps.size() ) {
             //kinda sh*tty looking but I think it's okay.
             currentMap = ( DiscreteMap )( (ArrayList) maps ).get( index );
+            updateVisibleMap();
             return true;
         }
         return false;
@@ -91,5 +97,19 @@ public class GameWorld {
         else {
             return false;
         }
+    }
+
+    public static void updateVisibleMap() {
+        for (VisibleMap v : visibleMaps ) {
+            v.update();
+        }
+    }
+
+    public void register( VisibleMap map ) {
+        visibleMaps.add( map );
+    }
+
+    public void unregister( VisibleMap map ) {
+        visibleMaps.remove( map );
     }
 }

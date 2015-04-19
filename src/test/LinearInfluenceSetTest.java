@@ -25,7 +25,7 @@ public class LinearInfluenceSetTest {
         Collection<InfluenceTile> set = lis.getInfluenceSet();
         for (InfluenceTile tile : set) {
             System.out.println("Radius: " + tile.getRadius());
-//            System.out.println("Tile: " + tile.getTile() + "\n");
+            System.out.println("Tile: " + map.getCoordinateByLocation( tile.getTile() ) + "\n");
         }
     }
 }

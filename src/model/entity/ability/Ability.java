@@ -42,6 +42,7 @@ public class Ability {
 	public void performEffect(Entity user){
 		if(!meetsUsePrerequisites(user)) return;
 		for(InfluenceSet i : affectedAreas){
+			i.setSourceLocation(GameWorld.getCurrentMap().getLocationByCoordinate(GameWorld.getCurrentMap().getMapObjectCoordinate(user)));
 			for(Effect e : myEffects){
 				GameWorld.getCurrentMap().performEffect(e, i);
 			}

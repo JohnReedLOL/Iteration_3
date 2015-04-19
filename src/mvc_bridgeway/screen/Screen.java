@@ -70,6 +70,13 @@ public abstract class Screen {
         }
     }
     
+    @Override
+    public boolean equals(Object object) {
+        Class thisClass = this.getClass();
+        Class otherClass = object.getClass();
+        return thisClass.isAssignableFrom(otherClass);
+    }
+    
     protected VirtualController createVirtualController(Model model, ArrayList<ControlMap> virtualControlMaps) {
         return new SwingController(model, virtualControlMaps);
     }
@@ -79,6 +86,9 @@ public abstract class Screen {
             @Override
             public void run() {
                 viewport.update(mvb);
+                if (viewport.isRefreshControllerNeeded()) {
+                    initVirtualController(viewport, model);
+                }
             }
         };
         view_thread_.execute(view_updater);
@@ -92,15 +102,20 @@ public abstract class Screen {
     
 
     protected final void initControllers(Model model, Viewport vp, PhysicalController physicalController, UserSettings userSettings) {
-        ArrayList<ControlMap> viewCMs = viewport.getControlMaps();
-        //	Controller_Model_Interface cmi = (Controller_Model_Interface)model; //for inital setup
         Model cmi = model;
-
-        virtualController = createVirtualController(cmi, viewCMs);
+        initVirtualController(vp, cmi);
         initPhysicalController(cmi, physicalController, userSettings);
     }
+    
+    private final void initVirtualController(Viewport view, Model cmi) {
+        ArrayList<ControlMap> viewCMs = viewport.getControlMaps();
+        //	Controller_Model_Interface cmi = (Controller_Model_Interface)model; //for inital setup
+        cmi = model;
 
-    protected final void initPhysicalController(Model cmi, PhysicalController physicalController, UserSettings userSettings) {
+        virtualController = createVirtualController(cmi, viewCMs);
+    }
+
+    private final void initPhysicalController(Model cmi, PhysicalController physicalController, UserSettings userSettings) {
         ArrayList<ControlMap> userControls = getUserControls(userSettings);
         if (userControls != null) {
             physicalController.configure(userControls);

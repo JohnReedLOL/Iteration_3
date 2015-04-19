@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import model.MapObject;
 import model.map.location.GrassTile;
-import model.map.location.MountainTerrain;
+import model.map.location.MountainTile;
 import model.map.location.WaterTile;
 
 public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
@@ -48,7 +48,7 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 	}
 
 	@Override
-	public void visit(MountainTerrain mountainTile) {
+	public void visit(MountainTile mountainTile) {
 		drawTileAlgorithm(Color.GRAY, mountainTile.getMapObjects());
 	}
 
