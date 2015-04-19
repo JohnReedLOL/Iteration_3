@@ -9,6 +9,6 @@ public class ClassicMovementBehavior extends MovementBehavior {
 	 */
 
 	public void move(Entity target, Direction direction){
-		getCurrentMap().move(target, direction);
+		//getCurrentMap().move(target, direction);
 	}
 }
