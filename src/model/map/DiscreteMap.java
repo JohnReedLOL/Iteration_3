@@ -20,7 +20,7 @@ public abstract class DiscreteMap {
     public abstract void insert( MapObject m, Location l );
     public abstract void remove( MapObject m );
     public abstract void relocate( MapObject m, Location l);
-    public abstract void move( MapObject m, Coordinate2D c);
+    public abstract void move( MapObject m, Coordinate2D from, Coordinate2D to );
     public abstract void teleport( MapObject m, DiscreteMap d);
     public abstract Location getLocationFromDirection( Location l, Direction d );
     public abstract boolean withinBounds( MapObject m, Direction d );

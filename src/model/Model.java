@@ -180,7 +180,7 @@ public class Model {
     
     public boolean move(Entity entity, Direction direction) {
         entity.getMovementBehavior().move(entity, direction);
-        return false;
+        return true;
     }
     
     public boolean storeInInventory(Avatar avatar, Item item) {
