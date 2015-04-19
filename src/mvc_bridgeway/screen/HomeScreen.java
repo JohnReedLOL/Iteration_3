@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import model.UserSettings;
 import mvc_bridgeway.command.model_command.ExitCommand;
+import mvc_bridgeway.command.model_command.LaunchScreenCommand;
 import mvc_bridgeway.command.model_command.PauseCommand;
 import mvc_bridgeway.command.model_command.RebindCommand;
 import mvc_bridgeway.command.model_command.ResumeCommand;
@@ -49,6 +50,7 @@ public class HomeScreen extends Screen {
         controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_Y), new RebindCommand(exitMap)));
         controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_P), new PauseCommand()));
         controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_R), new ResumeCommand()));
+        controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_O), new LaunchScreenCommand(new OptionsScreen())));
         return controlMaps;
     }
     

@@ -32,6 +32,14 @@ public class ControlMap<Ctrl extends Control> {
     private MacroCommand initMacroCommand(Command command, Command... cmds) {
         return new MacroCommand(command, cmds);
     }
+    
+    @Override
+    public boolean equals(Object object) {
+        ControlMap cm = (ControlMap)object;
+        boolean sameControl = this.control.equals(cm.getControl());
+        boolean sameCommand = this.command.equals(cm.getCommand());
+        return sameControl && sameCommand;
+    }
 
     /*Get-Sets*/
     

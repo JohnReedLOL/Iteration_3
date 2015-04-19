@@ -154,6 +154,10 @@ public class GameMap extends DiscreteMap {
     }
 
     @Override
+    public Location getLocationByMapObject( MapObject m ) {
+        return getLocationByCoordinate( getMapObjectCoordinate( m ) );
+    }
+
     public void performEffect(Effect effect, InfluenceSet influence) {
         for (InfluenceTile tile : influence.getInfluenceSet()) {
             Tile t = tile.getTile();

@@ -5,6 +5,7 @@ package mvc_bridgeway.screen;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import model.UserSettings;
+import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
@@ -37,13 +38,14 @@ public class GameScreen extends Screen {
     @Override
     protected ArrayList<ControlMap> generateDefaultPhysicalControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_O), new LaunchScreenCommand(new OptionsScreen())));
+        controlMaps.add( new ControlMap( new KeyboardControl(KeyEvent.VK_O), new LaunchScreenCommand(new OptionsScreen() ) ) );
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_X),new ExitCommand() ) );
         return controlMaps;
     }
 
     @Override
     protected void setUserControls(UserSettings userSettings, ArrayList<ControlMap> defaultControls) {
-        // TODO: throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        userSettings.setGameScreenControls(defaultControls);
     }
 
     /*Get-Sets*/
