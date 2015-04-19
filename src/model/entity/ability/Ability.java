@@ -5,6 +5,7 @@ import java.util.List;
 import model.effect.Effect;
 import model.entity.Entity;
 import model.influence_set.InfluenceSet;
+import model.map.GameWorld;
 import model.prerequisite.Prerequisite;
 
 public class Ability {
@@ -24,7 +25,7 @@ public class Ability {
 		for(Prerequisite p : myLearnRequirements){
 			if(!p.meetsRequirement(target)) {
 				return false;
-			};
+			}
 		}
 		return true;
 	}
@@ -33,7 +34,7 @@ public class Ability {
 		for(Prerequisite p : myUseRequirements){
 			if(!p.meetsRequirement(target)) {
 				return false;
-			};
+			}
 		}
 		return true;
 	}
@@ -42,7 +43,7 @@ public class Ability {
 		if(!meetsUsePrerequisites(user)) return;
 		for(InfluenceSet i : affectedAreas){
 			for(Effect e : myEffects){
-				//TODO: tell the game map to apply the effect in the given influence set.
+				GameWorld.getCurrentMap().performEffect(e, i);
 			}
 		}
 	}

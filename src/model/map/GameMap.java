@@ -2,6 +2,10 @@ package model.map;
 
 import application.Application;
 import model.MapObject;
+import model.effect.Effect;
+import model.entity.Entity;
+import model.influence_set.InfluenceSet;
+import model.influence_set.InfluenceTile;
 import model.map.builder.FirstLevelMapBuilder;
 import model.map.builder.MapBuilder;
 import model.map.coordinate.Coordinate2D;
@@ -11,6 +15,7 @@ import model.map.location.Location;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -19,6 +24,7 @@ import java.util.Collection;
 public class GameMap extends DiscreteMap {
 
     private Tile[][] tiles;
+    private int[][] brightness;
     private BidirectionalMap<HexCoordinate, Tile> tileMap = new BidirectionalMap<HexCoordinate, Tile>();
 
     public GameMap() {
@@ -27,6 +33,7 @@ public class GameMap extends DiscreteMap {
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
+        brightness = new int[tiles.length][tiles[0].length];
 
         for ( int i = 0; i < tiles.length; ++i ) {
             for (int j=0; j < tiles[0].length; ++j ) {
@@ -55,7 +62,7 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void relocate( MapObject m, Location l ) {
-        l.createMapObjectAssociation( m );
+        l.createMapObjectAssociation(m);
     }
 
     @Override
@@ -91,12 +98,17 @@ public class GameMap extends DiscreteMap {
 
     public Location getLocationByCoordinate ( HexCoordinate coordinate ) {
         //COULD BE RETURNED NULL! CHECK THIS
-        Tile tile = tileMap.getValue( coordinate );
+        Tile tile = tileMap.getValue(coordinate);
         return tile;
     }
 
     public Tile[][] getTiles() {
         return tiles;
+    }
+    
+    
+    public int[][] getBrightness() {
+        return brightness;
     }
 
     private MapBuilder getMapBuilder() {
@@ -127,6 +139,34 @@ public class GameMap extends DiscreteMap {
     public Location getLocationByCoordinate(Coordinate2D c) {
         return tileMap.getValue( (HexCoordinate) c );
     }
+
+    @Override
+    public HexCoordinate getCoordinateByLocation(Location l) {
+        Tile t = (Tile) l;
+        for ( int i = 0; i < tiles.length; ++i ) {
+            for (int j = 0; j < tiles[0].length; ++j ) {
+                if ( tiles[i][j].equals( t ) ) {
+                    return new HexCoordinate( i, j );
+                }
+            }
+        }
+        return new HexCoordinate( -1, -1 );
+    }
+
+    @Override
+    public void performEffect(Effect effect, InfluenceSet influence) {
+        for (InfluenceTile tile : influence.getInfluenceSet()) {
+            Tile t = tile.getTile();
+            Collection<MapObject> objs = t.getMapObjects();
+
+            for (MapObject obj : objs) {
+                obj.accept(effect);
+            }
+        }
+    }
+
+
+    // CAN WE DELETE THIS ALREADY?
 //    @Override
 //    public void insert(MapObject m, Tile l) {
 //

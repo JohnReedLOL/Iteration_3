@@ -15,5 +15,5 @@ public abstract class MovementBehavior extends Behavior {
 	 * IMPLEMENTATIONS
 	 */
 
-	public abstract void move(Entity target, Direction direction);
+	public abstract boolean move(Entity target, Direction direction);
 }

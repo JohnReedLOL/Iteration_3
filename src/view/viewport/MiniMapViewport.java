@@ -28,6 +28,7 @@ import mvc_bridgeway.control_map.ControlMap;
 public class MiniMapViewport extends Viewport {
 
 	private GameMap gameMap;
+	private int[][] brightness;
 	
 	private TileRenderer tileRendererVisitor;
 	
@@ -39,6 +40,7 @@ public class MiniMapViewport extends Viewport {
         
         //TODO fake map
         gameMap = new GameMap();
+        brightness = gameMap.getBrightness();
     }
 
     @Override
@@ -93,6 +95,7 @@ public class MiniMapViewport extends Viewport {
 			for (int y = 0; y < map[x].length; y++) {
 				tileRendererVisitor.setX(x);
 				tileRendererVisitor.setY(y);
+				tileRendererVisitor.setBrightness(brightness[x][y]);
 				map[x][y].accept(tileRendererVisitor);
 				
 			}

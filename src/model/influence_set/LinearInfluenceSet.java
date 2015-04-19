@@ -1,7 +1,10 @@
 package model.influence_set;
 
 import model.map.direction.Direction;
+import model.map.location.Location;
+import model.map.location.Tile;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -9,19 +12,34 @@ import java.util.Collection;
  */
 public class LinearInfluenceSet extends DirectionalInfluenceSet {
 
-    public LinearInfluenceSet() {
+    private LinearInfluenceSet() {
         super();
     }
 
-    public LinearInfluenceSet( Direction direction, int radius ) {
-        super( direction, radius );
+    public LinearInfluenceSet( Direction direction, int radius, Location location) {
+        super( direction, radius, location );
     }
 
     @Override
     public Collection<InfluenceTile> getInfluenceSet() {
-        //TODO
-        //ENTER SUPER LOGICS HERE
+        Collection<InfluenceTile> tiles = new ArrayList<InfluenceTile>();
 
-        return null;
+        if ( getUseSourceLocation() ) {
+            tiles.add( new InfluenceTile( (Tile) getSourceLocation(), 0 ) );
+        }
+
+        Tile source = (Tile) getSourceLocation();
+        for( int i = 1; i <= getRadius(); ++i ) {
+            Tile tile = getMap().getLocationFromDirection( source, getDirection() );
+            if ( tile != null ) {
+                tiles.add( new InfluenceTile( tile, i ) );
+                source = tile;
+            }
+            else {    //YOU HIT THE END OF THE MAP DUMBASS
+                break;
+            }
+        }
+
+        return tiles;
     }
 }

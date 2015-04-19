@@ -36,11 +36,11 @@ public class BidirectionalMap<K, V> {
     }
 
     public V getValue( K key ) {
-        for (K k : keys()) { // <== LOLOLOLOLOL
-            if (k.equals(key)) {
-                return keyToValueMap.get(k);
-            }
-        }
+//        for (K k : keys()) { // <== LOLOLOLOLOL
+//            if (k.equals(key)) {
+//                return keyToValueMap.get(k);
+//            }
+//        }
 
         return keyToValueMap.get(key);
     }

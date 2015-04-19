@@ -1,7 +1,10 @@
 package model.influence_set;
 
 import model.map.direction.Direction;
+import model.map.location.Location;
+import model.map.location.Tile;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -14,14 +17,17 @@ public class RadialInfluenceSet extends InfluenceSet {
         super();
     }
 
-    public RadialInfluenceSet( int radius ) {
-        super( radius );
+    public RadialInfluenceSet( int radius, Location location ) {
+        super( radius, location );
     }
 
     @Override
     public Collection<InfluenceTile> getInfluenceSet() {
-        //TODO
-        //LOGIC STUFFS HERE
+        Collection<InfluenceTile> tiles = new ArrayList<InfluenceTile>();
+
+        if ( getUseSourceLocation() ) {
+            tiles.add( new InfluenceTile( (Tile) getSourceLocation(), 0 ) );
+        }
 
         return null;
     }

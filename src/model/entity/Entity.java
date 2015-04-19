@@ -4,6 +4,7 @@ package model.entity;
 import model.MapObject;
 import model.armory.Armory;
 import model.armory.ArmoryOwnership;
+import model.effect.Effect;
 import model.entity.behavior.combat.CombatBehavior;
 import model.entity.behavior.movement.MovementBehavior;
 import model.entity.detection.Detection;
@@ -96,5 +97,10 @@ public abstract class Entity extends MapObject {
 
 	public void accept(StatsVisitor visitor){
 		// TODO
+	}
+
+	@Override
+	public void accept(Effect effect) {
+		effect.performEffect(this);
 	}
 }

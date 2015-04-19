@@ -3,7 +3,7 @@ package mvc_bridgeway.command.model_command;
 // @author comcc_000
 
 import model.entity.avatar.Avatar;
-import model.item.Item;
+import model.item.sackbound.SackboundItem;
 
 
 public class Drop extends ModelCommand {
@@ -11,11 +11,11 @@ public class Drop extends ModelCommand {
     /*Properties*/
     
     private Avatar avatar;
-    private Item item;
+    private SackboundItem item;
 
     /*Constructors*/
 
-    public Drop(Avatar avatar, Item item) {
+    public Drop(Avatar avatar, SackboundItem item) {
         this.avatar = avatar;
         this.item = item;
     }

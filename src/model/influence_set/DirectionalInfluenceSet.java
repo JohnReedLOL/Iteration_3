@@ -2,6 +2,7 @@ package model.influence_set;
 
 import model.map.direction.Direction;
 import model.map.direction.NorthDirection;
+import model.map.location.Location;
 
 import java.util.Collection;
 
@@ -17,8 +18,8 @@ public abstract class DirectionalInfluenceSet extends InfluenceSet {
         //this.direction = new NorthDirection();
     }
 
-    public DirectionalInfluenceSet( Direction direction, int radius ) {
-        super( radius );
+    public DirectionalInfluenceSet( Direction direction, int radius, Location sourceLocation) {
+        super( radius, sourceLocation );
         this.direction = direction;
 
     }

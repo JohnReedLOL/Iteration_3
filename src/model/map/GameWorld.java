@@ -41,6 +41,10 @@ public class GameWorld {
     }
 
     public static DiscreteMap getCurrentMap() {
+        if (currentMap == null) {
+            currentMap = new GameMap();
+        }
+
         return currentMap;
     }
 

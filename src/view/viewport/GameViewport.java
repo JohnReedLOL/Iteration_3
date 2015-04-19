@@ -25,21 +25,19 @@ import application.Application;
 public class GameViewport extends Viewport {
 
 	private GameMap gameMap;
+	private int[][] brightness;
 	
 	private TileRenderer tileRendererVisitor;
-	
-    private final int[][] brightness_map_;
 
 	/**
 	 * Creates new form MainScreen
 	 */
 	public GameViewport() {
 		initComponents();
-		brightness_map_ = new int[1000][1000];
-        Application.check(brightness_map_[0][0] == 0, "Invalid assumption");
         
         //TODO fake map
         gameMap = new GameMap();
+        brightness = gameMap.getBrightness();
 	}
 
 	@Override
@@ -66,34 +64,13 @@ public class GameViewport extends Viewport {
 			for (int y = 0; y < map[x].length; y++) {
 				tileRendererVisitor.setX(x);
 				tileRendererVisitor.setY(y);
+				tileRendererVisitor.setBrightness(brightness[x][y]);
 				map[x][y].accept(tileRendererVisitor);
 				
 			}
 		}
 	}
 
-	/**
-     * Takes in a BufferedImage and a percentage and produces a new BufferedImage that is darker by that percentage amount.
-     * @param bufferedImage - image to be copied and darkened.
-     * @param percentage - percentage to darken that BufferedImage by. If this value were 10 it would darken the image by 10%.
-     * @return The darkened image.
-     */
-    public BufferedImage produceBufferedImageDarkenedByPercentage(BufferedImage bufferedImage, int percentage) {
-        if(percentage < 0 || percentage > 100) {
-            throw new IllegalArgumentException("Illegal percentage");
-        }
-        final int remainder = 100 - percentage;
-        final float remaining_light = (float) remainder;
-        RescaleOp op = new RescaleOp(remaining_light, 0, null);
-        // If the destination image (second parameter of op.filter) is null, a [new] BufferedImage will be created.
-        BufferedImage darkened_image = op.filter(bufferedImage, null);
-        return darkened_image;
-    }
-    
-    /**
-     * 100 corresponds to pitch black, 50 corresponds to 50% darkened, and 0 corresponds to regular rendering.
-     * Do not go over 100 or under 0% brightness.
-     */
 	
 	@Override
 	public void update(ModelViewBundle mvb) {

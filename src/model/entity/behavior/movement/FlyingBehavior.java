@@ -47,7 +47,7 @@ public class FlyingBehavior extends MovementBehavior {
      */
 
     @Override
-    public void move(Entity entity, Direction direction) {
+    public boolean move(Entity entity, Direction direction) {
         DiscreteMap map = GameWorld.getCurrentMap();
 
         if (map.withinBounds(entity, direction)) {
@@ -55,6 +55,9 @@ public class FlyingBehavior extends MovementBehavior {
             Coordinate2D toMove = direction.deriveCoordinate((HexCoordinate) previous);
 
             map.move(entity, previous, toMove);
+            return true;
         }
+
+        return false;
     }
 }
