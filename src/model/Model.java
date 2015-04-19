@@ -179,7 +179,7 @@ public class Model {
     }
     
     public boolean move(Entity entity, Direction direction) {
-        //TODO
+        entity.getMovementBehavior().move(entity, direction);
         return false;
     }
     

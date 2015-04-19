@@ -9,7 +9,6 @@ import model.map.direction.Direction;
 import model.map.location.Location;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
-import utility.ScalingUtil;
 
 import java.util.Collection;
 

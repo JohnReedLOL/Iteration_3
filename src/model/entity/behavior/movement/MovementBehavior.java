@@ -12,12 +12,6 @@ public abstract class MovementBehavior extends Behavior {
 	 */
 
 	/**
-	 * GETTERS
-	 */
-
-
-
-	/**
 	 * IMPLEMENTATIONS
 	 */
 
