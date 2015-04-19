@@ -56,11 +56,11 @@ public abstract class Screen {
     }
     
     public final void onFocusLost() {
-        model.setMode(model.PAUSE);
+//        model.setMode(model.PAUSE);
     }
     
     public final void onFocusGained() {
-        model.setMode(model.RUN);
+//        model.setMode(model.RUN);
     }
     
     protected VirtualController createVirtualController(Model model, ArrayList<ControlMap> virtualControlMaps) {
