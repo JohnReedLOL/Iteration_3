@@ -12,7 +12,7 @@ import java.util.Collection;
  */
 public class LinearInfluenceSet extends DirectionalInfluenceSet {
 
-    public LinearInfluenceSet() {
+    private LinearInfluenceSet() {
         super();
     }
 
@@ -29,7 +29,7 @@ public class LinearInfluenceSet extends DirectionalInfluenceSet {
         }
 
         Tile source = (Tile) getSourceLocation();
-        for( int i = 0; i < getRadius(); ++i ) {
+        for( int i = 1; i <= getRadius(); ++i ) {
             Tile tile = getMap().getLocationFromDirection( source, getDirection() );
             if ( tile != null ) {
                 tiles.add( new InfluenceTile( tile, i ) );
