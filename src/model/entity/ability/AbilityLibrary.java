@@ -40,6 +40,19 @@ public class AbilityLibrary {
 		
 	}
 	
+	public boolean useAbility(Ability ability){
+		if(learnedAbilities.contains(ability)) return learnedAbilities.get(learnedAbilities.indexOf(ability)).performEffect(owner);
+		return false;
+	}
+	
+	public List<Ability> getLearnedAbilities(){
+		return learnedAbilities;
+	}
+	
+	public List<Ability> getUnlearnedAbilities(){
+		return unlearnedAbilities;
+	}
+	
 	public void notifyOfOwnerChanges(){
 		for(Ability a : learnedAbilities){
 			if(!a.meetsLearnPrerequisites(owner)){
