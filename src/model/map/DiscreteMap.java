@@ -2,6 +2,7 @@ package model.map;
 
 import model.MapObject;
 import model.entity.Entity;
+import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
 import model.map.location.Location;
@@ -23,6 +24,7 @@ public abstract class DiscreteMap {
     public abstract void teleport( MapObject m, DiscreteMap d);
     public abstract Location getLocationFromDirection( Location l, Direction d );
     public abstract boolean withinBounds( MapObject m, Direction d );
+    public abstract Coordinate2D getMapObjectCoordinate( MapObject m ) ;
 
     public String getName() {
         return name;

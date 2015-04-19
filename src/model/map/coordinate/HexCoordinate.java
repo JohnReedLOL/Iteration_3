@@ -5,7 +5,7 @@ import model.map.direction.Direction;
 /**
  * Created by Troy on 4/18/2015.
  */
-public class HexCoordinate {
+public class HexCoordinate extends Coordinate2D {
     //MODEL'S COORDINATE SYSTEM: ASK TROY :)
     //POSITIVE X AXIS = DOWN
     //POSITIVE Y AXIS = NORTHEAST/WEST DEPENDING ON COORDINATE LOL
@@ -38,7 +38,7 @@ public class HexCoordinate {
         this.y = y;
     }
 
-    public HexCoordinate getCoordinateByDirection( Direction direction ) {
+    public Coordinate2D getCoordinateByDirection( Direction direction ) {
         return direction.deriveCoordinate( this );
     }
 

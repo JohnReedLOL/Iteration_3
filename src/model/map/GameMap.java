@@ -65,7 +65,11 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public Tile getLocationFromDirection(Location l, Direction d) {
-        return null;
+        Tile tile = (Tile) l;
+        HexCoordinate coord = tileMap.getKey(tile);
+
+        HexCoordinate newLoc = d.deriveCoordinate( coord );
+        return tileMap.getValue( newLoc );
     }
 
     public Location getLocationByCoordinate ( HexCoordinate coordinate ) {
