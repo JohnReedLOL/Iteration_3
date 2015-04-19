@@ -29,7 +29,10 @@ public class GameMap extends DiscreteMap {
 
     public GameMap() {
         super();
+    }
 
+    @Override
+    public void populate() {
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
@@ -51,7 +54,9 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void insert( MapObject m, Location l ) {
-        l.createMapObjectAssociation(m);
+        if (l != null) {
+            l.createMapObjectAssociation(m);
+        }
     }
 
     @Override
@@ -144,11 +149,13 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public HexCoordinate getCoordinateByLocation(Location l) {
-        Tile t = (Tile) l;
-        for ( int i = 0; i < tiles.length; ++i ) {
-            for (int j = 0; j < tiles[0].length; ++j ) {
-                if ( tiles[i][j].equals( t ) ) {
-                    return new HexCoordinate( i, j );
+        if (l != null) {
+            Tile t = (Tile) l;
+            for (int i = 0; i < tiles.length; ++i) {
+                for (int j = 0; j < tiles[0].length; ++j) {
+                    if (tiles[i][j].equals(t)) {
+                        return new HexCoordinate(i, j);
+                    }
                 }
             }
         }

@@ -14,6 +14,7 @@ import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
 import model.item.sackbound.equip.WeaponItem;
+import model.map.coordinate.HexCoordinate;
 import model.map.location.GrassTile;
 import model.map.location.MountainTile;
 import model.map.location.Tile;
@@ -48,8 +49,8 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[5][5] = new WaterTile();
 
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
-        tiles[1][2].createMapObjectAssociation(new NPC("NPC", "NPC Test"));
-        tiles[1][3].createMapObjectAssociation(new Avatar("Test", "Test Desc"));
+        tiles[1][2].createMapObjectAssociation(new NPC(new HexCoordinate(1, 1)));
+        tiles[1][3].createMapObjectAssociation(new Avatar(new HexCoordinate(1, 1)));
         tiles[1][4].createMapObjectAssociation(new InteractiveItem());
         tiles[1][5].createMapObjectAssociation(new OneShotItem());
         tiles[1][6].createMapObjectAssociation(new LimitedConsumptionItem());

@@ -43,8 +43,8 @@ public class SecondLevelMapBuilder extends MapBuilder {
             map[i][42] = new GrassTile();
         }
 
-        map[6][40].createMapObjectAssociation( new NPC( "NPC", "NPC Test") );
-        map[16][43].createMapObjectAssociation( new NPC( "NPC", "NPC Test 2" ) );
+//        map[6][40].createMapObjectAssociation( new NPC( "NPC", "NPC Test") );
+//        map[16][43].createMapObjectAssociation( new NPC( "NPC", "NPC Test 2" ) );
 
 
         return map;

@@ -1,6 +1,7 @@
 package mvc_bridgeway.command.model_command;
 
 import model.entity.avatar.Avatar;
+import model.map.GameWorld;
 
 public class SetSneakOccupationCommand extends SetOccupationCommand {
     /**
@@ -18,5 +19,6 @@ public class SetSneakOccupationCommand extends SetOccupationCommand {
     @Override
     public void execute() {
         getModel().setSneakOccupation(getAvatar());
+        GameWorld.getCurrentMap().setAvatar(getAvatar());
     }
 }
