@@ -12,6 +12,8 @@ import model.entity.ability.Ability;
 import model.entity.avatar.Avatar;
 import model.entity.occupation.Occupation;
 import model.item.Item;
+import model.item.sackbound.SackboundItem;
+import model.item.sackbound.equip.EquipItem;
 import model.map.GameWorld;
 import model.map.direction.Direction;
 import mvc_bridgeway.command.Command;
@@ -171,7 +173,7 @@ public class Model {
     }
     
     public void setOccupation(Entity entity, Occupation occupation) {
-        //TODO
+        entity.setOccupation(occupation);
     }
     
     public void beginNewGame() {
@@ -183,18 +185,17 @@ public class Model {
         return true;
     }
     
-    public boolean storeInInventory(Avatar avatar, Item item) {
-        //TODO
-        return false;
+    public boolean storeInInventory(Avatar avatar, SackboundItem item) {
+        return avatar.getInventoryOwnership().addItem(item);
     }
     
     public boolean equip(Avatar avatar, Item item) {
-        //TODO
-        return false;
+        item.apply(avatar);
+        return true;
     }
     
-    public void drop(Avatar avatar, Item item) {
-        //TODO
+    public void drop(Avatar avatar, SackboundItem item) {
+        avatar.getInventoryOwnership().removeItem(item);
     }
     
     public boolean activateAbility(Avatar avatar, Ability ability) {

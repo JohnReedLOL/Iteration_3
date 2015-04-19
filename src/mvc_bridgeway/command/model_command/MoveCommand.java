@@ -24,6 +24,7 @@ public class MoveCommand extends ModelCommand {
     
     @Override
     public void execute() {
+        // TODO (maybe?): Have a check to make sure the move was successfull, if not, display a message to the user using a Logging system.
         getModel().move(entity, direction);
     }
 
