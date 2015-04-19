@@ -13,6 +13,10 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 
 	private ObjectRenderer mapObjectRenderer;
 
+	// TODO
+	private int avatarx = 1;
+	private int avatary = 3;
+
 	// FOR DEBUG
 	private final boolean DEBUG = false;
 
@@ -52,6 +56,15 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		g.setColor(c);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawMapObjects(mapObjects);
+
+		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
+				&& avatary + 5 > y) {
+
+		} else {
+			Color b = new Color(0,0,0,100);
+			g.setColor(b);
+			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
+		}
 		g.setColor(Color.BLACK);
 		g.drawRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawDebug();
