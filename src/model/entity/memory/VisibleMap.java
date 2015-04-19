@@ -1,10 +1,14 @@
 package model.entity.memory;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import model.MapObject;
 import model.entity.Entity;
 import model.influence_set.InfluenceSet;
+import model.influence_set.InfluenceTile;
+import model.map.GameWorld;
 import model.map.coordinate.Coordinate2D;
 import model.map.location.Tile;
 
@@ -22,6 +26,7 @@ public class VisibleMap {
 	
 	public void setVision(InfluenceSet i){
 		vision = i;
+		update();
 	}
 	
 	public InfluenceSet getVision(){
@@ -36,8 +41,30 @@ public class VisibleMap {
 		return coordinates;
 	}
 	
+	public List<List<MapObject>> getMapObjects(){
+		return mapObjects;
+	}
+	
 	public void update(){
-		List<Tile> tilesSeen;
+		owner.remember(this);
+		Collection<InfluenceTile> iTilesSeen = vision.getInfluenceSet();
+		ArrayList<Tile> tilesSeen = new ArrayList<Tile>();
+		for(InfluenceTile i : iTilesSeen){
+			tilesSeen.add(i.getTile());
+		}
+		tiles = tilesSeen;
+		ArrayList<List<MapObject>> mapObjects = new ArrayList<List<MapObject>>();
+		ArrayList<Coordinate2D> coords = new ArrayList<Coordinate2D>();
+		for(Tile t : tiles){
+			ArrayList<MapObject> tileContents = new ArrayList<MapObject>(); 
+			for(MapObject m : t.getMapObjects()){
+				if(m.canSee(owner)) tileContents.add(m);
+			}
+			mapObjects.add(tileContents);
+			coords.add(GameWorld.getCurrentMap().getCoordinateByLocation(t));
+		}
+		this.mapObjects = mapObjects;
+		coordinates = coords;
 	}
 	
 }

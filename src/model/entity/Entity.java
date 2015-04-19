@@ -8,6 +8,8 @@ import model.effect.Effect;
 import model.entity.behavior.combat.CombatBehavior;
 import model.entity.behavior.movement.MovementBehavior;
 import model.entity.detection.Detection;
+import model.entity.memory.RememberedMap;
+import model.entity.memory.VisibleMap;
 import model.entity.occupation.Occupation;
 import model.entity.stats.StatsVisitor;
 import model.inventory.InventoryOwnership;
@@ -26,6 +28,8 @@ public abstract class Entity extends MapObject {
 	private Occupation occupation;
 	private MovementBehavior movementBehavior;
 	private CombatBehavior combatBehavior;
+	private RememberedMap memory;
+	private VisibleMap sight;
 
 	/**
 	 * CONSTRUCTORS
@@ -102,5 +106,9 @@ public abstract class Entity extends MapObject {
 	@Override
 	public void accept(Effect effect) {
 		effect.performEffect(this);
+	}
+	
+	public void remember(VisibleMap m){
+		memory.remember(m);
 	}
 }
