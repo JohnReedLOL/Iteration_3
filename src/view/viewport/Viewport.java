@@ -32,7 +32,15 @@ public abstract class Viewport extends JPanel {
     }
     
     public final boolean isRefreshControllerNeeded() {
-        return refreshControllerNeeded;
+        if (refreshControllerNeeded) {
+            refreshControllerNeeded = false;
+            return true;
+        }
+        return false;
+    }
+    
+    protected final void flagRefreshController() {
+        refreshControllerNeeded = true;
     }
     
     protected void addViewport(Viewport viewport) {

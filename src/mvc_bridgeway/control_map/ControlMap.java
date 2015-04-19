@@ -26,7 +26,7 @@ public class ControlMap<Ctrl extends Control> {
     /*Methods*/
     
     public boolean hasControl(Ctrl control) {
-        return this.control.equals(control);
+        return this.control != null && this.control.equals(control);
     }
     
     private MacroCommand initMacroCommand(Command command, Command... cmds) {
@@ -36,8 +36,8 @@ public class ControlMap<Ctrl extends Control> {
     @Override
     public boolean equals(Object object) {
         ControlMap cm = (ControlMap)object;
-        boolean sameControl = this.control.equals(cm.getControl());
-        boolean sameCommand = this.command.equals(cm.getCommand());
+        boolean sameControl = this.control != null && this.control.equals(cm.getControl());
+        boolean sameCommand = this.command != null && this.command.equals(cm.getCommand());
         return sameControl && sameCommand;
     }
 

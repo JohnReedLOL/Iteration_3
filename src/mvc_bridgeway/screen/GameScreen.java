@@ -32,7 +32,7 @@ public class GameScreen extends Screen {
 
     @Override
     protected ArrayList<ControlMap> getUserControls(UserSettings userSettings) {
-        return null;
+        return userSettings.getGameScreenControls();
     }
 
     @Override

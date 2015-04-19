@@ -22,8 +22,6 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     public final RebindMode Rebind = new RebindMode();
     //
     private Mode mode = Enabled;
-    //
-    private CtrlMp rebindControlMap = null;
 
     /*Constructors*/
     
@@ -41,20 +39,20 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
         init(userControls);
     }
     
-    public final PhysicalControl setupForRebind(CtrlMp controlMap) {
+    public final void setupForRebind(ControlMap controlMap) {
         setMode(Rebind);
-        setRebindControlMap(controlMap);
-        return controlMap.getControl(); //old Control
+        nullifyControl(controlMap.getControl());
+//        setRebindControlMap(controlMap);
+//        return controlMap.getControl(); //old Control
     }
 
-    public final PCtrl rebind(PCtrl control) {
-        clearMapping(control); //wipe any commands currently mapped to this control
-        CtrlMp rebindControlMap = getRebindControlMap();
-        PCtrl oldControl = rebindControlMap.getControl();
+    public final void rebind(PCtrl control) {
+//        clearMapping(control); //wipe any commands currently mapped to this control
+        ControlMap<PhysicalControl> rebindControlMap = UserSettings.getRebindMap();
+        Control oldControl = rebindControlMap.getControl();
         rebindControlMap.setControl(control); //the actual rebinding part
         UserSettings.setRebindMap(rebindControlMap);
-        setMode(Disabled); //will be Disabled after testing
-        return oldControl;
+        setMode(Enabled); //will be Disabled after testing
     }
     
     protected final Command getCommand(PCtrl control) {
@@ -79,8 +77,8 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     }
     
     protected final void clearMapping(PCtrl control) {
-        ArrayList<CtrlMp> controlMaps = getControlMaps();
-        CtrlMp cm;
+        ArrayList<ControlMap> controlMaps = UserSettings.getRebindSet();
+        ControlMap cm;
         for (int i=0; i<controlMaps.size(); i++) {
             cm = controlMaps.get(i);
             if (cm.hasControl(control)) {
@@ -90,9 +88,9 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
         }
     }
     
-    protected final void nullifyControl(PCtrl control) {
-        ArrayList<CtrlMp> controlMaps = getControlMaps();
-        CtrlMp cm;
+    protected final void nullifyControl(Control control) {
+        ArrayList<ControlMap> controlMaps = UserSettings.getRebindSet();
+        ControlMap cm;
         for (int i=0; i<controlMaps.size(); i++) {
             cm = controlMaps.get(i);
             if (cm.hasControl(control)) {
@@ -102,15 +100,6 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     }
     
     /*Get-Sets*/
-    
-    private final void setRebindControlMap(CtrlMp controlMap) {
-        this.rebindControlMap = controlMap;
-        nullifyControl(controlMap.getControl());
-    }
-    
-    protected final CtrlMp getRebindControlMap() {
-        return rebindControlMap;
-    }
 
     /*Inner-classes*/
     

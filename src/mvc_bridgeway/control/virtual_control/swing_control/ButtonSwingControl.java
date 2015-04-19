@@ -30,6 +30,12 @@ public class ButtonSwingControl extends SwingControl<JButton> {
         getComponent().setText(content);
     }
     
+    public void removeAllActionListeners() {
+        for( ActionListener al : getComponent().getActionListeners() ) {
+            getComponent().removeActionListener( al );
+        }
+    }
+    
     /*Get-Sets*/
 
     /*Inner-classes*/

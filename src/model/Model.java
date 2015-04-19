@@ -158,9 +158,10 @@ public class Model {
     }
 
     public void setupPhysicalControllerForRebind(ControlMap controlMap) {
-        PhysicalControl oldControl = application.listenForRebind(controlMap);
         UserSettings userSettings = mvb.getUserSettings();
-        userSettings.updateFromRebind(controlMap);
+        userSettings.updateForRebind(controlMap);
+        //
+        application.listenForRebind(controlMap);
     }
     
     public void save() {
