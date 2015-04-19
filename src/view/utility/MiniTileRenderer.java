@@ -14,7 +14,7 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer{
 	private ObjectRenderer mapObjectRenderer;
 
 	// FOR DEBUG
-	private final boolean DEBUG = false;
+	private final boolean DEBUG = true;
 	
 	public MiniTileRenderer(Graphics g, int startx, int starty) {
 		super(g);
@@ -62,9 +62,9 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer{
 
 	private void drawDebug() {
 		if (DEBUG) {
-			g.setColor(Color.RED);
+			g.setColor(Color.BLACK);
 			g.drawRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
-			g.drawString("x: " + x + ",y: " + y, drawx, drawy);
+			//g.drawString("x: " + x + ",y: " + y, drawx, drawy);
 		}
 	}
 

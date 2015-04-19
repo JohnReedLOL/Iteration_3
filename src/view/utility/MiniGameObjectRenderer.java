@@ -20,51 +20,62 @@ public class MiniGameObjectRenderer extends MiniRenderer implements ObjectRender
 		this.startx = startx;
 		this.starty = starty;
 	}
-
 	public void visit(Avatar avatar) {
 		scaleXandY(x, y);
 		g.setColor(Color.YELLOW);
-		g.fillRect(drawx+1, drawy+1, SIZE_OF_MAP_PIXEL-3, SIZE_OF_MAP_PIXEL-3);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
 	}
 
 	public void visit(NPC npc) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.RED);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
 	}
 
 	public void visit(InteractiveItem interactiveItem) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.CYAN);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
 	}
 
 	public void visit(ObstacleItem obstacleItem) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.MAGENTA);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
 	}
 
 	public void visit(OneShotItem oneShotItem) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.ORANGE);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
 	}
 
 	public void visit(LimitedConsumptionItem limitedConsumptionItem) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.PINK);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
 	}
 
 	public void visit(UnlimitedConsumptionItem unlimitedConsumptionItem) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.WHITE);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
 	}
 
 	public void visit(EquipItem equipItem) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.WHITE);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
+		g.setColor(Color.BLACK);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/8*3, drawy+SIZE_OF_MAP_PIXEL/8*3, SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/4);
 	}
-
+	
 	public void visit(WeaponItem weaponItem) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.WHITE);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/4, drawy+SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/2, SIZE_OF_MAP_PIXEL/2);
+		g.setColor(Color.RED);
+		g.fillRect(drawx+SIZE_OF_MAP_PIXEL/8*3, drawy+SIZE_OF_MAP_PIXEL/8*3, SIZE_OF_MAP_PIXEL/4, SIZE_OF_MAP_PIXEL/4);
 	}
 
 }

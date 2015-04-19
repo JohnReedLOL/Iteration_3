@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public abstract class MiniRenderer extends Renderer {
 
-	protected final int SIZE_OF_MAP_PIXEL = 10;
+	protected final int SIZE_OF_MAP_PIXEL = 20;
 	
 	public MiniRenderer(Graphics g) {
 		super(g);
