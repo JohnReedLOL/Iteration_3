@@ -35,7 +35,7 @@ public class TextConsoleViewport extends Viewport {
 
     @Override
     public void update(ModelViewBundle mvb) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void renderCurrentConversationNode(ConversationNode n) {

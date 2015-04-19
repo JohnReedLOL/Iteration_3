@@ -135,6 +135,7 @@ public abstract class Entity extends MapObject {
 	public void move(Direction direction){
 		this.direction = direction;
 		movementBehavior.move(this, direction);
+		System.out.println("I just moved");
 	}
 	
 	public void drop(SackboundItem item){
