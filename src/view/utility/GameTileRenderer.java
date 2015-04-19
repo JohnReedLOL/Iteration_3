@@ -120,26 +120,21 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	 */
 	public BufferedImage produceBufferedImageDarkenedByPercentage(
 			BufferedImage bufferedImage, int percentage) {
-		// if (percentage < 0 || percentage > 100) {
-		// throw new IllegalArgumentException("Illegal percentage");
-		// }
-		// /**
-		// * 100 corresponds to pitch black, 50 corresponds to 50% darkened, and
-		// 0
-		// * corresponds to regular rendering. Do not go over 100 or under 0%
-		// * brightness.
-		// */
-		// int remainder = 100 - percentage;
-		// float remaining_light = (float) remainder/100;
-		// RescaleOp op = new RescaleOp(remaining_light, 0, null);
-		// // If the destination image (second parameter of op.filter) is null,
-		// a
-		// // [new] BufferedImage will be created.
-		// BufferedImage darkened_image = op.filter(bufferedImage, null);
-		// return darkened_image;
-		RescaleOp op = new RescaleOp(.5f, 0, null);
-		bufferedImage = op.filter(bufferedImage, null);
-		return bufferedImage;
+		if (percentage < 0 || percentage > 100) {
+			throw new IllegalArgumentException("Illegal percentage");
+		}
+		/**
+		 * 100 corresponds to pitch black, 50 corresponds to 50% darkened, and 0
+		 * corresponds to regular rendering. Do not go over 100 or under 0%
+		 * brightness.
+		 */
+		int remainder = 100 - percentage;
+		float remaining_light = (float) remainder / 100;
+		RescaleOp op = new RescaleOp(remaining_light, 0, null);
+		// If the destination image (second parameter of op.filter) is null, a
+		// [new] BufferedImage will be created.
+		BufferedImage darkened_image = op.filter(bufferedImage, null);
+		return darkened_image;
 	}
 
 	private void drawDebug() {
