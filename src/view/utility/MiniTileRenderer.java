@@ -71,4 +71,10 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		}
 	}
 
+	@Override
+	public void setBrightness(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

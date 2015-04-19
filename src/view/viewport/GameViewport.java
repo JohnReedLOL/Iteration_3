@@ -25,6 +25,7 @@ import application.Application;
 public class GameViewport extends Viewport {
 
 	private GameMap gameMap;
+	private int[][] brightness;
 	
 	private TileRenderer tileRendererVisitor;
 
@@ -36,6 +37,7 @@ public class GameViewport extends Viewport {
         
         //TODO fake map
         gameMap = new GameMap();
+        brightness = gameMap.getBrightness();
 	}
 
 	@Override
@@ -62,6 +64,7 @@ public class GameViewport extends Viewport {
 			for (int y = 0; y < map[x].length; y++) {
 				tileRendererVisitor.setX(x);
 				tileRendererVisitor.setY(y);
+				tileRendererVisitor.setBrightness(brightness[x][y]);
 				map[x][y].accept(tileRendererVisitor);
 				
 			}
