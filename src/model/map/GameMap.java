@@ -91,7 +91,9 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void teleport(MapObject m, DiscreteMap d) {
-        //TODO
+
+        remove( m );
+        d.insert( m , d.getLocationByCoordinate( new HexCoordinate( 5, 5 )));
     }
 
     @Override
