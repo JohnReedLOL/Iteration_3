@@ -24,7 +24,7 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 	private BufferedImage water;
 
 	// MapObjectsRenderer
-	private GameObjectRenderer mapObjectRenderer;
+	private ObjectRenderer mapObjectRenderer;
 
 	// FOR DEBUG
 	private final boolean DEBUG = true;
@@ -47,29 +47,6 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 			water = ImageIO.read(new File(url.getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-
-	protected void scaleXandY(int x, int y) {
-		/**
-		 * Tile[x][y]
-		 * for a Game map the first index is the x and the second index is y
-		 *   ____      ____ 
-		 *  / 0,0\____/ 0,2\   x,y
-		 *  \____/ 0,1\____/
-		 *  / 1,0\____/ 1,2\
-		 *  \____/ 1,1\____/
-		 *  / 2,0\____/ 2,2\
-		 *  \____/    \____/
-		 *  
-		 *  BECAUSE OF THIS, we need to translate the Tile indexes x and y
-		 *  to the scaled drawx and drawy for the Graphics
-		 */
-		drawx = startx + y * HEXAGON_SIZE * 3 / 4;
-		int yoffset = (int) (Math.sin(Math.PI*2/3) * (HEXAGON_SIZE / 2));
-		drawy = starty + 2 * yoffset * x;
-		if (y % 2 != 0) {
-			drawy += yoffset;
 		}
 	}
 

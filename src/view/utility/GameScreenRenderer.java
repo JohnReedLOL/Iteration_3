@@ -2,7 +2,7 @@ package view.utility;
 
 import java.awt.Graphics;
 
-public class GameScreenRenderer extends Renderer {
+public abstract class GameScreenRenderer extends Renderer {
 
 	// SIZE
 	protected final int HEXAGON_SIZE = 100;

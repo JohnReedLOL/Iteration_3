@@ -45,15 +45,15 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[4][1] = new WaterTile();
         tiles[5][5] = new WaterTile();
 
-        tiles[1][1].getMapObjects().add(new ObstacleItem());
-        tiles[1][2].getMapObjects().add(new NPC(new Armory(),new Sack(), new SneakOccupation(),new ClassicMovementBehavior()));
-        tiles[1][3].getMapObjects().add(new Avatar(new Armory(),new Sack(), new SneakOccupation(),new ClassicMovementBehavior()));
-        tiles[1][4].getMapObjects().add(new InteractiveItem());
-        tiles[1][5].getMapObjects().add(new OneShotItem());
-        tiles[1][6].getMapObjects().add(new LimitedConsumptionItem());
-        tiles[1][7].getMapObjects().add(new UnlimitedConsumptionItem());
-        tiles[1][8].getMapObjects().add(new EquipItem(EquipSlot.HEAD));
-        tiles[1][9].getMapObjects().add(new WeaponItem());
+        tiles[1][1].createMapObjectAssociation(new ObstacleItem());
+        tiles[1][2].createMapObjectAssociation(new NPC(new Armory(),new Sack(), new SneakOccupation(),ClassicMovementBehavior.getInstance()));
+        tiles[1][3].createMapObjectAssociation(new Avatar(new Armory(),new Sack(), new SneakOccupation(),ClassicMovementBehavior.getInstance()));
+        tiles[1][4].createMapObjectAssociation(new InteractiveItem());
+        tiles[1][5].createMapObjectAssociation(new OneShotItem());
+        tiles[1][6].createMapObjectAssociation(new LimitedConsumptionItem());
+        tiles[1][7].createMapObjectAssociation(new UnlimitedConsumptionItem());
+        tiles[1][8].createMapObjectAssociation(new EquipItem(EquipSlot.HEAD));
+        tiles[1][9].createMapObjectAssociation(new WeaponItem());
         
         return tiles;
     }

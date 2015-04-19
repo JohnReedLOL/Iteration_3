@@ -2,7 +2,7 @@ package view.utility;
 
 import java.awt.Graphics;
 
-public class MiniRenderer extends Renderer {
+public abstract class MiniRenderer extends Renderer {
 
 	protected final int SIZE_OF_MAP_PIXEL = 10;
 	

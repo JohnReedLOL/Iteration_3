@@ -1,5 +1,6 @@
 package view.utility;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import model.entity.avatar.Avatar;
@@ -20,15 +21,10 @@ public class MiniGameObjectRenderer extends MiniRenderer implements ObjectRender
 		this.starty = starty;
 	}
 
-	@Override
-	protected void scaleXandY(int x, int y) {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void visit(Avatar avatar) {
-		// TODO Auto-generated method stub
-
+		scaleXandY(x, y);
+		g.setColor(Color.YELLOW);
+		g.fillRect(drawx+1, drawy+1, SIZE_OF_MAP_PIXEL-3, SIZE_OF_MAP_PIXEL-3);
 	}
 
 	public void visit(NPC npc) {
