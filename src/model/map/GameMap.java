@@ -183,6 +183,14 @@ public class GameMap extends DiscreteMap {
         System.out.println( t.getX() + ", " + t.getY() );
     }
 
+    public boolean inBounds( HexCoordinate coord ) {
+        if ( coord.getX() >= 0 && coord.getX() < getHeight()  &&
+           ( coord.getY() >= 0 && coord.getY() < getWidth() ) ) {
+            return true;
+        }
+        return false;
+
+    }
 
 
     // CAN WE DELETE THIS ALREADY?

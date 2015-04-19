@@ -33,7 +33,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
 
     public Tile[][] generateMap(int height, int width) {
         //TODO: MAKE THIS DO SOMETHING USEFUL
-        Tile[][] tiles = new Tile[height][width];
+        Tile[][] tiles = new Tile[100][100];
         for ( int i = 0; i < tiles.length; ++i ) {
             for ( int j = 0; j < tiles[0].length; ++j ) {
                 tiles[i][j] = new GrassTile();

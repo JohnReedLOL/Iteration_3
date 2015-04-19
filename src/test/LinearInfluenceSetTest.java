@@ -3,6 +3,7 @@ package test;
 import model.influence_set.AngularInfluenceSet;
 import model.influence_set.InfluenceTile;
 import model.influence_set.LinearInfluenceSet;
+import model.influence_set.RadialInfluenceSet;
 import model.map.DiscreteMap;
 import model.map.GameMap;
 import model.map.GameWorld;
@@ -17,15 +18,16 @@ public class LinearInfluenceSetTest {
     public static void main(String[] args) {
 
         GameWorld world = GameWorld.getInstance();
-        GameMap game = new GameMap();
-        AngularInfluenceSet lis = new AngularInfluenceSet(new SouthEastDirection(new HexCoordinate(0, 5)), 5, game.getLocationByCoordinate(new HexCoordinate(0, 5)));
-        //lis.setUseSourceLocation( true );
+//        GameMap game = new GameMap();
         DiscreteMap map = GameWorld.getCurrentMap();
+        AngularInfluenceSet lis = new AngularInfluenceSet( new SouthDirection( new HexCoordinate(1,1)), 4, map.getLocationByCoordinate(new HexCoordinate(1, 1)));
+        lis.setUseSourceLocation( true );
+        //lis.setUseSourceLocation( true );
 
         Collection<InfluenceTile> set = lis.getInfluenceSet();
         for (InfluenceTile tile : set) {
             System.out.println("Radius: " + tile.getRadius());
-            System.out.println("Tile: " + map.getCoordinateByLocation( tile.getTile() ) + "\n");
+            System.out.println("Tile: " + map.getCoordinateByLocation( tile.getTile() ).getX() + ", " +map.getCoordinateByLocation( tile.getTile() ).getY() + "\n");
         }
     }
 }
