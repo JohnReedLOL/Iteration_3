@@ -14,8 +14,8 @@ import model.entity.occupation.Occupation;
 import model.item.Item;
 import model.map.GameWorld;
 import model.map.direction.Direction;
-import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.ModelCommand;
+import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
@@ -96,9 +96,8 @@ public class Model {
                                 // probabaly better to implement commands in a queue 
                                 // and remove done command from queue
                                 to_execute_ = null;
-                                // update the screen after executing command.
-                                currentScreen.getViewport().update(mvb);
                             }
+                            currentScreen.updateView(mvb);
                         }
                     };
                     model_thread_.execute(turn_taker);
@@ -159,7 +158,9 @@ public class Model {
     }
 
     public void setupPhysicalControllerForRebind(ControlMap controlMap) {
-        application.listenForRebind(controlMap);
+        PhysicalControl oldControl = application.listenForRebind(controlMap);
+        UserSettings userSettings = mvb.getUserSettings();
+        userSettings.updateFromRebind(controlMap);
     }
     
     public void save() {

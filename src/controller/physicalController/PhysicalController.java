@@ -5,6 +5,7 @@ package controller.physicalController;
 import controller.Controller;
 import java.util.ArrayList;
 import model.Model;
+import model.UserSettings;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.control.Control;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
@@ -40,17 +41,20 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
         init(userControls);
     }
     
-    public final void setupForRebind(CtrlMp controlMap) {
-        setRebindControlMap(controlMap);
+    public final PhysicalControl setupForRebind(CtrlMp controlMap) {
         setMode(Rebind);
+        setRebindControlMap(controlMap);
+        return controlMap.getControl(); //old Control
     }
 
-    public final void rebind(PCtrl control) {
+    public final PCtrl rebind(PCtrl control) {
         clearMapping(control); //wipe any commands currently mapped to this control
         CtrlMp rebindControlMap = getRebindControlMap();
+        PCtrl oldControl = rebindControlMap.getControl();
         rebindControlMap.setControl(control); //the actual rebinding part
-        addControlMap(rebindControlMap);
-        setMode(Enabled); //will be Disabled after testing
+        UserSettings.setRebindMap(rebindControlMap);
+        setMode(Disabled); //will be Disabled after testing
+        return oldControl;
     }
     
     protected final Command getCommand(PCtrl control) {
@@ -75,7 +79,6 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
     }
     
     protected final void clearMapping(PCtrl control) {
-        int numMapsCleared = 0;
         ArrayList<CtrlMp> controlMaps = getControlMaps();
         CtrlMp cm;
         for (int i=0; i<controlMaps.size(); i++) {
@@ -87,10 +90,22 @@ public abstract class PhysicalController<PCtrl extends PhysicalControl, CtrlMp e
         }
     }
     
+    protected final void nullifyControl(PCtrl control) {
+        ArrayList<CtrlMp> controlMaps = getControlMaps();
+        CtrlMp cm;
+        for (int i=0; i<controlMaps.size(); i++) {
+            cm = controlMaps.get(i);
+            if (cm.hasControl(control)) {
+                cm.setControl(null);
+            }
+        }
+    }
+    
     /*Get-Sets*/
     
     private final void setRebindControlMap(CtrlMp controlMap) {
         this.rebindControlMap = controlMap;
+        nullifyControl(controlMap.getControl());
     }
     
     protected final CtrlMp getRebindControlMap() {

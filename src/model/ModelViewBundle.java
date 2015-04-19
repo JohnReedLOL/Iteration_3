@@ -6,7 +6,7 @@ public class ModelViewBundle {
 
     /*Properties*/
     
-    private UserSettings userSettings;
+    private UserSettings userSettings = new UserSettings();
     
 
     /*Constructors*/

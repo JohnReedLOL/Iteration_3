@@ -15,6 +15,18 @@ public abstract class Command {
     
     public abstract void execute();
     public abstract void forward();
+    
+    public String getDisplayString() {
+        String className = this.getClass().getSimpleName().toString();
+        return "Display String for " + className + " not implemented yet...";
+    }
+    
+    @Override
+    public boolean equals(Object object) {
+        Class thisClass = this.getClass();
+        Class otherClass = object.getClass();
+        return thisClass.isAssignableFrom(otherClass);
+    }
 
     /*Get-Sets*/
 

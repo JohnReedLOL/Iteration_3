@@ -14,6 +14,11 @@ public class ExitCommand extends ModelCommand {
     public void execute() {
         getModel().exit();
     }
+    
+    @Override
+    public String getDisplayString() {
+        return "Exit";
+    }
 
     /*Get-Sets*/
 

@@ -7,6 +7,7 @@ import controller.physicalController.PhysicalController;
 import model.Model;
 import model.UserSettings;
 import mvc_bridgeway.command.model_command.ModelCommand;
+import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.Screen;
 import view.MainWindow;
@@ -97,8 +98,9 @@ public class Application {
         mainWindow.displayScreen(screen);
     }   
     
-    public void listenForRebind(ControlMap controlMap) {
-        physicalController.setupForRebind(controlMap);
+    public PhysicalControl listenForRebind(ControlMap controlMap) {
+        PhysicalControl oldControl = physicalController.setupForRebind(controlMap);
+        return oldControl;
     }
     
     private Model initModel() {
