@@ -1,7 +1,9 @@
 package model.map;
 
 import model.MapObject;
+import model.effect.Effect;
 import model.entity.Entity;
+import model.influence_set.InfluenceSet;
 import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
@@ -22,6 +24,7 @@ public abstract class DiscreteMap {
     public abstract void relocate( MapObject m, Location l);
     public abstract void move( MapObject m, Coordinate2D from, Coordinate2D to );
     public abstract void teleport( MapObject m, DiscreteMap d);
+    public abstract void performEffect(Effect effect, InfluenceSet influence);
     public abstract Location getLocationFromDirection( Location l, Direction d );
     public abstract boolean withinBounds( MapObject m, Direction d );
     public abstract Coordinate2D getMapObjectCoordinate( MapObject m );

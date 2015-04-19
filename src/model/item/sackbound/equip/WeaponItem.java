@@ -1,9 +1,15 @@
 package model.item.sackbound.equip;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import model.effect.Effect;
 import model.entity.Entity;
+import model.influence_set.InfluenceSet;
+import model.influence_set.LinearInfluenceSet;
+import model.map.direction.NorthDirection;
+import sun.text.resources.lt.CollationData_lt;
 import view.utility.ObjectRenderer;
 
 public class WeaponItem extends EquipItem {
@@ -12,19 +18,17 @@ public class WeaponItem extends EquipItem {
      */
 
     private ArrayList<Effect> attackEffects;
+    private Collection<InfluenceSet> affectedAreas;
 
     /**
      * CONSTRUCTORS
      */
 
-    public WeaponItem() {
-        this("WeaponItem", "Weapon Desc", EquipSlot.MAINHAND);
-    }
-
-    public WeaponItem(String name, String descrption, EquipSlot slot) {
+    public WeaponItem(String name, String descrption, EquipSlot slot, Collection<InfluenceSet> set) {
         super(name, descrption, slot);
 
         this.attackEffects = new ArrayList<Effect>();
+        this.affectedAreas = set;
     }
 
     /**
@@ -35,6 +39,10 @@ public class WeaponItem extends EquipItem {
         return this.attackEffects;
     }
 
+    public Collection<InfluenceSet> getAffectedAreas() {
+        return this.affectedAreas;
+    }
+
     /**
      * MUTATORS
      */
@@ -43,12 +51,24 @@ public class WeaponItem extends EquipItem {
         this.attackEffects = effects;
     }
 
+    public void setAffectedAreas(Collection<InfluenceSet> affectedAreas) {
+        this.affectedAreas = affectedAreas;
+    }
+
     public void addAttackEffect(Effect effect) {
         getAttackEffects().add(effect);
     }
 
     public void removeAttackEffect(Effect effect) {
         getAttackEffects().remove(effect);
+    }
+
+    public void addInfluenceSet(InfluenceSet set) {
+        getAffectedAreas().add(set);
+    }
+
+    public void removeInfluenceSet(InfluenceSet set) {
+        getAffectedAreas().remove(set);
     }
 
     /**

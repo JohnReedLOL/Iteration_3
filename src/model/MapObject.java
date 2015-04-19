@@ -1,5 +1,6 @@
 package model;
 
+import model.effect.Effect;
 import view.utility.GameObjectRenderer;
 import view.utility.MiniGameObjectRenderer;
 import view.utility.ObjectRenderer;
@@ -47,4 +48,7 @@ public abstract class MapObject implements Derivable {
     public abstract boolean removeLocationAssociation(Location location);
 
 	public abstract void accept(ObjectRenderer mapObjectRenderer);
+    public void accept(Effect effect) {
+        effect.performEffect(this);
+    }
 }

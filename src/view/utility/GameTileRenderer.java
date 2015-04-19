@@ -26,13 +26,6 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	private BufferedImage water;
 	private BufferedImage dim;
 
-	// brightness
-	private int brightness;
-
-	// TODO
-	private int avatarx = 1;
-	private int avatary = 3;
-
 	// MapObjectsRenderer
 	private ObjectRenderer mapObjectRenderer;
 
@@ -40,11 +33,14 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	private final boolean DEBUG = false;
 
 	public GameTileRenderer(Graphics g) {
+		//TODO how do we set AVATAR and Location
 		super(g);
 		this.startx = 0;
 		this.starty = 0;
 		mapObjectRenderer = new GameObjectRenderer(g);
 		initializeImages();
+		//TODO fix this
+		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	public GameTileRenderer(Graphics g, int startx, int starty) {
@@ -53,6 +49,8 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		this.starty = starty;
 		mapObjectRenderer = new GameObjectRenderer(g, startx, starty);
 		initializeImages();
+		//TODO fix this
+		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	private void initializeImages() {
@@ -89,11 +87,8 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		scaleXandY(x, y);
 		g.drawImage(img, drawx, drawy, 100, 100, null);
 		drawMapObjects(mapObjects);
-		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
-				&& avatary + 5 > y) {
-		} else {
+		if (!withinAvatarViewDistance(x, y))
 			g.drawImage(dim, drawx, drawy, 100, 100, null);
-		}
 		drawDebug();
 	}
 

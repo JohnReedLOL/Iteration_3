@@ -13,20 +13,19 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 
 	private ObjectRenderer mapObjectRenderer;
 
-	// TODO
-	private int avatarx = 1;
-	private int avatary = 3;
-
 	// FOR DEBUG
 	private final boolean DEBUG = false;
 
 	private int brightness;
 
 	public MiniTileRenderer(Graphics g, int startx, int starty) {
+		//TODO how do we set AVATAR and Location
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
 		mapObjectRenderer = new MiniGameObjectRenderer(g, startx, starty);
+		//TODO fix this
+		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	public MiniTileRenderer(Graphics g) {
@@ -34,6 +33,8 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		this.startx = 0;
 		this.starty = 0;
 		mapObjectRenderer = new MiniGameObjectRenderer(g);
+		//TODO fix this
+		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	@Override
@@ -56,10 +57,7 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		g.setColor(c);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawMapObjects(mapObjects);
-		if (avatarx - 5 < x && avatarx + 5 > x && avatary - 5 < y
-				&& avatary + 5 > y) {
-
-		} else {
+		if (!withinAvatarViewDistance(x, y)) {
 			Color b = new Color(0,0,0,100);
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);

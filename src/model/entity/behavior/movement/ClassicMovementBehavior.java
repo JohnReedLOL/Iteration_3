@@ -39,16 +39,17 @@ public class ClassicMovementBehavior extends MovementBehavior {
 	 * IMPLEMENTATIONS
 	 */
 
-	public void move(Entity target, Direction direction) {
+	public boolean move(Entity target, Direction direction) {
 		DiscreteMap map = GameWorld.getCurrentMap();
 		HexCoordinate prev = (HexCoordinate) map.getMapObjectCoordinate(target);
 		HexCoordinate candidate = direction.deriveCoordinate(prev);
 		Tile tile = (Tile) map.getLocationByCoordinate(candidate);
 
 		if (!map.withinBounds(target, direction) || !tile.canPass(target)) {
-			return;
+			return false;
 		}
 
 		map.move(target, prev, candidate);
+		return true;
 	}
 }
