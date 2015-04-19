@@ -56,10 +56,12 @@ public abstract class Screen {
     }
     
     public final void onFocusLost() {
+        if(model != null)
         model.setMode(model.PAUSE);
     }
     
     public final void onFocusGained() {
+        if(model != null)
         model.setMode(model.RUN);
     }
     
