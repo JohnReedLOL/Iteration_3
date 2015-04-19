@@ -29,17 +29,17 @@ public class ConversationTree {
      */
     private ConversationNodeWithChildren currentNodeReference_;
 
-    ConversationTree() {
+    public ConversationTree() {
         firstNode_ = null;
         currentNodeReference_ = firstNode_;
     }
 
-    ConversationTree(ConversationNodeWithChildren firstNode) {
+    public ConversationTree(ConversationNodeWithChildren firstNode) {
         firstNode_ = firstNode;
         currentNodeReference_ = firstNode_;
     }
     
-    ConversationTree(ConversationNode firstNode) {
+    public ConversationTree(ConversationNode firstNode) {
         firstNode_ = new ConversationNodeWithChildren(firstNode);
         currentNodeReference_ = firstNode_;
     }
@@ -49,7 +49,7 @@ public class ConversationTree {
      *
      * @param top_parent - Node to be located at the top of the tree.
      */
-    void setFirstNodeInTreeIfWasNotSpecifiedInConscructor(ConversationNode top_parent) {
+    public void setFirstNodeInTreeIfWasNotSpecifiedInConscructor(ConversationNode top_parent) {
         Application.check(firstNode_ == null,
                 "This method can only be used if the first node was not specified in the Tree's constructor");
         Application.check(currentNodeReference_ == firstNode_, "This method can only be used right after the Tree's initialization, "
@@ -58,76 +58,76 @@ public class ConversationTree {
         currentNodeReference_ = firstNode_;
     }
 
-    void addNodeUnderFirstReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
-        addNodeUnderFirstReplyOptionAndDoNotUpdateCurrentNode(to_add);
+    public void addNodeUnderFirstReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
+        addNodeUnderFirstReplyOption(to_add);
         currentNodeReference_ = currentNodeReference_.getChildNode1_();
     }
 
-    void addNodeUnderSecondReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
-        addNodeUnderSecondReplyOptionAndDoNotUpdateCurrentNode(to_add);
+    public void addNodeUnderSecondReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
+        addNodeUnderSecondReplyOption(to_add);
         currentNodeReference_ = currentNodeReference_.getChildNode2_();
     }
 
-    void addNodeUnderThirdReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
-        addNodeUnderThirdReplyOptionAndDoNotUpdateCurrentNode(to_add);
+    public void addNodeUnderThirdReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
+        addNodeUnderThirdReplyOption(to_add);
         currentNodeReference_ = currentNodeReference_.getChildNode3_();
     }
 
-    void addNodeUnderFourthReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
-        addNodeUnderFourthReplyOptionAndDoNotUpdateCurrentNode(to_add);
+    public void addNodeUnderFourthReplyOptionAndUpdateCurrentNode(ConversationNode to_add) {
+        addNodeUnderFourthReplyOption(to_add);
         currentNodeReference_ = currentNodeReference_.getChildNode4_();
     }
     
-    void addNodeUnderFirstReplyOptionAndDoNotUpdateCurrentNode(ConversationNode to_add) {
+    public void addNodeUnderFirstReplyOption(ConversationNode to_add) {
         Application.check(currentNodeReference_ != null);
         Application.check(currentNodeReference_.getChildNode1_() == null);
         currentNodeReference_.setChildNode1_(new ConversationNodeWithChildren(to_add, currentNodeReference_));
     }
 
-    void addNodeUnderSecondReplyOptionAndDoNotUpdateCurrentNode(ConversationNode to_add) {
+    public void addNodeUnderSecondReplyOption(ConversationNode to_add) {
         Application.check(currentNodeReference_ != null);
         Application.check(currentNodeReference_.getChildNode2_() == null);
         currentNodeReference_.setChildNode2_(new ConversationNodeWithChildren(to_add, currentNodeReference_));
     }
 
-    void addNodeUnderThirdReplyOptionAndDoNotUpdateCurrentNode(ConversationNode to_add) {
+    public void addNodeUnderThirdReplyOption(ConversationNode to_add) {
         Application.check(currentNodeReference_ != null);
         Application.check(currentNodeReference_.getChildNode3_() == null);
         currentNodeReference_.setChildNode3_(new ConversationNodeWithChildren(to_add, currentNodeReference_));
     }
 
-    void addNodeUnderFourthReplyOptionAndDoNotUpdateCurrentNode(ConversationNode to_add) {
+    public void addNodeUnderFourthReplyOption(ConversationNode to_add) {
         Application.check(currentNodeReference_ != null);
         Application.check(currentNodeReference_.getChildNode4_() == null);
         currentNodeReference_.setChildNode4_(new ConversationNodeWithChildren(to_add, currentNodeReference_));
     }
     
-    void setCurrentNodeToParentNode() {
+    public void setCurrentNodeToParentNode() {
         Application.check(currentNodeReference_.getParentNode_() != null);
         currentNodeReference_ = currentNodeReference_.getParentNode_();
     }
     
-    void setCurrentNodeToChildNode1() {
+    public void setCurrentNodeToChildNode1() {
         Application.check(currentNodeReference_.getChildNode1_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode1_();
     }
     
-    void setCurrentNodeToChildNode2() {
+    public void setCurrentNodeToChildNode2() {
         Application.check(currentNodeReference_.getChildNode2_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode2_();
     }
     
-    void setCurrentNodeToChildNode3() {
+    public void setCurrentNodeToChildNode3() {
         Application.check(currentNodeReference_.getChildNode3_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode3_();
     }
     
-    void setCurrentNodeToChildNode4() {
+    public void setCurrentNodeToChildNode4() {
         Application.check(currentNodeReference_.getChildNode4_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode4_();
     }
     
-    void setCurrentNodeToFirstNode() {
+    public void setCurrentNodeToFirstNode() {
         Application.check(firstNode_ != null);
         currentNodeReference_ = firstNode_;
     }
@@ -141,7 +141,7 @@ public class ConversationTree {
      *
      * @return
      */
-    int getHeightRelativeToPositionOfCurrentNode() {
+    public int getHeightRelativeToPositionOfCurrentNode() {
         if (firstNode_ == null) {
             Application.check(currentNodeReference_ == firstNode_);
             return 0;

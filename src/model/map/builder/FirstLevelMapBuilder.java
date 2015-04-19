@@ -4,7 +4,6 @@ import model.armory.Armory;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.npc.NPC;
-import model.entity.occupation.SneakOccupation;
 import model.influence_set.InfluenceSet;
 import model.inventory.Sack;
 import model.item.interactive.InteractiveItem;
@@ -16,7 +15,7 @@ import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
 import model.item.sackbound.equip.WeaponItem;
 import model.map.location.GrassTile;
-import model.map.location.MountainTerrain;
+import model.map.location.MountainTile;
 import model.map.location.Tile;
 import model.map.location.WaterTile;
 import utility.ScalingUtil;
@@ -41,7 +40,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
             }
         }
 
-        tiles[1][3] = new MountainTerrain();
+        tiles[1][3] = new MountainTile();
         tiles[2][2] = new WaterTile();
         tiles[3][3] = new WaterTile();
         tiles[4][4] = new WaterTile();
@@ -49,8 +48,8 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[5][5] = new WaterTile();
 
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
-        tiles[1][2].createMapObjectAssociation(new NPC(new Armory(),new Sack(), new SneakOccupation(), ClassicMovementBehavior.getInstance()));
-        tiles[1][3].createMapObjectAssociation(new Avatar(new Armory(),new Sack(), new SneakOccupation(),ClassicMovementBehavior.getInstance()));
+        tiles[1][2].createMapObjectAssociation(new NPC("NPC", "NPC Test"));
+        tiles[1][3].createMapObjectAssociation(new Avatar("Test", "Test Desc"));
         tiles[1][4].createMapObjectAssociation(new InteractiveItem());
         tiles[1][5].createMapObjectAssociation(new OneShotItem());
         tiles[1][6].createMapObjectAssociation(new LimitedConsumptionItem());

@@ -23,7 +23,7 @@ public class KeyboardControl extends PhysicalControl {
     @Override
     public boolean equals(Object o) {
         KeyboardControl kc = (KeyboardControl)o;
-        return this.keycode == kc.getKeycode();
+        return (kc != null) && (this.keycode == kc.getKeycode());
     }
     
     @Override

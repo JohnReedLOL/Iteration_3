@@ -11,9 +11,10 @@ public class UserSettings {
 
     /*Properties*/
     
-    private ArrayList<ControlMap> gameScreenControls;
+    private static ArrayList<ControlMap> gameScreenControls;
     //
     private static ControlMap rebindMap = null;
+    private static ArrayList<ControlMap> rebindSet = null;
 
     /*Constructors*/
 
@@ -27,16 +28,17 @@ public class UserSettings {
         this.gameScreenControls = gameScreenControls;
     }
     
-    public void updateFromRebind(ControlMap cm) {
+    public void updateForRebind(ControlMap cm) {
         ControlMap controlMap = getControlMap(cm);
         if (controlMap != null) {
             rebindMap = cm;
+            rebindSet = gameScreenControls;
         } else {
             throw new RuntimeException("Couldn't find controlMap!");
         }
     }
     
-    private ControlMap getControlMap(ControlMap cm) {
+    private static ControlMap getControlMap(ControlMap cm) {
         for (ControlMap controlMap : gameScreenControls) {
             if (controlMap.equals(cm)) {
                 return controlMap;
@@ -53,6 +55,15 @@ public class UserSettings {
 
     public static void setRebindMap(ControlMap rebindMap) {
         UserSettings.rebindMap = rebindMap;
+//        gameScreenControls.add(rebindMap);
+    }
+    
+    public static ArrayList<ControlMap> getRebindSet() {
+        return rebindSet;
+    }
+
+    public static void setRebindSet(ArrayList<ControlMap> rebindSet) {
+        UserSettings.rebindSet = rebindSet;
     }
 
     /*Inner-classes*/

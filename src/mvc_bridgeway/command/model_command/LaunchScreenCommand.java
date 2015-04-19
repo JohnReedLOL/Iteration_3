@@ -26,8 +26,21 @@ public class LaunchScreenCommand extends ModelCommand {
         getModel().launchScreen(screen);
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if ( !(o instanceof LaunchScreenCommand) ) {
+            return false;
+        }
+        LaunchScreenCommand command = (LaunchScreenCommand)o;
+        return this.screen.equals( command.getScreen() );
+    }
+    
     /*Get-Sets*/
 
+    public Screen getScreen() {
+        return screen;
+    }
+    
     /*Inner-classes*/
 
     /*Test Main Method*/

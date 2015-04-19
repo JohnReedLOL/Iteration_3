@@ -98,9 +98,8 @@ public class Application {
         mainWindow.displayScreen(screen);
     }   
     
-    public PhysicalControl listenForRebind(ControlMap controlMap) {
-        PhysicalControl oldControl = physicalController.setupForRebind(controlMap);
-        return oldControl;
+    public void listenForRebind(ControlMap controlMap) {
+        physicalController.setupForRebind(controlMap);
     }
     
     private Model initModel() {

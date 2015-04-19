@@ -4,7 +4,7 @@ import model.armory.Armory;
 import model.entity.Entity;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
-import model.entity.occupation.SneakOccupation;
+import model.entity.stats.StatsOwnership;
 import model.inventory.Sack;
 import model.map.DiscreteMap;
 import model.map.GameMap;
@@ -20,7 +20,7 @@ public class MapTest {
         DiscreteMap map = new GameMap();
 
         HexCoordinate coord = new HexCoordinate(1, 1);
-        Entity entity = new Avatar("AVATAR", "TROY", new Armory(), new Sack(), new SneakOccupation(), ClassicMovementBehavior.getInstance());
+        Entity entity = new Avatar("AVATAR", "TROY", new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new StatsOwnership(null));
 
         map.insert( entity, map.getLocationByCoordinate(coord) );
     }

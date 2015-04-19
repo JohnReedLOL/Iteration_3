@@ -1,7 +1,9 @@
 package model.influence_set;
 
+import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
+import model.map.direction.HexMapDirection;
 import model.map.location.Location;
 import model.map.location.Tile;
 
@@ -26,14 +28,15 @@ public class AngularInfluenceSet extends DirectionalInfluenceSet {
         HexCoordinate coord = getMap().getCoordinateByLocation( location );
         directions.add( direction.getCounterClockwiseDirection( coord ) );
         directions.add( direction );
-        directions.add( direction.getClockwiseDirection( coord ) );
+        directions.add(direction.getClockwiseDirection(coord));
     }
 
     @Override
     public Collection<InfluenceTile> getInfluenceSet() {
         Collection<InfluenceTile> tiles = new ArrayList<InfluenceTile>();
         InfluenceTile currentTile = new InfluenceTile( (Tile) getSourceLocation(), 0 );
-        if ( getUseSourceLocation() ) {
+
+        if ( getUseSourceLocation() ) { //SHould we add the center tile?
             tiles.add( currentTile );
         }
 
@@ -45,10 +48,12 @@ public class AngularInfluenceSet extends DirectionalInfluenceSet {
         while( !queue.isEmpty() ) {
             if ( queue.peek().getRadius() < getRadius() ) {
                 InfluenceTile grabbed = queue.poll();
+                //recomputeDirections( grabbed );
                 if ( grabbed.getRadius() % 2 == 0 ) {  //for determining direction stuff: if even, go in direction. if odd, go in dir and clock/counterclockwise direcitons
                     next = getMap().getLocationFromDirection( grabbed.getTile(), getDirection() );
                     if ( next != null ) {
                         InfluenceTile tile = new InfluenceTile( next, grabbed.getRadius() + 1 );
+                        System.out.println( getMap().getCoordinateByLocation(tile.getTile()).getX() + ", " + getMap().getCoordinateByLocation(tile.getTile()).getX() );
                         tiles.add( tile );
                         queue.offer( tile );
                     }
@@ -58,7 +63,7 @@ public class AngularInfluenceSet extends DirectionalInfluenceSet {
                         next = getMap().getLocationFromDirection( grabbed.getTile(), d );
                         if ( next != null ) {
                             InfluenceTile tile = new InfluenceTile( next, grabbed.getRadius() + 1 );
-                            //System.out.println( getMap().getCoordinateByLocation(tile.getTile()).getX() + ", " + getMap().getCoordinateByLocation(tile.getTile()).getX() );
+                            System.out.println( getMap().getCoordinateByLocation(tile.getTile()).getX() + ", " + getMap().getCoordinateByLocation(tile.getTile()).getX() );
                             tiles.add( tile );
                             queue.offer(tile);
                         }
@@ -71,5 +76,12 @@ public class AngularInfluenceSet extends DirectionalInfluenceSet {
 
 
         return tiles;
+    }
+
+    private void recomputeDirections( InfluenceTile grabbed ) {
+        HexCoordinate coord = getMap().getCoordinateByLocation( grabbed.getTile() );
+        for (Direction d : directions ) {
+            ( (HexMapDirection) d ).recomputeDelta( coord );
+        }
     }
 }
