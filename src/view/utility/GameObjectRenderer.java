@@ -54,29 +54,73 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 	}
 
 	private void initializeAvatarImages(String occupation) {
-		try {
-			ClassLoader classLoader = Thread.currentThread()
-					.getContextClassLoader();
-			URL url = classLoader.getResource("resources/png/" + occupation
+
+		ClassLoader classLoader = Thread.currentThread()
+				.getContextClassLoader();
+		URL url;
+		if (avatarN == null) {
+			url = classLoader.getResource("resources/png/" + occupation
 					+ "_N.png");
-			avatarN = ImageIO.read(new File(url.getPath()));
+			try {
+				avatarN = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		if (avatarS == null) {
 			url = classLoader.getResource("resources/png/" + occupation
 					+ "_S.png");
-			avatarS = ImageIO.read(new File(url.getPath()));
+			try {
+				avatarS = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		if (avatarNW == null) {
 			url = classLoader.getResource("resources/png/" + occupation
 					+ "_NW.png");
-			avatarNW = ImageIO.read(new File(url.getPath()));
+			try {
+				avatarNW = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (avatarNE == null) {
 			url = classLoader.getResource("resources/png/" + occupation
 					+ "_NE.png");
-			avatarNE = ImageIO.read(new File(url.getPath()));
+			try {
+				avatarNE = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		if (avatarSW == null) {
 			url = classLoader.getResource("resources/png/" + occupation
 					+ "_SW.png");
-			avatarSW = ImageIO.read(new File(url.getPath()));
+			try {
+				avatarSW = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		if (avatarSE == null) {
 			url = classLoader.getResource("resources/png/" + occupation
 					+ "_SE.png");
-			avatarSE = ImageIO.read(new File(url.getPath()));
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				avatarSE = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -87,10 +131,7 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 
 	@Override
 	public void visit(SmasherStatsOwnership smasherStatsOwnership) {
-		if (avatarN == null || avatarS == null || avatarNW == null
-				|| avatarNE == null || avatarSW == null || avatarSE == null) {
-			initializeAvatarImages("smasher");
-		}
+		initializeAvatarImages("smasher");
 	}
 
 	@Override
@@ -252,11 +293,11 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		}
 	}
 
-    @Override
-    public void visit(SackboundItem i) {
-        Application.print("Not yet supported yet");
-    }
-    
+	@Override
+	public void visit(SackboundItem i) {
+		Application.print("Not yet supported yet");
+	}
+
 	/**
 	 * not used
 	 */
