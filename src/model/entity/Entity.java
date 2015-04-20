@@ -93,6 +93,9 @@ public abstract class Entity extends MapObject {
 		return this.booty;
 	}
 
+	public Direction getDirection(){
+		return this.direction;
+	}
 	/* -------------------- SETTERS -------------------- */
 
 	public void setDetectionMechanism(Detection detection) {
