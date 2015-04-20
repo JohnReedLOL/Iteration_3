@@ -29,10 +29,6 @@
     <Container class="javax.swing.JScrollPane" name="stats_jScrollPane_">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextPane" name="stats_jTextPane_">
-        </Component>
-      </SubComponents>
     </Container>
   </SubComponents>
 </Form>

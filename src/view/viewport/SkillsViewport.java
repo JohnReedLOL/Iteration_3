@@ -6,9 +6,14 @@
 package view.viewport;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import model.ModelViewBundle;
-import mvc_bridgeway.command.model_command.ExitCommand;
-import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
+import model.entity.ability.Ability;
+import model.entity.avatar.Avatar;
+import mvc_bridgeway.command.model_command.ActivateAbility;
+import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 
 /**
@@ -16,29 +21,92 @@ import mvc_bridgeway.control_map.ControlMap;
  * @author comcc_000
  */
 public class SkillsViewport extends Viewport {
+    
+    /*Properities*/
 
-    /**
-     * Creates new form MainScreen
-     */
+    private ArrayList<AbilityRow> abilityRows = new ArrayList<AbilityRow>();
+    private ArrayList<ControlMap> cms = new ArrayList<ControlMap>();
+    
+    /*Constructors*/
+    
     public SkillsViewport() {
         initComponents();
+        generateView();
     }
+    
+    /*Methods*/
     
     @Override
     protected void generateView() {
-        //TODO
+        //do nothing in this case
     }
     
     @Override
     public void update(ModelViewBundle mvb) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Ability> abilities = mvb.getLearnedAbilities();
+        Avatar avatar = mvb.getAvatar();
+        displayAbilities(abilities, avatar);
     }
 
     @Override
     public ArrayList<ControlMap> getControlMaps() {
-        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        //TODOD
-        return controlMaps;
+        return cms;
+    }
+    
+    private void displayAbilities(List<Ability> abilities, Avatar avatar) {
+        if (abilities != null && abilities.size() != abilityRows.size()) {
+            clearAbilityRows();
+            clearCMs();
+            for (Ability ability : abilities) {
+                abilityRows.add(new AbilityRow(jPanel1, ability, avatar));
+            }
+            this.validate();
+            flagRefreshController();
+        }
+    }
+    
+    private void clearAbilityRows() {
+        for (AbilityRow abilityRow : abilityRows) {
+            abilityRow.remove(jPanel1);
+        }
+        abilityRows = new ArrayList<AbilityRow>();
+    }
+    
+    private void clearCMs() {
+        cms = new ArrayList<ControlMap>();
+    }
+    
+    /*Inner-Classes*/
+    
+    private class AbilityRow {
+        
+        private Ability ability;
+        private Avatar avatar;
+        //
+        private JButton button;
+        
+        public AbilityRow(JPanel panel, Ability ab, Avatar avat) {
+            ability = ab;
+            avatar = avat;
+            button = initAbilityButton(ab);
+            setControl(button, ab, avat);
+            panel.add(button);
+        }
+        
+        public void remove(JPanel panel) {
+            panel.remove(button);
+        }
+        
+        private JButton initAbilityButton(Ability ab) {
+            String abilityName = ab.getClass().getSimpleName().toString();
+            JButton jButton = new JButton(abilityName);
+            return jButton;
+        }
+        
+        private void setControl(JButton jButton, Ability ab, Avatar avat) {
+            cms.add(new ControlMap(new ButtonSwingControl(jButton), new ActivateAbility(avat, ab)));
+        }
+        
     }
 
     /**
@@ -51,84 +119,22 @@ public class SkillsViewport extends Viewport {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        skill1_ = new javax.swing.JButton();
-        skill2_ = new javax.swing.JButton();
-        skill4_ = new javax.swing.JButton();
-        skill3_ = new javax.swing.JButton();
-        skill5_ = new javax.swing.JButton();
-        skill6_ = new javax.swing.JButton();
-        skill7_ = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        skill1_.setText("Skill 1");
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
-        skill2_.setText("Skill 2");
-        skill2_.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                skill2_ActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Abilities:");
+        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        skill4_.setText("Skill 4");
-
-        skill3_.setText("Skill 3");
-
-        skill5_.setText("Skill 5");
-
-        skill6_.setText("Skill 6");
-
-        skill7_.setText("Skill 7");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(skill7_)
-                    .addComponent(skill6_)
-                    .addComponent(skill5_)
-                    .addComponent(skill4_)
-                    .addComponent(skill2_)
-                    .addComponent(skill1_)
-                    .addComponent(skill3_))
-                .addContainerGap(145, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(skill1_)
-                .addGap(35, 35, 35)
-                .addComponent(skill2_)
-                .addGap(29, 29, 29)
-                .addComponent(skill3_)
-                .addGap(30, 30, 30)
-                .addComponent(skill4_)
-                .addGap(32, 32, 32)
-                .addComponent(skill5_)
-                .addGap(33, 33, 33)
-                .addComponent(skill6_)
-                .addGap(29, 29, 29)
-                .addComponent(skill7_)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void skill2_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skill2_ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_skill2_ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton skill1_;
-    private javax.swing.JButton skill2_;
-    private javax.swing.JButton skill3_;
-    private javax.swing.JButton skill4_;
-    private javax.swing.JButton skill5_;
-    private javax.swing.JButton skill6_;
-    private javax.swing.JButton skill7_;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
   
 }
