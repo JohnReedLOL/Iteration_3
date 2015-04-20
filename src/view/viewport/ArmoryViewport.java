@@ -6,9 +6,14 @@
 package view.viewport;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import model.ModelViewBundle;
-import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
+import model.item.sackbound.equip.EquipItem;
+import model.item.sackbound.equip.EquipItem.EquipSlot;
 import mvc_bridgeway.control_map.ControlMap;
+import utility.ImageUtil;
 
 /**
  *
@@ -30,16 +35,36 @@ public class ArmoryViewport extends Viewport {
     
     @Override
     public void update(ModelViewBundle mvb) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<EquipItem> equippedItems = mvb.getEquipment();
+        for (EquipItem equipItem : equippedItems) {
+            displayEquipItem(equipItem);
+        }
+    }
+    
+    private void displayEquipItem(EquipItem ei) {
+        EquipSlot es = ei.getEquipSlot();
+        if (es.equals(es.HEAD)) {
+            displayItem(ei, head_slot_);
+        } else if (es.equals(es.TORSO)) {
+            displayItem(ei, head_slot_);
+        } else if (es.equals(es.MAINHAND)) {
+            displayItem(ei, head_slot_);
+        } else if (es.equals(es.OFFHAND)) {
+            displayItem(ei, head_slot_);
+        } else if (es.equals(es.LEGS)) {
+            displayItem(ei, head_slot_);
+        }
+    }
+    
+    private void displayItem(EquipItem ei, JButton button) {
+        ImageIcon imageIcon = ImageUtil.getImageIcon("./src/resources/png/grass.png");
+        button.setIcon(imageIcon);
     }
 
     @Override
     public ArrayList<ControlMap> getControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        //controlMaps.add(new ControlMap(new ButtonSwingControl(newGameButton), new LaunchScreenCommand(new NewGameScreen())));
-        //
-        
-        //TODOD
+
         return controlMaps;
     }
 

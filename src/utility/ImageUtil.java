@@ -9,6 +9,7 @@ import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class ImageUtil {
 
@@ -76,6 +77,11 @@ public class ImageUtil {
         return darkened_image;
     }
 
+    public static ImageIcon getImageIcon(String filename) {
+        BufferedImage bi = extractImage(filename);
+        return new ImageIcon(bi);
+    }
+    
     /*Get-Sets*/
 
     /*Inner-classes*/

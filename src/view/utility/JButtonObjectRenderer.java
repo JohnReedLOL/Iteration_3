@@ -35,12 +35,13 @@ import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
 
 /**
- * This class takes in a JButton using setButtonForMeToRenderTo and then takes in an object via the
- * visit method and then renders that object to that JButton.
+ * This class takes in a JButton using setButtonForMeToRenderTo and then takes
+ * in an object via the visit method and then renders that object to that
+ * JButton.
  *
  * @author johnmichaelreed2
  */
-public class JButtonObjectRenderer implements ObjectRenderer  {
+public class JButtonObjectRenderer implements ObjectRenderer {
 
     private JButton button_to_render_on_;
     final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -181,40 +182,40 @@ public class JButtonObjectRenderer implements ObjectRenderer  {
         button_to_render_on_.setIcon(new ImageIcon(grass_));
     }
 
-	@Override
-	public void visit(SmasherStatsOwnership smasherStatsOwnership) {
+    @Override
+    public void visit(SmasherStatsOwnership smasherStatsOwnership) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void visit(SneakStatsOwnership sneakStatsOwnership) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void visit(SummonerStatsOwnership summonerStatsOwnership) {
+    @Override
+    public void visit(SneakStatsOwnership sneakStatsOwnership) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void visit(StatsOwnership statsOwnership) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void setAvatarX(int x) {
+    @Override
+    public void visit(SummonerStatsOwnership summonerStatsOwnership) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void setAvatarY(int y) {
+    }
+
+    @Override
+    public void visit(StatsOwnership statsOwnership) {
 		// TODO Auto-generated method stub
-		
-	}
+
+    }
+
+    @Override
+    public void setAvatarX(int x) {
+		// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void setAvatarY(int y) {
+		// TODO Auto-generated method stub
+
+    }
 
 }
