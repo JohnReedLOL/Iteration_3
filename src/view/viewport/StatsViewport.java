@@ -79,15 +79,15 @@ public class StatsViewport extends Viewport {
             unLevelableStatRows.get(0).update("Life: " + statistics.getCurrentLife() + " / " + statistics.getMaxLife());
             unLevelableStatRows.get(1).update("Mana: " + statistics.getCurrentMana() + " / " + statistics.getMaxMana());
             unLevelableStatRows.get(2).update("Booty: " + booty);
-            unLevelableStatRows.get(2).update("Level: " + statistics.getLevel());
-            unLevelableStatRows.get(3).update("SkillPts: " + statistics.getSkillPoints());
-            unLevelableStatRows.get(4).update("StatPts: " + statistics.getStatPoints());
-            unLevelableStatRows.get(5).update("Armor: " + statistics.getArmor());
-            unLevelableStatRows.get(6).update("Affinity: " + statistics.getAffinity());
-            unLevelableStatRows.get(7).update("ArmorMod: " + statistics.getArmorMod());
-            unLevelableStatRows.get(8).update("Offense: " + statistics.getOffense());
-            unLevelableStatRows.get(9).update("Defense: " + statistics.getDefense());
-            unLevelableStatRows.get(10).update("WeaponMod: " + statistics.getWeaponMod());
+            unLevelableStatRows.get(3).update("Level: " + statistics.getLevel());
+            unLevelableStatRows.get(4).update("SkillPts: " + statistics.getSkillPoints());
+            unLevelableStatRows.get(5).update("StatPts: " + statistics.getStatPoints());
+            unLevelableStatRows.get(6).update("Armor: " + statistics.getArmor());
+            unLevelableStatRows.get(7).update("Affinity: " + statistics.getAffinity());
+            unLevelableStatRows.get(8).update("ArmorMod: " + statistics.getArmorMod());
+            unLevelableStatRows.get(9).update("Offense: " + statistics.getOffense());
+            unLevelableStatRows.get(10).update("Defense: " + statistics.getDefense());
+            unLevelableStatRows.get(11).update("WeaponMod: " + statistics.getWeaponMod());
         }
         this.validate();
     }
