@@ -37,7 +37,8 @@ import mvc_bridgeway.control_map.ControlMap;
  */
 public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
 
-    final Avatar mocAvatar_ = new Avatar(null);
+    final private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
+    final Avatar mocAvatar_ = mvb.getAvatar();
 
     /**
      * Creates new form MainScreen
@@ -65,12 +66,13 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
         //  Add some text
         try {
             //doc.insertString(0, "Start of text\n", null);
-            doc.insertString(doc.getLength(), "Start of stats (new moc avatar created):\n", null);
+            doc.insertString(doc.getLength(), "Start of stats (actual avatar stats from ModelViewBundle):\n", null);
 
-            doc.insertString(doc.getLength(), "Skill points:" + mocAvatar_.getStatsOwnership().getSkillPoints(), null);
-            doc.insertString(doc.getLength(), "Stats points:" + mocAvatar_.getStatsOwnership().getStatPoints(), null);
+            doc.insertString(doc.getLength(), "Skill points: " + mocAvatar_.getStatsOwnership().getSkillPoints() + "\n", null);
+            doc.insertString(doc.getLength(), "Stats points: " + mocAvatar_.getStatsOwnership().getStatPoints() + "\n", null);
+            doc.insertString(doc.getLength(), "Booty: " + mvb.getBooty() + "\n", null);
             renderStats(mocAvatar_.getStatsOwnership().getStats(), doc, keyWord);
-            doc.insertString(doc.getLength(), "\nEnd of stats", keyWord);
+            doc.insertString(doc.getLength(), "\nEnd of stats\n", keyWord);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -78,25 +80,25 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
 
     public void renderStats(Stats s, StyledDocument doc, SimpleAttributeSet keyWord) {
         try {
-            doc.insertString(doc.getLength(), "Affinity: " + s.getAffinity(), null);
-            doc.insertString(doc.getLength(), "Agility: " + s.getAgility(), null);
-            doc.insertString(doc.getLength(), "Armor: " + s.getArmor(), null);
-            doc.insertString(doc.getLength(), "Armor Modifier: " + s.getArmorModifier(), null);
-            doc.insertString(doc.getLength(), "Bargain: " + s.getBargain(), null);
-            doc.insertString(doc.getLength(), "Bind Wounds: " + s.getBindWounds(), null);
-            doc.insertString(doc.getLength(), "CurrentLife: " + s.getCurrentLife(), null);
-            doc.insertString(doc.getLength(), "CurrentMana: " + s.getCurrentMana(), null);
-            doc.insertString(doc.getLength(), "Defense: " + s.getDefense(), null);
-            doc.insertString(doc.getLength(), "Experience: " + s.getExperience(), null);
-            doc.insertString(doc.getLength(), "Intellect: " + s.getIntellect(), null);
-            doc.insertString(doc.getLength(), "Level: " + s.getLevel(), null);
-            doc.insertString(doc.getLength(), "Max Life: " + s.getMaxLife(), null);
-            doc.insertString(doc.getLength(), "Max Mana: " + s.getMaxMana(), null);
-            doc.insertString(doc.getLength(), "Movement: " + s.getMovement(), null);
-            doc.insertString(doc.getLength(), "Observatin: " + s.getObservation(), null);
-            doc.insertString(doc.getLength(), "Offense: " + s.getOffense(), null);
-            doc.insertString(doc.getLength(), "Strength: " + s.getStrength(), null);
-            doc.insertString(doc.getLength(), "Weapon Modifier: " + s.getWeaponModifier(), null);
+            doc.insertString(doc.getLength(), "Affinity: " + s.getAffinity() + "\n", null);
+            doc.insertString(doc.getLength(), "Agility: " + s.getAgility() + "\n", null);
+            doc.insertString(doc.getLength(), "Armor: " + s.getArmor() + "\n", null);
+            doc.insertString(doc.getLength(), "Armor Modifier: " + s.getArmorModifier() + "\n", null);
+            doc.insertString(doc.getLength(), "Bargain: " + s.getBargain() + "\n", null);
+            doc.insertString(doc.getLength(), "Bind Wounds: " + s.getBindWounds() + "\n", null);
+            doc.insertString(doc.getLength(), "CurrentLife: " + s.getCurrentLife() + "\n", null);
+            doc.insertString(doc.getLength(), "CurrentMana: " + s.getCurrentMana() + "\n", null);
+            doc.insertString(doc.getLength(), "Defense: " + s.getDefense() + "\n", null);
+            doc.insertString(doc.getLength(), "Experience: " + s.getExperience() + "\n", null);
+            doc.insertString(doc.getLength(), "Intellect: " + s.getIntellect() + "\n", null);
+            doc.insertString(doc.getLength(), "Level: " + s.getLevel() + "\n", null);
+            doc.insertString(doc.getLength(), "Max Life: " + s.getMaxLife() + "\n", null);
+            doc.insertString(doc.getLength(), "Max Mana: " + s.getMaxMana() + "\n", null);
+            doc.insertString(doc.getLength(), "Movement: " + s.getMovement() + "\n", null);
+            doc.insertString(doc.getLength(), "Observatin: " + s.getObservation() + "\n", null);
+            doc.insertString(doc.getLength(), "Offense: " + s.getOffense() + "\n", null);
+            doc.insertString(doc.getLength(), "Strength: " + s.getStrength() + "\n", null);
+            doc.insertString(doc.getLength(), "Weapon Modifier: " + s.getWeaponModifier() + "\n", null);
         } catch (Exception e) {
             System.out.println(e);
         }

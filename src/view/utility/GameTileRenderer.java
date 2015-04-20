@@ -56,7 +56,6 @@ public class GameTileRenderer extends GameScreenRenderer implements
 
 	private void initializeImages() {
 		try {
-			System.out.println();
 			ClassLoader classLoader = Thread.currentThread()
 					.getContextClassLoader();
 			URL url = classLoader.getResource("resources/png/grass.png");
