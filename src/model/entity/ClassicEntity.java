@@ -14,16 +14,16 @@ public class ClassicEntity extends Entity {
     /**
      * PROPERTIES
      */
-
     private MountOwnership mountOwnership = new MountOwnership(this, null);
     private PetOwnership petOwnership = new PetOwnership(this, null);
     private boolean isMounted = false;
     private ConversationTree conversationTree_;
+    private ConversationNode lastThingSaidToMe_ = new ConversationNode("", "", "", "", "");
+    private String lastThingISaid = "";
 
     /**
      * CONSTRUCTORS
      */
-
     public ClassicEntity(HexCoordinate location) {
         super(location);
         conversationTree_ = ConversationTreeFactory.makeVillagerConversationTree();
@@ -42,6 +42,17 @@ public class ClassicEntity extends Entity {
 
     public boolean getIsMounted() {
         return this.isMounted;
+    }
+
+    public ConversationNode getLastThingSaidToMe_() {
+        return lastThingSaidToMe_;
+    }
+
+    /**
+     * @return the lastThingISaid
+     */
+    public String getLastThingISaid() {
+        return lastThingISaid;
     }
 
     /**
@@ -64,6 +75,17 @@ public class ClassicEntity extends Entity {
 
     private void setIsMounted(boolean mounted) {
         this.isMounted = mounted;
+    }
+
+    public void setLastThingSaidToMe_(ConversationNode lastThingSaidToMe_) {
+        this.lastThingSaidToMe_ = lastThingSaidToMe_;
+    }
+
+    /**
+     * @param lastThingISaid the lastThingISaid to set
+     */
+    public void setLastThingISaid(String lastThingISaid) {
+        this.lastThingISaid = lastThingISaid;
     }
 
     /**
