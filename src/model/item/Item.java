@@ -77,5 +77,9 @@ public abstract class Item extends MapObject {
         return activateOnMap( (Entity) interactor );
     }
 
+    @Override
+    public String talk() {
+        return "Item: The item says nothing... what did you expect?";
+    }
 
 }

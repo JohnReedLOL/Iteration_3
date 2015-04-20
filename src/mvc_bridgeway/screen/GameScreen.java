@@ -17,6 +17,7 @@ import mvc_bridgeway.command.model_command.DismountCommand;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
 import mvc_bridgeway.command.model_command.MoveCommand;
+import mvc_bridgeway.command.model_command.Talk;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.Viewport;
@@ -74,6 +75,8 @@ public class GameScreen extends Screen {
 
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_P), new DismountCommand(Model.getAvatar())));
 
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_T), new Talk()));
+        
         return controlMaps;
     }
 

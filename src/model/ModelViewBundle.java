@@ -20,6 +20,8 @@ public class ModelViewBundle {
     private String currentKnownInfo;
     private static ModelViewBundle singleton;
     private UserSettings userSettings = new UserSettings();
+    //
+    private String dialogue = "";
 
     /*Constructors*/
 
@@ -62,9 +64,9 @@ public class ModelViewBundle {
         return getMap().getLocationByMapObject(getAvatar());
     }
 
-    public ConversationNode getCurrentDialogue() {
+    public String getCurrentDialogue() {
         // TODO - IDFK until John tells us what's up.
-        return null;
+        return dialogue;
     }
 
     public String getCurrentKnownInfo() {
@@ -111,6 +113,10 @@ public class ModelViewBundle {
 
     public void setCurrentKnownInfo(String info) {
         this.currentKnownInfo = info;
+    }
+    
+    public void setCurrentDialogue(String s) {
+        this.dialogue = s;
     }
 
     /*Inner-classes*/

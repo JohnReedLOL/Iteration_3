@@ -4,6 +4,7 @@ package model;
 import application.Application;
 import application.Application.UpdateTimings;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,6 +23,8 @@ import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
 import model.factories.OccupationFactory;
 import model.item.sackbound.equip.EquipItem;
+import model.map.GameMap;
+import model.map.location.Location;
 import view.utility.stat.Stat;
 
 public class Model {
@@ -251,7 +254,18 @@ public class Model {
     }
 
     public void talk() {
-        //TOdO
+        Avatar avatar = mvb.getAvatar();
+        GameMap gameMap = mvb.getMap();
+        Direction direction = avatar.getDirection();
+        Location avatarLocation = gameMap.getLocationByMapObject(avatar);
+        Location targetLocation = gameMap.getLocationFromDirection(avatarLocation, direction);
+        ArrayList<MapObject> mapObjects = (ArrayList<MapObject>)targetLocation.getMapObjects();
+        if (mapObjects != null) {
+            MapObject target = mapObjects.get(0);
+            if (target != null) {
+                mvb.setCurrentDialogue(target.talk());
+            }
+        }
     }
 
     public boolean purchase(Avatar avatar, Item item, int price) {

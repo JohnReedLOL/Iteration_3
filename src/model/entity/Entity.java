@@ -180,6 +180,11 @@ public abstract class Entity extends MapObject {
 		}
 
 	}
+        
+        @Override
+        public String talk() {
+            return "Entity: I have nothing to say to you...";
+        }
 
 	
 	/* -------------------- IMPLEMENTATIONS -------------------- */

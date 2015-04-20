@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.ModelViewBundle;
+import model.UserSettings;
 import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.RebindCommand;
 import mvc_bridgeway.command.view_command.ClearRebindButtonCommand;
@@ -41,7 +42,9 @@ public class OptionsViewport extends Viewport {
     
     @Override
     protected void generateView() {
-        add(new JButton("Stuff"));
+        int numRows = UserSettings.getNumGameScreenControls();
+        GridLayout gridLayout = new GridLayout(2, numRows); //2 col
+        this.setLayout(gridLayout);
         validate();
     }
     
@@ -225,8 +228,6 @@ public class OptionsViewport extends Viewport {
         jPanel4 = new javax.swing.JPanel();
 
         setLayout(new java.awt.GridBagLayout());
-
-        jPanel4.setLayout(new java.awt.GridLayout());
         add(jPanel4, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 

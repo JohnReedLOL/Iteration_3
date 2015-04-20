@@ -32,7 +32,8 @@ public class TextConsoleViewport extends Viewport {
 
     @Override
     public void update(ModelViewBundle mvb) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        incoming_chat_.setText(mvb.getCurrentDialogue());
+//        incoming_chat_.append("\n" + n.getMyReplyToWhatYouSaidToMe_() + "\n");
     }
 
     public void renderCurrentConversationNode(ConversationNode n) {

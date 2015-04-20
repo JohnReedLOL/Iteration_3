@@ -37,6 +37,10 @@ public abstract class MapObject implements Derivable {
     public void setName( String name ) {
         this.name = name;
     }
+    
+    public String talk() {
+        return "Uh, we haven't implemented dialogue for this yet...";
+    }
 
     /**
      * IMPLEMENTATIONS

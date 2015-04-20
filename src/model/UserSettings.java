@@ -58,6 +58,10 @@ public class UserSettings {
 //        gameScreenControls.add(rebindMap);
     }
     
+    public static int getNumGameScreenControls() {
+        return gameScreenControls.size();
+    }
+    
     public static ArrayList<ControlMap> getRebindSet() {
         return rebindSet;
     }
