@@ -45,9 +45,9 @@ public class NewGameViewport extends Viewport {
     @Override
     public ArrayList<ControlMap> getControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new SetSmasherOccupationCommand(new Avatar(CoordUtil.MAP_1_DEFAULT_COORDINATE)), new LaunchScreenCommand(new GameScreen())));
-            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new SetSneakOccupationCommand(new Avatar(CoordUtil.MAP_1_DEFAULT_COORDINATE)), new LaunchScreenCommand(new GameScreen())));
-            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new SetSummonerOccupationCommand(new Avatar(CoordUtil.MAP_1_DEFAULT_COORDINATE)), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new SetSmasherOccupationCommand(), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new SetSneakOccupationCommand(), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new SetSummonerOccupationCommand(), new LaunchScreenCommand(new GameScreen())));
             return controlMaps;
     }
 

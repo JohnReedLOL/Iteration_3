@@ -8,13 +8,10 @@ import model.entity.avatar.Avatar;
 public abstract class SetOccupationCommand extends ModelCommand {
 
     /*Properties*/
-    
-    private Avatar avatar;
 
     /*Constructors*/
     
-    public SetOccupationCommand(Avatar avatar) {
-        this.avatar = avatar;
+    public SetOccupationCommand() {
     }
 
     /*Methods*/
@@ -24,10 +21,6 @@ public abstract class SetOccupationCommand extends ModelCommand {
 //    }
 
     /*Get-Sets*/
-
-    protected Avatar getAvatar() {
-        return this.avatar;
-    }
 
     /*Inner-classes*/
 

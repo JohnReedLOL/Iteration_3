@@ -30,7 +30,6 @@ public class GameViewport extends Viewport {
     
     @SuppressWarnings("unchecked")
     private GameMap gameMap;
-    private Avatar avatar;
     private int[][] brightness;
     private List<MapObject> mapObjects;
     //
@@ -60,10 +59,9 @@ public class GameViewport extends Viewport {
 
     @Override
     public void update(ModelViewBundle mvb) {
-        brightness = GameWorld.getCurrentMap().getAvatar().getBrightnessTable();
-        gameMap = (GameMap) (GameWorld.getCurrentMap());
-        avatar = gameMap.getAvatar();
-        mapObjects = avatar.getVisibleMapObjects();
+        brightness = mvb.getBrightnessTable();
+        gameMap = mvb.getMap();
+        mapObjects = mvb.getVisibleMapObjects();
         repaint();
     }
 
