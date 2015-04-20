@@ -1,15 +1,12 @@
 package model.item.sackbound.equip;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import model.effect.Effect;
 import model.entity.Entity;
 import model.influence_set.InfluenceSet;
-import model.influence_set.LinearInfluenceSet;
-import model.map.direction.NorthDirection;
-import sun.text.resources.lt.CollationData_lt;
+import model.map.GameWorld;
 import view.utility.ObjectRenderer;
 
 public class WeaponItem extends EquipItem {
@@ -81,7 +78,12 @@ public class WeaponItem extends EquipItem {
     }
 
     public void attack(Entity user) {
-        // TODO: Once Entity has all of its functionality.
+        for(InfluenceSet i : affectedAreas){
+        	i.setSourceLocation(GameWorld.getCurrentMap().getLocationByMapObject(user));
+        	for(Effect e : attackEffects){
+        		GameWorld.getCurrentMap().performEffect(e,i);
+        	}
+        }
     }
     
     @Override

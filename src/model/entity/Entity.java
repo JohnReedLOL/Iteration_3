@@ -19,6 +19,8 @@ import model.entity.stats.StatsVisitor;
 import model.influence_set.RadialInfluenceSet;
 import model.inventory.InventoryOwnership;
 import model.item.sackbound.SackboundItem;
+import model.item.sackbound.equip.EquipItem.EquipSlot;
+import model.item.sackbound.equip.WeaponItem;
 import model.map.GameMap;
 import model.map.GameWorld;
 import model.map.coordinate.Coordinate2D;
@@ -170,6 +172,13 @@ public abstract class Entity extends MapObject {
 	
 	public boolean canSee(Entity spectator){
 		return detectionMechanism.canSee(spectator);
+	}
+	public void useWeapon(){
+		WeaponItem currentWeapon = (WeaponItem) armoryOwnership.getItemAtSlot(EquipSlot.MAINHAND);
+		if(currentWeapon != null){
+			currentWeapon.attack(this);
+		}
+		
 	}
 	
 	

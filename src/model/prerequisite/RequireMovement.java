@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireMovement extends StatsPrerequisite{
-	RequireMovement(int magnitude){
+	public RequireMovement(int magnitude){
 		super(magnitude);
 	}
 	

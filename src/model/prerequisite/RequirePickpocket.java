@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.SneakStats;
 
 public class RequirePickpocket extends SneakStatsPrerequisite{
-	RequirePickpocket(int magnitude){
+	public RequirePickpocket(int magnitude){
 		super(magnitude);
 	}
 	
