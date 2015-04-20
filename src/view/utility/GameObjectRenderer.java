@@ -1,6 +1,7 @@
 package view.utility;
 
 import application.Application;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import utility.ImageUtil;
 import model.MapObject;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
@@ -62,6 +64,7 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		this.startx = 0;
 		this.starty = 0;
 		this.mapObjects = mapObjects;
+		initializeImages();
 	}
 
 	public GameObjectRenderer(Graphics g, int startx, int starty,
@@ -70,187 +73,101 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		this.startx = startx;
 		this.starty = starty;
 		this.mapObjects = mapObjects;
+		initializeImages();
+	}
+
+	private void initializeImages() {
+
+		if (NPC_S == null) {
+			NPC_S = ImageUtil.getImage("resources/png/dave_S.png");
+		}
+
+		if (INT_ITEM == null) {
+			INT_ITEM = ImageUtil
+					.getImage("resources/png/Locked_Treasure_Box.png");
+		}
+
+		if (OBS_ITEM == null) {
+			OBS_ITEM = ImageUtil.getImage("resources/png/ObstacleItem.png");
+		}
+
+		if (ONE_SHOT_ITEM == null) {
+			ONE_SHOT_ITEM = ImageUtil
+					.getImage("resources/png/Health_Potion.png");
+		}
+
+		if (LC_ITEM == null) {
+			LC_ITEM = ImageUtil.getImage("resources/png/Health_Potion.png");
+		}
+
+		if (UC_ITEM == null) {
+			UC_ITEM = ImageUtil.getImage("resources/png/Mana_Potion.png");
+		}
+
+		if (EQUIP == null) {
+			EQUIP = ImageUtil.getImage("resources/png/Helmet.png");
+		}
+
+		if (WEAPON == null) {
+			WEAPON = ImageUtil.getImage("resources/png/Matts_sword_PNG.png");
+		}
+
+		if (vespaN == null) {
+			vespaN = ImageUtil.getImage("resources/png/vespa_N.png");
+		}
+
+		if (vespaS == null) {
+			vespaS = ImageUtil.getImage("resources/png/vespa_S.png");
+		}
+
+		if (vespaNW == null) {
+			vespaNW = ImageUtil.getImage("resources/png/vespa_NW.png");
+		}
+
+		if (vespaNE == null) {
+			vespaNE = ImageUtil.getImage("resources/png/vespa_NE.png");
+		}
+
+		if (vespaSW == null) {
+			vespaSW = ImageUtil.getImage("resources/png/vespa_SW.png");
+		}
+
+		if (vespaSE == null) {
+			vespaSE = ImageUtil.getImage("resources/png/vespa_SE.png");
+		}
 	}
 
 	private void initializeAvatarImages(String occupation) {
 
-		ClassLoader classLoader = Thread.currentThread()
-				.getContextClassLoader();
-		URL url;
-
-		try {
-			if (NPC_S == null) {
-				url = classLoader.getResource("resources/png/dave_S.png");
-				NPC_S = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (INT_ITEM == null) {
-				url = classLoader
-						.getResource("resources/png/Locked_Treasure_Box.png");
-				INT_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (OBS_ITEM == null) {
-				url = classLoader.getResource("resources/png/ObstacleItem.png");
-				OBS_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (ONE_SHOT_ITEM == null) {
-				url = classLoader
-						.getResource("resources/png/Health_Potion.png");
-				ONE_SHOT_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (LC_ITEM == null) {
-				url = classLoader
-						.getResource("resources/png/Health_Potion.png");
-				LC_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (UC_ITEM == null) {
-				url = classLoader.getResource("resources/png/Mana_Potion.png");
-				UC_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (EQUIP == null) {
-				url = classLoader.getResource("resources/png/Helmet.png");
-				EQUIP = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (WEAPON == null) {
-				url = classLoader
-						.getResource("resources/png/Matts_sword_PNG.png");
-				WEAPON = ImageIO.read(new File(url.getPath()));
-			}
-		} catch (Exception e) {
-			System.err.println("MISSED AN ITEM LOADING IMAGE NOOB");
-			e.printStackTrace();
-		}
-
 		if (avatarN == null) {
-			url = classLoader.getResource("resources/png/" + occupation
+			avatarN = ImageUtil.getImage("resources/png/" + occupation
 					+ "_N.png");
-			try {
-				avatarN = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 		}
 		if (avatarS == null) {
-			url = classLoader.getResource("resources/png/" + occupation
+			avatarS = ImageUtil.getImage("resources/png/" + occupation
 					+ "_S.png");
-			try {
-				avatarS = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 		}
 		if (avatarNW == null) {
-			url = classLoader.getResource("resources/png/" + occupation
+			avatarNW = ImageUtil.getImage("resources/png/" + occupation
 					+ "_NW.png");
-			try {
-				avatarNW = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		if (avatarNE == null) {
-			url = classLoader.getResource("resources/png/" + occupation
+			avatarNE = ImageUtil.getImage("resources/png/" + occupation
 					+ "_NE.png");
-			try {
-				avatarNE = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 		}
 		if (avatarSW == null) {
-			url = classLoader.getResource("resources/png/" + occupation
+			avatarSW = ImageUtil.getImage("resources/png/" + occupation
 					+ "_SW.png");
-			try {
-				avatarSW = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 		}
 		if (avatarSE == null) {
-			url = classLoader.getResource("resources/png/" + occupation
+			avatarSE = ImageUtil.getImage("resources/png/" + occupation
 					+ "_SE.png");
-			try {
-				avatarSE = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 
-		if (vespaN == null) {
-			url = classLoader.getResource("resources/png/vespa_N.png");
-			try {
-				vespaN = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		if (vespaS == null) {
-			url = classLoader.getResource("resources/png/vespa_S.png");
-			try {
-				vespaS = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		if (vespaNW == null) {
-			url = classLoader.getResource("resources/png/vespa_NW.png");
-			try {
-				vespaNW = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		if (vespaNE == null) {
-			url = classLoader.getResource("resources/png/vespa_NE.png");
-			try {
-				vespaNE = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		if (vespaSW == null) {
-			url = classLoader.getResource("resources/png/vespa_SW.png");
-			try {
-				vespaSW = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		if (vespaSE == null) {
-			url = classLoader.getResource("resources/png/vespa_SE.png");
-			try {
-				vespaSE = ImageIO.read(new File(url.getPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 
 	public void visit(Avatar avatar) {
@@ -265,18 +182,12 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 
 	@Override
 	public void visit(SneakStatsOwnership sneakStatsOwnership) {
-		if (avatarN == null || avatarS == null || avatarNW == null
-				|| avatarNE == null || avatarSW == null || avatarSE == null) {
-			initializeAvatarImages("sneak");
-		}
+		initializeAvatarImages("sneak");
 	}
 
 	@Override
 	public void visit(SummonerStatsOwnership summonerStatsOwnership) {
-		if (avatarN == null || avatarS == null || avatarNW == null
-				|| avatarNE == null || avatarSW == null || avatarSE == null) {
-			initializeAvatarImages("summoner");
-		}
+		initializeAvatarImages("summoner");
 	}
 
 	private void drawAvatar(String facing) {

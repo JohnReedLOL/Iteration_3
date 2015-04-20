@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import utility.ImageUtil;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
@@ -44,10 +45,8 @@ import model.item.sackbound.equip.WeaponItem;
 public class JButtonObjectRenderer implements ObjectRenderer {
 
     private JButton button_to_render_on_;
-    final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-    URL url = classLoader.getResource("resources/png/grass.png");
-    BufferedImage grass_ = null;
 
+    private static BufferedImage SACKBOUND_ITEM;
     private static BufferedImage NPC_S;
     private static BufferedImage INT_ITEM;
     private static BufferedImage OBS_ITEM;
@@ -58,57 +57,48 @@ public class JButtonObjectRenderer implements ObjectRenderer {
     private static BufferedImage WEAPON;
 
     public JButtonObjectRenderer() {
-        try {
-            this.grass_ = ImageIO.read(new File(url.getPath()));
-            if (NPC_S == null) {
-				url = classLoader.getResource("resources/png/dave_S.png");
-				NPC_S = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (INT_ITEM == null) {
-				url = classLoader
-						.getResource("resources/png/Locked_Treasure_Box.png");
-				INT_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (OBS_ITEM == null) {
-				url = classLoader.getResource("resources/png/ObstacleItem.png");
-				OBS_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (ONE_SHOT_ITEM == null) {
-				url = classLoader
-						.getResource("resources/png/Health_Potion.png");
-				ONE_SHOT_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (LC_ITEM == null) {
-				url = classLoader
-						.getResource("resources/png/Health_Potion.png");
-				LC_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (UC_ITEM == null) {
-				url = classLoader.getResource("resources/png/Mana_Potion.png");
-				UC_ITEM = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (EQUIP == null) {
-				url = classLoader.getResource("resources/png/Helmet.png");
-				EQUIP = ImageIO.read(new File(url.getPath()));
-			}
-
-			if (WEAPON == null) {
-				url = classLoader
-						.getResource("resources/png/Matts_sword_PNG.png");
-				WEAPON = ImageIO.read(new File(url.getPath()));
-			}
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-        Application.check(this.grass_ != null);
+    	initializeImages();
     }
+    private void initializeImages() {
 
+		if (NPC_S == null) {
+			NPC_S = ImageUtil.getImage("resources/png/dave_S.png");
+		}
+
+		if (INT_ITEM == null) {
+			INT_ITEM = ImageUtil
+					.getImage("resources/png/Locked_Treasure_Box.png");
+		}
+
+		if (OBS_ITEM == null) {
+			OBS_ITEM = ImageUtil.getImage("resources/png/ObstacleItem.png");
+		}
+
+		if (ONE_SHOT_ITEM == null) {
+			ONE_SHOT_ITEM = ImageUtil
+					.getImage("resources/png/Health_Potion.png");
+		}
+
+		if (LC_ITEM == null) {
+			LC_ITEM = ImageUtil.getImage("resources/png/Health_Potion.png");
+		}
+
+		if (UC_ITEM == null) {
+			UC_ITEM = ImageUtil.getImage("resources/png/Mana_Potion.png");
+		}
+
+		if (EQUIP == null) {
+			EQUIP = ImageUtil.getImage("resources/png/Helmet.png");
+		}
+
+		if (WEAPON == null) {
+			WEAPON = ImageUtil.getImage("resources/png/Matts_sword_PNG.png");
+		}
+		if (SACKBOUND_ITEM == null) {
+			SACKBOUND_ITEM = ImageUtil.getImage("resources/png/TextSackBoundItem.png");
+		}
+	}
+    
     public void setButtonForMeToRenderTo(JButton to_render_on) {
         button_to_render_on_ = to_render_on;
     }
@@ -121,20 +111,20 @@ public class JButtonObjectRenderer implements ObjectRenderer {
 
     @Override
     public void visit(Avatar avatar) {
-        Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+//        Application.check(button_to_render_on_ != null);
+//        button_to_render_on_.setIcon(new ImageIcon(grass_));
     }
 
     @Override
     public void visit(AIClassicEntity entity) {
-        Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+//        Application.check(button_to_render_on_ != null);
+//        button_to_render_on_.setIcon(new ImageIcon(grass_));
     }
 
     @Override
     public void visit(Mount mount) {
-        Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+//        Application.check(button_to_render_on_ != null);
+//        button_to_render_on_.setIcon(new ImageIcon(grass_));
     }
 
     @Override
@@ -198,7 +188,7 @@ public class JButtonObjectRenderer implements ObjectRenderer {
     @Override
     public void visit(SackboundItem i) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(SACKBOUND_ITEM));
     }
 
     @Override

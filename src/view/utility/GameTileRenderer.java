@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import utility.ImageUtil;
 import model.MapObject;
 import model.map.GameWorld;
 import model.map.location.BrickTile;
@@ -58,22 +59,26 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 
 	private void initializeImages() {
 		if (grass == null || mountain == null || water == null || brick == null) {
-			try {
-				ClassLoader classLoader = Thread.currentThread()
-						.getContextClassLoader();
-				URL url = classLoader.getResource("resources/png/grass.png");
-				grass = ImageIO.read(new File(url.getPath()));
-				url = classLoader.getResource("resources/png/mountain.png");
-				mountain = ImageIO.read(new File(url.getPath()));
-				url = classLoader.getResource("resources/png/water.png");
-				water = ImageIO.read(new File(url.getPath()));
-				url = classLoader.getResource("resources/png/dim.png");
-				dim = ImageIO.read(new File(url.getPath()));
-				url = classLoader.getResource("resources/png/brick.png");
-				brick = ImageIO.read( new File(url.getPath()));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+				grass = ImageUtil.getImage("resources/png/grass.png");
+
+				mountain = ImageUtil.getImage("resources/png/mountain.png");
+
+				water = ImageUtil.getImage("resources/png/water.png");
+				dim = ImageUtil.getImage("resources/png/dim.png");
+				brick = ImageUtil.getImage("resources/png/brick.png");
+//				
+//				ClassLoader classLoader = Thread.currentThread()
+//						.getContextClassLoader();
+//				URL url = classLoader.getResource("resources/png/grass.png");
+//				grass = ImageIO.read(new File(url.getPath()));
+//				url = classLoader.getResource("resources/png/mountain.png");
+//				mountain = ImageIO.read(new File(url.getPath()));
+//				url = classLoader.getResource("resources/png/water.png");
+//				water = ImageIO.read(new File(url.getPath()));
+//				url = classLoader.getResource("resources/png/dim.png");
+//				dim = ImageIO.read(new File(url.getPath()));
+//				url = classLoader.getResource("resources/png/brick.png");
+//				brick = ImageIO.read( new File(url.getPath()));
 		}
 	}
 
