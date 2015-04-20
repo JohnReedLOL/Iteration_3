@@ -24,7 +24,7 @@ public class SecondLevelMapBuilder extends MapBuilder {
             }
         }
 
-        for ( int j = 0; j < map[0].length; ++j ) {
+        for ( int j =  3; j < map[0].length - 3; ++j ) {
             map[5][j] = new GrassTile();
             map[6][j] = new GrassTile();
             map[7][j] = new GrassTile();
@@ -33,7 +33,7 @@ public class SecondLevelMapBuilder extends MapBuilder {
             map[16][j] = new GrassTile();
             map[17][j] = new GrassTile();
         }
-        for ( int i = 0; i < map[0].length; ++i ) {
+        for ( int i = 3; i < map[0].length - 3; ++i ) {
             map[i][39] = new GrassTile();
             map[i][40] = new GrassTile();
             map[i][41] = new GrassTile();
