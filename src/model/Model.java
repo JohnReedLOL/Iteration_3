@@ -228,7 +228,7 @@ public class Model {
     }
     
     public boolean activateAbility(Avatar avatar, Ability ability) {
-        //TODO
+        avatar.useAbility(ability);
         return false;
     }
     
