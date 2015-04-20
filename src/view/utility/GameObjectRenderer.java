@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.List;
 
 import model.MapObject;
+import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
 import model.item.interactive.InteractiveItem;
@@ -40,6 +41,16 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 				HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
 		g.setColor(Color.BLACK);
 		g.drawString("AVATAR", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
+				/ 4);
+	}
+
+	public void visit(AIClassicEntity entity) {
+		scaleXandY(x, y);
+		g.setColor(Color.MAGENTA);
+		g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+				HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		g.setColor(Color.BLACK);
+		g.drawString("AI ENTITY", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
 				/ 4);
 	}
 

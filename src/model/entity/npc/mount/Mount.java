@@ -1,6 +1,8 @@
 package model.entity.npc.mount;
 
+import model.MapObject;
 import model.armory.Armory;
+import model.entity.ClassicEntity;
 import model.entity.Entity;
 import model.entity.behavior.movement.MovementBehavior;
 import model.entity.npc.NPC;
@@ -13,9 +15,8 @@ import model.map.coordinate.HexCoordinate;
  */
 public class Mount extends NPC {
 
-    private int timeMounted;
+    private int timeMounted = 0;
     private final int speedBonus = 5;
-    private MountOwnership ownership;
 
     public Mount(HexCoordinate coord) {
         super(coord);
@@ -33,19 +34,41 @@ public class Mount extends NPC {
 //        super(name, description, armory, sack, movement, stats);
 //    }
 
-    public void createMountOwnership( Entity entity ) {
-        entity.getStatsOwnership().getStats().buffMovement( getSpeedBonus() );
-        ownership = new MountOwnership( entity, this );
+    private void setTimeMounted(int time) {
+        this.timeMounted = time;
     }
 
-    public void removeMountOwnership() {
-        //ONLY A GETTER SO IT'S OKAY
-        ownership.getOwner().getStatsOwnership().getStats().debuffMovement( getSpeedBonus() );
-        ownership = null;
+    public void imposeMovementOn(Entity owner) {
+        owner.setMovementBehavior(getMovementBehavior());
+        incrementTimeMounted();
+    }
+
+    public void unimposeMovement() {
+        resetTimeMounted();
     }
 
     public int getSpeedBonus() {
         //YOU MAY OVERRIDE THIS TO CHANGE A MOUNT'S SPEED BONUS.
         return speedBonus;
+    }
+
+    @Override
+    public boolean interact(MapObject obj) {
+        ClassicEntity entity = (ClassicEntity) obj;
+
+        if (entity.getIsMounted()) {
+            return false;
+        }
+
+        entity.mount(this);
+        return true;
+    }
+
+    private void incrementTimeMounted() {
+        ++timeMounted;
+    }
+
+    private void resetTimeMounted() {
+        setTimeMounted(0);
     }
 }

@@ -25,9 +25,6 @@ import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
 import model.map.direction.NorthEastDirection;
-import model.map.direction.SouthEastDirection;
-import model.map.location.GrassTile;
-import utility.CoordUtil;
 
 public abstract class Entity extends MapObject {
 	private ArmoryOwnership armoryOwnership;
@@ -140,7 +137,7 @@ public abstract class Entity extends MapObject {
 	}
 	
 	public void drop(SackboundItem item){
-		GameWorld.getCurrentMap().insert(inventoryOwnership.removeItem(item),GameWorld.getCurrentMap().getLocationByMapObject(this));
+		GameWorld.getCurrentMap().insert(inventoryOwnership.removeItem(item), GameWorld.getCurrentMap().getLocationByMapObject(this));
 	}
 	
 	public void useAbility(Ability ability){
@@ -219,10 +216,7 @@ public abstract class Entity extends MapObject {
 				mtable.add(m);
 			}
 		}
+
 		return mtable;
-		
-		
-		
-		
 	}
 }

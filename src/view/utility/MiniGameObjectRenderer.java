@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.List;
 
 import model.MapObject;
+import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
 import model.item.interactive.InteractiveItem;
@@ -36,6 +37,14 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
 	public void visit(Avatar avatar) {
 		scaleXandY(x, y);
 		g.setColor(Color.YELLOW);
+		g.fillRect(drawx + SIZE_OF_MAP_PIXEL / 4,
+				drawy + SIZE_OF_MAP_PIXEL / 4, SIZE_OF_MAP_PIXEL / 2,
+				SIZE_OF_MAP_PIXEL / 2);
+	}
+
+	public void visit(AIClassicEntity entity) {
+		scaleXandY(x, y);
+		g.setColor(Color.MAGENTA);
 		g.fillRect(drawx + SIZE_OF_MAP_PIXEL / 4,
 				drawy + SIZE_OF_MAP_PIXEL / 4, SIZE_OF_MAP_PIXEL / 2,
 				SIZE_OF_MAP_PIXEL / 2);

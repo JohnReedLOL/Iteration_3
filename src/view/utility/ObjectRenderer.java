@@ -1,5 +1,6 @@
 package view.utility;
 
+import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
 import model.item.interactive.InteractiveItem;
@@ -13,6 +14,8 @@ import model.item.sackbound.equip.WeaponItem;
 public interface ObjectRenderer {
 
 	public void visit(Avatar avatar);
+
+	public void visit(AIClassicEntity entity);
 
 	public void visit(NPC npc);
 

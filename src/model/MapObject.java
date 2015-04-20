@@ -56,7 +56,6 @@ public abstract class MapObject implements Derivable {
     }
 
     public boolean interact( MapObject interactor ) {
-
         return false;
     }
 }

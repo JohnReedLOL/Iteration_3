@@ -1,12 +1,6 @@
 package model.entity.npc;
 
-import model.armory.Armory;
 import model.entity.Entity;
-import model.entity.behavior.movement.ClassicMovementBehavior;
-import model.entity.behavior.movement.MovementBehavior;
-import model.entity.stats.StatsOwnership;
-import model.inventory.Sack;
-import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.location.Location;
 import view.utility.ObjectRenderer;

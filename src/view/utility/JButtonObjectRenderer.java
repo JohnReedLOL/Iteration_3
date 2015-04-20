@@ -6,6 +6,8 @@
 package view.utility;
 
 import javax.swing.JButton;
+
+import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
 import model.item.interactive.InteractiveItem;
@@ -33,6 +35,11 @@ public class JButtonObjectRenderer implements ObjectRenderer{
 
     @Override
     public void visit(Avatar avatar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void visit(AIClassicEntity entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
