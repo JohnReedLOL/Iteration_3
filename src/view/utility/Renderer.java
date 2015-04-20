@@ -24,9 +24,8 @@ public abstract class Renderer {
 	// brightness
 	protected int brightness;
 
-	protected int avatarx = 2;
-	protected int avatary = 9;
-	protected int viewDistance = 2;
+	protected int avatarx;
+	protected int avatary;
 
 	public Renderer(Graphics g) {
 		this.g = g;
@@ -49,7 +48,7 @@ public abstract class Renderer {
 	}
 
 	protected boolean withinAvatarViewDistance(int x, int y) {
-		int startDistY = avatary - viewDistance;
+		int startDistY = avatary - 2;
 		boolean ret = false;
 		for (int i = 0; i < upperbound.length; i++) {
 			if (x >= upperbound[i] && x <= lowerbound[i] && y == startDistY) {
@@ -116,4 +115,12 @@ public abstract class Renderer {
 	}
 
 	protected abstract void scaleXandY(int x, int y);
+
+	public void setAvatarX(int x) {
+		avatarx = x;
+	}
+
+	public void setAvatarY(int y) {
+		avatary = y;
+	}
 }

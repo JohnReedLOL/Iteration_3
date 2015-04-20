@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import model.MapObject;
+import model.map.location.BrickTile;
 import model.map.location.GrassTile;
 import model.map.location.MountainTile;
 import model.map.location.WaterTile;
@@ -19,14 +20,12 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 
 	private int brightness;
 
-	public MiniTileRenderer(Graphics g, int startx, int starty) {
+	public MiniTileRenderer(Graphics g, int startx, int starty, List<MapObject> mapObjects) {
 		//TODO how do we set AVATAR and Location
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
-		mapObjectRenderer = new MiniGameObjectRenderer(g, startx, starty);
-		//TODO fix this
-		generateViewDistanceBounds(avatarx, avatary, viewDistance);
+		mapObjectRenderer = new MiniGameObjectRenderer(g, startx, starty, mapObjects);
 	}
 
 	public MiniTileRenderer(Graphics g, List<MapObject> mapObjects) {
@@ -34,8 +33,6 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		this.startx = 0;
 		this.starty = 0;
 		mapObjectRenderer = new MiniGameObjectRenderer(g, mapObjects);
-		//TODO fix this
-		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	@Override
@@ -53,24 +50,28 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		drawTileAlgorithm(Color.GRAY, mountainTile.getMapObjects());
 	}
 
+	@Override
+	public void visit(BrickTile brickTile) {
+		drawTileAlgorithm(Color.ORANGE, brickTile.getMapObjects());
+	}
+
 	private void drawTileAlgorithm(Color c, Collection<MapObject> mapObjects) {
 		scaleXandY(x, y);
 		g.setColor(c);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
+		g.setColor(Color.BLACK);
+		g.drawRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawMapObjects(mapObjects);
 		if (brightness > 0 && brightness < 100) {
 			Color b = new Color(0,0,0,100);
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		} else if (brightness >=100) {
-			Color b = new Color(0,0,0,255);
+			Color b = new Color(0,0,0,200);
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 			
 		}
-		
-		g.setColor(Color.BLACK);
-		g.drawRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawDebug();
 	}
 
@@ -93,6 +94,17 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 	@Override
 	public void setBrightness(int i) {
 		brightness = i;
+	}
+	
+
+	public void setAvatarX(int x) {
+		avatarx = x;
+		mapObjectRenderer.setAvatarX(x);
+	}
+
+	public void setAvatarY(int y) {
+		avatary = y;
+		mapObjectRenderer.setAvatarY(y);
 	}
 
 }

@@ -27,10 +27,11 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
 
 	private List<MapObject> mapObjects;
 
-	public MiniGameObjectRenderer(Graphics g, int startx, int starty) {
+	public MiniGameObjectRenderer(Graphics g, int startx, int starty, List<MapObject> mapObjects) {
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
+		this.mapObjects = mapObjects;
 	}
 
 	public MiniGameObjectRenderer(Graphics g, List<MapObject> mapObjects) {
@@ -138,7 +139,7 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
 
     @Override
     public void visit(SackboundItem i) {
-        Application.print("Not yet supported yet");
+        //Application.print("Not yet supported yet");
     }
 	@Override
 	public void visit(SmasherStatsOwnership smasherStatsOwnership) {

@@ -38,7 +38,7 @@ public interface ObjectRenderer {
 
 	public void visit(WeaponItem weaponItem);
         
-        public void visit(SackboundItem i);
+    public void visit(SackboundItem i);
 
 	public void setX(int x);
 
@@ -51,4 +51,8 @@ public interface ObjectRenderer {
 	public void visit(SummonerStatsOwnership summonerStatsOwnership);
 
 	public void visit(StatsOwnership statsOwnership);
+
+	public void setAvatarY(int avatarPosY);
+
+	public void setAvatarX(int x);
 }

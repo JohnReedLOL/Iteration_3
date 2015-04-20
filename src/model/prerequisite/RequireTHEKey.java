@@ -1,5 +1,6 @@
 package model.prerequisite;
 
+import application.Application;
 import model.entity.Entity;
 import model.factories.ItemFactory;
 

@@ -47,10 +47,11 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		this.mapObjects = mapObjects;
 	}
 
-	public GameObjectRenderer(Graphics g, int startx, int starty) {
+	public GameObjectRenderer(Graphics g, int startx, int starty, List<MapObject> mapObjects) {
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
+		this.mapObjects = mapObjects;
 	}
 
 	private void initializeAvatarImages(String occupation) {

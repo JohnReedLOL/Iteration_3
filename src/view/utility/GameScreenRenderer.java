@@ -28,11 +28,21 @@ public abstract class GameScreenRenderer extends Renderer {
 		 *  BECAUSE OF THIS, we need to translate the Tile indexes x and y
 		 *  to the scaled drawx and drawy for the Graphics
 		 */
-		drawx = startx + y * HEXAGON_SIZE * 3 / 4;
+		int xoffset = HEXAGON_SIZE * 3 / 4;
+		drawx = startx + y * xoffset;
+		drawx -= avatary*xoffset;
+		
 		int yoffset = (int) (Math.sin(Math.PI*2/3) * (HEXAGON_SIZE / 2));
 		drawy = starty + 2 * yoffset * x;
 		if (y % 2 != 0) {
-			drawy += yoffset;
+			drawy = starty + (2 * x + 1)* yoffset;
+		} else {
+			drawy = starty + 2 * x * yoffset;
+		}
+		if (avatary % 2 != 0){
+			drawy -= (2*avatarx+1)*yoffset;
+		} else {
+			drawy -= (2*avatarx)*yoffset;
 		}
 	}
 

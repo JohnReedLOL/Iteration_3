@@ -17,6 +17,7 @@ import view.utility.TileRenderer;
 import model.MapObject;
 import model.ModelViewBundle;
 import model.map.GameMap;
+import model.map.location.Location;
 import model.map.location.Tile;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
@@ -35,6 +36,8 @@ public class MiniMapViewport extends Viewport {
 	
 	private TileRenderer tileRendererVisitor;
 	private List<MapObject> mapObjects;
+	private int avatarPosX;
+	private int avatarPosY;
 	
     /**
      * Creates new form MainScreen
@@ -58,6 +61,9 @@ public class MiniMapViewport extends Viewport {
     	gameMap = mvb.getMap();
     	brightness = mvb.getBrightnessTable();
     	mapObjects = mvb.getVisibleMapObjects();
+        Location l = mvb.getAvatarLocation();
+        avatarPosX = gameMap.getCoordinateByLocation(l).getX();
+        avatarPosY = gameMap.getCoordinateByLocation(l).getY();
         repaint();
     }
 
@@ -71,9 +77,15 @@ public class MiniMapViewport extends Viewport {
     @Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		g.setColor(Color.BLACK);
+	    int width = this.getWidth();
+	    int height = this.getHeight();
+	    g.fillRect(0, 0, width, height);
 		// Tile visitor
-        tileRendererVisitor = new MiniTileRenderer(g, mapObjects);
-		displayMap(tileRendererVisitor, gameMap.getTiles());
+		if ( gameMap != null ) {
+        	tileRendererVisitor = new MiniTileRenderer(g,width/2,height/2, mapObjects);
+			displayMap(tileRendererVisitor, gameMap.getTiles());
+		}
 	}
     
     /**
@@ -98,6 +110,8 @@ public class MiniMapViewport extends Viewport {
 		 *  BECAUSE OF THIS, we need to translate the Tile x and y
 		 *  to the Graphics x and y
 		 */
+		tileRendererVisitor.setAvatarX(avatarPosX);
+		tileRendererVisitor.setAvatarY(avatarPosY);
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[x].length; y++) {
 				tileRendererVisitor.setX(x);

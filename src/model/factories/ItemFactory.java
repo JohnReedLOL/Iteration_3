@@ -230,10 +230,18 @@ public class ItemFactory {
     }
 
     public static LimitedConsumptionItem generateElixirSackboundItem() {
-        LimitedConsumptionItem item = new LimitedConsumptionItem("Elixir", "Replenishes mana & health.");
+        LimitedConsumptionItem item = new LimitedConsumptionItem("Elixir", "Replenishes mana & health.", 1);
         item.addUsePrerequisite(new RequireLevel(0));
         item.addUseEffect(new ModifyCurrentLife(15));
         item.addUseEffect(new ModifyCurrentMana(15));
+
+        return item;
+    }
+
+    public static LimitedConsumptionItem generate6SlicePizza() {
+        LimitedConsumptionItem item = new LimitedConsumptionItem("6-Slice Pizza", "Hold the anchovies, broge.", 6);
+        item.addUsePrerequisite(new RequireLevel(0));
+        item.addUseEffect(new ModifyCurrentLife(25));
 
         return item;
     }

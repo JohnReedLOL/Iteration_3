@@ -22,6 +22,7 @@ public class EquipItem extends SackboundItem {
         super(name, description);
 
         this.equipEffects = new ArrayList<Effect>();
+        this.unequipEffects = new ArrayList<Effect>();
         this.equipPrerequisites = new ArrayList<Prerequisite>();
         this.equipSlot = equipSlot;
     }

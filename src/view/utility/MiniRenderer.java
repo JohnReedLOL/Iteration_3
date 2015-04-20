@@ -37,11 +37,17 @@ public abstract class MiniRenderer extends Renderer {
 		 *  | 2,0|____| 2,2|
 		 *  |____|    |____|
 		 */
-		drawx = startx + y * SIZE_OF_MAP_PIXEL;
-		if (y % 2 == 0) {
-			drawy = starty + x * SIZE_OF_MAP_PIXEL;
+		drawx = startx + (y) * SIZE_OF_MAP_PIXEL;
+		drawx -= avatary*SIZE_OF_MAP_PIXEL;
+		if (y % 2 != 0) {
+			drawy = starty + (x) * SIZE_OF_MAP_PIXEL + SIZE_OF_MAP_PIXEL/2;
 		} else {
-			drawy = starty + x * SIZE_OF_MAP_PIXEL + SIZE_OF_MAP_PIXEL/2;
+			drawy = starty + (x) * SIZE_OF_MAP_PIXEL;
+		}
+		if (avatary % 2 != 0){
+			drawy -= ((avatarx)*SIZE_OF_MAP_PIXEL+SIZE_OF_MAP_PIXEL/2);
+		} else {
+			drawy -= (avatarx)*SIZE_OF_MAP_PIXEL;
 		}
 	}
 	
