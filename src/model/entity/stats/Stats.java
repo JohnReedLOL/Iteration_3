@@ -687,5 +687,9 @@ public class Stats {
 	public void accept(StatsVisitor visitor){
 		visitor.visit(this);
 	}
+	
+	public void levelUp(){
+		modifyExperience(10000 - getExperience());
+	}
 
 }

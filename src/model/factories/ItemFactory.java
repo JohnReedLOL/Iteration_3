@@ -177,14 +177,4 @@ public class ItemFactory {
 
         return ret;
     }
-
-    public static InteractiveItem generateTeleportToMap2() {
-        InteractiveItem item = new InteractiveItem();
-
-        GameMap secondMap = new SecondLevelGameMap();
-        GameWorld.getInstance().addMap(secondMap);
-        item.addActivationEffect(new TeleportEffect(secondMap));
-
-        return item;
-    }
 }
