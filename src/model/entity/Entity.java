@@ -106,6 +106,10 @@ public abstract class Entity extends MapObject {
 		this.movementBehavior = movement;
 	}
 
+	public void setDirection(Direction direction) {
+		this.direction = direction;
+	}
+	
 	public void setStatsOwnership(StatsOwnership ownership) {
 		this.statsOwnership = ownership;
 	}
@@ -234,4 +238,5 @@ public abstract class Entity extends MapObject {
 
 		return mtable;
 	}
+
 }

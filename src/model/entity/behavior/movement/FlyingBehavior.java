@@ -48,6 +48,7 @@ public class FlyingBehavior extends MovementBehavior {
 
     @Override
     public boolean move(Entity entity, Direction direction) {
+    	entity.setDirection(direction);
         DiscreteMap map = GameWorld.getCurrentMap();
 
         if (map.withinBounds(entity, direction)) {
