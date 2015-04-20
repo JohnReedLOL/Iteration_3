@@ -189,16 +189,19 @@ public abstract class Entity extends MapObject {
 				btable[i][j] = 100;
 			}
 		}
+
+		//fill out half brightness
+		List<Coordinate2D> halfCoords = memory.getCoordinates();
+		for(Coordinate2D c : halfCoords){
+			btable[c.getX()][c.getY()] = 50;
+		}
+
 		//fill out full brightness
 		List<Coordinate2D> fullCoords = sight.getCoordinates();
 		for(Coordinate2D c : fullCoords){
 			btable[c.getX()][c.getY()] = 0;
 		}
-		//fill out half brightness
-		List<Coordinate2D> halfCoords = sight.getCoordinates();
-		for(Coordinate2D c : halfCoords){
-			btable[c.getX()][c.getY()] = 50;
-		}
+
 		return btable;
 	}
 	
