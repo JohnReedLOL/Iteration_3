@@ -195,6 +195,15 @@ public class Model {
         //TODO
     }
     
+    /* -------------------- LEVEL UP COMMANDS -------------------- */
+    public void levelStrength(Entity a){
+    	a.getStatsOwnership().upStrength();	
+    }
+    
+    public void levelAgility(Entity a){
+    	a.getStatsOwnership().upAgility();	
+    }
+    
     public boolean move(Entity entity, Direction direction) {
         entity.getMovementBehavior().move(entity, direction);
         return true;

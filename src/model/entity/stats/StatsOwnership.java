@@ -10,9 +10,19 @@
  */
 package model.entity.stats;
 
-import view.utility.ObjectRenderer;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.entity.Entity;
-import model.entity.stats.Stats;
+import view.utility.ObjectRenderer;
+import view.utility.stat.AgilityStat;
+import view.utility.stat.BargainStat;
+import view.utility.stat.BindWoundsStat;
+import view.utility.stat.HardinessStat;
+import view.utility.stat.IntellectStat;
+import view.utility.stat.ObservationStat;
+import view.utility.stat.Stat;
+import view.utility.stat.StrengthStat;
 
 public class StatsOwnership {
 	private int skillPoints;
@@ -45,6 +55,45 @@ public class StatsOwnership {
 	public Stats getStats(){
 		return stats;
 	}
+	public int getCurrentLife(){
+		return stats.getCurrentLife();
+	}
+	public int getCurrentMana(){
+		return stats.getCurrentMana();
+	}
+	public int getExperience(){
+		return stats.getExperience();
+	}
+	public int getMovement(){
+		return stats.getMovement();
+	}
+	public int getWeaponMod(){
+		return stats.getWeaponModifier();
+	}
+	public int getArmorMod(){
+		return stats.getArmorModifier();
+	}
+	public int getLevel(){
+		return stats.getLevel();
+	}
+	public int getMaxLife(){
+		return stats.getMaxLife();
+	}
+	public int getMaxMana(){
+		return stats.getMaxMana();
+	}
+	public int getOffense(){
+		return stats.getOffense();
+	}
+	public int getDefense(){
+		return stats.getDefense();
+	}
+	public int getArmor(){
+		return stats.getArmor();
+	}
+	public int getAffinity(){
+		return stats.getAffinity();
+	}
 	
 	/* -------------------- LEVEL UP COMMANDS -------------------- */
 	public boolean upStrength(){
@@ -69,18 +118,6 @@ public class StatsOwnership {
 		if(statPoints <= 0) return false;
 		--statPoints;
 		stats.modifyHardiness(1);
-		return true;
-	}
-	public boolean upExperience(){
-		if(statPoints <= 0) return false;
-		--statPoints;
-		stats.modifyExperience(1);
-		return true;
-	}
-	public boolean upMovement(){
-		if(statPoints <= 0) return false;
-		--statPoints;
-		stats.modifyMovement(1);
 		return true;
 	}
 	public boolean upBindWounds(){
@@ -121,6 +158,19 @@ public class StatsOwnership {
 
 	public void accept(ObjectRenderer mapObjectRenderer) {
 		mapObjectRenderer.visit(this);
+	}
+	
+	/* ------------------- VIEW STUFF -------------------- */
+	public List<Stat> getViewStats(){
+		List<Stat> value = new ArrayList<Stat>();
+		value.add(new StrengthStat("Strength", this));
+		value.add(new AgilityStat("Agility", this));
+		value.add(new IntellectStat("Intellect", this));
+		value.add(new HardinessStat("Hardiness", this));
+		value.add(new BindWoundsStat("Bind Wounds", this));
+		value.add(new ObservationStat("Observation", this));
+		value.add(new BargainStat("Bargain", this));
+		return value;
 	}
 	
 	

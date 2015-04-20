@@ -1,7 +1,22 @@
 package model.entity.stats;
 
-import view.utility.ObjectRenderer;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.entity.Entity;
+import view.utility.ObjectRenderer;
+import view.utility.stat.AgilityStat;
+import view.utility.stat.BaneStat;
+import view.utility.stat.BargainStat;
+import view.utility.stat.BindWoundsStat;
+import view.utility.stat.BoonStat;
+import view.utility.stat.EnchantmentStat;
+import view.utility.stat.HardinessStat;
+import view.utility.stat.IntellectStat;
+import view.utility.stat.ObservationStat;
+import view.utility.stat.StaffStat;
+import view.utility.stat.Stat;
+import view.utility.stat.StrengthStat;
 
 public class SummonerStatsOwnership extends StatsOwnership{
 	/* -------------------- SERVICES -------------------- */
@@ -55,6 +70,23 @@ public class SummonerStatsOwnership extends StatsOwnership{
 	@Override
 	public void accept(ObjectRenderer mapObjectRenderer) {
 		mapObjectRenderer.visit(this);
+	}
+	
+	/* ------------------- VIEW STUFF -------------------- */
+	public List<Stat> getViewStats(){
+		List<Stat> value = new ArrayList<Stat>();
+		value.add(new StrengthStat("Strength", this));
+		value.add(new AgilityStat("Agility", this));
+		value.add(new IntellectStat("Intellect", this));
+		value.add(new HardinessStat("Hardiness", this));
+		value.add(new BindWoundsStat("Bind Wounds", this));
+		value.add(new ObservationStat("Observation", this));
+		value.add(new BargainStat("Bargain", this));
+		value.add(new BoonStat("Boon", this));
+		value.add(new BaneStat("Bane", this));
+		value.add(new EnchantmentStat("Enchantment", this));
+		value.add(new StaffStat("Staff", this));
+		return value;
 	}
 	
 }
