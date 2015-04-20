@@ -9,11 +9,13 @@ import application.Application;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import model.ModelViewBundle;
-import model.item.oneshot.OneShotItem;
+import model.entity.avatar.Avatar;
 import model.item.sackbound.SackboundItem;
-import mvc_bridgeway.command.model_command.ExitCommand;
-import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
+import model.item.sackbound.equip.EquipItem;
+import mvc_bridgeway.command.model_command.Equip;
+import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.utility.JButtonObjectRenderer;
 
@@ -25,6 +27,9 @@ public class InventoryViewport extends Viewport {
 
     private final JButtonObjectRenderer buttonRenderer_ = new JButtonObjectRenderer();
     private List<SackboundItem> items;
+    //
+    private ArrayList<ControlMap> cms = new ArrayList<ControlMap>();
+    private int prevNumItems = -1;
 
     /**
      * Creates new form MainScreen
@@ -42,14 +47,49 @@ public class InventoryViewport extends Viewport {
     @Override
     public void update(ModelViewBundle mvb) {
         items = mvb.getInventory();
+        Avatar avatar = mvb.getAvatar();
+        int numItems = items.size();
+        if (prevNumItems != numItems) {
+            clearCMs();
+            setControls(numItems, avatar);
+            flagRefreshController();
+            prevNumItems = numItems;
+        }
         repaint();
+    }
+    
+    private void setControls(int numItems, Avatar avatar) {
+        switch(numItems) {
+                case 6:
+                    setControl(item_6_, 5, avatar);
+                case 5:
+                    setControl(item_5_, 4, avatar);
+                case 4:
+                    setControl(item_4_, 3, avatar);
+                case 3:
+                    setControl(item_3_, 2, avatar);
+                case 2:
+                    setControl(item_2_, 1, avatar);
+                case 1:
+                    setControl(item_1_, 0, avatar);
+                default:
+            }
+    }
+    
+    private void setControl(JButton button, int index, Avatar avatar) {
+        SackboundItem item = items.get(index);
+        if (item instanceof EquipItem) {
+            cms.add( new ControlMap(new ButtonSwingControl(button), new Equip(avatar, (EquipItem)item ) ) );
+        }
+    }
+    
+    private void clearCMs() {
+        cms = new ArrayList<ControlMap>();
     }
 
     @Override
     public ArrayList<ControlMap> getControlMaps() {
-        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        //TODOD
-        return controlMaps;
+        return cms;
     }
 
     @Override

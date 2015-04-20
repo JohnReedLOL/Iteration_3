@@ -4,7 +4,6 @@ package model;
 import application.Application;
 import application.Application.UpdateTimings;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -22,6 +21,7 @@ import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
 import model.factories.OccupationFactory;
+import model.item.sackbound.equip.EquipItem;
 import view.utility.stat.Stat;
 
 public class Model {
@@ -112,6 +112,8 @@ public class Model {
                                 // probabaly better to implement commands in a queue 
                                 // and remove done command from queue
                                 to_execute_ = null;
+                                takeEnviornmentGameStep();
+                                takeStandardGameStep();
 
                             }
                         }
@@ -229,6 +231,10 @@ public class Model {
     public boolean equip(Avatar avatar, Item item) {
         item.apply(avatar);
         return true;
+    }
+    
+    public void unequip(Avatar avatar, EquipItem item) {
+        avatar.getArmoryOwnership().unequip(item);
     }
 
     public void drop(Avatar avatar) {
