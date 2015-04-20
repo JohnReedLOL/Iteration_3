@@ -44,12 +44,45 @@ public class JButtonObjectRenderer implements ObjectRenderer  {
 
     private JButton button_to_render_on_;
     final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-    final URL url = classLoader.getResource("resources/png/grass.png");
+    URL url = classLoader.getResource("resources/png/grass.png");
     BufferedImage grass_ = null;
+
+    private static BufferedImage NPC_S;
+    private static BufferedImage INT_ITEM;
+    private static BufferedImage OBS_ITEM;
+    private static BufferedImage ONE_SHOT_ITEM;
+    private static BufferedImage LC_ITEM;
+    private static BufferedImage UC_ITEM;
+    private static BufferedImage EQUIP;
+    private static BufferedImage WEAPON;
 
     public JButtonObjectRenderer() {
         try {
             this.grass_ = ImageIO.read(new File(url.getPath()));
+            url = classLoader.getResource("resources/png/dave_S.png");
+            NPC_S = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
+            url = classLoader.getResource("resources/png/Locked_Treasure_Box.png");
+            INT_ITEM = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
+            url = classLoader.getResource("resources/png/ObstacleItem.png");
+            OBS_ITEM = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
+            url = classLoader.getResource("resources/png/Health_Potion.png");
+            ONE_SHOT_ITEM = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
+            url = classLoader.getResource("resources/png/Health_Potion.png");
+            LC_ITEM = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
+            url = classLoader.getResource("resources/png/Mana_Potion.png");
+            UC_ITEM = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
+            url = classLoader.getResource("resources/png/Helmet.png");
+            EQUIP = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
+            url = classLoader.getResource("resources/png/Matts_sword_PNG.png");
+            WEAPON = ImageIO.read(new File(url.getPath()));
+            System.out.println( "GOT ONE");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -87,49 +120,49 @@ public class JButtonObjectRenderer implements ObjectRenderer  {
     @Override
     public void visit(NPC npc) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(NPC_S));
     }
 
     @Override
     public void visit(InteractiveItem interactiveItem) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(INT_ITEM));
     }
 
     @Override
     public void visit(ObstacleItem obstacleItem) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(OBS_ITEM));
     }
 
     @Override
     public void visit(OneShotItem oneShotItem) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(ONE_SHOT_ITEM));
     }
 
     @Override
     public void visit(LimitedConsumptionItem limitedConsumptionItem) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(LC_ITEM));
     }
 
     @Override
     public void visit(UnlimitedConsumptionItem unlimitedConsumptionItem) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(UC_ITEM));
     }
 
     @Override
     public void visit(EquipItem equipItem) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(EQUIP));
     }
 
     @Override
     public void visit(WeaponItem weaponItem) {
         Application.check(button_to_render_on_ != null);
-        button_to_render_on_.setIcon(new ImageIcon(grass_));
+        button_to_render_on_.setIcon(new ImageIcon(WEAPON));
     }
 
     @Override
