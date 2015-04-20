@@ -37,7 +37,7 @@ import mvc_bridgeway.control_map.ControlMap;
  */
 public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
 
-    final private ModelViewBundle mvb = ModelViewBundle.getReference(); //for testing
+    final private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
     final Avatar mocAvatar_ = mvb.getAvatar();
 
     /**

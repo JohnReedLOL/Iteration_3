@@ -85,6 +85,10 @@ public abstract class Entity extends MapObject {
 		return abilities.getUnlearnedAbilities();
 	}
 
+	public AbilityLibrary getAbilities() {
+		return this.abilities;
+	}
+
 	public int getBooty() {
 		return this.booty;
 	}
@@ -141,7 +145,11 @@ public abstract class Entity extends MapObject {
 	}
 	
 	public void useAbility(Ability ability){
-		abilities.useAbility(ability);
+		getAbilities().useAbility(ability);
+	}
+
+	public void addAbility(Ability ability) {
+		getAbilities().insertAbility(ability);
 	}
 	
 	/* -------------------- MID LEVEL OPERATIONS -------------------- */

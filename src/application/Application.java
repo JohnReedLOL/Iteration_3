@@ -117,7 +117,7 @@ public class Application {
     }
     
     private UpdateTimings initUpdateTimings() {
-        int viewUpdatesPerSecond = 20;
+        int viewUpdatesPerSecond = 10;
         int environmentGameStepsPerSecond = 3;
         int standardGameStepsPerSecond = 1;
         return new UpdateTimings(viewUpdatesPerSecond, environmentGameStepsPerSecond, standardGameStepsPerSecond);

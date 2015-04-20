@@ -5,7 +5,6 @@ package model;
 import java.util.List;
 import model.entity.ConversationNode;
 
-import model.entity.ConversationNodeWithChildren;
 import model.entity.ability.Ability;
 import model.entity.avatar.Avatar;
 import model.item.sackbound.SackboundItem;
@@ -19,7 +18,7 @@ public class ModelViewBundle {
     /*Properties*/
 
     private static ModelViewBundle singleton;
-    private static UserSettings userSettings = new UserSettings();
+    private UserSettings userSettings = new UserSettings();
 
     /*Constructors*/
 
@@ -29,7 +28,7 @@ public class ModelViewBundle {
 
     /*Get-Sets*/
 
-    public static ModelViewBundle getReference() {
+    public static ModelViewBundle getInstance() {
         if (singleton == null) {
             singleton = new ModelViewBundle();
         }
@@ -37,45 +36,45 @@ public class ModelViewBundle {
         return singleton;
     }
 
-    public static UserSettings getUserSettings() {
+    public UserSettings getUserSettings() {
         return userSettings;
     }
 
-    public static Avatar getAvatar() {
+    public Avatar getAvatar() {
         return Model.getAvatar();
     }
 
-    public static List<Ability> getLearnedAbilities() {
+    public List<Ability> getLearnedAbilities() {
         return getAvatar().getLearnedAbilities();
     }
 
-    public static List<Ability> getUnlearnedAbilities() {
+    public List<Ability> getUnlearnedAbilities() {
        return getAvatar().getUnlearnedAbilities();
     }
 
-    public static GameMap getMap() {
+    public GameMap getMap() {
         // LOL - casting.
-     return (GameMap) GameWorld.getCurrentMap();
+        return (GameMap) GameWorld.getCurrentMap();
     }
 
-    public static Location getAvatarLocation() {
+    public Location getAvatarLocation() {
         return getMap().getLocationByMapObject(getAvatar());
     }
 
-    public static ConversationNode getCurrentDialogue() {
+    public ConversationNode getCurrentDialogue() {
         // TODO - IDFK until John tells us what's up.
         return null;
     }
 
-    public static List<SackboundItem> getInventory() {
+    public List<SackboundItem> getInventory() {
         return getAvatar().getInventoryOwnership().getAllItems();
     }
 
-    public static List<EquipItem> getEquipment() {
+    public List<EquipItem> getEquipment() {
         return getAvatar().getArmoryOwnership().getEquipment().getContents();
     }
 
-    public static List<SackboundItem> getMerchantInventory() {
+    public List<SackboundItem> getMerchantInventory() {
         // TODO
         return null;
     }
@@ -86,7 +85,7 @@ public class ModelViewBundle {
      * Don't worry about order of rendering for now.
      * @return 
      */
-    public static List<MapObject> getVisibleMapObjects(){
+    public List<MapObject> getVisibleMapObjects(){
     	return getAvatar().getVisibleMapObjects();
     }
     
@@ -95,18 +94,18 @@ public class ModelViewBundle {
      * @author Matt <- yell at him if broken.
      * @return 
      */
-    public static int[][] getBrightnessTable(){
+    public int[][] getBrightnessTable(){
     	return getAvatar().getBrightnessTable();
     }
 
-    public static int getBooty() {
-        getAvatar().getBooty();
-        return 0;
+    public int getBooty() {
+        return getAvatar().getBooty();
     }
 
     /*Inner-classes*/
 
     /*Test Main Method*/
 
-}
+    
 
+}

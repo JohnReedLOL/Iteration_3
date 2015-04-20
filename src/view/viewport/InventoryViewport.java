@@ -23,7 +23,7 @@ import view.utility.JButtonObjectRenderer;
 public class InventoryViewport extends Viewport {
 
     private final JButtonObjectRenderer buttonRenderer_ = new JButtonObjectRenderer();
-    private final ModelViewBundle mvb_ = ModelViewBundle.getReference();
+    private final ModelViewBundle mvb_ = ModelViewBundle.getInstance();
     private final List<SackboundItem> items_ = mvb_.getInventory();
 
     /**
