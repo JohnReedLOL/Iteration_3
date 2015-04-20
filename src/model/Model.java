@@ -56,7 +56,7 @@ public class Model {
     //
     private Application application;
     private Screen currentScreen;
-    private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
+    private ModelViewBundle mvb = ModelViewBundle.getReference(); //for testing
     //
     private Mode currentMode;
     public final RunMode RUN = new RunMode();

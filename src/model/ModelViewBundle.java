@@ -3,6 +3,7 @@ package model;
 // @author comcc_000
 
 import java.util.List;
+import model.entity.ConversationNode;
 
 import model.entity.ConversationNodeWithChildren;
 import model.entity.ability.Ability;
@@ -28,7 +29,7 @@ public class ModelViewBundle {
 
     /*Get-Sets*/
 
-    public static ModelViewBundle getInstance() {
+    public static ModelViewBundle getReference() {
         if (singleton == null) {
             singleton = new ModelViewBundle();
         }
@@ -61,7 +62,7 @@ public class ModelViewBundle {
         return getMap().getLocationByMapObject(getAvatar());
     }
 
-    public static ConversationNodeWithChildren getCurrentDialogue() {
+    public static ConversationNode getCurrentDialogue() {
         // TODO - IDFK until John tells us what's up.
         return null;
     }
@@ -107,6 +108,5 @@ public class ModelViewBundle {
 
     /*Test Main Method*/
 
-    
-
 }
+

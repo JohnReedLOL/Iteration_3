@@ -5,6 +5,11 @@
  */
 package view.utility;
 
+import application.Application;
+import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import model.entity.ai.AIClassicEntity;
@@ -19,23 +24,34 @@ import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
 
 /**
- * This class takes in a JButton using setButtonForMeToRenderTo and then takes in 
- * an object via the visit method and then renders that object to that JButton.
+ * This class takes in a JButton using setButtonForMeToRenderTo and then takes in an object via the
+ * visit method and then renders that object to that JButton.
+ *
  * @author johnmichaelreed2
  */
-public class JButtonObjectRenderer implements ObjectRenderer{
-    
+public class JButtonObjectRenderer implements ObjectRenderer {
+
     private JButton button_to_render_on_;
+
     public void setButtonForMeToRenderTo(JButton to_render_on) {
         button_to_render_on_ = to_render_on;
     }
+
     public JButton getButtonThatIAmRenderingOn() {
         return button_to_render_on_;
     }
 
+    final String temp_file_name = Object_To_File_Name_Mapping.imageNotAvailible_;
+
     @Override
     public void visit(Avatar avatar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -45,42 +61,90 @@ public class JButtonObjectRenderer implements ObjectRenderer{
 
     @Override
     public void visit(NPC npc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void visit(InteractiveItem interactiveItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void visit(ObstacleItem obstacleItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void visit(OneShotItem oneShotItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void visit(LimitedConsumptionItem limitedConsumptionItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void visit(UnlimitedConsumptionItem unlimitedConsumptionItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void visit(EquipItem equipItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void visit(WeaponItem weaponItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Application.check(button_to_render_on_ != null);
+        try {
+            Image img = ImageIO.read(getClass().getResource(Object_To_File_Name_Mapping.imageNotAvailible_));
+            button_to_render_on_.setIcon(new ImageIcon(img));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -92,6 +156,5 @@ public class JButtonObjectRenderer implements ObjectRenderer{
     public void setY(int y) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

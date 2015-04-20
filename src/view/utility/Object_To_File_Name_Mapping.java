@@ -6,9 +6,9 @@
 package view.utility;
 
 /**
- *
+ * Maps Objects to file names.
  * @author johnmichaelreed2
  */
 public class Object_To_File_Name_Mapping {
-    
+    public static final String imageNotAvailible_ = "/Game_Art/Error.png";
 }

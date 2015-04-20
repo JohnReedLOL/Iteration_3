@@ -2,6 +2,7 @@ package application;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 public class RunGame {
 
@@ -15,7 +16,12 @@ public class RunGame {
         Application.print("RunGame started");
         application = Application.getApplication();
         application.launch(); //leads to looping threads
-        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Thread.currentThread().setName("GUI / Event_Dispatch");
+            }
+        });
         putMainThreadToSleep();
     }
     
