@@ -15,6 +15,7 @@ import model.map.location.Location;
 import model.map.location.MountainTile;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
+import utility.CoordUtil;
 
 import java.util.Collection;
 
@@ -66,11 +67,6 @@ public class GameMap extends DiscreteMap {
     }
 
     @Override
-    public void relocate( MapObject m, Location l ) {
-        l.createMapObjectAssociation(m);
-    }
-
-    @Override
     public void move( MapObject m, Coordinate2D from, Coordinate2D to ) {
         Tile previous = tileMap.getValue( (HexCoordinate) from );
         Tile newPos = tileMap.getValue( (HexCoordinate) to );
@@ -91,9 +87,9 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void teleport(MapObject m, DiscreteMap d) {
-
+        //OVERRIDE THIS METHOD IN ANY GAMEMAP SUBCLASSES TO CORRECTLY PLACE YOUR AVATAR ON A TELEPORT.
         remove( m );
-        d.insert( m , d.getLocationByCoordinate( new HexCoordinate( 5, 5 )));
+        d.insert( m , d.getPreferredTeleportLocation() );
     }
 
     @Override
@@ -167,6 +163,11 @@ public class GameMap extends DiscreteMap {
     @Override
     public Location getLocationByMapObject( MapObject m ) {
         return getLocationByCoordinate( getMapObjectCoordinate( m ) );
+    }
+
+    @Override
+    public Location getPreferredTeleportLocation() {
+        return getLocationByCoordinate( CoordUtil.MAP_1_DEFAULT_COORDINATE );
     }
 
     public void performEffect(Effect effect, InfluenceSet influence) {
