@@ -31,7 +31,7 @@ public abstract class Viewport extends JPanel {
         command.execute(); //for now
     }
     
-    public final boolean isRefreshControllerNeeded() {
+    public boolean isRefreshControllerNeeded() {
         if (refreshControllerNeeded) {
             refreshControllerNeeded = false;
             return true;
@@ -39,7 +39,7 @@ public abstract class Viewport extends JPanel {
         return false;
     }
     
-    protected final void flagRefreshController() {
+    protected void flagRefreshController() {
         refreshControllerNeeded = true;
     }
     

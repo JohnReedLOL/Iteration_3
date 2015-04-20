@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireBindWounds extends StatsPrerequisite{
-	RequireBindWounds(int magnitude){
+	public RequireBindWounds(int magnitude){
 		super(magnitude);
 	}
 	

@@ -15,6 +15,7 @@ import model.MapObject;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.npc.mount.Mount;
 import model.entity.stats.SmasherStatsOwnership;
 import model.entity.stats.SneakStatsOwnership;
 import model.entity.stats.StatsOwnership;
@@ -39,6 +40,13 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 	private static BufferedImage avatarNE;
 	private static BufferedImage avatarSW;
 	private static BufferedImage avatarSE;
+
+	private static BufferedImage vespaN;
+	private static BufferedImage vespaS;
+	private static BufferedImage vespaNW;
+	private static BufferedImage vespaNE;
+	private static BufferedImage vespaSW;
+	private static BufferedImage vespaSE;
 
 	public GameObjectRenderer(Graphics g, List<MapObject> mapObjects) {
 		super(g);
@@ -123,6 +131,66 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 				e.printStackTrace();
 			}
 		}
+
+		if (vespaN == null) {
+			url = classLoader.getResource("resources/png/vespa_N.png");
+			try {
+				vespaN = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (vespaS == null) {
+			url = classLoader.getResource("resources/png/vespa_S.png");
+			try {
+				vespaS = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (vespaNW == null) {
+			url = classLoader.getResource("resources/png/vespa_NW.png");
+			try {
+				vespaNW = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (vespaNE == null) {
+			url = classLoader.getResource("resources/png/vespa_NE.png");
+			try {
+				vespaNE = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (vespaSW == null) {
+			url = classLoader.getResource("resources/png/vespa_SW.png");
+			try {
+				vespaSW = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (vespaSE == null) {
+			url = classLoader.getResource("resources/png/vespa_SE.png");
+			try {
+				vespaSE = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void visit(Avatar avatar) {
@@ -177,6 +245,32 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		}
 	}
 
+	private void drawMount(String facing) {
+		switch (facing) {
+			case "N":
+				drawImage(vespaN);
+				break;
+			case "NE":
+				drawImage(vespaNE);
+				break;
+			case "NW":
+				drawImage(vespaNW);
+				break;
+			case "S":
+				drawImage(vespaS);
+				break;
+			case "SE":
+				drawImage(vespaSE);
+				break;
+			case "SW":
+				drawImage(vespaSW);
+				break;
+			default:
+				drawImage(vespaS);
+				break;
+		}
+	}
+
 	private void drawImage(BufferedImage img) {
 		scaleXandY(x, y);
 		g.drawImage(img, drawx, drawy, 100, 100, null);
@@ -190,6 +284,12 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		g.setColor(Color.BLACK);
 		g.drawString("AI ENTITY", drawx + HEXAGON_SIZE / 4, drawy
 				+ HEXAGON_SIZE / 4);
+	}
+
+	public void visit( Mount mount ) {
+		scaleXandY(x, y);
+		String facing = mount.getDirection().toString();
+		drawMount( facing );
 	}
 
 	public void visit(NPC npc) {

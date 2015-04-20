@@ -17,6 +17,7 @@ public class ModelViewBundle {
 
     /*Properties*/
 
+    private String currentKnownInfo;
     private static ModelViewBundle singleton;
     private UserSettings userSettings = new UserSettings();
 
@@ -66,6 +67,10 @@ public class ModelViewBundle {
         return null;
     }
 
+    public String getCurrentKnownInfo() {
+        return this.currentKnownInfo;
+    }
+
     public List<SackboundItem> getInventory() {
         return getAvatar().getInventoryOwnership().getAllItems();
     }
@@ -100,6 +105,12 @@ public class ModelViewBundle {
 
     public int getBooty() {
         return getAvatar().getBooty();
+    }
+
+    /*Setters*/
+
+    public void setCurrentKnownInfo(String info) {
+        this.currentKnownInfo = info;
     }
 
     /*Inner-classes*/

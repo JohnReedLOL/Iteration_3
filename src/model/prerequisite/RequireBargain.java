@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireBargain extends StatsPrerequisite{
-	RequireBargain(int magnitude){
+	public RequireBargain(int magnitude){
 		super(magnitude);
 	}
 	

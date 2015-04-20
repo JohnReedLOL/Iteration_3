@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.npc.mount.Mount;
 import model.entity.stats.SmasherStatsOwnership;
 import model.entity.stats.SneakStatsOwnership;
 import model.entity.stats.StatsOwnership;
@@ -39,7 +40,7 @@ import model.item.sackbound.equip.WeaponItem;
  *
  * @author johnmichaelreed2
  */
-public class JButtonObjectRenderer implements ObjectRenderer {
+public class JButtonObjectRenderer implements ObjectRenderer  {
 
     private JButton button_to_render_on_;
     final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -73,6 +74,12 @@ public class JButtonObjectRenderer implements ObjectRenderer {
 
     @Override
     public void visit(AIClassicEntity entity) {
+        Application.check(button_to_render_on_ != null);
+        button_to_render_on_.setIcon(new ImageIcon(grass_));
+    }
+
+    @Override
+    public void visit(Mount mount) {
         Application.check(button_to_render_on_ != null);
         button_to_render_on_.setIcon(new ImageIcon(grass_));
     }

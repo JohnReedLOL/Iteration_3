@@ -20,6 +20,7 @@ import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
 import model.factories.OccupationFactory;
+import view.utility.stat.Stat;
 
 public class Model {
 
@@ -195,6 +196,10 @@ public class Model {
         //TODO
     }
     
+    public void levelupStat(Stat stat) {
+        stat.level();
+    }
+    
     /* -------------------- LEVEL UP COMMANDS -------------------- */
     public void levelStrength(Entity a){
     	a.getStatsOwnership().upStrength();	
@@ -205,7 +210,7 @@ public class Model {
     }
     
     public boolean move(Entity entity, Direction direction) {
-        entity.getMovementBehavior().move(entity, direction);
+        entity.move( direction );
         return true;
     }
     
