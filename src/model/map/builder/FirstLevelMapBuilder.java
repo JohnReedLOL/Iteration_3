@@ -52,7 +52,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
 
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
         tiles[1][2].createMapObjectAssociation(new NPC(new HexCoordinate(1, 1)));
-        tiles[1][3].createMapObjectAssociation(ItemFactory.generate6SlicePizza());
+        tiles[0][3].createMapObjectAssociation(ItemFactory.generate6SlicePizza());
         tiles[1][4].createMapObjectAssociation(ItemFactory.getTHEKey());
         tiles[1][5].createMapObjectAssociation(ItemFactory.generateElixirOneShotItem());
         tiles[1][6].createMapObjectAssociation(ItemFactory.generateElixirSackboundItem());
