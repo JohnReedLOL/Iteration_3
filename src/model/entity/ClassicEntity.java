@@ -17,13 +17,14 @@ public class ClassicEntity extends Entity  {
     private MountOwnership mountOwnership = new MountOwnership(this, null);
     private PetOwnership petOwnership = new PetOwnership(this, null);
     private boolean isMounted = false;
-
+    private ConversationTree conversationTree_;
     /**
      * CONSTRUCTORS
      */
 
     public ClassicEntity(HexCoordinate location) {
         super(location);
+        conversationTree_ = ConversationTreeFactory.makeVillagerConversationTree();
     }
 
     /**
@@ -100,5 +101,19 @@ public class ClassicEntity extends Entity  {
     @Override
     public void accept(ObjectRenderer mapObjectRenderer) {
 
+    }
+
+    /**
+     * @return the conversationTree_
+     */
+    public ConversationTree getConversationTree_() {
+        return conversationTree_;
+    }
+
+    /**
+     * @param conversationTree_ the conversationTree_ to set
+     */
+    public void setConversationTree_(ConversationTree conversationTree_) {
+        this.conversationTree_ = conversationTree_;
     }
 }
