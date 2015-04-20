@@ -9,7 +9,8 @@ import model.map.direction.Direction;
 import model.map.location.Location;
 import view.utility.ObjectRenderer;
 
-public class ClassicEntity extends Entity  {
+public class ClassicEntity extends Entity {
+
     /**
      * PROPERTIES
      */
@@ -18,6 +19,7 @@ public class ClassicEntity extends Entity  {
     private PetOwnership petOwnership = new PetOwnership(this, null);
     private boolean isMounted = false;
     private ConversationTree conversationTree_;
+
     /**
      * CONSTRUCTORS
      */
@@ -30,7 +32,6 @@ public class ClassicEntity extends Entity  {
     /**
      * GETTERS
      */
-
     public MountOwnership getMountOwnership() {
         return this.mountOwnership;
     }
@@ -44,9 +45,15 @@ public class ClassicEntity extends Entity  {
     }
 
     /**
+     * @return the conversationTree_
+     */
+    public ConversationTree getConversationTree_() {
+        return conversationTree_;
+    }
+
+    /**
      * MUTATORS
      */
-
     public void setMountOwnership(MountOwnership ownership) {
         this.mountOwnership = ownership;
     }
@@ -60,9 +67,15 @@ public class ClassicEntity extends Entity  {
     }
 
     /**
+     * @param conversationTree_ the conversationTree_ to set
+     */
+    public void setConversationTree_(ConversationTree conversationTree_) {
+        this.conversationTree_ = conversationTree_;
+    }
+
+    /**
      * IMPLEMENTATIONS
      */
-
     public void mount(Mount target) {
         setIsMounted(true);
         getMountOwnership().imposeMovementOn(this);
@@ -101,19 +114,5 @@ public class ClassicEntity extends Entity  {
     @Override
     public void accept(ObjectRenderer mapObjectRenderer) {
 
-    }
-
-    /**
-     * @return the conversationTree_
-     */
-    public ConversationTree getConversationTree_() {
-        return conversationTree_;
-    }
-
-    /**
-     * @param conversationTree_ the conversationTree_ to set
-     */
-    public void setConversationTree_(ConversationTree conversationTree_) {
-        this.conversationTree_ = conversationTree_;
     }
 }
