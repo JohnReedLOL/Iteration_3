@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireLevel extends StatsPrerequisite{
-	RequireLevel(int magnitude){
+	public RequireLevel(int magnitude){
 		super(magnitude);
 	}
 	

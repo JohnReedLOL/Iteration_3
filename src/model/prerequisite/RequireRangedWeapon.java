@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.SneakStats;
 
 public class RequireRangedWeapon extends SneakStatsPrerequisite{
-	RequireRangedWeapon(int magnitude){
+	public RequireRangedWeapon(int magnitude){
 		super(magnitude);
 	}
 	
