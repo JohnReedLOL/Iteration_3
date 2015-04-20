@@ -67,11 +67,6 @@ public class GameMap extends DiscreteMap {
     }
 
     @Override
-    public void relocate( MapObject m, Location l ) {
-        l.createMapObjectAssociation(m);
-    }
-
-    @Override
     public void move( MapObject m, Coordinate2D from, Coordinate2D to ) {
         Tile previous = tileMap.getValue( (HexCoordinate) from );
         Tile newPos = tileMap.getValue( (HexCoordinate) to );
