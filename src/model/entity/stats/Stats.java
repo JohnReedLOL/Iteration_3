@@ -92,17 +92,17 @@ public class Stats {
 	/* -------------------- CONSTRUCTORS -------------------- */
 	
 	public Stats(){
-		currentLife = 1;
-		currentMana = 1;
-		strength = 3;
-		agility = 3;
-		intellect = 3;
-		hardiness = 3;
-		experience = 0;
+		currentLife = 300;
+		currentMana = 300;
+		strength = 300;
+		agility = 300;
+		intellect = 300;
+		hardiness = 300;
+		experience = 30000;
 		movement = 50;
-		bindWounds = 0;
-		observation = 0;
-		bargain = 0;
+		bindWounds =200;
+		observation = 200;
+		bargain = 200;
 	}
 	
 	/* -------------------- PRIMARY ATTRIBUTES AND SKILLS -------------------- */
