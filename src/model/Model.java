@@ -235,6 +235,10 @@ public class Model {
 
     }
 
+    public void dismount(Avatar avatar) {
+        avatar.dismount();
+    }
+
     public boolean activateAbility(Avatar avatar, Ability ability) {
         avatar.useAbility(ability);
         return false;

@@ -5,6 +5,7 @@ package mvc_bridgeway.screen;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import model.Model;
 import model.UserSettings;
 import model.map.direction.NorthDirection;
 import model.map.direction.NorthEastDirection;
@@ -12,6 +13,7 @@ import model.map.direction.NorthWestDirection;
 import model.map.direction.SouthDirection;
 import model.map.direction.SouthEastDirection;
 import model.map.direction.SouthWestDirection;
+import mvc_bridgeway.command.model_command.DismountCommand;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
 import mvc_bridgeway.command.model_command.MoveCommand;
@@ -69,6 +71,8 @@ public class GameScreen extends Screen {
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_E), new MoveCommand(new NorthEastDirection())));
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_A), new MoveCommand(new SouthWestDirection())));
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_D), new MoveCommand(new SouthEastDirection())));
+
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_P), new DismountCommand(Model.getAvatar())));
 
         return controlMaps;
     }
