@@ -1,5 +1,6 @@
 package view.utility;
 
+import model.map.location.BrickTile;
 import model.map.location.GrassTile;
 import model.map.location.MountainTile;
 import model.map.location.WaterTile;
@@ -11,6 +12,8 @@ public interface TileRenderer{
 	public void visit(GrassTile grassTile);
 
 	public void visit(MountainTile mountainTile);
+
+	public void visit(BrickTile brickTile);
 
 	public void setX(int x);
 

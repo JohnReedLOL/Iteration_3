@@ -16,10 +16,7 @@ import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
 import model.item.sackbound.equip.WeaponItem;
 import model.map.coordinate.HexCoordinate;
-import model.map.location.GrassTile;
-import model.map.location.MountainTile;
-import model.map.location.Tile;
-import model.map.location.WaterTile;
+import model.map.location.*;
 import utility.ScalingUtil;
 
 import java.util.ArrayList;
@@ -38,7 +35,10 @@ public class FirstLevelMapBuilder extends MapBuilder {
         Tile[][] tiles = new Tile[100][100];
         for ( int i = 0; i < tiles.length; ++i ) {
             for ( int j = 0; j < tiles[0].length; ++j ) {
-                tiles[i][j] = new GrassTile();
+                if (i < 3 || j < 3 )
+                    tiles[i][j] = new BrickTile();
+                else
+                    tiles[i][j] = new GrassTile();
             }
         }
 

@@ -15,17 +15,18 @@ import javax.imageio.ImageIO;
 
 import model.MapObject;
 import model.map.GameWorld;
+import model.map.location.BrickTile;
 import model.map.location.GrassTile;
 import model.map.location.MountainTile;
 import model.map.location.WaterTile;
 
-public class GameTileRenderer extends GameScreenRenderer implements
-		TileRenderer {
+public class GameTileRenderer extends GameScreenRenderer implements TileRenderer {
 
 	// Tile images
 	private static BufferedImage grass;
 	private static BufferedImage mountain;
 	private static BufferedImage water;
+	private static BufferedImage brick;
 	private static BufferedImage dim;
 
 	// MapObjectsRenderer
@@ -56,7 +57,7 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	}
 
 	private void initializeImages() {
-		if (grass == null || mountain == null || water == null) {
+		if (grass == null || mountain == null || water == null || brick == null) {
 			try {
 				ClassLoader classLoader = Thread.currentThread()
 						.getContextClassLoader();
@@ -68,6 +69,8 @@ public class GameTileRenderer extends GameScreenRenderer implements
 				water = ImageIO.read(new File(url.getPath()));
 				url = classLoader.getResource("resources/png/dim.png");
 				dim = ImageIO.read(new File(url.getPath()));
+				url = classLoader.getResource("resources/png/brick.png");
+				brick = ImageIO.read( new File(url.getPath()));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -84,6 +87,10 @@ public class GameTileRenderer extends GameScreenRenderer implements
 
 	public void visit(WaterTile waterTile) {
 		drawTileAlgorithm(water, waterTile.getMapObjects());
+	}
+
+	public void visit(BrickTile brickTile) {
+		drawTileAlgorithm(brick, brickTile.getMapObjects());
 	}
 
 	private void drawTileAlgorithm(Image img, Collection<MapObject> mapObjects) {
