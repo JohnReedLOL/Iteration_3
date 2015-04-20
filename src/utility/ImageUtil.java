@@ -20,22 +20,25 @@ public class ImageUtil {
 
 	private final static HashMap<String, BufferedImage> images = new HashMap<String, BufferedImage>();
 
-	private static final ClassLoader classLoader = Thread.currentThread()
-			.getContextClassLoader();
-
+	private static final ClassLoader classLoader = ImageUtil.class.getClassLoader();
 	/* Constructors */
 
 	/* Methods */
 	public static final BufferedImage getImage(String path) {
+		URL url = null;
 		if (images.containsKey(path))
 			return images.get(path);
 		else {
-			URL url = classLoader.getResource(path);
-			BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_BYTE_INDEXED);
+			//url = classLoader.getResource(path);
+			//System.out.println(url.getPath());
+			BufferedImage image = new BufferedImage(100, 100,
+					BufferedImage.TYPE_BYTE_INDEXED);
 			try {
-				image = ImageIO.read(new File(url.getPath()));
+				image = ImageIO.read(classLoader.getResource(path));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
 			images.put(path, image);

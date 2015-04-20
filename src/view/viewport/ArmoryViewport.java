@@ -69,7 +69,7 @@ public class ArmoryViewport extends Viewport {
     }
     
     private void displayItem(EquipItem ei, JButton button, Avatar avatar) {
-        ImageIcon imageIcon = ImageUtil.getImageIcon("./src/resources/png/grass.png");
+        ImageIcon imageIcon = new ImageIcon(ImageUtil.getImage("resources/png/grass.png"));
         button.setIcon(imageIcon);
         setControl(ei, button, avatar);
     }

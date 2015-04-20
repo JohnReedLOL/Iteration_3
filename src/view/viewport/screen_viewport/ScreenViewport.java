@@ -48,7 +48,10 @@ public abstract class ScreenViewport extends Viewport {
         Viewport viewport;
         for (int i=0; i<numInteriorViewports; i++) {
             viewport = interiorViewports.get(i);
+//            Long begin = System.nanoTime();
             viewport.update(mvb);
+//            Long end = System.nanoTime();
+//            System.out.println(viewport.getClass().getCanonicalName()+" "+(end-begin));
         }
     }
    

@@ -107,14 +107,14 @@ public class Model {
                     Runnable turn_taker = new Runnable() {
                         @Override
                         public void run() {
-                            if (to_execute_ != null) {
+                            if (!to_execute_.isEmpty()) {
                                 for (ModelCommand command : to_execute_) {
                                     command.execute();
                                 }
                                 // After executing, set it to null
                                 // probabaly better to implement commands in a queue 
                                 // and remove done command from queue
-                                to_execute_ = null;
+                                to_execute_.clear();
                                 takeEnviornmentGameStep();
                                 takeStandardGameStep();
 

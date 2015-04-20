@@ -8,8 +8,11 @@ package view.viewport;
 import java.awt.Font;
 import java.awt.Image;
 import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import application.Application;
 import model.ModelViewBundle;
 import mvc_bridgeway.command.model_command.*;
 import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
@@ -38,7 +41,7 @@ public class NewGameViewport extends Viewport {
     }
     
     private void setupButton(String filepath, JButton button, int margin) {
-        Image image = ImageUtil.getImage(filepath);
+        Image image = ImageUtil.getImage(filepath); 
         image = ImageUtil.scaleImage(image, button.getWidth() - margin, button.getHeight() - margin);
         button.setIcon(new ImageIcon(image));
         button.setVerticalTextPosition(JButton.BOTTOM);

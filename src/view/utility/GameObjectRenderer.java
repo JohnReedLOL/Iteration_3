@@ -82,61 +82,73 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 	private void initializeImages() {
 
 		if (NPC_S == null) {
-			NPC_S = ImageUtil.getImage("resources/png/dave_S.png");
+			NPC_S = ImageUtil.getImage(
+					"resources/png/dave_S.png");
 		}
 
 		if (INT_ITEM == null) {
-			INT_ITEM = ImageUtil
-					.getImage("resources/png/Locked_Treasure_Box.png");
+			INT_ITEM = ImageUtil.getImage(
+					"resources/png/Locked_Treasure_Box.png");
 		}
 
 		if (OBS_ITEM == null) {
-			OBS_ITEM = ImageUtil.getImage("resources/png/ObstacleItem.png");
+			OBS_ITEM = ImageUtil.getImage(
+					"resources/png/ObstacleItem.png");
 		}
 
 		if (ONE_SHOT_ITEM == null) {
-			ONE_SHOT_ITEM = ImageUtil
-					.getImage("resources/png/Health_Potion.png");
+			ONE_SHOT_ITEM = ImageUtil.getImage(
+					"resources/png/Health_Potion.png");
 		}
 
 		if (LC_ITEM == null) {
-			LC_ITEM = ImageUtil.getImage("resources/png/Health_Potion.png");
+			LC_ITEM = ImageUtil.getImage(
+					"resources/png/Health_Potion.png");
 		}
 
 		if (UC_ITEM == null) {
-			UC_ITEM = ImageUtil.getImage("resources/png/Mana_Potion.png");
+			UC_ITEM = ImageUtil.getImage(
+					"resources/png/Mana_Potion.png");
 		}
 
 		if (EQUIP == null) {
-			EQUIP = ImageUtil.getImage("resources/png/Helmet.png");
+			EQUIP = ImageUtil.getImage(
+					"resources/png/Helmet.png");
 		}
 
 		if (WEAPON == null) {
-			WEAPON = ImageUtil.getImage("resources/png/Matts_sword_PNG.png");
+			WEAPON = ImageUtil.getImage(
+					"resources/png/Matts_sword_PNG.png");
 		}
 
 		if (vespaN == null) {
-			vespaN = ImageUtil.getImage("resources/png/vespa_N.png");
+			vespaN = ImageUtil.getImage(
+					"resources/png/vespa_N.png");
 		}
 
 		if (vespaS == null) {
-			vespaS = ImageUtil.getImage("resources/png/vespa_S.png");
+			vespaS = ImageUtil.getImage(
+					"resources/png/vespa_S.png");
 		}
 
 		if (vespaNW == null) {
-			vespaNW = ImageUtil.getImage("resources/png/vespa_NW.png");
+			vespaNW = ImageUtil.getImage(
+					"resources/png/vespa_NW.png");
 		}
 
 		if (vespaNE == null) {
-			vespaNE = ImageUtil.getImage("resources/png/vespa_NE.png");
+			vespaNE = ImageUtil.getImage(
+					"resources/png/vespa_NE.png");
 		}
 
 		if (vespaSW == null) {
-			vespaSW = ImageUtil.getImage("resources/png/vespa_SW.png");
+			vespaSW = ImageUtil.getImage(
+					"resources/png/vespa_SW.png");
 		}
 
 		if (vespaSE == null) {
-			vespaSE = ImageUtil.getImage("resources/png/vespa_SE.png");
+			vespaSE = ImageUtil.getImage(
+					"resources/png/vespa_SE.png");
 		}
 
 		if (MERCHANT == null) {
@@ -147,32 +159,32 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 	private void initializeAvatarImages(String occupation) {
 
 		if (avatarN == null) {
-			avatarN = ImageUtil.getImage("resources/png/" + occupation
-					+ "_N.png");
+			avatarN = ImageUtil.getImage(
+					"resources/png/" + occupation + "_N.png");
 
 		}
 		if (avatarS == null) {
-			avatarS = ImageUtil.getImage("resources/png/" + occupation
-					+ "_S.png");
+			avatarS = ImageUtil.getImage(
+					"resources/png/" + occupation + "_S.png");
 
 		}
 		if (avatarNW == null) {
-			avatarNW = ImageUtil.getImage("resources/png/" + occupation
-					+ "_NW.png");
+			avatarNW = ImageUtil.getImage(
+					"resources/png/" + occupation + "_NW.png");
 		}
 		if (avatarNE == null) {
-			avatarNE = ImageUtil.getImage("resources/png/" + occupation
-					+ "_NE.png");
+			avatarNE = ImageUtil.getImage(
+					"resources/png/" + occupation + "_NE.png");
 
 		}
 		if (avatarSW == null) {
-			avatarSW = ImageUtil.getImage("resources/png/" + occupation
-					+ "_SW.png");
+			avatarSW = ImageUtil.getImage(
+					"resources/png/" + occupation + "_SW.png");
 
 		}
 		if (avatarSE == null) {
-			avatarSE = ImageUtil.getImage("resources/png/" + occupation
-					+ "_SE.png");
+			avatarSE = ImageUtil.getImage(
+					"resources/png/" + occupation + "_SE.png");
 		}
 
 	}
