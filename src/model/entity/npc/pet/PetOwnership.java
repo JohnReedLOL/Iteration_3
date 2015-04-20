@@ -9,9 +9,15 @@ public class PetOwnership {
     private Entity owner;
     private Pet pet;
 
+    // Not sure what this is supposed to be used for, nor do I know if this
+    // has some purpose to it.
+//    private int relationLevel;
+
     public PetOwnership(Entity owner, Pet pet) {
         this.owner = owner;
         this.pet = pet;
+
+        pet.setOwnership(this);
     }
 
     public Entity getOwner() {

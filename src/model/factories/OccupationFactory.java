@@ -1,16 +1,10 @@
-package utility;
+package model.factories;
 
-import model.armory.Armory;
-import model.entity.Entity;
 import model.entity.avatar.Avatar;
-import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.npc.NPC;
 import model.entity.stats.SmasherStatsOwnership;
 import model.entity.stats.SneakStatsOwnership;
 import model.entity.stats.SummonerStatsOwnership;
-import model.inventory.Sack;
-import model.map.GameWorld;
-import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 
 public class OccupationFactory {

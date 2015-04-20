@@ -15,11 +15,10 @@ import model.item.sackbound.SackboundItem;
 import model.map.GameWorld;
 import model.map.direction.Direction;
 import mvc_bridgeway.command.model_command.ModelCommand;
-import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
-import utility.OccupationFactory;
+import model.factories.OccupationFactory;
 
 public class Model {
 

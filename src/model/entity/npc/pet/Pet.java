@@ -1,20 +1,16 @@
 package model.entity.npc.pet;
 
-import model.armory.Armory;
+import model.MapObject;
+import model.entity.ClassicEntity;
 import model.entity.Entity;
-import model.entity.behavior.movement.MovementBehavior;
 import model.entity.npc.NPC;
-import model.entity.stats.StatsOwnership;
-import model.inventory.Sack;
 import model.map.coordinate.HexCoordinate;
 
 /**
  * Created by Troy on 4/19/2015.
  */
 public class Pet extends NPC {
-
-    private int timeOwned;
-    private int relationLevel;
+    private PetOwnership petOwnership;
 
     public Pet(HexCoordinate coord) {
         super(coord);
@@ -32,7 +28,26 @@ public class Pet extends NPC {
 //        super(armory, sack, movement, stats);
 //    }
 
+    public PetOwnership getOwnership() {
+        return this.petOwnership;
+    }
+
+    public void setOwnership(PetOwnership ownership) {
+        this.petOwnership = ownership;
+    }
+
     public PetOwnership makeEntityAssociation( Entity entity ) {
         return new PetOwnership( entity, this );
+    }
+
+    @Override
+    public boolean interact(MapObject obj) {
+        ClassicEntity owner = (ClassicEntity) obj;
+        if (owner.getPetOwnership().getOwner() == owner) {
+            return false;
+        }
+
+        owner.setPetOwnership(new PetOwnership(owner, this));
+        return false;
     }
 }

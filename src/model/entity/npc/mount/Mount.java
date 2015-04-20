@@ -14,8 +14,6 @@ import model.map.coordinate.HexCoordinate;
  * Created by Troy on 4/19/2015.
  */
 public class Mount extends NPC {
-
-    private int timeMounted = 0;
     private final int speedBonus = 5;
 
     public Mount(HexCoordinate coord) {
@@ -34,17 +32,12 @@ public class Mount extends NPC {
 //        super(name, description, armory, sack, movement, stats);
 //    }
 
-    private void setTimeMounted(int time) {
-        this.timeMounted = time;
-    }
-
     public void imposeMovementOn(Entity owner) {
         owner.setMovementBehavior(getMovementBehavior());
-        incrementTimeMounted();
     }
 
     public void unimposeMovement() {
-        resetTimeMounted();
+
     }
 
     public int getSpeedBonus() {
@@ -64,11 +57,5 @@ public class Mount extends NPC {
         return true;
     }
 
-    private void incrementTimeMounted() {
-        ++timeMounted;
-    }
 
-    private void resetTimeMounted() {
-        setTimeMounted(0);
-    }
 }
