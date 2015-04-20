@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.effect;
+package model.effect.ability;
 
+import model.effect.Effect;
 import model.entity.Entity;
 
 /**

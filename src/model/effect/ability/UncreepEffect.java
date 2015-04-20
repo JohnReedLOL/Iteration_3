@@ -1,7 +1,8 @@
-package model.effect;
+package model.effect.ability;
 
+import model.effect.Effect;
+import model.effect.ability.CreepEffect;
 import model.entity.Entity;
-import model.prerequisite.RequireObservation;
 
 public class UncreepEffect implements Effect {
 	public void performEffect(Entity target){

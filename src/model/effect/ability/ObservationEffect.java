@@ -1,6 +1,7 @@
-package model.effect;
+package model.effect.ability;
 
 import model.ModelViewBundle;
+import model.effect.Effect;
 import model.entity.Entity;
 
 public class ObservationEffect implements Effect {
@@ -46,7 +47,7 @@ public class ObservationEffect implements Effect {
         int obscureMana = obscure(target.getStatsOwnership().getCurrentMana());
 
         builder.append("Level: " + obscureLevel  + "\n");
-        builder.append("Life: "  + obscureHealth + "\n");
+        builder.append("Life: " + obscureHealth + "\n");
         builder.append("Mana: "  + obscureMana);
 
         ModelViewBundle.getInstance().setCurrentKnownInfo(builder.toString());

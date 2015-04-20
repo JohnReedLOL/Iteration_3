@@ -1,5 +1,6 @@
 package model.factories;
 
+import model.entity.ability.Ability;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
 import model.entity.stats.SmasherStatsOwnership;
@@ -62,7 +63,15 @@ public class OccupationFactory {
         summoner.setStatsOwnership(new SummonerStatsOwnership(summoner));
         summoner.addAbility(AbilityFactory.generateObservationAbility());
         summoner.addAbility(AbilityFactory.generateBindWoundsAbility());
-        // TODO: Add all the Summoner abilities.
+        summoner.addAbility(AbilityFactory.generateSummonerAngularBaneAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerAngularBoonAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerDummyEnchantAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerLinearBaneAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerLinearBoonAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerRadialBaneAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerRadialBoonAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerDepleteBootyEnchantAbility());
+        summoner.addAbility(AbilityFactory.generateSummonerWipeMemoryEnchantAbility());
 
         return summoner;
     }

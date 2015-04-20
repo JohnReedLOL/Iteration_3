@@ -178,9 +178,9 @@ public abstract class Entity extends MapObject {
 		if(currentWeapon != null){
 			currentWeapon.attack(this);
 		}
-		
+
 	}
-	
+
 	
 	/* -------------------- IMPLEMENTATIONS -------------------- */
 	public Entity getDerivedClass() {
@@ -205,7 +205,7 @@ public abstract class Entity extends MapObject {
 	
 	/* -------------------- OVERENCUMBERED GARBAGE -------------------- */
 	public void modifyBooty(int delta) {
-		this.booty += delta;
+		this.booty = Math.max(this.booty+delta, 0);
 	}
 
 	public int[][] getBrightnessTable(){

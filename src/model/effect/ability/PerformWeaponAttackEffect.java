@@ -1,5 +1,6 @@
-package model.effect;
+package model.effect.ability;
 
+import model.effect.Effect;
 import model.entity.Entity;
 
 public class PerformWeaponAttackEffect implements Effect {

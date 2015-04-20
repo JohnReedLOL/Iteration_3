@@ -3,6 +3,13 @@ package model.factories;
 import java.util.ArrayList;
 
 import model.effect.*;
+import model.effect.ability.CreepEffect;
+import model.effect.ability.ObservationEffect;
+import model.effect.ability.PerformWeaponAttackEffect;
+import model.effect.ability.UncreepEffect;
+import model.effect.ability.enchant.DepleteBootyEffect;
+import model.effect.ability.enchant.DummyEnchantEffect;
+import model.effect.ability.enchant.WipeMemoryEffect;
 import model.effect.statseffect.*;
 import model.entity.ability.Ability;
 import model.influence_set.*;
@@ -207,59 +214,60 @@ public class AbilityFactory {
 
         return new Ability(effects, learnReqs, useReqs, areas, costs,"Radial Boon");
     }
-//    public static Ability generateSummonerVespaEnchantAbility() {
-//        ArrayList<Effect> effects = new ArrayList<Effect>();
-//
-//        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-//        learnReqs.add(new RequireLevel(1));
-//
-//        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
-//        useReqs.add(new RequireCurrentMP(20));
-//
-//        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
-//        areas.add(new LinearInfluenceSet(new NorthDirection(), 1, new GrassTile()));
-//
-//        ArrayList<Effect> costs = new ArrayList<Effect>();
-//        costs.add(new ModifyCurrentMana(-20));
-//
-//        return new Ability(effects, learnReqs, useReqs, areas, costs,"Vespa 'Enchant'");
-//    }
-//    public static Ability generateSummonerAngularBoonAbility() {
-//        ArrayList<Effect> effects = new ArrayList<Effect>();
-//        effects.add(new ModifyCurrentLife(15));
-//
-//        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-//        learnReqs.add(new RequireLevel(2));
-//
-//        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
-//        useReqs.add(new RequireCurrentMP(15));
-//
-//        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
-//        areas.add(new AngularInfluenceSet(new NorthDirection(), 2, new GrassTile()));
-//
-//        ArrayList<Effect> costs = new ArrayList<Effect>();
-//        costs.add(new ModifyCurrentMana(-15));
-//
-//        return new Ability(effects, learnReqs, useReqs, areas, costs,"Angular Boon");
-//    }
-//    public static Ability generateSummonerRadialBoonAbility() {
-//        ArrayList<Effect> effects = new ArrayList<Effect>();
-//        effects.add(new ModifyCurrentLife(12));
-//
-//        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-//        learnReqs.add(new RequireLevel(3));
-//
-//        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
-//        useReqs.add(new RequireCurrentMP(20));
-//
-//        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
-//        areas.add(new RadialInfluenceSet(2, new GrassTile()));
-//
-//        ArrayList<Effect> costs = new ArrayList<Effect>();
-//        costs.add(new ModifyCurrentMana(-20));
-//
-//        return new Ability(effects, learnReqs, useReqs, areas, costs,"Radial Boon");
-//    }
+    public static Ability generateSummonerWipeMemoryEnchantAbility() {
+        ArrayList<Effect> effects = new ArrayList<Effect>();
+        effects.add(new WipeMemoryEffect());
+
+        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
+        learnReqs.add(new RequireLevel(1));
+
+        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
+        useReqs.add(new RequireCurrentMP(20));
+
+        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
+        areas.add(new LinearInfluenceSet(new NorthDirection(), 1, new GrassTile()));
+
+        ArrayList<Effect> costs = new ArrayList<Effect>();
+        costs.add(new ModifyCurrentMana(-20));
+
+        return new Ability(effects, learnReqs, useReqs, areas, costs, "Wipe Memory");
+    }
+    public static Ability generateSummonerDepleteBootyEnchantAbility() {
+        ArrayList<Effect> effects = new ArrayList<Effect>();
+        effects.add(new DepleteBootyEffect());
+
+        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
+        learnReqs.add(new RequireLevel(2));
+
+        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
+        useReqs.add(new RequireCurrentMP(15));
+
+        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
+        areas.add(new AngularInfluenceSet(new NorthDirection(), 2, new GrassTile()));
+
+        ArrayList<Effect> costs = new ArrayList<Effect>();
+        costs.add(new ModifyCurrentMana(-15));
+
+        return new Ability(effects, learnReqs, useReqs, areas, costs,"Deplete Booty");
+    }
+    public static Ability generateSummonerDummyEnchantAbility() {
+        ArrayList<Effect> effects = new ArrayList<Effect>();
+        effects.add(new DummyEnchantEffect());
+
+        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
+        learnReqs.add(new RequireLevel(3));
+
+        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
+        useReqs.add(new RequireCurrentMP(20));
+
+        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
+        areas.add(new RadialInfluenceSet(2, new GrassTile()));
+
+        ArrayList<Effect> costs = new ArrayList<Effect>();
+        costs.add(new ModifyCurrentMana(-20));
+
+        return new Ability(effects, learnReqs, useReqs, areas, costs,"Dummy Enchant");
+    }
     /* ---------- SNEAK ABILITIES ---------- */
     public static Ability generateSneakPickpocket() {
         ArrayList<Effect> effects = new ArrayList<Effect>();
