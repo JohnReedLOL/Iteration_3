@@ -1,10 +1,7 @@
 package model.map;
 
-import model.MapObject;
 import model.map.builder.MapBuilder;
 import model.map.builder.SecondLevelMapBuilder;
-import model.map.coordinate.Coordinate2D;
-import model.map.coordinate.HexCoordinate;
 import model.map.location.Location;
 import utility.CoordUtil;
 

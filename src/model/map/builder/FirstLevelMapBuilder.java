@@ -4,6 +4,7 @@ import model.armory.Armory;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.npc.NPC;
+import model.factories.AreaEffectFactory;
 import model.factories.ItemFactory;
 import model.influence_set.InfluenceSet;
 import model.inventory.Sack;
@@ -61,7 +62,9 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[1][9].createMapObjectAssociation(ItemFactory.generateLevel1Bow());
         tiles[2][9].createMapObjectAssociation(ItemFactory.generateTreasureChest());
         tiles[0][0].createMapObjectAssociation(ItemFactory.generateLevel3Shield());
-        
+
+        tiles[2][3].addAreaEffect(AreaEffectFactory.generateTeleport());
+
         return tiles;
     }
 }

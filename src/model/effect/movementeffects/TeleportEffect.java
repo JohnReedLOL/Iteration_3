@@ -1,5 +1,6 @@
 package model.effect.movementeffects;
 
+import application.Application;
 import model.effect.Effect;
 import model.entity.Entity;
 import model.map.DiscreteMap;
@@ -26,6 +27,7 @@ public class TeleportEffect implements Effect {
 
     @Override
     public void performEffect(Entity target) {
+        Application.print("Teleport?");
         GameWorld.getCurrentMap().teleport(target, toMap);
         GameWorld.getInstance().setCurrentMap(toMap);
     }

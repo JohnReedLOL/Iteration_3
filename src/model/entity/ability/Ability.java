@@ -11,14 +11,17 @@ import model.prerequisite.Prerequisite;
 public class Ability {
 	List<InfluenceSet> affectedAreas;
 	List<Effect> myEffects;
+	List<Effect> costOfEffects;
 	List<Prerequisite> myLearnRequirements;
 	List<Prerequisite> myUseRequirements;
 	
-	Ability(List<Effect> effects, List<Prerequisite> learnRequirements, List<Prerequisite> useRequirements, List<InfluenceSet> affectedAreas){
-		myEffects = effects;
-		myLearnRequirements = learnRequirements;
-		myUseRequirements = useRequirements;
+	public Ability(List<Effect> effects, List<Prerequisite> learnRequirements, List<Prerequisite> useRequirements, List<InfluenceSet> affectedAreas,
+				   List<Effect> costs){
+		this.myEffects = effects;
+		this.myLearnRequirements = learnRequirements;
+		this.myUseRequirements = useRequirements;
 		this.affectedAreas = affectedAreas;
+		this.costOfEffects = costs;
 	}
 	
 	public boolean meetsLearnPrerequisites(Entity target){
@@ -47,6 +50,10 @@ public class Ability {
 				GameWorld.getCurrentMap().performEffect(e, i);
 			}
 		}
+		for (Effect e : costOfEffects) {
+			e.performEffect(user);
+		}
+
 		return true;
 	}
 }

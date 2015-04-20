@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.SmasherStats;
 
 public class RequireBrawl extends SmasherStatsPrerequisite{
-	RequireBrawl(int magnitude){
+	public RequireBrawl(int magnitude){
 		super(magnitude);
 	}
 	
