@@ -49,7 +49,6 @@ public class GameWorld {
             currentMap.populate();
         }
 
-        updateVisibleMap();
         return currentMap;
     }
 

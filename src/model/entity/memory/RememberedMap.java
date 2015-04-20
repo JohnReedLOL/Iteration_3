@@ -27,6 +27,7 @@ public class RememberedMap {
 			if(!tiles.contains(current)){
 				tiles.add(current);
 				coordinates.add(sight.getCoordinates().get(i));
+				mapObjects.add(sight.getMapObjects().get(i));
 			}
 			int index = tiles.indexOf(current);
 			mapObjects.set(index,sight.getMapObjects().get(i));
