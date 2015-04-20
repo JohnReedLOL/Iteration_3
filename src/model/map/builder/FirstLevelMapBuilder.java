@@ -1,6 +1,7 @@
 package model.map.builder;
 
 import model.armory.Armory;
+import model.effect.movementeffects.RiverReverseEffect;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.npc.NPC;
@@ -18,6 +19,7 @@ import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
 import model.item.sackbound.equip.WeaponItem;
+import model.map.AreaEffect;
 import model.map.River;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.NorthEastDirection;
@@ -73,6 +75,11 @@ public class FirstLevelMapBuilder extends MapBuilder {
             tiles[i][3] = t;
             river.addTileToRiver( t );
         }
+
+        AreaEffect a = new AreaEffect();
+        a.addEffect( new RiverReverseEffect() );
+        tiles[17][3] = new BrickTile();
+        tiles[17][3].addAreaEffect( a );
 
         rivers.add( river );
 

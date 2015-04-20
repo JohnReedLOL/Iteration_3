@@ -233,25 +233,7 @@ public class GameMap extends DiscreteMap {
         }
     }
 
-
-    // CAN WE DELETE THIS ALREADY?
-//    @Override
-//    public void insert(MapObject m, Tile l) {
-//
-//    }
-//
-//    @Override
-//    public void remove(MapObject m) {
-//
-//    }
-//
-//    @Override
-//    public void move(MapObject m, Tile l) {
-//
-//    }
-//
-//    @Override
-//    public void move(MapObject m, Direction l) {
-//
-//    }
+    public Collection<River> getRivers() {
+        return rivers;
+    }
 }
