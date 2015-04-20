@@ -1,6 +1,7 @@
 package model.entity.avatar;
 
 import model.armory.Armory;
+import model.entity.ClassicEntity;
 import model.entity.Entity;
 import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.behavior.movement.MovementBehavior;
@@ -11,7 +12,7 @@ import model.map.coordinate.HexCoordinate;
 import model.map.location.Location;
 import view.utility.ObjectRenderer;
 
-public class Avatar extends Entity {
+public class Avatar extends ClassicEntity {
     /**
      * PROPERTIES
      */
