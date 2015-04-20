@@ -2,6 +2,7 @@ package model.factories;
 
 import model.effect.movementeffects.TeleportEffect;
 import model.effect.statseffect.*;
+import model.entity.npc.mount.Mount;
 import model.influence_set.InfluenceSet;
 import model.influence_set.LinearInfluenceSet;
 import model.item.interactive.InteractiveItem;
@@ -14,6 +15,7 @@ import model.item.sackbound.equip.WeaponItem;
 import model.map.GameMap;
 import model.map.GameWorld;
 import model.map.SecondLevelGameMap;
+import model.map.coordinate.HexCoordinate;
 import model.map.direction.NorthDirection;
 import model.map.location.GrassTile;
 import model.prerequisite.RequireLevel;
@@ -256,5 +258,9 @@ public class ItemFactory {
         item.addActivationEffect(new ModifyBooty(250));
 
         return item;
+    }
+
+    public static Mount generateVespaMap1() {
+        return new Mount( new HexCoordinate( 3, 1 ) );
     }
 }

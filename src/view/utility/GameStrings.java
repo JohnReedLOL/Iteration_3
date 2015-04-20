@@ -19,9 +19,9 @@ public abstract class GameStrings {
      * OCCUPATIONS
      */
 
-    public static final String OCCUPATION_SMASHER = "Smasher";
-    public static final String OCCUPATION_SNEAK = "Sneak";
-    public static final String OCCUPATION_SUMMONER = "Summoner";
+    public static final String OCCUPATION_SMASHER = "Frat Dude";
+    public static final String OCCUPATION_SNEAK = "Sorostitute";
+    public static final String OCCUPATION_SUMMONER = "GDI";
 
     /**
      * TABS
@@ -80,12 +80,4 @@ public abstract class GameStrings {
     public static final String ARMORY_LEFT = "Left";
     public static final String ARMORY_RIGHT = "Right";
     public static final String ARMORY_LEGS = "Legs";
-
-
-
-
-
-
-
-
 }
