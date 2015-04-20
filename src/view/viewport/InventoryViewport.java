@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 import model.ModelViewBundle;
+import model.item.oneshot.OneShotItem;
 import model.item.sackbound.SackboundItem;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
@@ -31,6 +32,7 @@ public class InventoryViewport extends Viewport {
      */
     public InventoryViewport() {
         initComponents();
+        items_.add(new SackboundItem());
     }
 
     @Override
@@ -57,11 +59,14 @@ public class InventoryViewport extends Viewport {
             Application.print("Inventory is empty");
             return;
         }
+        Application.print("Size of inventory is: " + items_.size());
         if (item_1_ != null && items_.size() >= 1) {
+            Application.print("Size of inventory is >= 1");
             buttonRenderer_.setButtonForMeToRenderTo(item_1_);
             items_.get(0).accept(buttonRenderer_);
         }
         if (item_2_ != null && items_.size() >= 2) {
+            Application.print("Size of inventory is >= 2");
             buttonRenderer_.setButtonForMeToRenderTo(item_2_);
             items_.get(1).accept(buttonRenderer_);
         }

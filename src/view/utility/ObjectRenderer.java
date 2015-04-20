@@ -7,6 +7,7 @@ import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
 import model.item.sackbound.LimitedConsumptionItem;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
@@ -32,6 +33,8 @@ public interface ObjectRenderer {
 	public void visit(EquipItem equipItem);
 
 	public void visit(WeaponItem weaponItem);
+        
+        public void visit(SackboundItem i);
 
 	public void setX(int x);
 

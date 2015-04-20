@@ -1,5 +1,6 @@
 package view.utility;
 
+import application.Application;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
@@ -12,6 +13,7 @@ import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
 import model.item.sackbound.LimitedConsumptionItem;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
@@ -129,5 +131,10 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
 					SIZE_OF_MAP_PIXEL / 4);
 		}
 	}
+
+    @Override
+    public void visit(SackboundItem i) {
+        Application.print("Not yet supported yet");
+    }
 
 }
