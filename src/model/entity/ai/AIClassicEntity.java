@@ -60,7 +60,6 @@ public class AIClassicEntity extends ClassicEntity {
 
     /**
      * What is called by the game map when the interactor walks into you.
-     *
      * @param interactor
      * @return
      */

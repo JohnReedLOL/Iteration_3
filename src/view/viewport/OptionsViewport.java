@@ -49,8 +49,9 @@ public class OptionsViewport extends Viewport {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image background = ImageUtil.getImage("./resources/png/campus_map.gif");
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        Application.print("Cannot find ./resources/png/campus_map.gif");
+        //Image background = ImageUtil.getImage("./resources/png/campus_map.gif");
+        //g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
     }
     
     @Override
