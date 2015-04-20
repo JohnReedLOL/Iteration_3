@@ -14,14 +14,16 @@ public class Ability {
 	List<Effect> costOfEffects;
 	List<Prerequisite> myLearnRequirements;
 	List<Prerequisite> myUseRequirements;
+	String name;
 	
 	public Ability(List<Effect> effects, List<Prerequisite> learnRequirements, List<Prerequisite> useRequirements, List<InfluenceSet> affectedAreas,
-				   List<Effect> costs){
+				   List<Effect> costs, String name){
 		this.myEffects = effects;
 		this.myLearnRequirements = learnRequirements;
 		this.myUseRequirements = useRequirements;
 		this.affectedAreas = affectedAreas;
 		this.costOfEffects = costs;
+		this.name = name;
 	}
 	
 	public boolean meetsLearnPrerequisites(Entity target){
@@ -31,6 +33,14 @@ public class Ability {
 			}
 		}
 		return true;
+	}
+	
+	public void setName(String nam){
+		name = nam;
+	}
+	
+	public String getName(){
+		return name;
 	}
 	
 	public boolean meetsUsePrerequisites(Entity target){

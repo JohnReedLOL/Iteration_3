@@ -31,7 +31,7 @@ public class AbilityFactory {
 
         ArrayList<Effect> costs = new ArrayList<Effect>();
 
-        return new Ability(effects, learnReqs, useReqs, areas, costs);
+        return new Ability(effects, learnReqs, useReqs, areas, costs,"HULK SMASH!");
     }
 
     public static Ability generateSmasherRageBrawlAbility() {
@@ -49,24 +49,6 @@ public class AbilityFactory {
 
         ArrayList<Effect> costs = new ArrayList<Effect>();
 
-        return new Ability(effects, learnReqs, useReqs, areas, costs);
-    }
-
-    public static Ability generateSmasherBrawlAbility() {
-        ArrayList<Effect> effects = new ArrayList<Effect>();
-        effects.add(new ModifyCurrentLife(-10));
-
-        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(1));
-
-        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
-        useReqs.add(new RequireBrawl(1));
-
-        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
-        areas.add(new RadialInfluenceSet(5, new GrassTile()));
-
-        ArrayList<Effect> costs = new ArrayList<Effect>();
-
-        return new Ability(effects, learnReqs, useReqs, areas, costs);
+        return new Ability(effects, learnReqs, useReqs, areas, costs, "RAGE!");
     }
 }
