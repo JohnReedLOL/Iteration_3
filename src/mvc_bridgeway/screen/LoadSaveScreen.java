@@ -54,7 +54,7 @@ public class LoadSaveScreen extends Screen {
 
     /*Inner-classes*/
     
-    private abstract class Mode {
+    private abstract static class Mode {
         public abstract Viewport createView();
     }
     
