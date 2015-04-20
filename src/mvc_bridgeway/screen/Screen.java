@@ -81,9 +81,11 @@ public abstract class Screen {
 
     public void updateView(final ModelViewBundle mvb) {
         Application.check(SwingUtilities.isEventDispatchThread());
-        viewport.update(mvb);
-        if (viewport.isRefreshControllerNeeded()) {
-            initVirtualController(viewport, model);
+        if ( viewport != null ) {
+            viewport.update(mvb);
+            if (viewport.isRefreshControllerNeeded()) {
+                initVirtualController(viewport, model);
+            }
         }
     }
 
