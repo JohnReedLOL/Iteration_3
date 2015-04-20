@@ -89,12 +89,12 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		g.drawImage(img, drawx, drawy, 100, 100, null);
 		drawMapObjects(mapObjects);
 		//brightness 0 is full
-		if (brightness == 50)
+		if (brightness > 0 && brightness <= 50) {
 			g.drawImage(dim, drawx, drawy, 100, 100, null);
-		if (brightness == 100) {
+		}
+		else if (brightness >= 100) {
 			g.drawImage(dim, drawx, drawy, 100, 100, null);
 			g.drawImage(dim, drawx, drawy, 100, 100, null);
-			
 		}
 		drawDebug();
 	}
