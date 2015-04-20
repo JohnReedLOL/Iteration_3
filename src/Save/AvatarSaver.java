@@ -28,8 +28,13 @@ public class AvatarSaver {
         avatarElement.appendChild(name);
 
         Element description = doc.createElement("description");
-        name.appendChild(doc.createTextNode(avatar.getDescription()));
+        description.appendChild(doc.createTextNode(avatar.getDescription()));
         avatarElement.appendChild(description);
+
+        Element booty = doc.createElement("booty");
+        booty.appendChild(doc.createTextNode(String.valueOf(avatar.getBooty())));
+        avatarElement.appendChild(booty);
+
 
         return avatarElement;
 
