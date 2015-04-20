@@ -24,7 +24,8 @@ public class StatsViewport extends Viewport {
 
     private ArrayList<ControlMap> cms = new ArrayList<ControlMap>();
     //
-    private ArrayList<StatRow> statRows = new ArrayList<StatRow>();
+    private ArrayList<LevelableStatRow> levelableStatRows = new ArrayList<LevelableStatRow>();
+    private ArrayList<UnLevelableStatRow> unLevelableStatRows = new ArrayList<UnLevelableStatRow>();
 
     public StatsViewport() {
         initComponents();
@@ -50,13 +51,16 @@ public class StatsViewport extends Viewport {
     
     private void displayStats(StatsOwnership statistics) {
         List<Stat> stats = statistics.getViewStats();
-        if (stats != null && stats.size() != statRows.size()) {
+        int numNonLevelableStats = 0;
+        if (stats != null && stats.size() + numNonLevelableStats != levelableStatRows.size() + unLevelableStatRows.size()) {
             clearStatRows();
             for (Stat stat : stats) {
-                statRows.add(new StatRow(stat, this));
+                levelableStatRows.add(new LevelableStatRow(stat, this));
             }
+            unLevelableStatRows.add( new UnLevelableStatRow("Life: " + statistics.getCurrentLife() + " / " + statistics.getMaxLife(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("Mana: " + statistics.getCurrentMana() + " / " + statistics.getMaxMana(), this));
         } else {
-            for (StatRow statRow : statRows) {
+            for (LevelableStatRow statRow : levelableStatRows) {
                 statRow.update();
             }
         }
@@ -64,15 +68,45 @@ public class StatsViewport extends Viewport {
     }
     
     private void clearStatRows() {
-        for (StatRow statRow : statRows) {
+        for (LevelableStatRow statRow : levelableStatRows) {
             statRow.remove();
         }
-        statRows = new ArrayList<StatRow>();
+        levelableStatRows = new ArrayList<LevelableStatRow>();
+        for (UnLevelableStatRow statRow : unLevelableStatRows) {
+            statRow.remove();
+        }
+        unLevelableStatRows = new ArrayList<UnLevelableStatRow>();
     }
     
     /*Inner-Classes*/
     
-    private class StatRow {
+    private abstract class StatRow {
+        
+        public abstract void remove();
+        
+    }
+    
+    private class UnLevelableStatRow extends StatRow {
+        private JTextField textField;
+        private JPanel panel;
+        //
+        private JPanel masterPanel;
+        
+        public UnLevelableStatRow(String content, JPanel jsp) {
+            textField = new JTextField(content);
+            GridLayout gridLayout = new GridLayout(1, 1);
+            panel = new JPanel(gridLayout);
+            panel.add(textField);
+            masterPanel.add(panel);
+        }
+        
+        @Override
+        public void remove() {
+            masterPanel.remove(panel);
+        }
+    }
+    
+    private class LevelableStatRow extends StatRow {
         
         private Stat stat;
         private JTextField textField;
@@ -81,13 +115,21 @@ public class StatsViewport extends Viewport {
         //
         private JPanel masterPanel;
         
-        public StatRow(Stat stat, JPanel jsp) {
+        public LevelableStatRow(Stat stat, JPanel jsp) {
             this.stat = stat;
             this.masterPanel = jsp;
             textField = initStatField(stat);
             button = initLevelupButton(stat);
             setControl(button);
             initPanel();
+            masterPanel.add(panel);
+        }
+        
+        public LevelableStatRow(String content, JPanel jsp) {
+            textField = new JTextField(content);
+            GridLayout gridLayout = new GridLayout(1, 1);
+            panel = new JPanel(gridLayout);
+            panel.add(textField);
             masterPanel.add(panel);
         }
         

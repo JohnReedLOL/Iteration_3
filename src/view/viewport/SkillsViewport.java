@@ -46,6 +46,7 @@ public class SkillsViewport extends Viewport {
         List<Ability> abilities = mvb.getLearnedAbilities();
         Avatar avatar = mvb.getAvatar();
         displayAbilities(abilities, avatar);
+        updateInspectionDetails(mvb.getCurrentKnownInfo());
     }
 
     @Override
@@ -63,6 +64,10 @@ public class SkillsViewport extends Viewport {
             this.validate();
             flagRefreshController();
         }
+    }
+    
+    private void updateInspectionDetails(String details) {
+        inspectionDetailsTextArea.setText(details);
     }
     
     private void clearAbilityRows() {
@@ -121,20 +126,32 @@ public class SkillsViewport extends Viewport {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        inspectionDetailsTextArea = new javax.swing.JTextArea();
+
+        setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
         jLabel1.setText("Abilities:");
         jPanel1.add(jLabel1);
 
-        add(jPanel1);
+        add(jPanel1, new java.awt.GridBagConstraints());
+
+        inspectionDetailsTextArea.setColumns(20);
+        inspectionDetailsTextArea.setRows(5);
+        jScrollPane1.setViewportView(inspectionDetailsTextArea);
+
+        add(jScrollPane1, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextArea inspectionDetailsTextArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
   
 }
