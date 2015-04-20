@@ -55,7 +55,6 @@ public abstract class Screen {
 //    public static String getViewThreadName() {
 //        return view_thread_name_;
 //    }
-
     public final void onFocusLost() {
         if (model != null) {
             model.setMode(model.PAUSE);
@@ -81,7 +80,10 @@ public abstract class Screen {
 
     public void updateView(final ModelViewBundle mvb) {
 //        Application.check(SwingUtilities.isEventDispatchThread());
-        if ( viewport != null ) {
+        if (!SwingUtilities.isEventDispatchThread()) {
+            Application.print("This print statement should never appear. If it does, a thread other than the UI thread is being used to update the UI.");
+        }
+        if (viewport != null) {
             viewport.update(mvb);
             if (viewport.isRefreshControllerNeeded()) {
                 initVirtualController(viewport, model);
