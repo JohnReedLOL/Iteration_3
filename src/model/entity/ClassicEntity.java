@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.MapObject;
 import model.entity.npc.mount.Mount;
 import model.entity.npc.mount.MountOwnership;
 import model.entity.npc.pet.Pet;
@@ -122,8 +123,14 @@ public class ClassicEntity extends Entity {
 
     @Override
     public void move(Direction direction) {
-        getMovementBehavior().move(this, direction);
-        getMountOwnership().getMount().move(direction);
+        super.move(direction);
+
+        if (getMountOwnership().getMount() != null ) {
+            getMountOwnership().getMount().move(direction);
+            getMountOwnership().getMount().setDirection( direction );
+        }
+
+
     }
 
     @Override
@@ -139,5 +146,13 @@ public class ClassicEntity extends Entity {
     @Override
     public void accept(ObjectRenderer mapObjectRenderer) {
 
+    }
+
+    @Override
+    public boolean interact( MapObject entity ) {
+        if ( entity == getMountOwnership().getMount() ) {
+            return true;
+        }
+        return false;
     }
 }

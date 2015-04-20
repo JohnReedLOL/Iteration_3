@@ -205,7 +205,7 @@ public class Model {
     }
     
     public boolean move(Entity entity, Direction direction) {
-        entity.getMovementBehavior().move(entity, direction);
+        entity.move( direction );
         return true;
     }
     
