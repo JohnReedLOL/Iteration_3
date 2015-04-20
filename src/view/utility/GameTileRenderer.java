@@ -43,17 +43,17 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 		mapObjectRenderer = new GameObjectRenderer(g, mapObjects);
 		initializeImages();
 		// TODO fix this
-		//generateViewDistanceBounds(avatarx, avatary, viewDistance);
+		// generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
-	public GameTileRenderer(Graphics g, int startx, int starty) {
+	public GameTileRenderer(Graphics g, int startx, int starty, List<MapObject> mapObjects) {
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
-		mapObjectRenderer = new GameObjectRenderer(g, startx, starty);
+		mapObjectRenderer = new GameObjectRenderer(g, startx, starty, mapObjects);
 		initializeImages();
 		// TODO fix this
-		//generateViewDistanceBounds(avatarx, avatary, viewDistance);
+		// generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	private void initializeImages() {
@@ -159,6 +159,18 @@ public class GameTileRenderer extends GameScreenRenderer implements TileRenderer
 	@Override
 	public void setBrightness(int i) {
 		brightness = i;
+	}
+
+	@Override
+	public void setAvatarX(int avatarPosX) {
+		this.avatarx = avatarPosX;
+		mapObjectRenderer.setAvatarX(avatarPosX);
+	}
+
+	@Override
+	public void setAvatarY(int avatarPosY) {
+		this.avatary = avatarPosY;
+		mapObjectRenderer.setAvatarY(avatarPosY);
 	}
 
 }

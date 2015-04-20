@@ -19,6 +19,14 @@ public interface TileRenderer{
 
 	public void setY(int y);
 
+	public void setStartX(int x);
+	
+	public void setStartY(int y);
+	
 	public void setBrightness(int i);
+
+	public void setAvatarX(int avatarPosX);
+
+	public void setAvatarY(int avatarPosY);
 
 }

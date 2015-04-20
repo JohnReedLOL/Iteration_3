@@ -165,4 +165,16 @@ public class JButtonObjectRenderer implements ObjectRenderer {
 		
 	}
 
+	@Override
+	public void setAvatarX(int x) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setAvatarY(int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

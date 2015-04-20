@@ -5,15 +5,15 @@
  */
 package view.viewport;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.MapObject;
 import model.ModelViewBundle;
-import model.entity.avatar.Avatar;
 import model.map.GameMap;
-import model.map.GameWorld;
+import model.map.location.Location;
 import model.map.location.Tile;
 import mvc_bridgeway.control_map.ControlMap;
 import view.utility.GameTileRenderer;
@@ -27,11 +27,14 @@ import view.utility.TileRenderer;
 public class GameViewport extends Viewport {
 
     /*Properties*/
-    
+	
+	
     @SuppressWarnings("unchecked")
     private GameMap gameMap;
     private int[][] brightness;
     private List<MapObject> mapObjects;
+    private int avatarPosX;
+    private int avatarPosY;
     //
     private TileRenderer tileRendererVisitor;
     private ObjectRenderer objectRendererVisitor;
@@ -61,6 +64,9 @@ public class GameViewport extends Viewport {
     public void update(ModelViewBundle mvb) {
         brightness = mvb.getBrightnessTable();
         gameMap = mvb.getMap();
+        Location l = mvb.getAvatarLocation();
+        avatarPosX = gameMap.getCoordinateByLocation(l).getX();
+        avatarPosY = gameMap.getCoordinateByLocation(l).getY();
         mapObjects = mvb.getVisibleMapObjects();
         repaint();
 //        this.validate();
@@ -70,9 +76,13 @@ public class GameViewport extends Viewport {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.setColor(Color.BLACK);
+        int width = this.getWidth();
+        int height = this.getHeight();
+        g.fillRect(0, 0, width, height);
         // Tile visitor
         if (gameMap != null) {
-            tileRendererVisitor = new GameTileRenderer(g, mapObjects);
+            tileRendererVisitor = new GameTileRenderer(g, width/2, height/2, mapObjects);
             displayMap(tileRendererVisitor, gameMap.getTiles());
         }
     }
@@ -91,6 +101,8 @@ public class GameViewport extends Viewport {
      * @param startx - where to begin rendering on x axis
      */
     private void displayMap(TileRenderer tileRendererVisitor, Tile[][] map) {
+    	tileRendererVisitor.setAvatarX(avatarPosX);
+    	tileRendererVisitor.setAvatarY(avatarPosY);
         for (int x = 0; x < map.length; x++) {
             for (int y = 0; y < map[x].length; y++) {
                 tileRendererVisitor.setX(x);

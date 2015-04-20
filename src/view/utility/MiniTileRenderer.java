@@ -20,14 +20,12 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 
 	private int brightness;
 
-	public MiniTileRenderer(Graphics g, int startx, int starty) {
+	public MiniTileRenderer(Graphics g, int startx, int starty, List<MapObject> mapObjects) {
 		//TODO how do we set AVATAR and Location
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
-		mapObjectRenderer = new MiniGameObjectRenderer(g, startx, starty);
-		//TODO fix this
-		generateViewDistanceBounds(avatarx, avatary, viewDistance);
+		mapObjectRenderer = new MiniGameObjectRenderer(g, startx, starty, mapObjects);
 	}
 
 	public MiniTileRenderer(Graphics g, List<MapObject> mapObjects) {
@@ -35,8 +33,6 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		this.startx = 0;
 		this.starty = 0;
 		mapObjectRenderer = new MiniGameObjectRenderer(g, mapObjects);
-		//TODO fix this
-		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	@Override
