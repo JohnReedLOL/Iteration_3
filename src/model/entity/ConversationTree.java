@@ -38,7 +38,7 @@ public class ConversationTree {
         firstNode_ = firstNode;
         currentNodeReference_ = firstNode_;
     }
-    
+
     public ConversationTree(ConversationNode firstNode) {
         firstNode_ = new ConversationNodeWithChildren(firstNode);
         currentNodeReference_ = firstNode_;
@@ -77,7 +77,7 @@ public class ConversationTree {
         addNodeUnderFourthReplyOption(to_add);
         currentNodeReference_ = currentNodeReference_.getChildNode4_();
     }
-    
+
     public void addNodeUnderFirstReplyOption(ConversationNode to_add) {
         Application.check(currentNodeReference_ != null);
         Application.check(currentNodeReference_.getChildNode1_() == null);
@@ -101,32 +101,32 @@ public class ConversationTree {
         Application.check(currentNodeReference_.getChildNode4_() == null);
         currentNodeReference_.setChildNode4_(new ConversationNodeWithChildren(to_add, currentNodeReference_));
     }
-    
+
     public void setCurrentNodeToParentNode() {
         Application.check(currentNodeReference_.getParentNode_() != null);
         currentNodeReference_ = currentNodeReference_.getParentNode_();
     }
-    
+
     public void setCurrentNodeToChildNode1() {
         Application.check(currentNodeReference_.getChildNode1_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode1_();
     }
-    
+
     public void setCurrentNodeToChildNode2() {
         Application.check(currentNodeReference_.getChildNode2_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode2_();
     }
-    
+
     public void setCurrentNodeToChildNode3() {
         Application.check(currentNodeReference_.getChildNode3_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode3_();
     }
-    
+
     public void setCurrentNodeToChildNode4() {
         Application.check(currentNodeReference_.getChildNode4_() != null);
         currentNodeReference_ = currentNodeReference_.getChildNode4_();
     }
-    
+
     public void setCurrentNodeToFirstNode() {
         Application.check(firstNode_ != null);
         currentNodeReference_ = firstNode_;
@@ -136,8 +136,8 @@ public class ConversationTree {
      * Gets the height of this conversation tree. If the tree is completely empty (no initial node
      * specified in constructor), its height is zero. Else, if the tree has the initial node at the
      * top of the tree but no other nodes, its height it one. Else, its height is the number of
-     * layers in the tree, with the first node corresponding to the first layer. 
-     * If the current node pointer is in the middle of the tree, it will count up from there.
+     * layers in the tree, with the first node corresponding to the first layer. If the current node
+     * pointer is in the middle of the tree, it will count up from there.
      *
      * @return
      */
@@ -150,15 +150,14 @@ public class ConversationTree {
                     && firstNode_.getChildNode3_() == null && firstNode_.getChildNode4_() == null) {
                 Application.check(currentNodeReference_ == firstNode_);
                 return 1;
-            }
-            else {
+            } else {
                 Application.check(currentNodeReference_ != null);
                 Application.check(currentNodeReference_ != firstNode_);
                 Application.check(currentNodeReference_.getParentNode_() != null);
                 // This reference starts at the bottom of the tree and works its way up.
                 ConversationNodeWithChildren tree_height_iterator = currentNodeReference_;
                 int height = 1;
-                while(tree_height_iterator.getParentNode_() != null) {
+                while (tree_height_iterator.getParentNode_() != null) {
                     tree_height_iterator = tree_height_iterator.getParentNode_(); // ascend one level in the tree.
                     ++height;
                 }
@@ -171,11 +170,104 @@ public class ConversationTree {
         return firstNode_.getConversationNode_();
     }
 
-    /** 
+    /**
      * This reference points to the current conversation node being used/read/modified by the tree.
-     * @return 
+     *
+     * @return
      */
     public ConversationNode getCurrentNode_() {
         return currentNodeReference_.getConversationNode_();
     }
+
+    /**
+     * This class represents a node in a conversation (1 reply and 4 reply options), plus up to 4
+     * interconnected child nodes for use in a tree structure which represents the entire
+     * conversation.
+     *
+     * @author JohnReedLOL
+     */
+    private class ConversationNodeWithChildren {
+
+        private final ConversationNode conversationNode_;
+
+        /**
+         * These are null when the conversation node has no reply nodes underneath (or above) it.
+         */
+        private ConversationNodeWithChildren parentNode_;
+        private ConversationNodeWithChildren childNode1_;
+        private ConversationNodeWithChildren childNode2_;
+        private ConversationNodeWithChildren childNode3_;
+        private ConversationNodeWithChildren childNode4_;
+
+        /**
+         * All children are initially null. Parent is null too.
+         *
+         * @param conversation_node - the Node that this conversation tree element wraps
+         */
+        public ConversationNodeWithChildren(ConversationNode conversation_node) {
+            conversationNode_ = conversation_node;
+            parentNode_ = null;
+            childNode1_ = null;
+            childNode2_ = null;
+            childNode3_ = null;
+            childNode4_ = null;
+        }
+
+        /**
+         * All children are initially null. Parent is set in constructor.
+         *
+         * @param conversation_node - the Node that this conversation tree element wraps
+         * @param parent - the parent of this node in the tree. The node that leads to this node in
+         * a conversation.
+         */
+        public ConversationNodeWithChildren(ConversationNode conversation_node, ConversationNodeWithChildren parent) {
+            conversationNode_ = conversation_node;
+            parentNode_ = parent;
+            childNode1_ = null;
+            childNode2_ = null;
+            childNode3_ = null;
+            childNode4_ = null;
+        }
+
+        public ConversationNode getConversationNode_() {
+            return conversationNode_;
+        }
+
+        public ConversationNodeWithChildren getChildNode1_() {
+            return childNode1_;
+        }
+
+        public void setChildNode1_(ConversationNodeWithChildren childNode1_) {
+            this.childNode1_ = childNode1_;
+        }
+
+        public ConversationNodeWithChildren getChildNode2_() {
+            return childNode2_;
+        }
+
+        public void setChildNode2_(ConversationNodeWithChildren childNode2_) {
+            this.childNode2_ = childNode2_;
+        }
+
+        public ConversationNodeWithChildren getChildNode3_() {
+            return childNode3_;
+        }
+
+        public void setChildNode3_(ConversationNodeWithChildren childNode3_) {
+            this.childNode3_ = childNode3_;
+        }
+
+        public ConversationNodeWithChildren getChildNode4_() {
+            return childNode4_;
+        }
+
+        public void setChildNode4_(ConversationNodeWithChildren childNode4_) {
+            this.childNode4_ = childNode4_;
+        }
+
+        public ConversationNodeWithChildren getParentNode_() {
+            return parentNode_;
+        }
+    }
+
 }
