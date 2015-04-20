@@ -97,6 +97,7 @@ public class Model {
                                 // and remove done command from queue
                                 to_execute_ = null;
                                 currentScreen.updateView(mvb);
+                                
                             }
                         }
                     };

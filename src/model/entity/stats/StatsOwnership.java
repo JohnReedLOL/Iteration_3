@@ -10,6 +10,7 @@
  */
 package model.entity.stats;
 
+import view.utility.ObjectRenderer;
 import model.entity.Entity;
 import model.entity.stats.Stats;
 
@@ -115,6 +116,10 @@ public class StatsOwnership {
 	/* -------------------- VISITORS -------------------- */
 	public void accept(StatsVisitor visitor){
 		stats.accept(visitor);
+	}
+
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
 	}
 	
 	

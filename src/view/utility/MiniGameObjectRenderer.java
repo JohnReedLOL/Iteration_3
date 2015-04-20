@@ -9,6 +9,10 @@ import model.MapObject;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.stats.SmasherStatsOwnership;
+import model.entity.stats.SneakStatsOwnership;
+import model.entity.stats.StatsOwnership;
+import model.entity.stats.SummonerStatsOwnership;
 import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
@@ -136,5 +140,28 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
     public void visit(SackboundItem i) {
         Application.print("Not yet supported yet");
     }
+	@Override
+	public void visit(SmasherStatsOwnership smasherStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(SneakStatsOwnership sneakStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(SummonerStatsOwnership summonerStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(StatsOwnership statsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

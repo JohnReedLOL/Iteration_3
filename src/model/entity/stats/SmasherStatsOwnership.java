@@ -1,5 +1,6 @@
 package model.entity.stats;
 
+import view.utility.ObjectRenderer;
 import model.entity.Entity;
 
 public class SmasherStatsOwnership extends StatsOwnership{
@@ -43,5 +44,9 @@ public class SmasherStatsOwnership extends StatsOwnership{
 	public void accept(SmasherStatsVisitor visitor){
 		getStats().accept(visitor);
 	}
-	
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }
