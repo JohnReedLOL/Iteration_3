@@ -18,7 +18,8 @@ public class PetOwnership {
         this.owner = owner;
         this.pet = pet;
 
-        pet.setOwnership(this);
+        if ( pet != null )
+            pet.setOwnership(this);
     }
 
     public ClassicEntity getOwner() {
@@ -31,6 +32,8 @@ public class PetOwnership {
 
     public void setPet(Pet pet) {
         this.pet = pet;
+        if ( pet != null )
+            pet.setOwnership(this);
     }
 
     /**

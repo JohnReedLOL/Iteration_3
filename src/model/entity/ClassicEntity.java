@@ -78,8 +78,11 @@ public class ClassicEntity extends Entity {
      */
     public void mount(Mount target) {
         setIsMounted(true);
+        setMountOwnership(new MountOwnership(this, target));
         getMountOwnership().imposeMovementOn(this);
+        System.out.println("YOU MOUNTED VESPA " + getStatsOwnership().getStats().getMovement());
         getStatsOwnership().getStats().buffMovement(getMountOwnership().getSpeedBonus());
+        System.out.println("ENJOY YOUR VESPA " + getStatsOwnership().getStats().getMovement());
     }
 
     public void dismount() {
