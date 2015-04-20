@@ -63,6 +63,8 @@ public class GameViewport extends Viewport {
         gameMap = mvb.getMap();
         mapObjects = mvb.getVisibleMapObjects();
         repaint();
+//        this.validate();
+        this.updateUI();
     }
 
     @Override
