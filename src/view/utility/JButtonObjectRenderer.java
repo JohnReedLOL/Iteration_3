@@ -60,30 +60,49 @@ public class JButtonObjectRenderer implements ObjectRenderer {
     public JButtonObjectRenderer() {
         try {
             this.grass_ = ImageIO.read(new File(url.getPath()));
-            url = classLoader.getResource("resources/png/dave_S.png");
-            NPC_S = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
-            url = classLoader.getResource("resources/png/Locked_Treasure_Box.png");
-            INT_ITEM = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
-            url = classLoader.getResource("resources/png/ObstacleItem.png");
-            OBS_ITEM = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
-            url = classLoader.getResource("resources/png/Health_Potion.png");
-            ONE_SHOT_ITEM = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
-            url = classLoader.getResource("resources/png/Health_Potion.png");
-            LC_ITEM = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
-            url = classLoader.getResource("resources/png/Mana_Potion.png");
-            UC_ITEM = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
-            url = classLoader.getResource("resources/png/Helmet.png");
-            EQUIP = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
-            url = classLoader.getResource("resources/png/Matts_sword_PNG.png");
-            WEAPON = ImageIO.read(new File(url.getPath()));
-            System.out.println( "GOT ONE");
+            if (NPC_S == null) {
+				url = classLoader.getResource("resources/png/dave_S.png");
+				NPC_S = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (INT_ITEM == null) {
+				url = classLoader
+						.getResource("resources/png/Locked_Treasure_Box.png");
+				INT_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (OBS_ITEM == null) {
+				url = classLoader.getResource("resources/png/ObstacleItem.png");
+				OBS_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (ONE_SHOT_ITEM == null) {
+				url = classLoader
+						.getResource("resources/png/Health_Potion.png");
+				ONE_SHOT_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (LC_ITEM == null) {
+				url = classLoader
+						.getResource("resources/png/Health_Potion.png");
+				LC_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (UC_ITEM == null) {
+				url = classLoader.getResource("resources/png/Mana_Potion.png");
+				UC_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (EQUIP == null) {
+				url = classLoader.getResource("resources/png/Helmet.png");
+				EQUIP = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (WEAPON == null) {
+				url = classLoader
+						.getResource("resources/png/Matts_sword_PNG.png");
+				WEAPON = ImageIO.read(new File(url.getPath()));
+			}
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

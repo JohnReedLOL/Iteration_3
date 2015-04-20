@@ -64,7 +64,8 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		this.mapObjects = mapObjects;
 	}
 
-	public GameObjectRenderer(Graphics g, int startx, int starty, List<MapObject> mapObjects) {
+	public GameObjectRenderer(Graphics g, int startx, int starty,
+			List<MapObject> mapObjects) {
 		super(g);
 		this.startx = startx;
 		this.starty = starty;
@@ -78,33 +79,52 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		URL url;
 
 		try {
-			url = classLoader.getResource("resources/png/dave_S.png");
-			NPC_S = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-			url = classLoader.getResource("resources/png/Locked_Treasure_Box.png");
-			INT_ITEM = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-			url = classLoader.getResource("resources/png/ObstacleItem.png");
-			OBS_ITEM = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-			url = classLoader.getResource("resources/png/Health_Potion.png");
-			ONE_SHOT_ITEM = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-			url = classLoader.getResource("resources/png/Health_Potion.png");
-			LC_ITEM = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-			url = classLoader.getResource("resources/png/Mana_Potion.png");
-			UC_ITEM = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-			url = classLoader.getResource("resources/png/Helmet.png");
-			EQUIP = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-			url = classLoader.getResource("resources/png/Matts_sword_PNG.png");
-			WEAPON = ImageIO.read(new File(url.getPath()));
-			System.out.println( "GOT ONE");
-		}
-		catch (Exception e) {
-			System.err.println( "MISSED AN ITEM LOADING IMAGE NOOB");
+			if (NPC_S == null) {
+				url = classLoader.getResource("resources/png/dave_S.png");
+				NPC_S = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (INT_ITEM == null) {
+				url = classLoader
+						.getResource("resources/png/Locked_Treasure_Box.png");
+				INT_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (OBS_ITEM == null) {
+				url = classLoader.getResource("resources/png/ObstacleItem.png");
+				OBS_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (ONE_SHOT_ITEM == null) {
+				url = classLoader
+						.getResource("resources/png/Health_Potion.png");
+				ONE_SHOT_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (LC_ITEM == null) {
+				url = classLoader
+						.getResource("resources/png/Health_Potion.png");
+				LC_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (UC_ITEM == null) {
+				url = classLoader.getResource("resources/png/Mana_Potion.png");
+				UC_ITEM = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (EQUIP == null) {
+				url = classLoader.getResource("resources/png/Helmet.png");
+				EQUIP = ImageIO.read(new File(url.getPath()));
+			}
+
+			if (WEAPON == null) {
+				url = classLoader
+						.getResource("resources/png/Matts_sword_PNG.png");
+				WEAPON = ImageIO.read(new File(url.getPath()));
+			}
+		} catch (Exception e) {
+			System.err.println("MISSED AN ITEM LOADING IMAGE NOOB");
+			e.printStackTrace();
 		}
 
 		if (avatarN == null) {
@@ -287,27 +307,27 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 
 	private void drawMount(String facing) {
 		switch (facing) {
-			case "N":
-				drawImage(vespaN);
-				break;
-			case "NE":
-				drawImage(vespaNE);
-				break;
-			case "NW":
-				drawImage(vespaNW);
-				break;
-			case "S":
-				drawImage(vespaS);
-				break;
-			case "SE":
-				drawImage(vespaSE);
-				break;
-			case "SW":
-				drawImage(vespaSW);
-				break;
-			default:
-				drawImage(vespaS);
-				break;
+		case "N":
+			drawImage(vespaN);
+			break;
+		case "NE":
+			drawImage(vespaNE);
+			break;
+		case "NW":
+			drawImage(vespaNW);
+			break;
+		case "S":
+			drawImage(vespaS);
+			break;
+		case "SE":
+			drawImage(vespaSE);
+			break;
+		case "SW":
+			drawImage(vespaSW);
+			break;
+		default:
+			drawImage(vespaS);
+			break;
 		}
 	}
 
@@ -326,130 +346,130 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 				+ HEXAGON_SIZE / 4);
 	}
 
-	public void visit( Mount mount ) {
+	public void visit(Mount mount) {
 		scaleXandY(x, y);
 		String facing = mount.getDirection().toString();
 		drawMount(facing);
 	}
 
 	public void visit(NPC npc) {
-//		if (mapObjects.contains(npc)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.RED);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.BLACK);
-//			g.drawString("NPC", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
-//					/ 4);
-//		}
+		// if (mapObjects.contains(npc)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.RED);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.drawString("NPC", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
+		// / 4);
+		// }
 
-		drawImage( NPC_S );
+		drawImage(NPC_S);
 
 	}
 
 	public void visit(InteractiveItem interactiveItem) {
-//		if (mapObjects.contains(interactiveItem)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.CYAN);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.BLACK);
-//			g.drawString("IITEM", drawx + HEXAGON_SIZE / 4, drawy
-//					+ HEXAGON_SIZE / 4);
-//		}
-		drawImage( INT_ITEM );
+		// if (mapObjects.contains(interactiveItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.CYAN);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.drawString("IITEM", drawx + HEXAGON_SIZE / 4, drawy
+		// + HEXAGON_SIZE / 4);
+		// }
+		drawImage(INT_ITEM);
 	}
 
 	public void visit(ObstacleItem obstacleItem) {
-//		if (mapObjects.contains(obstacleItem)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.MAGENTA);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.BLACK);
-//			g.drawString("OBITEM", drawx + HEXAGON_SIZE / 4, drawy
-//					+ HEXAGON_SIZE / 4);
-//		}
+		// if (mapObjects.contains(obstacleItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.MAGENTA);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.drawString("OBITEM", drawx + HEXAGON_SIZE / 4, drawy
+		// + HEXAGON_SIZE / 4);
+		// }
 
-		drawImage( OBS_ITEM );
+		drawImage(OBS_ITEM);
 	}
 
 	public void visit(OneShotItem oneShotItem) {
-//		if (mapObjects.contains(oneShotItem)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.ORANGE);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.BLACK);
-//			g.drawString("OSITEM", drawx + HEXAGON_SIZE / 4, drawy
-//					+ HEXAGON_SIZE / 4);
-//		}
+		// if (mapObjects.contains(oneShotItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.ORANGE);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.drawString("OSITEM", drawx + HEXAGON_SIZE / 4, drawy
+		// + HEXAGON_SIZE / 4);
+		// }
 
 		drawImage(ONE_SHOT_ITEM);
 	}
 
 	public void visit(LimitedConsumptionItem limitedConsumptionItem) {
-//		if (mapObjects.contains(limitedConsumptionItem)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.PINK);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.BLACK);
-//			g.drawString("LCITEM", drawx + HEXAGON_SIZE / 4, drawy
-//					+ HEXAGON_SIZE / 4);
-//		}
-		drawImage( LC_ITEM );
+		// if (mapObjects.contains(limitedConsumptionItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.PINK);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.drawString("LCITEM", drawx + HEXAGON_SIZE / 4, drawy
+		// + HEXAGON_SIZE / 4);
+		// }
+		drawImage(LC_ITEM);
 	}
 
 	public void visit(UnlimitedConsumptionItem unlimitedConsumptionItem) {
-//		if (mapObjects.contains(unlimitedConsumptionItem)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.WHITE);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.BLACK);
-//			g.drawString("UCITEM", drawx + HEXAGON_SIZE / 4, drawy
-//					+ HEXAGON_SIZE / 4);
-//		}
+		// if (mapObjects.contains(unlimitedConsumptionItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.WHITE);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.drawString("UCITEM", drawx + HEXAGON_SIZE / 4, drawy
+		// + HEXAGON_SIZE / 4);
+		// }
 
-		drawImage( UC_ITEM );
+		drawImage(UC_ITEM);
 	}
 
 	public void visit(EquipItem equipItem) {
-//		if (mapObjects.contains(equipItem)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.WHITE);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.BLACK);
-//			g.fillRect(drawx + HEXAGON_SIZE / 8 * 3, drawy + HEXAGON_SIZE / 8
-//					* 3, HEXAGON_SIZE / 4, HEXAGON_SIZE / 4);
-//			g.setColor(Color.BLACK);
-//			g.drawString("E", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
-//					/ 4);
-//		}
-		drawImage( EQUIP );
+		// if (mapObjects.contains(equipItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.WHITE);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.fillRect(drawx + HEXAGON_SIZE / 8 * 3, drawy + HEXAGON_SIZE / 8
+		// * 3, HEXAGON_SIZE / 4, HEXAGON_SIZE / 4);
+		// g.setColor(Color.BLACK);
+		// g.drawString("E", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
+		// / 4);
+		// }
+		drawImage(EQUIP);
 	}
 
 	public void visit(WeaponItem weaponItem) {
-//		if (mapObjects.contains(weaponItem)) {
-//			scaleXandY(x, y);
-//			g.setColor(Color.WHITE);
-//			g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-//					HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-//			g.setColor(Color.RED);
-//			g.fillRect(drawx + HEXAGON_SIZE / 8 * 3, drawy + HEXAGON_SIZE / 8
-//					* 3, HEXAGON_SIZE / 4, HEXAGON_SIZE / 4);
-//			g.setColor(Color.BLACK);
-//			g.drawString("W", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
-//					/ 4);
-//		}
-		drawImage( WEAPON );
+		// if (mapObjects.contains(weaponItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.WHITE);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.RED);
+		// g.fillRect(drawx + HEXAGON_SIZE / 8 * 3, drawy + HEXAGON_SIZE / 8
+		// * 3, HEXAGON_SIZE / 4, HEXAGON_SIZE / 4);
+		// g.setColor(Color.BLACK);
+		// g.drawString("W", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
+		// / 4);
+		// }
+		drawImage(WEAPON);
 	}
 
 	@Override
 	public void visit(SackboundItem i) {
-		//Application.print("Not yet supported yet");
+		// Application.print("Not yet supported yet");
 	}
 
 	/**
