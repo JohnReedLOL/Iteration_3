@@ -7,14 +7,17 @@ package view.viewport;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 
+import model.MapObject;
 import model.ModelViewBundle;
-import model.map.DiscreteMap;
+import model.entity.avatar.Avatar;
 import model.map.GameMap;
 import model.map.GameWorld;
 import model.map.location.Tile;
 import mvc_bridgeway.control_map.ControlMap;
 import view.utility.GameTileRenderer;
+import view.utility.ObjectRenderer;
 import view.utility.TileRenderer;
 
 /**
@@ -24,9 +27,12 @@ import view.utility.TileRenderer;
 public class GameViewport extends Viewport {
 
 	private GameMap gameMap;
+	private Avatar avatar;
 	private int[][] brightness;
+	private List<MapObject> mapObjects;
 	
 	private TileRenderer tileRendererVisitor;
+	private ObjectRenderer objectRendererVisitor;
 
 	/**
 	 * Creates new form MainScreen
@@ -50,14 +56,15 @@ public class GameViewport extends Viewport {
 		super.paint(g);
 		// Tile visitor
 		if(gameMap != null){
-			tileRendererVisitor = new GameTileRenderer(g);
-			displayMap(tileRendererVisitor, gameMap.getTiles());
+			tileRendererVisitor = new GameTileRenderer(g, mapObjects);
+			displayMap(tileRendererVisitor,gameMap.getTiles());
 		}
 	}
 
 	/**
 	 * 
 	 * @param tileRendererVisitor - this components Graphics object
+	 * @param objectRendererVisitor 
 	 * @param map - Tile[][] of the GameMap
 	 * @param starty - where to begin rendering on y axis
 	 * @param startx - where to begin rendering on x axis
@@ -79,6 +86,8 @@ public class GameViewport extends Viewport {
 	public void update(ModelViewBundle mvb) {
 		brightness = GameWorld.getCurrentMap().getAvatar().getBrightnessTable();
 		gameMap = (GameMap) (GameWorld.getCurrentMap());
+		avatar = gameMap.getAvatar();
+		mapObjects = avatar.getVisibleMapObjects();
 		repaint();
 	}
 

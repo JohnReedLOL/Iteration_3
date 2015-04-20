@@ -67,7 +67,7 @@ public class MiniMapViewport extends Viewport {
 		super.paint(g);
 		// Tile visitor
         tileRendererVisitor = new MiniTileRenderer(g);
-		displayMap(tileRendererVisitor, ((GameMap) GameWorld.getCurrentMap()).getTiles());
+		displayMap(tileRendererVisitor, gameMap.getTiles());
 	}
     
     /**

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -33,12 +34,12 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	// FOR DEBUG
 	private final boolean DEBUG = false;
 
-	public GameTileRenderer(Graphics g) {
+	public GameTileRenderer(Graphics g, List<MapObject> mapObjects) {
 		//TODO how do we set AVATAR and Location
 		super(g);
 		this.startx = 0;
 		this.starty = 0;
-		mapObjectRenderer = new GameObjectRenderer(g);
+		mapObjectRenderer = new GameObjectRenderer(g, mapObjects);
 		initializeImages();
 		//TODO fix this
 		generateViewDistanceBounds(avatarx, avatary, viewDistance);
@@ -87,8 +88,14 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		scaleXandY(x, y);
 		g.drawImage(img, drawx, drawy, 100, 100, null);
 		drawMapObjects(mapObjects);
-		if (!withinAvatarViewDistance(x, y))
+		//brightness 0 is full
+		if (brightness == 50)
 			g.drawImage(dim, drawx, drawy, 100, 100, null);
+		if (brightness == 100) {
+			g.drawImage(dim, drawx, drawy, 100, 100, null);
+			g.drawImage(dim, drawx, drawy, 100, 100, null);
+			
+		}
 		drawDebug();
 	}
 
@@ -96,7 +103,7 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		mapObjectRenderer.setX(x);
 		mapObjectRenderer.setY(y);
 		for (MapObject mapObject : mapObjects) {
-			if(GameWorld.getCurrentMap().getAvatar().getVisibleMapObjects().contains(mapObject)) mapObject.accept(mapObjectRenderer);
+			mapObject.accept(mapObjectRenderer);
 		}
 	}
 

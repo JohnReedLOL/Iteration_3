@@ -50,7 +50,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
 
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
         tiles[1][2].createMapObjectAssociation(new NPC(new HexCoordinate(1, 1)));
-        tiles[1][3].createMapObjectAssociation(new Avatar(new HexCoordinate(1, 1)));
+//        tiles[1][3].createMapObjectAssociation(new Avatar(new HexCoordinate(1, 1)));
         tiles[1][4].createMapObjectAssociation(new InteractiveItem());
         tiles[1][5].createMapObjectAssociation(new OneShotItem());
         tiles[1][6].createMapObjectAssociation(new LimitedConsumptionItem());
