@@ -6,11 +6,13 @@
 package view.utility;
 
 import application.Application;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +20,10 @@ import javax.swing.JButton;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.stats.SmasherStatsOwnership;
+import model.entity.stats.SneakStatsOwnership;
+import model.entity.stats.StatsOwnership;
+import model.entity.stats.SummonerStatsOwnership;
 import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
@@ -134,5 +140,29 @@ public class JButtonObjectRenderer implements ObjectRenderer {
         Application.check(button_to_render_on_ != null);
         button_to_render_on_.setIcon(new ImageIcon(grass_));
     }
+
+	@Override
+	public void visit(SmasherStatsOwnership smasherStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(SneakStatsOwnership sneakStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(SummonerStatsOwnership summonerStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(StatsOwnership statsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
