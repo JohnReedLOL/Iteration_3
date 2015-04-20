@@ -1,12 +1,13 @@
 package model.entity.ability;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.entity.Entity;
 
 public class AbilityLibrary {
-	private List<Ability> learnedAbilities;
-	private List<Ability> unlearnedAbilities;
+	private List<Ability> learnedAbilities = new ArrayList<Ability>();
+	private List<Ability> unlearnedAbilities = new ArrayList<Ability>();
 	private Entity owner;
 	
 	public AbilityLibrary(Entity owner){
