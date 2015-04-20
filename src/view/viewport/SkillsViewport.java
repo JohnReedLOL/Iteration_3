@@ -98,7 +98,7 @@ public class SkillsViewport extends Viewport {
         }
         
         private JButton initAbilityButton(Ability ab) {
-            String abilityName = ab.getClass().getSimpleName().toString();
+            String abilityName = ab.getName();
             JButton jButton = new JButton(abilityName);
             return jButton;
         }
