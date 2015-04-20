@@ -5,21 +5,27 @@ import model.effect.statseffect.*;
 import model.influence_set.InfluenceSet;
 import model.influence_set.LinearInfluenceSet;
 import model.item.interactive.InteractiveItem;
+import model.item.oneshot.OneShotItem;
+import model.item.oneshot.Trap;
+import model.item.sackbound.LimitedConsumptionItem;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
 import model.map.GameMap;
 import model.map.GameWorld;
 import model.map.SecondLevelGameMap;
-import model.map.direction.Direction;
 import model.map.direction.NorthDirection;
 import model.map.location.GrassTile;
-import model.map.location.Location;
 import model.prerequisite.RequireLevel;
 import model.prerequisite.RequireRangedWeapon;
+import model.prerequisite.RequireTHEKey;
+import model.prerequisite.RequireTrapping;
 
 import java.util.ArrayList;
 
 public class ItemFactory {
+    private static final SackboundItem THE_KEY = new SackboundItem("THE Key", "Unlocks THAT door.");
+
     public static EquipItem generateLevel2RobeItem() {
         EquipItem ret = new EquipItem("Better Mage Robe", "Better than what you got.", EquipItem.EquipSlot.TORSO);
         ret.addEquipPrerequisite(new RequireLevel(2));
@@ -176,5 +182,71 @@ public class ItemFactory {
         ret.addUnequipEffect(new ModifyRangedWeapon(-3));
 
         return ret;
+    }
+
+    public static Trap generateLevel2TrapItem() {
+        Trap trap = new Trap();
+        trap.addVisionPrerequisite(new RequireTrapping(2));
+        trap.addDisarmPrerequisite(new RequireTrapping(2));
+
+        return trap;
+    }
+
+    public static Trap generateLevel4TrapItem() {
+        Trap trap = new Trap();
+        trap.addVisionPrerequisite(new RequireTrapping(4));
+        trap.addDisarmPrerequisite(new RequireTrapping(4));
+
+        return trap;
+    }
+
+    public static OneShotItem generate5HpReplenishOneShotItem() {
+        OneShotItem item = new OneShotItem("Health Potion", "Heals 5 health.");
+        item.addActivationEffect(new ModifyCurrentLife(5));
+
+        return item;
+    }
+
+    public static OneShotItem generateFullHealOneShotItem() {
+        OneShotItem item = new OneShotItem("Full Heal Potion", "It really does!");
+        item.addActivationEffect(new ModifyCurrentLife(Integer.MAX_VALUE));
+
+        return item;
+    }
+
+    public static OneShotItem generateDamage12HpOneShotItem() {
+        OneShotItem item = new OneShotItem("(Anti-)health Potion", "This will hurt you.");
+        item.addActivationEffect(new ModifyCurrentLife(-12));
+
+        return item;
+    }
+
+    public static OneShotItem generateElixirOneShotItem() {
+        OneShotItem item = new OneShotItem("Elixir", "Replenishes mana & health.");
+        item.addActivationEffect(new ModifyCurrentLife(15));
+        item.addActivationEffect(new ModifyCurrentMana(15));
+
+        return item;
+    }
+
+    public static LimitedConsumptionItem generateElixirSackboundItem() {
+        LimitedConsumptionItem item = new LimitedConsumptionItem("Elixir", "Replenishes mana & health.");
+        item.addUsePrerequisite(new RequireLevel(0));
+        item.addUseEffect(new ModifyCurrentLife(15));
+        item.addUseEffect(new ModifyCurrentMana(15));
+
+        return item;
+    }
+
+    public static SackboundItem getTHEKey() {
+        return THE_KEY;
+    }
+
+    public static InteractiveItem generateTreasureChest() {
+        InteractiveItem item = new InteractiveItem();
+        item.addActivationRequirement(new RequireTHEKey());
+        item.addActivationEffect(new ModifyBooty(250));
+
+        return item;
     }
 }

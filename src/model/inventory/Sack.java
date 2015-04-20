@@ -88,6 +88,10 @@ public class Sack {
      * IMPLEMENTATIONS
      */
 
+    public boolean contains(SackboundItem item) {
+        return getContents().contains(item);
+    }
+
     private void incrementSize() {
         ++size;
     }

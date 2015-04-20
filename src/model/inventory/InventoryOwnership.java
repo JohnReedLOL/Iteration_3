@@ -107,6 +107,10 @@ public class InventoryOwnership {
      * IMPLEMENTATIONS
      */
 
+    public boolean containsItem(SackboundItem item) {
+        return getOwnerInventory().contains(item);
+    }
+
     public boolean useItem(Location target, SackboundItem item) {
         // TODO: Implement once Location is filled out.
 

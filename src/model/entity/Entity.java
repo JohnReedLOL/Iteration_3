@@ -195,6 +195,10 @@ public abstract class Entity extends MapObject {
 	}
 	
 	/* -------------------- OVERENCUMBERED GARBAGE -------------------- */
+	public void modifyBooty(int delta) {
+		this.booty += delta;
+	}
+
 	public int[][] getBrightnessTable(){
 		int xSize = ((GameMap) (GameWorld.getCurrentMap())) .getTiles().length;
 		int ySize = ((GameMap) (GameWorld.getCurrentMap())) .getTiles()[0].length;

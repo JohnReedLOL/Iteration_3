@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.SneakStats;
 
 public class RequireTrapping extends SneakStatsPrerequisite{
-	RequireTrapping(int magnitude){
+	public RequireTrapping(int magnitude){
 		super(magnitude);
 	}
 	
