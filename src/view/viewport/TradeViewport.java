@@ -53,11 +53,7 @@ public class TradeViewport extends Viewport {
 
     @Override
     public ArrayList<ControlMap> getControlMaps() {
-        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        controlMaps.add(new ControlMap( new ButtonSwingControl(bluePotButton), new Purchase(new GameScreen() ) ) );
-        controlMaps.add(new ControlMap( new ButtonSwingControl(redPotButton), new LaunchScreenCommand(new GameScreen() ) ) );
-        controlMaps.add(new ControlMap( new ButtonSwingControl(doneButton), new LaunchScreenCommand(new GameScreen() ) ) );
-        return controlMaps;
+        return cms;
     }
  
     /**

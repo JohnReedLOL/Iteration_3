@@ -1,6 +1,7 @@
 package model.map;
 
 
+import model.map.coordinate.HexCoordinate;
 import model.map.location.WaterTile;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class River {
 
     public River( WaterTile source ) {
         waterTileList = new ArrayList<WaterTile>();
+        branches = new ArrayList<River>();
         waterTileList.add( source );
         head = source;
     }
@@ -47,11 +49,11 @@ public class River {
 
     public void reverseDirection() {
         for( WaterTile t : waterTileList ) {
-            //t.reverseDirection();
+            t.reverseDirection( (HexCoordinate) GameWorld.getCurrentMap().getCoordinateByLocation( t ) );
         }
 
         for (River r: branches ) {
-            //r.reverseDirection();
+            r.reverseDirection();
         }
     }
 

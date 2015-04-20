@@ -56,7 +56,6 @@ public class AbilityFactory {
         effects.add(new HealDamage(8));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(1));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireBindWounds(1));
@@ -74,7 +73,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(-10));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(1));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireBrawl(1));
@@ -92,7 +91,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(-10));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(1));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireBrawl(1));
@@ -111,7 +110,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(-10));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(1));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(10));
@@ -129,7 +128,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(-10));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(2));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(15));
@@ -147,7 +146,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(-12));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(3));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(20));
@@ -165,7 +164,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(10));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(1));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(10));
@@ -183,7 +182,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(15));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(2));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(15));
@@ -201,7 +200,7 @@ public class AbilityFactory {
         effects.add(new ModifyCurrentLife(12));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(3));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(20));
@@ -219,7 +218,7 @@ public class AbilityFactory {
         effects.add(new WipeMemoryEffect());
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(1));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(20));
@@ -237,7 +236,7 @@ public class AbilityFactory {
         effects.add(new DepleteBootyEffect());
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(2));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(15));
@@ -255,7 +254,7 @@ public class AbilityFactory {
         effects.add(new DummyEnchantEffect());
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireLevel(3));
+        learnReqs.add(new RequireLevel(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(20));
@@ -274,7 +273,7 @@ public class AbilityFactory {
         effects.add(new ModifyBooty(-10));
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequirePickpocket(10));
+        learnReqs.add(new RequirePickpocket(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
         useReqs.add(new RequireCurrentMP(10));
@@ -292,7 +291,7 @@ public class AbilityFactory {
         ArrayList<Effect> effects = new ArrayList<Effect>();
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireCreep(10));
+        learnReqs.add(new RequireCreep(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
 
@@ -307,7 +306,7 @@ public class AbilityFactory {
         ArrayList<Effect> effects = new ArrayList<Effect>();
 
         ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
-        learnReqs.add(new RequireCreep(10));
+        learnReqs.add(new RequireCreep(0));
 
         ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
 

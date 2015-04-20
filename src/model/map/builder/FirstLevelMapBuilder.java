@@ -1,8 +1,10 @@
 package model.map.builder;
 
 import model.armory.Armory;
+import model.effect.movementeffects.RiverReverseEffect;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
+import model.entity.npc.Merchant;
 import model.entity.npc.NPC;
 import model.entity.npc.mount.Mount;
 import model.factories.AreaEffectFactory;
@@ -18,6 +20,7 @@ import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
 import model.item.sackbound.equip.WeaponItem;
+import model.map.AreaEffect;
 import model.map.River;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.NorthEastDirection;
@@ -74,7 +77,12 @@ public class FirstLevelMapBuilder extends MapBuilder {
             river.addTileToRiver( t );
         }
 
-        rivers.add( river );
+        AreaEffect a = new AreaEffect();
+        a.addEffect( new RiverReverseEffect() );
+        tiles[17][3] = new BrickTile();
+        tiles[17][3].addAreaEffect( a );
+
+        rivers.add(river);
 
         tiles[1][3] = new MountainTile();
         tiles[2][2] = new WaterTile();
@@ -84,7 +92,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[5][5] = new WaterTile();
 
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
-        tiles[1][2].createMapObjectAssociation(new NPC(new HexCoordinate(1, 1)));
+        tiles[1][2].createMapObjectAssociation(new Merchant(new HexCoordinate(1, 1)));
         tiles[0][3].createMapObjectAssociation(ItemFactory.generate6SlicePizza());
         tiles[1][4].createMapObjectAssociation(ItemFactory.getTHEKey());
         tiles[1][5].createMapObjectAssociation(ItemFactory.generateElixirOneShotItem());

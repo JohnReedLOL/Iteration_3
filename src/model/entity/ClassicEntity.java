@@ -124,11 +124,16 @@ public class ClassicEntity extends Entity {
     @Override
     public void move(Direction direction) {
         boolean shouldMove = getMountOwnership().getMount() != null;
+        boolean petMove = getPetOwnership().getPet() != null;
         super.move(direction);
 
         if ( shouldMove ) {
             getMountOwnership().getMount().move(direction);
             getMountOwnership().getMount().setDirection( direction );
+        }
+        
+        if(petMove){
+        	getPetOwnership().getPet().makeBestDecision();
         }
 
 
