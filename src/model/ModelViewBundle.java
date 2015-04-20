@@ -79,10 +79,21 @@ public class ModelViewBundle {
         return null;
     }
     
+    /**
+     * List of all map objects that are allowed to be rendered.
+     * If it's not in this list don't render it.
+     * Don't worry about order of rendering for now.
+     * @return 
+     */
     public static List<MapObject> getVisibleMapObjects(){
     	return getAvatar().getVisibleMapObjects();
     }
     
+    /**
+     * Works exactly like the old brightness table did
+     * @author Matt <- yell at him if broken.
+     * @return 
+     */
     public static int[][] getBrightnessTable(){
     	return getAvatar().getBrightnessTable();
     }
