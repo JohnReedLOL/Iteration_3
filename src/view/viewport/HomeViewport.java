@@ -90,7 +90,7 @@ public class HomeViewport extends Viewport {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/gif/main_menu_bg.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/gif/main_menu_bg_2.gif"))); // NOI18N
         jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jLayeredPane1.add(jPanel2);

@@ -81,17 +81,17 @@ public class NewGameViewport extends Viewport {
 
         sneak_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         sneak_button_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/png/sneak_S.png"))); // NOI18N
-        sneak_button_.setText("Sneak");
+        sneak_button_.setText("Sorority Girl [Sneak]");
         add(sneak_button_);
 
         smasher_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         smasher_button_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/png/smasher_S.png"))); // NOI18N
-        smasher_button_.setText("Smasher");
+        smasher_button_.setText("Frat Boy [Smasher]");
         add(smasher_button_);
 
         summoner_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         summoner_button_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/png/summoner_S.png"))); // NOI18N
-        summoner_button_.setText("Summoner");
+        summoner_button_.setText("GDI  [Summoner]");
         add(summoner_button_);
     }// </editor-fold>//GEN-END:initComponents
 
