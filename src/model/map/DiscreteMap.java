@@ -23,7 +23,6 @@ public abstract class DiscreteMap {
     public abstract void populate();
     public abstract void insert( MapObject m, Location l );
     public abstract void remove( MapObject m );
-    public abstract void relocate( MapObject m, Location l);
     public abstract void move( MapObject m, Coordinate2D from, Coordinate2D to );
     public abstract void teleport( MapObject m, DiscreteMap d);
     public abstract void performEffect(Effect effect, InfluenceSet influence);
@@ -33,6 +32,7 @@ public abstract class DiscreteMap {
     public abstract Location getLocationByCoordinate( Coordinate2D c );
     public abstract Coordinate2D getCoordinateByLocation( Location l );
     public abstract Location getLocationByMapObject( MapObject m );
+    public abstract Location getPreferredTeleportLocation();
 
     public String getName() {
         return name;

@@ -4,10 +4,11 @@ import model.effect.Effect;
 import model.entity.Entity;
 import model.item.Item;
 import model.prerequisite.Prerequisite;
+import view.utility.ObjectRenderer;
 
 import java.util.ArrayList;
 
-public abstract class SackboundItem extends Item {
+public class SackboundItem extends Item {
     /**
      * PROPERTIES
      */
@@ -28,6 +29,11 @@ public abstract class SackboundItem extends Item {
 
         this.pickUpPrerequisites = new ArrayList<Prerequisite>();
         this.pickUpEffects = new ArrayList<Effect>();
+    }
+
+    @Override
+    public void accept(ObjectRenderer mapObjectRenderer) {
+
     }
 
     /**
@@ -78,6 +84,11 @@ public abstract class SackboundItem extends Item {
         }
 
         return activator.getInventoryOwnership().addItem(this);
+    }
+
+    @Override
+    public void apply(Entity owner) {
+        owner.getInventoryOwnership().addItem(this);
     }
 
     protected boolean meetsPickUpRequirements(Entity target) {
