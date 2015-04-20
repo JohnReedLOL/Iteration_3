@@ -11,6 +11,7 @@ public class MountOwnership {
     private ClassicEntity owner;
     private Mount mount;
     private MovementBehavior ownerPreviousBehavior;
+    private int timeMounted = 0;
 
     public MountOwnership( ClassicEntity owner, Mount mount) {
         this.owner = owner;
@@ -42,16 +43,30 @@ public class MountOwnership {
         this.ownerPreviousBehavior = behavior;
     }
 
+    private void setTimeMounted(int time) {
+        this.timeMounted = time;
+    }
+
     public void imposeMovementOn(Entity owner) {
         getMount().imposeMovementOn(owner);
         getOwner().getStatsOwnership().getStats().buffMovement(getSpeedBonus());
+        incrementTimeMounted();
     }
 
     public void dismount() {
+        resetTimeMounted();
         getMount().unimposeMovement();
         getOwner().getStatsOwnership().getStats().debuffMovement(getSpeedBonus());
         getOwner().setMovementBehavior(getOwnerPreviousBehavior());
         setMount(null);
+    }
+
+    private void incrementTimeMounted() {
+        ++timeMounted;
+    }
+
+    private void resetTimeMounted() {
+        setTimeMounted(0);
     }
 
     /**
