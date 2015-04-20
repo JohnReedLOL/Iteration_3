@@ -63,7 +63,7 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		} else if (brightness >=100) {
-			Color b = new Color(0,0,0,200);
+			Color b = new Color(0,0,0,255);
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 			
