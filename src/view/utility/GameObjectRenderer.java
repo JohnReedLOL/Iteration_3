@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import model.entity.npc.Merchant;
 import utility.ImageUtil;
 import model.MapObject;
 import model.entity.ai.AIClassicEntity;
@@ -58,6 +59,8 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 	private static BufferedImage UC_ITEM;
 	private static BufferedImage EQUIP;
 	private static BufferedImage WEAPON;
+
+	private static BufferedImage MERCHANT;
 
 	public GameObjectRenderer(Graphics g, List<MapObject> mapObjects) {
 		super(g);
@@ -134,6 +137,10 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 
 		if (vespaSE == null) {
 			vespaSE = ImageUtil.getImage("resources/png/vespa_SE.png");
+		}
+
+		if (MERCHANT == null) {
+			MERCHANT = ImageUtil.getImage("resources/png/merchant.png");
 		}
 	}
 
@@ -263,20 +270,25 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		drawMount(facing);
 	}
 
+	@Override
 	public void visit(NPC npc) {
-		// if (mapObjects.contains(npc)) {
-		// scaleXandY(x, y);
-		// g.setColor(Color.RED);
-		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-		// g.setColor(Color.BLACK);
-		// g.drawString("NPC", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
-		// / 4);
-		// }
-
-		drawImage(NPC_S);
-
+		drawImage(MERCHANT);
 	}
+
+//	public void visit(NPC npc) {
+//		// if (mapObjects.contains(npc)) {
+//		// scaleXandY(x, y);
+//		// g.setColor(Color.RED);
+//		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+//		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+//		// g.setColor(Color.BLACK);
+//		// g.drawString("NPC", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
+//		// / 4);
+//		// }
+//
+//		drawImage(NPC_S);
+//
+//	}
 
 	public void visit(InteractiveItem interactiveItem) {
 		// if (mapObjects.contains(interactiveItem)) {
@@ -303,6 +315,20 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		// }
 
 		drawImage(OBS_ITEM);
+	}
+
+	public void visit(Merchant merchant) {
+		// if (mapObjects.contains(obstacleItem)) {
+		// scaleXandY(x, y);
+		// g.setColor(Color.MAGENTA);
+		// g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
+		// HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
+		// g.setColor(Color.BLACK);
+		// g.drawString("OBITEM", drawx + HEXAGON_SIZE / 4, drawy
+		// + HEXAGON_SIZE / 4);
+		// }
+
+		drawImage(MERCHANT);
 	}
 
 	public void visit(OneShotItem oneShotItem) {
