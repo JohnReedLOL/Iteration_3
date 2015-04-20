@@ -15,7 +15,7 @@ public class Drop extends ModelCommand {
 
     /*Constructors*/
 
-    public Drop(Avatar avatar, SackboundItem item) {
+    public Drop(Avatar avatar) {
         this.avatar = avatar;
         this.item = item;
     }
@@ -24,7 +24,7 @@ public class Drop extends ModelCommand {
     
     @Override
     public void execute() {
-        getModel().drop(avatar, item);
+        getModel().drop(avatar);
     }
 
     /*Get-Sets*/

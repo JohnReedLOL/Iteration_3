@@ -206,8 +206,8 @@ public class Model {
         return true;
     }
     
-    public void drop(Avatar avatar, SackboundItem item) {
-        avatar.getInventoryOwnership().removeItem(item);
+    public void drop(Avatar avatar) {
+        
     }
     
     public boolean activateAbility(Avatar avatar, Ability ability) {
