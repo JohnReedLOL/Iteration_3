@@ -20,6 +20,7 @@ import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
 import model.factories.OccupationFactory;
+import view.utility.stat.Stat;
 
 public class Model {
 
@@ -193,6 +194,10 @@ public class Model {
     
     public void beginNewGame() {
         //TODO
+    }
+    
+    public void levelupStat(Stat stat) {
+        stat.level();
     }
     
     /* -------------------- LEVEL UP COMMANDS -------------------- */

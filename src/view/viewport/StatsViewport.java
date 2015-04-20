@@ -5,34 +5,26 @@
  */
 package view.viewport;
 
-import application.Application;
-import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import model.ModelViewBundle;
-import model.armory.Armory;
-import model.entity.Entity;
-import model.entity.avatar.Avatar;
-import model.entity.stats.SmasherStats;
-import model.entity.stats.SmasherStatsVisitor;
-import model.entity.stats.SneakStats;
-import model.entity.stats.SneakStatsOwnership;
-import model.entity.stats.SneakStatsVisitor;
-import model.entity.stats.Stats;
 import model.entity.stats.StatsOwnership;
-import model.entity.stats.StatsVisitor;
-import model.entity.stats.SummonerStats;
-import model.entity.stats.SummonerStatsVisitor;
-import model.inventory.Sack;
-import mvc_bridgeway.command.model_command.ExitCommand;
-import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
+import mvc_bridgeway.command.model_command.AllocateLevelupCommand;
+import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
 import mvc_bridgeway.control_map.ControlMap;
+import view.utility.stat.Stat;
 
 public class StatsViewport extends Viewport {
 
+    private ArrayList<ControlMap> cms = new ArrayList<ControlMap>();
+    //
+    private ArrayList<StatRow> statRows = new ArrayList<StatRow>();
 
     public StatsViewport() {
         initComponents();
@@ -47,18 +39,88 @@ public class StatsViewport extends Viewport {
 
     @Override
     public ArrayList<ControlMap> getControlMaps() {
-        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        //TODOD
-        return controlMaps;
+        return cms;
     }
 
     @Override
     protected void generateView() {
-        //
+//        add(new JButton("Stuff"));
+//        validate();
     }
     
-    private void displayStats(StatsOwnership stats) {
+    private void displayStats(StatsOwnership statistics) {
+        List<Stat> stats = statistics.getViewStats();
+        if (stats != null && stats.size() != statRows.size()) {
+            clearStatRows();
+            for (Stat stat : stats) {
+                statRows.add(new StatRow(stat, this));
+            }
+        } else {
+            for (StatRow statRow : statRows) {
+                statRow.update();
+            }
+        }
+        this.validate();
+    }
+    
+    private void clearStatRows() {
+        for (StatRow statRow : statRows) {
+            statRow.remove();
+        }
+        statRows = new ArrayList<StatRow>();
+    }
+    
+    /*Inner-Classes*/
+    
+    private class StatRow {
+        
+        private Stat stat;
+        private JTextField textField;
+        private JPanel panel;
+        private JButton button;
         //
+        private JPanel masterPanel;
+        
+        public StatRow(Stat stat, JPanel jsp) {
+            this.stat = stat;
+            this.masterPanel = jsp;
+            textField = initStatField(stat);
+            button = initLevelupButton(stat);
+            initPanel();
+            masterPanel.add(panel);
+        }
+        
+        public void update() {
+            String display = stat.getName() + ": " + stat.getMag();
+            textField.setText(display);
+        }
+        
+        public void remove() {
+            masterPanel.remove(panel);
+        }
+        
+        private JTextField initStatField(Stat s) {
+            String display = s.getName() + ": " + s.getMag();
+            JTextField tf = new JTextField(display);
+            return tf;
+        }
+        
+        private JButton initLevelupButton(Stat s) {
+            JButton butt = new JButton("+");
+            return butt;
+        }
+        
+        private void setControl(JButton butt) {
+            cms.add(new ControlMap(new ButtonSwingControl(butt), new AllocateLevelupCommand(stat)));
+        }
+        
+        private void initPanel() {
+            GridLayout gridLayout = new GridLayout(1, 2);
+            panel = new JPanel(gridLayout);
+            panel.add(textField);
+            panel.add(button);
+        }
+        
     }
     
     /**
@@ -70,23 +132,11 @@ public class StatsViewport extends Viewport {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        stats_jScrollPane_ = new javax.swing.JScrollPane();
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(stats_jScrollPane_, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(stats_jScrollPane_, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-        );
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane stats_jScrollPane_;
     // End of variables declaration//GEN-END:variables
 
 }

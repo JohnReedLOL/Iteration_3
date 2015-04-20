@@ -122,10 +122,10 @@ public class SkillsViewport extends Viewport {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
 
         jLabel1.setText("Abilities:");
-        jPanel1.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jLabel1);
 
         add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
