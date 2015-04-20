@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireAffinity extends StatsPrerequisite{
-	RequireAffinity(int magnitude){
+	public RequireAffinity(int magnitude){
 		super(magnitude);
 	}
 	

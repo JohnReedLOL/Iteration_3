@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireCurrentHP extends StatsPrerequisite{
-	RequireCurrentHP(int magnitude){
+	public RequireCurrentHP(int magnitude){
 		super(magnitude);
 	}
 	

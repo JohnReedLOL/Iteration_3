@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireExperience extends StatsPrerequisite{
-	RequireExperience(int magnitude){
+	public RequireExperience(int magnitude){
 		super(magnitude);
 	}
 	

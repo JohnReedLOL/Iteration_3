@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireOffense extends StatsPrerequisite{
-	RequireOffense(int magnitude){
+	public RequireOffense(int magnitude){
 		super(magnitude);
 	}
 	

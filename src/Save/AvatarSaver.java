@@ -35,6 +35,10 @@ public class AvatarSaver {
         booty.appendChild(doc.createTextNode(String.valueOf(avatar.getBooty())));
         avatarElement.appendChild(booty);
 
+        Element movementBehavior = doc.createElement("movementBehavior");
+        movementBehavior.appendChild(doc.createTextNode(String.valueOf(avatar.getMovementBehavior().getBehaviorId())));
+        avatarElement.appendChild(movementBehavior);
+
 
         return avatarElement;
 

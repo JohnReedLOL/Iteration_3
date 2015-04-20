@@ -13,7 +13,7 @@ public class MovementBehaviorFactory {
         movementBehaviors[0] = ClassicMovementBehavior.getInstance();
         movementBehaviors[1] = FlyingBehavior.getInstance();
     }
-    public static MovementBehaviorFactory getInstance() throws Exception  {
+    public static MovementBehaviorFactory getInstance() {
 
         if(instance == null) {
             instance = new MovementBehaviorFactory();
@@ -24,7 +24,7 @@ public class MovementBehaviorFactory {
         }
     }
 
-    public MovementBehavior get(int id) {
+    public MovementBehavior get(int id) throws Exception {
        if(id >= movementBehaviors.length) {
            throw new Exception("Not valid movement id: " + id);
        }

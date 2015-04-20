@@ -16,4 +16,5 @@ public abstract class MovementBehavior extends Behavior {
 	 */
 
 	public abstract boolean move(Entity target, Direction direction);
+	public abstract int getBehaviorId();
 }

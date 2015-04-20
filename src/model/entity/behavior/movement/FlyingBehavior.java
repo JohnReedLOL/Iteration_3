@@ -34,6 +34,10 @@ public class FlyingBehavior extends MovementBehavior {
         return singleton;
     }
 
+    public int getBehaviorId() {
+        return 1;
+    }
+
     /**
      * MUTATORS
      */

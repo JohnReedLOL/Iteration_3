@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.SummonerStats;
 
 public class RequireBoon extends SummonerStatsPrerequisite{
-	RequireBoon(int magnitude){
+	public RequireBoon(int magnitude){
 		super(magnitude);
 	}
 	

@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireMaxMana extends StatsPrerequisite{
-	RequireMaxMana(int magnitude){
+	public RequireMaxMana(int magnitude){
 		super(magnitude);
 	}
 	

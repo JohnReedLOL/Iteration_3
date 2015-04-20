@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireCurrentMP extends StatsPrerequisite{
-	RequireCurrentMP(int magnitude){
+	public RequireCurrentMP(int magnitude){
 		super(magnitude);
 	}
 	

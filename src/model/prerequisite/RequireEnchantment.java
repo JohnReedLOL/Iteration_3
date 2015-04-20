@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.SummonerStats;
 
 public class RequireEnchantment extends SummonerStatsPrerequisite{
-	RequireEnchantment(int magnitude){
+	public RequireEnchantment(int magnitude){
 		super(magnitude);
 	}
 	

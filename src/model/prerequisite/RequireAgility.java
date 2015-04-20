@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireAgility extends StatsPrerequisite{
-	RequireAgility(int magnitude){
+	public RequireAgility(int magnitude){
 		super(magnitude);
 	}
 	

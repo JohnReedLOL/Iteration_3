@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireMaxLife extends StatsPrerequisite{
-	RequireMaxLife(int magnitude){
+	public RequireMaxLife(int magnitude){
 		super(magnitude);
 	}
 	

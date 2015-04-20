@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.SmasherStats;
 
 public class RequireTwoHanded extends SmasherStatsPrerequisite{
-	RequireTwoHanded(int magnitude){
+	public RequireTwoHanded(int magnitude){
 		super(magnitude);
 	}
 	

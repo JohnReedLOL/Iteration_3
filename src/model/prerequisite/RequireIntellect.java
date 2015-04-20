@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireIntellect extends StatsPrerequisite{
-	RequireIntellect(int magnitude){
+	public RequireIntellect(int magnitude){
 		super(magnitude);
 	}
 	

@@ -35,6 +35,10 @@ public class ClassicMovementBehavior extends MovementBehavior {
 		return singleton;
 	}
 
+	public int getBehaviorId() {
+		return 0;
+	}
+
 	/**
 	 * IMPLEMENTATIONS
 	 */

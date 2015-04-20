@@ -3,7 +3,7 @@ package model.prerequisite;
 import model.entity.stats.Stats;
 
 public class RequireObservation extends StatsPrerequisite{
-	RequireObservation(int magnitude){
+	public RequireObservation(int magnitude){
 		super(magnitude);
 	}
 	
