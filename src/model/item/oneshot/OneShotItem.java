@@ -1,13 +1,12 @@
 package model.item.oneshot;
 
+import java.util.ArrayList;
+
+import model.MapObject;
 import model.effect.Effect;
 import model.entity.Entity;
 import model.item.Item;
-
-import java.util.ArrayList;
-
-import view.utility.GameObjectRenderer;
-import view.utility.MiniGameObjectRenderer;
+import model.map.GameWorld;
 import view.utility.ObjectRenderer;
 
 public class OneShotItem extends Item {
@@ -71,7 +70,9 @@ public class OneShotItem extends Item {
 
     @Override
     public boolean activateOnMap(Entity activator) {
-        return true;
+        applyActivationEffects(activator);
+        GameWorld.getCurrentMap().remove(this);
+    	return true;
     }
 
     protected void applyActivationEffects(Entity target) {
@@ -83,5 +84,9 @@ public class OneShotItem extends Item {
 	@Override
 	public void accept(ObjectRenderer mapObjectRenderer) {
 		mapObjectRenderer.visit(this);
+	}
+	
+	public boolean interact(MapObject m){
+		return activateOnMap((Entity) m);
 	}
 }

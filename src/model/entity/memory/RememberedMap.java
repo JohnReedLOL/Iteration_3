@@ -34,6 +34,12 @@ public class RememberedMap {
 		}
 	}
 	
+	public void unremember(MapObject tart){
+		for(List<MapObject> l : mapObjects){
+			l.remove(tart);
+		}
+	}
+	
 	public List<Tile> getTiles(){
 		return tiles;
 	}

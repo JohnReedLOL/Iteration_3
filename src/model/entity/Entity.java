@@ -186,6 +186,10 @@ public abstract class Entity extends MapObject {
 		memory.remember(m);
 	}
 	
+	public void unremember(MapObject m){
+		memory.unremember(m);
+	}
+	
 	/* -------------------- OVERENCUMBERED GARBAGE -------------------- */
 	public int[][] getBrightnessTable(){
 		int xSize = ((GameMap) (GameWorld.getCurrentMap())) .getTiles().length;

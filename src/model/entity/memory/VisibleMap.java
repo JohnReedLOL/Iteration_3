@@ -63,7 +63,10 @@ public class VisibleMap {
 		for(Tile t : tiles){
 			ArrayList<MapObject> tileContents = new ArrayList<MapObject>(); 
 			for(MapObject m : t.getMapObjects()){
-				if(m.canSee(owner)) tileContents.add(m);
+				if(m.canSee(owner)){
+					tileContents.add(m);
+					owner.unremember(m);
+				}
 			}
 			mapObjects.add(tileContents);
 			coords.add(GameWorld.getCurrentMap().getCoordinateByLocation(t));
