@@ -62,6 +62,7 @@ public class Avatar extends Entity {
 
 	@Override
 	public void accept(ObjectRenderer mapObjectRenderer) {
+		this.getStatsOwnership().accept(mapObjectRenderer);
 		mapObjectRenderer.visit(this);
 	}
 }

@@ -35,7 +35,7 @@ public class SackboundItem extends Item {
 
     @Override
     public void accept(ObjectRenderer mapObjectRenderer) {
-
+        mapObjectRenderer.visit(this);
     }
 
     /**

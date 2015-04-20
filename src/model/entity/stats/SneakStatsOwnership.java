@@ -1,5 +1,6 @@
 package model.entity.stats;
 
+import view.utility.ObjectRenderer;
 import model.entity.Entity;
 
 public class SneakStatsOwnership extends StatsOwnership{
@@ -49,5 +50,9 @@ public class SneakStatsOwnership extends StatsOwnership{
 	public void accept(SneakStatsVisitor visitor){
 		getStats().accept(visitor);
 	}
-	
+
+	@Override
+	public void accept(ObjectRenderer mapObjectRenderer) {
+		mapObjectRenderer.visit(this);
+	}
 }

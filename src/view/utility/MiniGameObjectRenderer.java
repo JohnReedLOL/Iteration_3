@@ -1,5 +1,6 @@
 package view.utility;
 
+import application.Application;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
@@ -8,10 +9,15 @@ import model.MapObject;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.stats.SmasherStatsOwnership;
+import model.entity.stats.SneakStatsOwnership;
+import model.entity.stats.StatsOwnership;
+import model.entity.stats.SummonerStatsOwnership;
 import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
 import model.item.sackbound.LimitedConsumptionItem;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
@@ -128,6 +134,34 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
 					+ SIZE_OF_MAP_PIXEL / 8 * 3, SIZE_OF_MAP_PIXEL / 4,
 					SIZE_OF_MAP_PIXEL / 4);
 		}
+	}
+
+    @Override
+    public void visit(SackboundItem i) {
+        Application.print("Not yet supported yet");
+    }
+	@Override
+	public void visit(SmasherStatsOwnership smasherStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(SneakStatsOwnership sneakStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(SummonerStatsOwnership summonerStatsOwnership) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(StatsOwnership statsOwnership) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

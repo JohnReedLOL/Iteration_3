@@ -1,6 +1,7 @@
 package mvc_bridgeway.command.model_command;
 
 import model.entity.avatar.Avatar;
+import model.factories.OccupationFactory;
 import model.map.GameWorld;
 
 public class SetSummonerOccupationCommand extends SetOccupationCommand {
@@ -8,8 +9,8 @@ public class SetSummonerOccupationCommand extends SetOccupationCommand {
      * CONSTRUCTORS
      */
 
-    public SetSummonerOccupationCommand(Avatar avatar) {
-        super(avatar);
+    public SetSummonerOccupationCommand() {
+        super();
     }
 
     /**
@@ -18,7 +19,7 @@ public class SetSummonerOccupationCommand extends SetOccupationCommand {
 
     @Override
     public void execute() {
-        getModel().setSummonerOccupation(getAvatar());
-        GameWorld.getCurrentMap().setAvatar(getAvatar());
+    	Avatar a = OccupationFactory.generateAvatarSummonerOccupation();
+        GameWorld.getCurrentMap().setAvatar(a);
     }
 }

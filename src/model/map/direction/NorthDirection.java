@@ -35,4 +35,9 @@ public class NorthDirection extends HexMapDirection {
     public HexCoordinate deriveCoordinate( HexCoordinate coordinate ) {
         return new HexCoordinate( coordinate.getX() - 1, coordinate.getY() );
     }
+
+    @Override
+    public String toString() {
+        return "N";
+    }
 }

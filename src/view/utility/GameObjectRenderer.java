@@ -1,17 +1,29 @@
 package view.utility;
 
+import application.Application;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import model.MapObject;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.stats.SmasherStatsOwnership;
+import model.entity.stats.SneakStatsOwnership;
+import model.entity.stats.StatsOwnership;
+import model.entity.stats.SummonerStatsOwnership;
 import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
 import model.item.sackbound.LimitedConsumptionItem;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
@@ -20,6 +32,13 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		ObjectRenderer {
 
 	private List<MapObject> mapObjects;
+
+	private static BufferedImage avatarN;
+	private static BufferedImage avatarS;
+	private static BufferedImage avatarNW;
+	private static BufferedImage avatarNE;
+	private static BufferedImage avatarSW;
+	private static BufferedImage avatarSE;
 
 	public GameObjectRenderer(Graphics g, List<MapObject> mapObjects) {
 		super(g);
@@ -34,14 +53,91 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		this.starty = starty;
 	}
 
+	private void initializeAvatarImages(String occupation) {
+		try {
+			ClassLoader classLoader = Thread.currentThread()
+					.getContextClassLoader();
+			URL url = classLoader.getResource("resources/png/" + occupation
+					+ "_N.png");
+			avatarN = ImageIO.read(new File(url.getPath()));
+			url = classLoader.getResource("resources/png/" + occupation
+					+ "_S.png");
+			avatarS = ImageIO.read(new File(url.getPath()));
+			url = classLoader.getResource("resources/png/" + occupation
+					+ "_NW.png");
+			avatarNW = ImageIO.read(new File(url.getPath()));
+			url = classLoader.getResource("resources/png/" + occupation
+					+ "_NE.png");
+			avatarNE = ImageIO.read(new File(url.getPath()));
+			url = classLoader.getResource("resources/png/" + occupation
+					+ "_SW.png");
+			avatarSW = ImageIO.read(new File(url.getPath()));
+			url = classLoader.getResource("resources/png/" + occupation
+					+ "_SE.png");
+			avatarSE = ImageIO.read(new File(url.getPath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void visit(Avatar avatar) {
+		String facing = avatar.getDirection().toString();
+		drawAvatar(facing);
+	}
+
+	@Override
+	public void visit(SmasherStatsOwnership smasherStatsOwnership) {
+		if (avatarN == null || avatarS == null || avatarNW == null
+				|| avatarNE == null || avatarSW == null || avatarSE == null) {
+			initializeAvatarImages("smasher");
+		}
+	}
+
+	@Override
+	public void visit(SneakStatsOwnership sneakStatsOwnership) {
+		if (avatarN == null || avatarS == null || avatarNW == null
+				|| avatarNE == null || avatarSW == null || avatarSE == null) {
+			initializeAvatarImages("sneak");
+		}
+	}
+
+	@Override
+	public void visit(SummonerStatsOwnership summonerStatsOwnership) {
+		if (avatarN == null || avatarS == null || avatarNW == null
+				|| avatarNE == null || avatarSW == null || avatarSE == null) {
+			initializeAvatarImages("summoner");
+		}
+	}
+
+	private void drawAvatar(String facing) {
+		switch (facing) {
+		case "N":
+			drawImage(avatarN);
+			break;
+		case "NE":
+			drawImage(avatarNE);
+			break;
+		case "NW":
+			drawImage(avatarNW);
+			break;
+		case "S":
+			drawImage(avatarS);
+			break;
+		case "SE":
+			drawImage(avatarSE);
+			break;
+		case "SW":
+			drawImage(avatarSW);
+			break;
+		default:
+			drawImage(avatarS);
+			break;
+		}
+	}
+
+	private void drawImage(BufferedImage img) {
 		scaleXandY(x, y);
-		g.setColor(Color.YELLOW);
-		g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
-				HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
-		g.setColor(Color.BLACK);
-		g.drawString("AVATAR", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
-				/ 4);
+		g.drawImage(img, drawx, drawy, 100, 100, null);
 	}
 
 	public void visit(AIClassicEntity entity) {
@@ -50,8 +146,8 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		g.fillRect(drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE / 4,
 				HEXAGON_SIZE / 2, HEXAGON_SIZE / 2);
 		g.setColor(Color.BLACK);
-		g.drawString("AI ENTITY", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
-				/ 4);
+		g.drawString("AI ENTITY", drawx + HEXAGON_SIZE / 4, drawy
+				+ HEXAGON_SIZE / 4);
 	}
 
 	public void visit(NPC npc) {
@@ -154,6 +250,19 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 			g.drawString("W", drawx + HEXAGON_SIZE / 4, drawy + HEXAGON_SIZE
 					/ 4);
 		}
+	}
+
+    @Override
+    public void visit(SackboundItem i) {
+        Application.print("Not yet supported yet");
+    }
+    
+	/**
+	 * not used
+	 */
+	@Override
+	public void visit(StatsOwnership statsOwnership) {
+		// TODO Auto-generated method stub
 	}
 
 }

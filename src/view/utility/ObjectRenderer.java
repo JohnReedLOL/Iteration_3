@@ -3,10 +3,15 @@ package view.utility;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.stats.SmasherStatsOwnership;
+import model.entity.stats.SneakStatsOwnership;
+import model.entity.stats.StatsOwnership;
+import model.entity.stats.SummonerStatsOwnership;
 import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
 import model.item.sackbound.LimitedConsumptionItem;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
@@ -32,8 +37,18 @@ public interface ObjectRenderer {
 	public void visit(EquipItem equipItem);
 
 	public void visit(WeaponItem weaponItem);
+        
+        public void visit(SackboundItem i);
 
 	public void setX(int x);
 
 	public void setY(int y);
+
+	public void visit(SmasherStatsOwnership smasherStatsOwnership);
+	
+	public void visit(SneakStatsOwnership sneakStatsOwnership);
+	
+	public void visit(SummonerStatsOwnership summonerStatsOwnership);
+
+	public void visit(StatsOwnership statsOwnership);
 }
