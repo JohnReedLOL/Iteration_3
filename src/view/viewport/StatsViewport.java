@@ -31,87 +31,18 @@ import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 
-/**
- *
- * @author comcc_000
- */
-public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
+public class StatsViewport extends Viewport {
 
-    final private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
-    final Avatar mocAvatar_ = mvb.getAvatar();
 
-    /**
-     * Creates new form MainScreen
-     */
     public StatsViewport() {
-        // TODO: 
-
-        //
         initComponents();
-        stats_jTextPane_.setEditable(false);
-        renderAllStats(mocAvatar_);
-    }
-
-    public void renderAllStats(Avatar a) {
-        stats_jTextPane_.setText("");
-        stats_jTextPane_.setText("Stats:\n");
-        StyledDocument doc = stats_jTextPane_.getStyledDocument();
-
-        //  Define a keyword attribute
-        SimpleAttributeSet keyWord = new SimpleAttributeSet();
-        StyleConstants.setForeground(keyWord, Color.RED);
-        StyleConstants.setBackground(keyWord, Color.YELLOW);
-        StyleConstants.setBold(keyWord, true);
-
-        //  Add some text
-        try {
-            //doc.insertString(0, "Start of text\n", null);
-            doc.insertString(doc.getLength(), "Start of stats (actual avatar stats from ModelViewBundle):\n", null);
-
-            doc.insertString(doc.getLength(), "Skill points: " + mocAvatar_.getStatsOwnership().getSkillPoints() + "\n", null);
-            doc.insertString(doc.getLength(), "Stats points: " + mocAvatar_.getStatsOwnership().getStatPoints() + "\n", null);
-            doc.insertString(doc.getLength(), "Booty: " + mvb.getBooty() + "\n", null);
-            renderStats(mocAvatar_.getStatsOwnership().getStats(), doc, keyWord);
-            doc.insertString(doc.getLength(), "\nEnd of stats\n", keyWord);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public void renderStats(Stats s, StyledDocument doc, SimpleAttributeSet keyWord) {
-        try {
-            doc.insertString(doc.getLength(), "Affinity: " + s.getAffinity() + "\n", null);
-            doc.insertString(doc.getLength(), "Agility: " + s.getAgility() + "\n", null);
-            doc.insertString(doc.getLength(), "Armor: " + s.getArmor() + "\n", null);
-            doc.insertString(doc.getLength(), "Armor Modifier: " + s.getArmorModifier() + "\n", null);
-            doc.insertString(doc.getLength(), "Bargain: " + s.getBargain() + "\n", null);
-            doc.insertString(doc.getLength(), "Bind Wounds: " + s.getBindWounds() + "\n", null);
-            doc.insertString(doc.getLength(), "CurrentLife: " + s.getCurrentLife() + "\n", null);
-            doc.insertString(doc.getLength(), "CurrentMana: " + s.getCurrentMana() + "\n", null);
-            doc.insertString(doc.getLength(), "Defense: " + s.getDefense() + "\n", null);
-            doc.insertString(doc.getLength(), "Experience: " + s.getExperience() + "\n", null);
-            doc.insertString(doc.getLength(), "Intellect: " + s.getIntellect() + "\n", null);
-            doc.insertString(doc.getLength(), "Level: " + s.getLevel() + "\n", null);
-            doc.insertString(doc.getLength(), "Max Life: " + s.getMaxLife() + "\n", null);
-            doc.insertString(doc.getLength(), "Max Mana: " + s.getMaxMana() + "\n", null);
-            doc.insertString(doc.getLength(), "Movement: " + s.getMovement() + "\n", null);
-            doc.insertString(doc.getLength(), "Observatin: " + s.getObservation() + "\n", null);
-            doc.insertString(doc.getLength(), "Offense: " + s.getOffense() + "\n", null);
-            doc.insertString(doc.getLength(), "Strength: " + s.getStrength() + "\n", null);
-            doc.insertString(doc.getLength(), "Weapon Modifier: " + s.getWeaponModifier() + "\n", null);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @Override
-    protected void generateView() {
-        //TODO
+        generateView();
     }
 
     @Override
     public void update(ModelViewBundle mvb) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StatsOwnership stats = mvb.getAvatar().getStatsOwnership();
+        displayStats(stats);
     }
 
     @Override
@@ -121,6 +52,15 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
         return controlMaps;
     }
 
+    @Override
+    protected void generateView() {
+        //
+    }
+    
+    private void displayStats(StatsOwnership stats) {
+        //
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,9 +71,6 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
     private void initComponents() {
 
         stats_jScrollPane_ = new javax.swing.JScrollPane();
-        stats_jTextPane_ = new javax.swing.JTextPane();
-
-        stats_jScrollPane_.setViewportView(stats_jTextPane_);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,27 +87,6 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane stats_jScrollPane_;
-    private javax.swing.JTextPane stats_jTextPane_;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void visit(Stats stats) {
-        Application.print("Regular " + stats.toString());
-    }
-
-    @Override
-    public void visit(SneakStats stats) {
-        Application.print("Sneak " + stats.toString());
-    }
-
-    @Override
-    public void visit(SummonerStats stats) {
-        Application.print("Summoner " + stats.toString());
-    }
-
-    @Override
-    public void visit(SmasherStats stats) {
-        Application.print("Smasher " + stats.toString());
-    }
 
 }
