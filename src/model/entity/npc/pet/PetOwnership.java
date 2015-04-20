@@ -1,26 +1,27 @@
 package model.entity.npc.pet;
 
+import model.entity.ClassicEntity;
 import model.entity.Entity;
 
 /**
  * Created by Troy on 4/19/2015.
  */
 public class PetOwnership {
-    private Entity owner;
+    private ClassicEntity owner;
     private Pet pet;
 
     // Not sure what this is supposed to be used for, nor do I know if this
     // has some purpose to it.
 //    private int relationLevel;
 
-    public PetOwnership(Entity owner, Pet pet) {
+    public PetOwnership(ClassicEntity owner, Pet pet) {
         this.owner = owner;
         this.pet = pet;
 
         pet.setOwnership(this);
     }
 
-    public Entity getOwner() {
+    public ClassicEntity getOwner() {
         return owner;
     }
 

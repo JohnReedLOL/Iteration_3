@@ -36,7 +36,7 @@ public class Pet extends NPC {
         this.petOwnership = ownership;
     }
 
-    public PetOwnership makeEntityAssociation( Entity entity ) {
+    public PetOwnership makeEntityAssociation( ClassicEntity entity ) {
         return new PetOwnership( entity, this );
     }
 
