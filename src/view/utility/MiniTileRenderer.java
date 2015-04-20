@@ -3,6 +3,7 @@ package view.utility;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Collection;
+import java.util.List;
 
 import model.MapObject;
 import model.map.location.GrassTile;
@@ -28,11 +29,11 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
-	public MiniTileRenderer(Graphics g) {
+	public MiniTileRenderer(Graphics g, List<MapObject> mapObjects) {
 		super(g);
 		this.startx = 0;
 		this.starty = 0;
-		mapObjectRenderer = new MiniGameObjectRenderer(g);
+		mapObjectRenderer = new MiniGameObjectRenderer(g, mapObjects);
 		//TODO fix this
 		generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
@@ -57,7 +58,7 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		g.setColor(c);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawMapObjects(mapObjects);
-		if (!withinAvatarViewDistance(x, y)) {
+		if (brightness == 50) {
 			Color b = new Color(0,0,0,100);
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
