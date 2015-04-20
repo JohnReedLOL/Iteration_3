@@ -18,24 +18,36 @@ import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
 import model.item.sackbound.equip.WeaponItem;
+import model.map.River;
 import model.map.coordinate.HexCoordinate;
+import model.map.direction.NorthEastDirection;
+import model.map.direction.SouthDirection;
 import model.map.location.*;
 import utility.ScalingUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by Troy on 4/17/2015.
  */
 public class FirstLevelMapBuilder extends MapBuilder {
+    private Tile[][] tiles;
+    private Collection<River> rivers = new ArrayList<River>();
+
     @Override
     public Tile[][] generateMap() {
         return generateMap(ScalingUtil.MAP_DEFAULT_HEIGHT, ScalingUtil.MAP_DEFAULT_WIDTH);
     }
 
+    @Override
+    public Collection<River> getRivers() {
+        return rivers;
+    }
+
     public Tile[][] generateMap(int height, int width) {
         //TODO: MAKE THIS DO SOMETHING USEFUL
-        Tile[][] tiles = new Tile[height][width];
+        tiles = new Tile[height][width];
         for ( int i = 0; i < tiles.length; ++i ) {
             for ( int j = 0; j < tiles[0].length; ++j ) {
                 if (i < 3 || j < 3 )
@@ -44,6 +56,25 @@ public class FirstLevelMapBuilder extends MapBuilder {
                     tiles[i][j] = new GrassTile();
             }
         }
+
+        WaterTile source = new WaterTile();
+        HexCoordinate sourceCoord = new HexCoordinate( 6, 3);
+        source.setDirection( new SouthDirection( sourceCoord ) );
+        source.setFlowRate( 50 );
+        River river = new River( source );
+
+        HexCoordinate c;
+        WaterTile t;
+        for ( int i = 7; i < 15; ++i ) {
+            c = new HexCoordinate( i, 3 );
+            t = new WaterTile();
+            t.setDirection( new SouthDirection( c ) );
+            t.setFlowRate( 50 );
+            tiles[i][3] = t;
+            river.addTileToRiver( t );
+        }
+
+        rivers.add( river );
 
         tiles[1][3] = new MountainTile();
         tiles[2][2] = new WaterTile();

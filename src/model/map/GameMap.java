@@ -10,13 +10,11 @@ import model.map.builder.MapBuilder;
 import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
-import model.map.location.GrassTile;
-import model.map.location.Location;
-import model.map.location.MountainTile;
-import model.map.location.Tile;
+import model.map.location.*;
 import utility.BidirectionalMap;
 import utility.CoordUtil;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -26,6 +24,7 @@ public class GameMap extends DiscreteMap {
 
     private Tile[][] tiles;
     private BidirectionalMap<HexCoordinate, Tile> tileMap = new BidirectionalMap<HexCoordinate, Tile>();
+    private Collection<River> rivers;
 
     public GameMap() {
         super();
@@ -36,6 +35,7 @@ public class GameMap extends DiscreteMap {
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
+        rivers = mapBuilder.getRivers();
 
         for ( int i = 0; i < tiles.length; ++i ) {
             for (int j=0; j < tiles[0].length; ++j ) {
@@ -103,7 +103,7 @@ public class GameMap extends DiscreteMap {
     public void teleport(MapObject m, DiscreteMap d) {
         //OVERRIDE THIS METHOD IN ANY GAMEMAP SUBCLASSES TO CORRECTLY PLACE YOUR AVATAR ON A TELEPORT.
         remove( m );
-        d.insert( m , d.getPreferredTeleportLocation() );
+        d.insert(m, d.getPreferredTeleportLocation());
     }
 
     @Override
@@ -187,7 +187,7 @@ public class GameMap extends DiscreteMap {
         if (h1.getX() == -1 || h1.getY() == -1 || h2.getX() == -1 || h2.getY() == -1)
             return -1;
 
-        return Math.sqrt( Math.pow( h1.getX() - h2.getX(), 2) + Math.pow( h1.getY() - h2.getY(), 2) );
+        return Math.sqrt(Math.pow(h1.getX() - h2.getX(), 2) + Math.pow(h1.getY() - h2.getY(), 2));
     }
 
     public void performEffect(Effect effect, InfluenceSet influence) {
@@ -220,6 +220,17 @@ public class GameMap extends DiscreteMap {
         }
         return false;
 
+    }
+
+    public void onMapTick() {
+        for (River r : rivers ) {
+            for (WaterTile t : r.getWaterTiles() ) {
+                Collection<MapObject> obj = t.getMapObjects();
+                for ( MapObject o : obj ) {
+                    move( o, t.getDirection() );
+                }
+            }
+        }
     }
 
 

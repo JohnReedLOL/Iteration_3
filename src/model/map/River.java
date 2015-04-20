@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class River {
 
-    private GameMap map;
+    //private GameMap map;
     private List<WaterTile> waterTileList;
     private WaterTile head;
     private Collection<River> branches;
@@ -25,6 +25,7 @@ public class River {
     public River( WaterTile source ) {
         waterTileList = new ArrayList<WaterTile>();
         waterTileList.add( source );
+        head = source;
     }
 
     public WaterTile getHead() {
@@ -36,9 +37,12 @@ public class River {
     }
 
     public boolean addTileToRiver( WaterTile tile ) {
-        //TODO
+        if ( waterTileList.contains( tile ) )
+            return false;
 
-        return false;
+        waterTileList.add( tile );
+
+        return true;
     }
 
     public void reverseDirection() {
@@ -73,5 +77,9 @@ public class River {
 
     public void setParent( River parent ) {
         this.parent = parent;
+    }
+
+    public List<WaterTile> getWaterTiles() {
+        return waterTileList;
     }
 }

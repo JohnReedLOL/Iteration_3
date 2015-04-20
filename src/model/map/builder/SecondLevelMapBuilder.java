@@ -1,10 +1,14 @@
 package model.map.builder;
 
 import model.entity.npc.NPC;
+import model.map.River;
 import model.map.location.GrassTile;
 import model.map.location.MountainTile;
 import model.map.location.Tile;
 import model.map.location.WaterTile;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by Troy on 4/19/2015.
@@ -48,5 +52,10 @@ public class SecondLevelMapBuilder extends MapBuilder {
 
 
         return map;
+    }
+
+    @Override
+    public Collection<River> getRivers() {
+        return new ArrayList<River>();
     }
 }

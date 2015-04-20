@@ -35,6 +35,7 @@ public abstract class DiscreteMap {
     public abstract Location getLocationByMapObject( MapObject m );
     public abstract Location getPreferredTeleportLocation();
     public abstract double getDistance( MapObject m1, MapObject m2 );
+    public abstract void onMapTick();
 
     public String getName() {
         return name;
