@@ -51,6 +51,8 @@ public class HomeScreen extends Screen {
         controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_P), new PauseCommand()));
         controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_R), new ResumeCommand()));
         controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_O), new LaunchScreenCommand(new OptionsScreen())));
+        controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_L), new LaunchScreenCommand(new LoadSaveScreen(LoadSaveScreen.LOAD))));
+        controlMaps.add(new ControlMap(new KeyboardControl(KeyEvent.VK_S), new LaunchScreenCommand(new LoadSaveScreen(LoadSaveScreen.SAVE))));
         return controlMaps;
     }
     

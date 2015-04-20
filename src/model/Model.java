@@ -3,6 +3,7 @@ package model;
 // @author comcc_000
 import application.Application;
 import application.Application.UpdateTimings;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -165,12 +166,14 @@ public class Model {
         application.listenForRebind(controlMap);
     }
     
-    public void save() {
+    public void save(File file) {
         //TODO
+        String filename = file.getAbsolutePath();
     }
     
-    public void load() {
+    public void load(File file) {
         //TODO
+        String filename = file.getAbsolutePath();
     }
     
     public void setSneakOccupation(Entity entity) {
