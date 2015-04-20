@@ -54,7 +54,9 @@ public class HomeViewport extends Viewport {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jLabel2 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -65,6 +67,13 @@ public class HomeViewport extends Viewport {
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setFont(new java.awt.Font("Magneto", 1, 55)); // NOI18N
+        jLabel2.setText("Dave Small University");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(jLabel2, gridBagConstraints);
 
         jLayeredPane1.setLayout(new javax.swing.OverlayLayout(jLayeredPane1));
 
@@ -90,18 +99,22 @@ public class HomeViewport extends Viewport {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/gif/main_menu_bg_2.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/gif/main_menu_bg_2L.gif"))); // NOI18N
         jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jLayeredPane1.add(jPanel2);
 
-        add(jLayeredPane1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(jLayeredPane1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
