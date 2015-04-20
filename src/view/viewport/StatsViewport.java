@@ -36,8 +36,8 @@ import mvc_bridgeway.control_map.ControlMap;
  * @author comcc_000
  */
 public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsVisitor, SummonerStatsVisitor, SmasherStatsVisitor {
-    
-    //final Avatar mocAvatar_ = null;
+
+    final Avatar mocAvatar_ = new Avatar(null);
 
     /**
      * Creates new form MainScreen
@@ -48,6 +48,11 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
         //
         initComponents();
         stats_jTextPane_.setEditable(false);
+        renderAllStats(mocAvatar_);
+    }
+
+    public void renderAllStats(Avatar a) {
+        stats_jTextPane_.setText("");
         stats_jTextPane_.setText("Stats:\n");
         StyledDocument doc = stats_jTextPane_.getStyledDocument();
 
@@ -60,13 +65,38 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
         //  Add some text
         try {
             //doc.insertString(0, "Start of text\n", null);
-            doc.insertString(doc.getLength(), "Start of stats:\n", null);
-            /*
-            doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getSkillPoints()) , null);
-            doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getStatPoints()) , null);
-            doc.insertString(doc.getLength(), Integer.toString(mocAvatar_.getStatsOwnership().getStats().getAffinity()) , null);
-            */
+            doc.insertString(doc.getLength(), "Start of stats (new moc avatar created):\n", null);
+
+            doc.insertString(doc.getLength(), "Skill points:" + mocAvatar_.getStatsOwnership().getSkillPoints(), null);
+            doc.insertString(doc.getLength(), "Stats points:" + mocAvatar_.getStatsOwnership().getStatPoints(), null);
+            renderStats(mocAvatar_.getStatsOwnership().getStats(), doc, keyWord);
             doc.insertString(doc.getLength(), "\nEnd of stats", keyWord);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void renderStats(Stats s, StyledDocument doc, SimpleAttributeSet keyWord) {
+        try {
+            doc.insertString(doc.getLength(), "Affinity: " + s.getAffinity(), null);
+            doc.insertString(doc.getLength(), "Agility: " + s.getAgility(), null);
+            doc.insertString(doc.getLength(), "Armor: " + s.getArmor(), null);
+            doc.insertString(doc.getLength(), "Armor Modifier: " + s.getArmorModifier(), null);
+            doc.insertString(doc.getLength(), "Bargain: " + s.getBargain(), null);
+            doc.insertString(doc.getLength(), "Bind Wounds: " + s.getBindWounds(), null);
+            doc.insertString(doc.getLength(), "CurrentLife: " + s.getCurrentLife(), null);
+            doc.insertString(doc.getLength(), "CurrentMana: " + s.getCurrentMana(), null);
+            doc.insertString(doc.getLength(), "Defense: " + s.getDefense(), null);
+            doc.insertString(doc.getLength(), "Experience: " + s.getExperience(), null);
+            doc.insertString(doc.getLength(), "Intellect: " + s.getIntellect(), null);
+            doc.insertString(doc.getLength(), "Level: " + s.getLevel(), null);
+            doc.insertString(doc.getLength(), "Max Life: " + s.getMaxLife(), null);
+            doc.insertString(doc.getLength(), "Max Mana: " + s.getMaxMana(), null);
+            doc.insertString(doc.getLength(), "Movement: " + s.getMovement(), null);
+            doc.insertString(doc.getLength(), "Observatin: " + s.getObservation(), null);
+            doc.insertString(doc.getLength(), "Offense: " + s.getOffense(), null);
+            doc.insertString(doc.getLength(), "Strength: " + s.getStrength(), null);
+            doc.insertString(doc.getLength(), "Weapon Modifier: " + s.getWeaponModifier(), null);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -79,7 +109,7 @@ public class StatsViewport extends Viewport implements StatsVisitor, SneakStatsV
 
     @Override
     public void update(ModelViewBundle mvb) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

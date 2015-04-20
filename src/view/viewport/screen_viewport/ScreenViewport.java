@@ -6,9 +6,12 @@
 package view.viewport.screen_viewport;
 
 import java.util.ArrayList;
+
 import model.ModelViewBundle;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.Viewport;
+
+import com.sun.prism.image.ViewPort;
 
 /**
  *
@@ -32,6 +35,7 @@ public abstract class ScreenViewport extends Viewport {
 
     /*Methods*/
     
+    
     @Override
     protected final void addViewport(Viewport viewport) {
         interiorViewports.add(viewport);
@@ -46,6 +50,12 @@ public abstract class ScreenViewport extends Viewport {
             viewport = interiorViewports.get(i);
             viewport.update(mvb);
         }
+    }
+   
+    /*GetSets*/
+    
+    protected final ArrayList<Viewport> getInteriorViewports(){
+    	return interiorViewports;
     }
     
     @Override

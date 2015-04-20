@@ -2,6 +2,8 @@ package model;
 
 // @author comcc_000
 
+import java.util.List;
+
 import model.entity.ConversationNodeWithChildren;
 import model.entity.ability.Ability;
 import model.entity.avatar.Avatar;
@@ -10,9 +12,6 @@ import model.item.sackbound.equip.EquipItem;
 import model.map.GameMap;
 import model.map.GameWorld;
 import model.map.location.Location;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ModelViewBundle {
 
@@ -55,8 +54,7 @@ public class ModelViewBundle {
 
     public static GameMap getMap() {
         // LOL - casting.
-//        return (GameMap) GameWorld.getCurrentMap();
-        return null;
+     return (GameMap) GameWorld.getCurrentMap();
     }
 
     public static Location getAvatarLocation() {
@@ -79,6 +77,14 @@ public class ModelViewBundle {
     public static List<SackboundItem> getMerchantInventory() {
         // TODO
         return null;
+    }
+    
+    public static List<MapObject> getVisibleMapObjects(){
+    	return getAvatar().getVisibleMapObjects();
+    }
+    
+    public static int[][] getBrightnessTable(){
+    	return getAvatar().getBrightnessTable();
     }
 
     public static int getBooty() {

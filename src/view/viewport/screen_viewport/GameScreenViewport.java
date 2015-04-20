@@ -16,7 +16,24 @@ public class GameScreenViewport extends ScreenViewport {
      */
     public GameScreenViewport() {
         initComponents();
+        generateView();
         revalidate();
+    }
+    
+    @Override
+    protected void generateView() {
+    	getInteriorViewports().add(gameViewport2);
+    	getInteriorViewports().add(textConsoleViewport1);
+    	getInteriorViewports().add(miniMapViewport2);
+    	getInteriorViewports().add(statsViewport2);
+    	getInteriorViewports().add(skillsViewport1);
+    	getInteriorViewports().add(inventoryViewport1);
+    	getInteriorViewports().add(armoryViewport1);
+    }
+
+    @Override
+    protected void generateView() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -107,8 +124,4 @@ public class GameScreenViewport extends ScreenViewport {
     private view.viewport.TextConsoleViewport textConsoleViewport1;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    protected void generateView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

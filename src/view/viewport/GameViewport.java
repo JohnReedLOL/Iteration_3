@@ -6,18 +6,16 @@
 package view.viewport;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.util.ArrayList;
 
 import model.ModelViewBundle;
+import model.map.DiscreteMap;
 import model.map.GameMap;
 import model.map.GameWorld;
 import model.map.location.Tile;
 import mvc_bridgeway.control_map.ControlMap;
 import view.utility.GameTileRenderer;
 import view.utility.TileRenderer;
-import application.Application;
 
 /**
  *
@@ -36,10 +34,11 @@ public class GameViewport extends Viewport {
 	public GameViewport() {
 		initComponents();
         
-        //TODO fake map
+       /* //TODO fake map
         gameMap = (GameMap) GameWorld.getCurrentMap();
         Application.check(gameMap.getAvatar() != null, "Avatar is null cannot get brightness table");
         brightness = gameMap.getAvatar().getBrightnessTable();
+        */
 	}
 
 	@Override
@@ -50,8 +49,10 @@ public class GameViewport extends Viewport {
 	public void paint(Graphics g) {
 		super.paint(g);
 		// Tile visitor
-        tileRendererVisitor = new GameTileRenderer(g);
-		displayMap(tileRendererVisitor, gameMap.getTiles());
+		if(gameMap != null){
+			tileRendererVisitor = new GameTileRenderer(g);
+			displayMap(tileRendererVisitor, gameMap.getTiles());
+		}
 	}
 
 	/**
@@ -76,6 +77,8 @@ public class GameViewport extends Viewport {
 	
 	@Override
 	public void update(ModelViewBundle mvb) {
+		brightness = GameWorld.getCurrentMap().getAvatar().getBrightnessTable();
+		gameMap = (GameMap) (GameWorld.getCurrentMap());
 		repaint();
 	}
 
