@@ -10,6 +10,7 @@ import model.item.interactive.InteractiveItem;
 import model.item.obstacle.ObstacleItem;
 import model.item.oneshot.OneShotItem;
 import model.item.sackbound.LimitedConsumptionItem;
+import model.item.sackbound.SackboundItem;
 import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
@@ -57,6 +58,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[1][7].createMapObjectAssociation(new UnlimitedConsumptionItem());
         tiles[1][8].createMapObjectAssociation(new EquipItem(EquipSlot.HEAD));
         tiles[1][9].createMapObjectAssociation(new WeaponItem("Weapon", "Wespon Desc", EquipSlot.MAINHAND, new ArrayList<InfluenceSet>()));
+        tiles[0][0].createMapObjectAssociation( new SackboundItem( "Stick", "A wooden stick." ) );
         
         return tiles;
     }

@@ -55,6 +55,7 @@ public abstract class Entity extends MapObject {
 		direction = new NorthEastDirection((HexCoordinate) (GameWorld.getCurrentMap().getCoordinateByLocation(GameWorld.getCurrentMap().getLocationByMapObject(this))));
 
 		this.booty = 0;
+		//sight.update();
 	}
 
 	/* -------------------- GETTERS -------------------- */

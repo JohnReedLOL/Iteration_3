@@ -3,6 +3,8 @@ package model.item.sackbound;
 import model.effect.Effect;
 import model.entity.Entity;
 import model.item.Item;
+import model.map.GameMap;
+import model.map.GameWorld;
 import model.prerequisite.Prerequisite;
 import view.utility.ObjectRenderer;
 
@@ -82,8 +84,12 @@ public class SackboundItem extends Item {
         if (!meetsPickUpRequirements(activator)) {
             return false;
         }
-
-        return activator.getInventoryOwnership().addItem(this);
+        boolean value =  activator.getInventoryOwnership().addItem(this);
+        if ( value ) {
+            GameWorld.getCurrentMap().remove( this );
+            System.out.println(" YA DONE PICKED UP AN TIEM!!");
+        }
+        return value;
     }
 
     @Override

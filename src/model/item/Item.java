@@ -69,4 +69,13 @@ public abstract class Item extends MapObject {
 
     public abstract boolean activateOnMap(Entity activator);
     public abstract void apply(Entity owner);
+
+    @Override
+    public boolean interact( MapObject interactor ) {
+
+
+        return activateOnMap( (Entity) interactor );
+    }
+
+
 }

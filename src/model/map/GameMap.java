@@ -60,7 +60,7 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void remove( MapObject m ) {
-        Tile tile = tileMap.getValue( getMapObjectCoordinate( m ) );
+        Tile tile = tileMap.getValue(getMapObjectCoordinate(m));
         tile.removeMapObjectAssociation(m);
     }
 
@@ -71,6 +71,11 @@ public class GameMap extends DiscreteMap {
 
         previous.removeMapObjectAssociation( m );
         newPos.removeMapObjectAssociation(m);
+
+        for ( MapObject mapObject : newPos.getMapObjects() ) {
+            mapObject.interact( m );
+        }
+
         newPos.createMapObjectAssociation(m);
 
         GameWorld.updateVisibleMap();
@@ -95,7 +100,7 @@ public class GameMap extends DiscreteMap {
         Tile tile = (Tile) l;
         HexCoordinate coord = tileMap.getKey(tile);
 
-        HexCoordinate newLoc = d.deriveCoordinate( coord );
+        HexCoordinate newLoc = d.deriveCoordinate(coord);
         return tileMap.getValue( newLoc );
     }
 
