@@ -396,7 +396,7 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 
 	@Override
 	public void visit(SackboundItem i) {
-		Application.print("Not yet supported yet");
+		//Application.print("Not yet supported yet");
 	}
 
 	/**

@@ -35,7 +35,7 @@ public class Model {
     private static final ExecutorService model_clock_ = Executors.newSingleThreadExecutor();
     private static ConcurrentLinkedQueue<ModelCommand> to_execute_ = null;
     private static final ExecutorService viewClock_ = Executors.newSingleThreadExecutor();
-    private final static int refreshTime_ = 20;
+    private final static int refreshTime_ = 60;
     public static final String view_clock_name = "View_Clock";
 
     static {
