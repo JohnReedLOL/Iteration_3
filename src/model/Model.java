@@ -36,7 +36,7 @@ public class Model {
     private static final String model_clock_thread_name_ = "Model Clock";
     private static final ExecutorService model_thread_ = Executors.newSingleThreadExecutor();
     private static final ExecutorService model_clock_ = Executors.newSingleThreadExecutor();
-    private static ConcurrentLinkedQueue<ModelCommand> to_execute_ = null;
+    private static ConcurrentLinkedQueue<ModelCommand> to_execute_ = new ConcurrentLinkedQueue<ModelCommand>();
     private static final ExecutorService viewClock_ = Executors.newSingleThreadExecutor();
     private final static int refreshTime_ = 60;
     public static final String view_clock_name = "View_Clock";
@@ -161,9 +161,7 @@ public class Model {
     // Controller Interface
     public synchronized void queueCommandForExecution(ModelCommand command) {
         // TODO: better to implement as a queue?
-        if (to_execute_ == null) {
-            to_execute_ = new ConcurrentLinkedQueue<ModelCommand>();
-        }
+        
         to_execute_.add(command); // store command to be executed when the model
     }
 
