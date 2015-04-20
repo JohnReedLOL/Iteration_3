@@ -35,6 +35,11 @@ public class OccupationFactory {
         // TODO: Add default location in the GameMap.
         Avatar smasher = new Avatar(new HexCoordinate(1, 1));
         smasher.setStatsOwnership(new SmasherStatsOwnership(smasher));
+        smasher.addAbility(AbilityFactory.generateBindWoundsAbility());
+        smasher.addAbility(AbilityFactory.generateObservationAbility());
+        smasher.addAbility(AbilityFactory.generateBasicAttackAbility());
+        smasher.addAbility(AbilityFactory.generateSmasherRageBrawlAbility());
+        smasher.addAbility(AbilityFactory.generateSmasherHulkSmashBrawlAbility());
 
         return smasher;
     }
@@ -42,6 +47,12 @@ public class OccupationFactory {
     public static Avatar generateAvatarSneakOccupation() {
         Avatar sneak = new Avatar(new HexCoordinate(1, 1));
         sneak.setStatsOwnership(new SneakStatsOwnership(sneak));
+        sneak.addAbility(AbilityFactory.generateObservationAbility());
+        sneak.addAbility(AbilityFactory.generateBindWoundsAbility());
+        sneak.addAbility(AbilityFactory.generateBasicAttackAbility());
+        sneak.addAbility(AbilityFactory.generateSneakCreep());
+        sneak.addAbility(AbilityFactory.generateSneakPickpocket());
+        sneak.addAbility(AbilityFactory.generateSneakStopCreep());
 
         return sneak;
     }
@@ -49,6 +60,9 @@ public class OccupationFactory {
     public static Avatar generateAvatarSummonerOccupation() {
         Avatar summoner = new Avatar(new HexCoordinate(1, 1));
         summoner.setStatsOwnership(new SummonerStatsOwnership(summoner));
+        summoner.addAbility(AbilityFactory.generateObservationAbility());
+        summoner.addAbility(AbilityFactory.generateBindWoundsAbility());
+        // TODO: Add all the Summoner abilities.
 
         return summoner;
     }

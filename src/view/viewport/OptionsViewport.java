@@ -41,9 +41,8 @@ public class OptionsViewport extends Viewport {
     
     @Override
     protected void generateView() {
-//        ControlMap controlMap = new ControlMap(new KeyboardControl(KeyEvent.VK_X), new ExitCommand());
-//        displayPhysicalControlMap(controlMap);
-//        this.validate();
+        add(new JButton("Stuff"));
+        validate();
     }
     
     @Override

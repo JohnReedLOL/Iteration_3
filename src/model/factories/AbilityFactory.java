@@ -2,40 +2,68 @@ package model.factories;
 
 import java.util.ArrayList;
 
-import model.effect.CreepEffect;
-import model.effect.Effect;
-import model.effect.PerformWeaponAttackEffect;
-import model.effect.UncreepEffect;
-import model.effect.statseffect.ModifyBooty;
-import model.effect.statseffect.ModifyCurrentLife;
-import model.effect.statseffect.ModifyCurrentMana;
+import model.effect.*;
+import model.effect.statseffect.*;
 import model.entity.ability.Ability;
+import model.influence_set.DirectionalInfluenceSet;
 import model.influence_set.InfluenceSet;
+import model.influence_set.LinearInfluenceSet;
 import model.influence_set.RadialInfluenceSet;
+import model.map.direction.NorthDirection;
 import model.map.location.GrassTile;
-import model.prerequisite.Prerequisite;
-import model.prerequisite.RequireBrawl;
-import model.prerequisite.RequireCreep;
-import model.prerequisite.RequireCurrentMP;
-import model.prerequisite.RequireLevel;
-import model.prerequisite.RequirePickpocket;
+import model.prerequisite.*;
 
 public class AbilityFactory {
 	/* ---------- THE ONE ABILITY TO RULE THEM ALL ---------- */
 	 public static Ability generateBasicAttackAbility() {
-	        ArrayList<Effect> effects = new ArrayList<Effect>();
+        ArrayList<Effect> effects = new ArrayList<Effect>();
 
-	        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
+        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
 
-	        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
+        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
 
-	        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
+        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
 
-	        ArrayList<Effect> costs = new ArrayList<Effect>();
-	        costs.add(new PerformWeaponAttackEffect());
+        ArrayList<Effect> costs = new ArrayList<Effect>();
+        costs.add(new PerformWeaponAttackEffect());
 
-	        return new Ability(effects, learnReqs, useReqs, areas, costs, "Basic Attack");
-	    }
+        return new Ability(effects, learnReqs, useReqs, areas, costs, "Basic Attack");
+    }
+    /* ---------- GENERAL ABILITIES THAT ALL ENTITIES SHARE ---------- */
+    public static Ability generateObservationAbility() {
+        ArrayList<Effect> effects = new ArrayList<Effect>();
+        effects.add(new SetObservation(5));
+
+        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
+
+        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
+        useReqs.add(new RequireObservation(0));
+
+        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
+        areas.add(new LinearInfluenceSet(new NorthDirection(), 1, new GrassTile()));
+
+        ArrayList<Effect> costs = new ArrayList<Effect>();
+        costs.add(new ObservationEffect(2));
+
+        return new Ability(effects, learnReqs, useReqs, areas, costs, "Observation");
+    }
+    public static Ability generateBindWoundsAbility() {
+        ArrayList<Effect> effects = new ArrayList<Effect>();
+        effects.add(new HealDamage(8));
+
+        ArrayList<Prerequisite> learnReqs = new ArrayList<Prerequisite>();
+        learnReqs.add(new RequireLevel(1));
+
+        ArrayList<Prerequisite> useReqs = new ArrayList<Prerequisite>();
+        useReqs.add(new RequireBindWounds(1));
+
+        ArrayList<InfluenceSet> areas = new ArrayList<InfluenceSet>();
+        areas.add(new LinearInfluenceSet(new NorthDirection(), 0, new GrassTile()));
+
+        ArrayList<Effect> costs = new ArrayList<Effect>();
+
+        return new Ability(effects, learnReqs, useReqs, areas, costs, "Bind Wounds");
+    }
 	 /* ---------- SMASHER ABILITIES ---------- */
     public static Ability generateSmasherHulkSmashBrawlAbility() {
         ArrayList<Effect> effects = new ArrayList<Effect>();

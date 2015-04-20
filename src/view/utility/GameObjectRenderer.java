@@ -245,6 +245,32 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 		}
 	}
 
+	private void drawMount(String facing) {
+		switch (facing) {
+			case "N":
+				drawImage(vespaN);
+				break;
+			case "NE":
+				drawImage(vespaNE);
+				break;
+			case "NW":
+				drawImage(vespaNW);
+				break;
+			case "S":
+				drawImage(vespaS);
+				break;
+			case "SE":
+				drawImage(vespaSE);
+				break;
+			case "SW":
+				drawImage(vespaSW);
+				break;
+			default:
+				drawImage(vespaS);
+				break;
+		}
+	}
+
 	private void drawImage(BufferedImage img) {
 		scaleXandY(x, y);
 		g.drawImage(img, drawx, drawy, 100, 100, null);
@@ -261,8 +287,9 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 	}
 
 	public void visit( Mount mount ) {
-		scaleXandY( x, y );
-		drawImage( vespaNE );
+		scaleXandY(x, y);
+		String facing = mount.getDirection().toString();
+		drawMount( facing );
 	}
 
 	public void visit(NPC npc) {

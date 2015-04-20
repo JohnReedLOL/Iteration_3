@@ -71,6 +71,16 @@ public abstract class ScreenViewport extends Viewport {
         }
         return ims;
     }
+    
+    @Override
+    public final boolean isRefreshControllerNeeded() {
+        for (Viewport viewport : interiorViewports) {
+            if (viewport.isRefreshControllerNeeded()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private final void aggregateControlMaps(ArrayList<ControlMap> ims1, ArrayList<ControlMap> ims2) {
         int numims2 = ims2.size();
@@ -78,6 +88,8 @@ public abstract class ScreenViewport extends Viewport {
             ims1.add(ims2.get(i));
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

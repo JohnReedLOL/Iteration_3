@@ -9,6 +9,7 @@ import model.entity.npc.NPC;
 import model.entity.stats.StatsOwnership;
 import model.inventory.Sack;
 import model.map.coordinate.HexCoordinate;
+import model.map.direction.Direction;
 import view.utility.ObjectRenderer;
 
 /**
@@ -50,7 +51,7 @@ public class Mount extends NPC {
     public boolean interact(MapObject obj) {
         ClassicEntity entity = (ClassicEntity) obj;
 
-        if (entity.getIsMounted()) {
+        if (entity.getIsMounted() && entity.getMountOwnership().getMount() != this) {
             return false;
         }
 
@@ -60,7 +61,12 @@ public class Mount extends NPC {
 
     @Override
     public void accept(ObjectRenderer mapObjectRenderer) {
-        mapObjectRenderer.visit( this );
+        mapObjectRenderer.visit(this);
     }
 
+    @Override
+    public void move( Direction direction ) {
+        super.move( direction );
+        System.out.println("WEEEEEE VESPA");
+    }
 }
