@@ -24,18 +24,18 @@ public abstract class Screen {
     private PhysicalController physicalController;
     private VirtualController virtualController;
     //
-    private static final ExecutorService view_thread_ = Executors.newSingleThreadExecutor();
-    private static final String view_thread_name_ = "View";
+//    private static final ExecutorService view_thread_ = Executors.newSingleThreadExecutor();
+//    private static final String view_thread_name_ = "View";
 
     static {
         Runnable name_setter = new Runnable() {
             @Override
             public void run() {
-                Thread.currentThread().setName(view_thread_name_);
+                //Thread.currentThread().setName(view_thread_name_);
                 Application.print("name set!");
             }
         };
-        view_thread_.execute(name_setter);
+        //view_thread_.execute(name_setter);
     }
 
     /*Constructors*/
@@ -52,9 +52,9 @@ public abstract class Screen {
 
     protected abstract void setUserControls(UserSettings userSettings, ArrayList<ControlMap> defaultControls);
 
-    public static String getViewThreadName() {
-        return view_thread_name_;
-    }
+//    public static String getViewThreadName() {
+//        return view_thread_name_;
+//    }
 
     public final void onFocusLost() {
         if (model != null) {
