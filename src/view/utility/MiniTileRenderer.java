@@ -59,20 +59,19 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 		scaleXandY(x, y);
 		g.setColor(c);
 		g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
+		g.setColor(Color.BLACK);
+		g.drawRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawMapObjects(mapObjects);
 		if (brightness > 0 && brightness < 100) {
 			Color b = new Color(0,0,0,100);
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		} else if (brightness >=100) {
-			Color b = new Color(0,0,0,255);
+			Color b = new Color(0,0,0,200);
 			g.setColor(b);
 			g.fillRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 			
 		}
-		
-		g.setColor(Color.BLACK);
-		g.drawRect(drawx, drawy, SIZE_OF_MAP_PIXEL, SIZE_OF_MAP_PIXEL);
 		drawDebug();
 	}
 
@@ -95,6 +94,17 @@ public class MiniTileRenderer extends MiniRenderer implements TileRenderer {
 	@Override
 	public void setBrightness(int i) {
 		brightness = i;
+	}
+	
+
+	public void setAvatarX(int x) {
+		avatarx = x;
+		mapObjectRenderer.setAvatarX(x);
+	}
+
+	public void setAvatarY(int y) {
+		avatary = y;
+		mapObjectRenderer.setAvatarY(y);
 	}
 
 }

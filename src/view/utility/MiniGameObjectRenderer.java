@@ -139,7 +139,7 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
 
     @Override
     public void visit(SackboundItem i) {
-        Application.print("Not yet supported yet");
+        //Application.print("Not yet supported yet");
     }
 	@Override
 	public void visit(SmasherStatsOwnership smasherStatsOwnership) {
