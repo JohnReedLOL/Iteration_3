@@ -15,7 +15,7 @@ import model.map.direction.SouthDirection;
 import model.map.direction.SouthEastDirection;
 import model.map.direction.SouthWestDirection;
 
-public class DefaultPetBehavior {
+public class DefaultPetBehavior extends DecisionBehavior {
 
 	public void makeBestDecision(Entity entity){
 		Pet target = (Pet) entity;

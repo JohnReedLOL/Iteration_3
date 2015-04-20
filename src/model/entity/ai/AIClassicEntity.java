@@ -1,11 +1,11 @@
 package model.entity.ai;
 
-import model.entity.Entity;
+import model.entity.ClassicEntity;
 import model.map.coordinate.HexCoordinate;
 import model.map.location.Location;
 import view.utility.ObjectRenderer;
 
-public class AIClassicEntity extends Entity {
+public class AIClassicEntity extends ClassicEntity {
     /**
      * PROPERTIES
      */

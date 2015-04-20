@@ -92,14 +92,14 @@ public class Stats {
 	/* -------------------- CONSTRUCTORS -------------------- */
 	
 	public Stats(){
-		currentLife = 0;
-		currentMana = 0;
-		strength = 0;
-		agility = 0;
-		intellect = 0;
-		hardiness = 0;
+		currentLife = 1;
+		currentMana = 1;
+		strength = 3;
+		agility = 3;
+		intellect = 3;
+		hardiness = 3;
 		experience = 0;
-		movement = 0;
+		movement = 50;
 		bindWounds = 0;
 		observation = 0;
 		bargain = 0;

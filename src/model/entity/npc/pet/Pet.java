@@ -1,9 +1,13 @@
 package model.entity.npc.pet;
 
+import java.util.Random;
+
 import model.MapObject;
 import model.entity.ClassicEntity;
-import model.entity.Entity;
+import model.entity.behavior.ai.DecisionBehavior;
+import model.entity.behavior.ai.DefaultPetBehavior;
 import model.entity.npc.NPC;
+import model.item.sackbound.SackboundItem;
 import model.map.coordinate.HexCoordinate;
 
 /**
@@ -11,9 +15,11 @@ import model.map.coordinate.HexCoordinate;
  */
 public class Pet extends NPC {
     private PetOwnership petOwnership;
-
+    private DecisionBehavior ai;
+    
     public Pet(HexCoordinate coord) {
         super(coord);
+        ai = new DefaultPetBehavior();
     }
 
 //    public Pet(String name, String description) {
@@ -49,5 +55,15 @@ public class Pet extends NPC {
 
         owner.setPetOwnership(new PetOwnership(owner, this));
         return false;
+    }
+    
+    public void makeBestDecision(){
+    	ai.makeBestDecision(this);
+    }
+    
+    public void insert(SackboundItem item){
+    	Random generator = new Random();
+    	if(generator.nextDouble() <= .5) super.insert(item);
+    	else petOwnership.getOwner().insert(item);
     }
 }
