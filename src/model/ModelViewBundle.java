@@ -92,7 +92,7 @@ public class ModelViewBundle {
      * Don't worry about order of rendering for now.
      * @return 
      */
-    public List<MapObject> getVisibleMapObjects(){
+    public synchronized List<MapObject> getVisibleMapObjects(){
     	return getAvatar().getVisibleMapObjects();
     }
     

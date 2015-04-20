@@ -9,6 +9,7 @@ import model.entity.npc.NPC;
 import model.entity.npc.mount.Mount;
 import model.factories.AreaEffectFactory;
 import model.factories.ItemFactory;
+import model.factories.OccupationFactory;
 import model.influence_set.InfluenceSet;
 import model.inventory.Sack;
 import model.item.interactive.InteractiveItem;
@@ -94,6 +95,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
         tiles[1][2].createMapObjectAssociation(new Merchant(new HexCoordinate(1, 1)));
         tiles[0][3].createMapObjectAssociation(ItemFactory.generate6SlicePizza());
+        tiles[0][4].createMapObjectAssociation(OccupationFactory.generateNpcSmasherOccupation());
         tiles[1][4].createMapObjectAssociation(ItemFactory.getTHEKey());
         tiles[1][5].createMapObjectAssociation(ItemFactory.generateElixirOneShotItem());
         tiles[1][6].createMapObjectAssociation(ItemFactory.generateElixirSackboundItem());

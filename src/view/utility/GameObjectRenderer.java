@@ -51,6 +51,7 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 	private static BufferedImage vespaSW;
 	private static BufferedImage vespaSE;
 
+    private static BufferedImage SACKBOUND_ITEM;
 	private static BufferedImage NPC_S;
 	private static BufferedImage INT_ITEM;
 	private static BufferedImage OBS_ITEM;
@@ -81,6 +82,9 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 
 	private void initializeImages() {
 
+		if (SACKBOUND_ITEM == null) {
+			SACKBOUND_ITEM = ImageUtil.getImage("resources/png/TextSackBoundItem.png");
+		}
 		if (NPC_S == null) {
 			NPC_S = ImageUtil.getImage(
 					"resources/png/dave_S.png");
@@ -418,7 +422,8 @@ public class GameObjectRenderer extends GameScreenRenderer implements
 
 	@Override
 	public void visit(SackboundItem i) {
-		// Application.print("Not yet supported yet");
+
+		drawImage(SACKBOUND_ITEM);
 	}
 
 	/**

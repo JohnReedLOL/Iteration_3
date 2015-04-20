@@ -256,7 +256,7 @@ public class Model {
         Location avatarLocation = gameMap.getLocationByMapObject(avatar);
         Location targetLocation = gameMap.getLocationFromDirection(avatarLocation, direction);
         ArrayList<MapObject> mapObjects = (ArrayList<MapObject>) targetLocation.getMapObjects();
-        if (mapObjects != null) {
+        if (mapObjects != null && !mapObjects.isEmpty()) {
             MapObject target = mapObjects.get(0);
             if (target != null) {
                 mvb.setCurrentDialogue(target.talk());

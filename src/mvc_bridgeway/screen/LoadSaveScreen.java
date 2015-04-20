@@ -4,8 +4,10 @@ package mvc_bridgeway.screen;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
 import model.UserSettings;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
+import mvc_bridgeway.control.Control;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.Viewport;
@@ -42,6 +44,7 @@ public class LoadSaveScreen extends Screen {
     @Override
     protected ArrayList<ControlMap> generateDefaultPhysicalControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
+        controlMaps.add(new ControlMap<Control>(new KeyboardControl(KeyEvent.VK_H), new LaunchScreenCommand(new HomeScreen())));
         return controlMaps;
     }
 
