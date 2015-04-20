@@ -54,6 +54,8 @@ public class GameWorld {
 
     public boolean setCurrentMap( DiscreteMap map ) {
         //WILL ADD IF NOT THERE, AND THEN SET CURRENT
+        clearVisibleMap();
+
         if ( map == null ) {
             return false;
         }
@@ -63,7 +65,7 @@ public class GameWorld {
         }
 
         currentMap = map;
-        updateVisibleMap();
+        //updateVisibleMap();
         return true;
     }
 
@@ -72,6 +74,7 @@ public class GameWorld {
             if ( m.getName().equalsIgnoreCase( mapName ) ) {
                 //DOES NOT VIOLATE TDA OR LOD: GETTING MAP (FRIEND) ATTRIBUTE
                 //DOESN'T MODIFY MAP
+                clearVisibleMap();
                 currentMap = m;
                 updateVisibleMap();
                 return true;
@@ -103,6 +106,12 @@ public class GameWorld {
     public static void updateVisibleMap() {
         for (VisibleMap v : visibleMaps ) {
             v.update();
+        }
+    }
+
+    public static void clearVisibleMap() {
+        for (VisibleMap v : visibleMaps ) {
+            v.clear();
         }
     }
 

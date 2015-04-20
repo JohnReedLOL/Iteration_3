@@ -74,5 +74,12 @@ public class VisibleMap {
 		this.mapObjects = mapObjects;
 		coordinates = coords;
 	}
+
+	public void clear() {
+		tiles.clear();
+		mapObjects.clear();
+		coordinates.clear();
+		owner.wipeMemory();
+	}
 	
 }

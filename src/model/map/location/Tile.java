@@ -36,6 +36,10 @@ public abstract class Tile extends Location {
 
         TileMapObjectAssociation association = new TileMapObjectAssociation( this, m );
         mapObjects.add( association );
+        for ( AreaEffect a: areaEffects ) {
+            a.performAllEffects( (Entity) m );
+        }
+
         return true;
     }
 

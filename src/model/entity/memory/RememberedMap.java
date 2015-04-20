@@ -51,4 +51,10 @@ public class RememberedMap {
 	public List<Coordinate2D> getCoordinates(){
 		return coordinates;
 	}
+
+	public void clear() {
+		tiles.clear();
+		mapObjects.clear();
+		coordinates.clear();
+	}
 }

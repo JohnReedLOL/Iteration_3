@@ -252,4 +252,8 @@ public abstract class Entity extends MapObject {
 		return mtable;
 	}
 
+	public void wipeMemory() {
+		memory.clear();
+	}
+
 }
