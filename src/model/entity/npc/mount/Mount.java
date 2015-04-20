@@ -9,6 +9,7 @@ import model.entity.npc.NPC;
 import model.entity.stats.StatsOwnership;
 import model.inventory.Sack;
 import model.map.coordinate.HexCoordinate;
+import view.utility.ObjectRenderer;
 
 /**
  * Created by Troy on 4/19/2015.
@@ -57,5 +58,9 @@ public class Mount extends NPC {
         return true;
     }
 
+    @Override
+    public void accept(ObjectRenderer mapObjectRenderer) {
+        mapObjectRenderer.visit( this );
+    }
 
 }
