@@ -55,6 +55,7 @@ public class InventoryViewport extends Viewport {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        
         if(items_.size() == 0) {
             Application.print("Inventory is empty");
             return;
@@ -86,6 +87,7 @@ public class InventoryViewport extends Viewport {
             buttonRenderer_.setButtonForMeToRenderTo(item_6_);
             items_.get(5).accept(buttonRenderer_);
         }
+        
         Application.check(items_.size() <= 7);
     }
 
