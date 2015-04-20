@@ -22,10 +22,7 @@ public class GameScreenViewport extends ScreenViewport {
      * Creates new form GameScreenViewport
      */
     public GameScreenViewport() {
-        controlsViewport_ = new GameControlsViewport();
-        Application.check(controlsViewport_ != null);
         initComponents();
-        jTabbedPane1.insertTab("Controls", null, controlsViewport_, "Controls be here", 1);
         generateView();
         revalidate();
     }
@@ -39,7 +36,6 @@ public class GameScreenViewport extends ScreenViewport {
     	getInteriorViewports().add(skillsViewport1);
     	getInteriorViewports().add(inventoryViewport1);
     	getInteriorViewports().add(armoryViewport1);
-        getInteriorViewports().add(controlsViewport_);
     }
 
     /**
@@ -117,7 +113,6 @@ public class GameScreenViewport extends ScreenViewport {
         add(side_pane_, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private GameControlsViewport controlsViewport_;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.viewport.ArmoryViewport armoryViewport1;
     private view.viewport.GameViewport gameViewport2;

@@ -208,14 +208,14 @@ public class Model {
         stat.level();
     }
     
-    /* -------------------- LEVEL UP COMMANDS -------------------- */
-    public void levelStrength(Entity a) {
-        a.getStatsOwnership().upStrength();
-    }
-
-    public void levelAgility(Entity a) {
-        a.getStatsOwnership().upAgility();
-    }
+//    /* -------------------- LEVEL UP COMMANDS -------------------- */
+//    public void levelStrength(Entity a) {
+//        a.getStatsOwnership().upStrength();
+//    }
+//
+//    public void levelAgility(Entity a) {
+//        a.getStatsOwnership().upAgility();
+//    }
 
     public boolean move(Entity entity, Direction direction) {
         entity.move( direction );
@@ -240,7 +240,7 @@ public class Model {
         return false;
     }
 
-    public void talk(Avatar avatar, Entity entity) {
+    public void talk() {
         //TOdO
     }
 

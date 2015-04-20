@@ -24,25 +24,25 @@ import view.utility.JButtonObjectRenderer;
 public class InventoryViewport extends Viewport {
 
     private final JButtonObjectRenderer buttonRenderer_ = new JButtonObjectRenderer();
-    private final ModelViewBundle mvb_ = ModelViewBundle.getInstance();
-    private final List<SackboundItem> items_ = mvb_.getInventory();
+    private List<SackboundItem> items;
 
     /**
      * Creates new form MainScreen
      */
     public InventoryViewport() {
         initComponents();
-        items_.add(new SackboundItem());
+        generateView();
     }
 
     @Override
     protected void generateView() {
-        //TODO
+//        items.add(new SackboundItem());
     }
 
     @Override
     public void update(ModelViewBundle mvb) {
-        //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        items = mvb.getInventory();
+        repaint();
     }
 
     @Override
@@ -56,39 +56,39 @@ public class InventoryViewport extends Viewport {
     public void paint(Graphics g) {
         super.paint(g);
         
-        if(items_.size() == 0) {
+        if(items.size() == 0) {
             Application.print("Inventory is empty");
             return;
         }
-        Application.print("Size of inventory is: " + items_.size());
-        if (item_1_ != null && items_.size() >= 1) {
+        Application.print("Size of inventory is: " + items.size());
+        if (item_1_ != null && items.size() >= 1) {
             Application.print("Size of inventory is >= 1");
             buttonRenderer_.setButtonForMeToRenderTo(item_1_);
-            items_.get(0).accept(buttonRenderer_);
+            items.get(0).accept(buttonRenderer_);
         }
-        if (item_2_ != null && items_.size() >= 2) {
+        if (item_2_ != null && items.size() >= 2) {
             Application.print("Size of inventory is >= 2");
             buttonRenderer_.setButtonForMeToRenderTo(item_2_);
-            items_.get(1).accept(buttonRenderer_);
+            items.get(1).accept(buttonRenderer_);
         }
-        if (item_3_ != null && items_.size() >= 3) {
+        if (item_3_ != null && items.size() >= 3) {
             buttonRenderer_.setButtonForMeToRenderTo(item_3_);
-            items_.get(2).accept(buttonRenderer_);
+            items.get(2).accept(buttonRenderer_);
         }
-        if (item_4_ != null && items_.size() >= 4) {
+        if (item_4_ != null && items.size() >= 4) {
             buttonRenderer_.setButtonForMeToRenderTo(item_4_);
-            items_.get(3).accept(buttonRenderer_);
+            items.get(3).accept(buttonRenderer_);
         }
-        if (item_5_ != null && items_.size() >= 5) {
+        if (item_5_ != null && items.size() >= 5) {
             buttonRenderer_.setButtonForMeToRenderTo(item_5_);
-            items_.get(4).accept(buttonRenderer_);
+            items.get(4).accept(buttonRenderer_);
         }
-        if (item_6_ != null && items_.size() == 6) {
+        if (item_6_ != null && items.size() == 6) {
             buttonRenderer_.setButtonForMeToRenderTo(item_6_);
-            items_.get(5).accept(buttonRenderer_);
+            items.get(5).accept(buttonRenderer_);
         }
         
-        Application.check(items_.size() <= 7);
+        Application.check(items.size() <= 7);
     }
 
     /**

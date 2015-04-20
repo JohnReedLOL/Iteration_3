@@ -35,7 +35,8 @@ public class StatsViewport extends Viewport {
     @Override
     public void update(ModelViewBundle mvb) {
         StatsOwnership stats = mvb.getAvatar().getStatsOwnership();
-        displayStats(stats);
+        int booty = mvb.getBooty();
+        displayStats(stats, booty);
     }
 
     @Override
@@ -49,33 +50,61 @@ public class StatsViewport extends Viewport {
 //        validate();
     }
     
-    private void displayStats(StatsOwnership statistics) {
+    private void displayStats(StatsOwnership statistics, int booty) {
         List<Stat> stats = statistics.getViewStats();
-        int numNonLevelableStats = 0;
+        int numNonLevelableStats = 12;
         if (stats != null && stats.size() + numNonLevelableStats != levelableStatRows.size() + unLevelableStatRows.size()) {
             clearStatRows();
+            clearCMs();
             for (Stat stat : stats) {
                 levelableStatRows.add(new LevelableStatRow(stat, this));
             }
             unLevelableStatRows.add( new UnLevelableStatRow("Life: " + statistics.getCurrentLife() + " / " + statistics.getMaxLife(), this));
             unLevelableStatRows.add( new UnLevelableStatRow("Mana: " + statistics.getCurrentMana() + " / " + statistics.getMaxMana(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("Booty: " + booty, this));
+            unLevelableStatRows.add( new UnLevelableStatRow("Level: " + statistics.getLevel(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("SkillPts: " + statistics.getSkillPoints(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("StatPts: " + statistics.getStatPoints(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("Armor: " + statistics.getArmor(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("Affinity: " + statistics.getAffinity(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("ArmorMod: " + statistics.getArmorMod(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("Offense: " + statistics.getOffense(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("Defense: " + statistics.getDefense(), this));
+            unLevelableStatRows.add( new UnLevelableStatRow("WeaponMod: " + statistics.getWeaponMod(), this));
+            flagRefreshController();
         } else {
             for (LevelableStatRow statRow : levelableStatRows) {
                 statRow.update();
             }
+            unLevelableStatRows.get(0).update("Life: " + statistics.getCurrentLife() + " / " + statistics.getMaxLife());
+            unLevelableStatRows.get(1).update("Mana: " + statistics.getCurrentMana() + " / " + statistics.getMaxMana());
+            unLevelableStatRows.get(2).update("Booty: " + booty);
+            unLevelableStatRows.get(2).update("Level: " + statistics.getLevel());
+            unLevelableStatRows.get(3).update("SkillPts: " + statistics.getSkillPoints());
+            unLevelableStatRows.get(4).update("StatPts: " + statistics.getStatPoints());
+            unLevelableStatRows.get(5).update("Armor: " + statistics.getArmor());
+            unLevelableStatRows.get(6).update("Affinity: " + statistics.getAffinity());
+            unLevelableStatRows.get(7).update("ArmorMod: " + statistics.getArmorMod());
+            unLevelableStatRows.get(8).update("Offense: " + statistics.getOffense());
+            unLevelableStatRows.get(9).update("Defense: " + statistics.getDefense());
+            unLevelableStatRows.get(10).update("WeaponMod: " + statistics.getWeaponMod());
         }
         this.validate();
     }
     
     private void clearStatRows() {
-        for (LevelableStatRow statRow : levelableStatRows) {
-            statRow.remove();
+        for (LevelableStatRow lsr : levelableStatRows) {
+            lsr.remove();
         }
         levelableStatRows = new ArrayList<LevelableStatRow>();
-        for (UnLevelableStatRow statRow : unLevelableStatRows) {
-            statRow.remove();
+        for (UnLevelableStatRow ulsr : unLevelableStatRows) {
+            ulsr.remove();
         }
         unLevelableStatRows = new ArrayList<UnLevelableStatRow>();
+    }
+    
+    private void clearCMs() {
+        cms = new ArrayList<ControlMap>();
     }
     
     /*Inner-Classes*/
@@ -93,6 +122,7 @@ public class StatsViewport extends Viewport {
         private JPanel masterPanel;
         
         public UnLevelableStatRow(String content, JPanel jsp) {
+            this.masterPanel = jsp;
             textField = new JTextField(content);
             GridLayout gridLayout = new GridLayout(1, 1);
             panel = new JPanel(gridLayout);
@@ -103,6 +133,10 @@ public class StatsViewport extends Viewport {
         @Override
         public void remove() {
             masterPanel.remove(panel);
+        }
+        
+        public void update(String content) {
+            textField.setText(content);
         }
     }
     
@@ -122,14 +156,6 @@ public class StatsViewport extends Viewport {
             button = initLevelupButton(stat);
             setControl(button);
             initPanel();
-            masterPanel.add(panel);
-        }
-        
-        public LevelableStatRow(String content, JPanel jsp) {
-            textField = new JTextField(content);
-            GridLayout gridLayout = new GridLayout(1, 1);
-            panel = new JPanel(gridLayout);
-            panel.add(textField);
             masterPanel.add(panel);
         }
         

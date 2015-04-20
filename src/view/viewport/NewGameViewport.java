@@ -5,19 +5,17 @@
  */
 package view.viewport;
 
+import java.awt.Font;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import model.ModelViewBundle;
-import model.armory.Armory;
-import model.entity.avatar.Avatar;
-import model.entity.behavior.movement.ClassicMovementBehavior;
-import model.entity.stats.StatsOwnership;
-import model.inventory.Sack;
-import model.map.coordinate.HexCoordinate;
 import mvc_bridgeway.command.model_command.*;
 import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.GameScreen;
-import utility.CoordUtil;
+import utility.ImageUtil;
 
 /**
  *
@@ -25,21 +23,36 @@ import utility.CoordUtil;
  */
 public class NewGameViewport extends Viewport {
 
-    /**
-     * Creates new form MainScreen
-     */
+    private boolean runAtLeastOnce = false;
+    
     public NewGameViewport() {
         initComponents();
     }
 
     @Override
     protected void generateView() {
-        //TODO
+        int margin = 200;
+        setupButton("./resources/png/sneak_S.png", sneak_button_, margin);
+        setupButton("./resources/png/smasher_S.png", smasher_button_, margin);
+        setupButton("./resources/png/summoner_S.png", summoner_button_, margin);
+    }
+    
+    private void setupButton(String filepath, JButton button, int margin) {
+        Image image = ImageUtil.getImage(filepath);
+        image = ImageUtil.scaleImage(image, button.getWidth() - margin, button.getHeight() - margin);
+        button.setIcon(new ImageIcon(image));
+        button.setVerticalTextPosition(JButton.BOTTOM);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setFont(new Font("Arial", Font.PLAIN, 40));
+        button.setIconTextGap(0);
     }
     
     @Override
     public void update(ModelViewBundle mvb) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!runAtLeastOnce) {
+            generateView();
+            runAtLeastOnce = true;
+        }
     }
 
     @Override
@@ -67,14 +80,17 @@ public class NewGameViewport extends Viewport {
         setLayout(new java.awt.GridLayout(1, 3));
 
         sneak_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        sneak_button_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/png/sneak_S.png"))); // NOI18N
         sneak_button_.setText("Sneak");
         add(sneak_button_);
 
         smasher_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        smasher_button_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/png/smasher_S.png"))); // NOI18N
         smasher_button_.setText("Smasher");
         add(smasher_button_);
 
         summoner_button_.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        summoner_button_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/png/summoner_S.png"))); // NOI18N
         summoner_button_.setText("Summoner");
         add(summoner_button_);
     }// </editor-fold>//GEN-END:initComponents

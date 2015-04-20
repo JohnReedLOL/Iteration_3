@@ -10,21 +10,21 @@ public class Talk extends ModelCommand {
 
     /*Properties*/
     
-    private Avatar avatar;
-    private Entity entity;
+//    private Avatar avatar;
+//    private Entity entity;
 
     /*Constructors*/
 
-    public Talk(Avatar avatar, Entity entity) {
-        this.avatar = avatar;
-        this.entity = entity;
+    public Talk() {
+//        this.avatar = avatar;
+//        this.entity = entity;
     }
     
     /*Methods*/
     
     @Override
     public void execute() {
-        getModel().talk(avatar, entity);
+        getModel().talk();
     }
 
     /*Get-Sets*/
