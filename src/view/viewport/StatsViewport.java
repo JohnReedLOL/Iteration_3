@@ -86,6 +86,7 @@ public class StatsViewport extends Viewport {
             this.masterPanel = jsp;
             textField = initStatField(stat);
             button = initLevelupButton(stat);
+            setControl(button);
             initPanel();
             masterPanel.add(panel);
         }
