@@ -8,25 +8,29 @@ public class LimitedConsumptionItem extends ConsumptionItem {
      * PROPERTIES
      */
 
+    private int numberOfConsumptions;
+
     /**
      * CONSTRUCTORS
      */
 
     public LimitedConsumptionItem() {
-        this("LimitedConsumptionItem", "LimitedConsumption Desc");
+        this("LimitedConsumptionItem", "LimitedConsumption Desc", 1);
     }
 
-    public LimitedConsumptionItem(String name, String description) {
+    public LimitedConsumptionItem(String name, String description, int consumptions) {
         super(name, description);
+
+        this.numberOfConsumptions = consumptions;
     }
 
     /**
      * GETTERS
      */
 
-    /**
-     * MUTATORS
-     */
+    public int getNumberOfConsumptions() {
+        return this.numberOfConsumptions;
+    }
 
     /**
      * IMPLEMENTATIONS
@@ -39,9 +43,13 @@ public class LimitedConsumptionItem extends ConsumptionItem {
 
     @Override
     public void apply(Entity owner) {
-        if (meetsUseRequirements(owner)) {
+        if (meetsUseRequirements(owner) && getNumberOfConsumptions() > 0) {
             applyEffects(owner);
-            owner.getInventoryOwnership().removeItem(this);
+            decrementConsumptions();
+
+            if (getNumberOfConsumptions() < 1) {
+                owner.getInventoryOwnership().removeItem(this);
+            }
         }
     }
 
@@ -49,4 +57,8 @@ public class LimitedConsumptionItem extends ConsumptionItem {
 	public void accept(ObjectRenderer mapObjectRenderer) {
 		mapObjectRenderer.visit(this);
 	}
+
+    private void decrementConsumptions() {
+        --numberOfConsumptions;
+    }
 }

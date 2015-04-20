@@ -4,6 +4,7 @@ import model.armory.Armory;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.npc.NPC;
+import model.factories.ItemFactory;
 import model.influence_set.InfluenceSet;
 import model.inventory.Sack;
 import model.item.interactive.InteractiveItem;
@@ -32,7 +33,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
 
     public Tile[][] generateMap(int height, int width) {
         //TODO: MAKE THIS DO SOMETHING USEFUL
-        Tile[][] tiles = new Tile[100][100];
+        Tile[][] tiles = new Tile[height][width];
         for ( int i = 0; i < tiles.length; ++i ) {
             for ( int j = 0; j < tiles[0].length; ++j ) {
                 if (i < 3 || j < 3 )
@@ -51,14 +52,15 @@ public class FirstLevelMapBuilder extends MapBuilder {
 
         tiles[1][1].createMapObjectAssociation(new ObstacleItem());
         tiles[1][2].createMapObjectAssociation(new NPC(new HexCoordinate(1, 1)));
-//        tiles[1][3].createMapObjectAssociation(new Avatar(new HexCoordinate(1, 1)));
-        tiles[1][4].createMapObjectAssociation(new InteractiveItem());
-        tiles[1][5].createMapObjectAssociation(new OneShotItem());
-        tiles[1][6].createMapObjectAssociation(new LimitedConsumptionItem());
+        tiles[1][3].createMapObjectAssociation(ItemFactory.generate6SlicePizza());
+        tiles[1][4].createMapObjectAssociation(ItemFactory.getTHEKey());
+        tiles[1][5].createMapObjectAssociation(ItemFactory.generateElixirOneShotItem());
+        tiles[1][6].createMapObjectAssociation(ItemFactory.generateElixirSackboundItem());
         tiles[1][7].createMapObjectAssociation(new UnlimitedConsumptionItem());
-        tiles[1][8].createMapObjectAssociation(new EquipItem(EquipSlot.HEAD));
-        tiles[1][9].createMapObjectAssociation(new WeaponItem("Weapon", "Wespon Desc", EquipSlot.MAINHAND, new ArrayList<InfluenceSet>()));
-        tiles[0][0].createMapObjectAssociation( new SackboundItem( "Stick", "A wooden stick." ) );
+        tiles[1][8].createMapObjectAssociation(ItemFactory.generateLevel3ChainHood());
+        tiles[1][9].createMapObjectAssociation(ItemFactory.generateLevel1Bow());
+        tiles[2][9].createMapObjectAssociation(ItemFactory.generateTreasureChest());
+        tiles[0][0].createMapObjectAssociation(ItemFactory.generateLevel3Shield());
         
         return tiles;
     }
