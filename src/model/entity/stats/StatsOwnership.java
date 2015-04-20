@@ -28,6 +28,7 @@ public class StatsOwnership {
 	/* -------------------- CONSTRUCTORS -------------------- */
 	public StatsOwnership(Entity owner){
 		this.stats = generateStats();
+		stats.setOwnership(this);
 		this.owner = owner;
 	}
 	

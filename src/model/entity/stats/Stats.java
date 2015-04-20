@@ -11,6 +11,7 @@ package model.entity.stats;
 import java.util.Random;
 
 public class Stats {
+	private StatsOwnership ownership;
 	private int currentLife; //may not be greater than maxLife
 	private int currentMana; //may not be greater than maxMana
 	private int strength;
@@ -45,6 +46,10 @@ public class Stats {
 		Random generator = new Random();
 		if((generator.nextDouble()+generator.nextDouble())*getDefense() > amount) return false;
 		return true;
+	}
+	private void giffPoints(){
+		ownership.modifySkillPoints(10);
+		ownership.modifyStatPoints(10);
 	}
 	/* -------------------- SERVICES -------------------- */
 	/**
@@ -394,8 +399,13 @@ public class Stats {
 	 * @return actual experience change after mitigation.
 	 */
 	public int debuffExperience(int modifier){
+		int prevLevel = getLevel();
 		int amount = mitigateEffect(modifier);
 		experience -= amount;
+		int level = getLevel();
+		for(int i = 0; i < level-prevLevel; ++i){
+			giffPoints();
+		}
 		return amount;
 	}
 	/**
@@ -405,8 +415,13 @@ public class Stats {
 	 * @return actual experience change after intensification.
 	 */
 	public int buffExperience(int modifier){
+		int prevLevel = getLevel();
 		int amount = intensify(modifier);
 		experience += amount;
+		int level = getLevel();
+		for(int i = 0; i < level-prevLevel; ++i){
+			giffPoints();
+		}
 		return amount;
 	}
 	/**
@@ -414,14 +429,24 @@ public class Stats {
 	 * @param modifier amount of change. 
 	 */
 	public void modifyExperience(int modifier){
+		int prevLevel = getLevel();
 		experience += modifier;
+		int level = getLevel();
+		for(int i = 0; i < level-prevLevel; ++i){
+			giffPoints();
+		}
 	}
 	/**
 	 * Sets experience to specified amount.
 	 * @param value the new experience
 	 */
 	public void setExperience(int value){
+		int prevLevel = getLevel();
 		experience = value;
+		int level = getLevel();
+		for(int i = 0; i < level-prevLevel; ++i){
+			giffPoints();
+		}
 	}
 	
 	/* ---------- MOVEMENT ---------- */
@@ -690,6 +715,14 @@ public class Stats {
 	
 	public void levelUp(){
 		modifyExperience(10000 - getExperience());
+	}
+	
+	/* -------------------- LATE NIGHT STUFF -------------------- */
+	public void setOwnership(StatsOwnership own){
+		ownership = own;
+	}
+	public StatsOwnership getOwnership(){
+		return ownership;
 	}
 
 }
