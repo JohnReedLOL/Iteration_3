@@ -73,9 +73,9 @@ public class Model {
     private Screen currentScreen;
     private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
     //
-    private Mode currentMode;
     public final RunMode RUN = new RunMode();
     public final PauseMode PAUSE = new PauseMode();
+    private Mode currentMode = RUN;
 
     /*Constructors*/
     private Model() {
@@ -320,12 +320,12 @@ public class Model {
 
         @Override
         protected void takeEnviornmentGameStep() {
-            //TODO
+
         }
 
         @Override
         protected final void takeStandardGameStep() {
-            //TODO
+            GameWorld.getCurrentMap().onMapTick();
         }
 
     } //End RunMode Inner-Class
