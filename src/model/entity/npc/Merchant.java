@@ -1,6 +1,8 @@
 package model.entity.npc;
 
 import model.map.coordinate.HexCoordinate;
+import mvc_bridgeway.command.model_command.LaunchScreenCommand;
+import mvc_bridgeway.screen.TradeScreen;
 import view.utility.ObjectRenderer;
 
 /**
@@ -20,5 +22,11 @@ public class Merchant extends NPC {
     public void accept(ObjectRenderer mapObjectRenderer) {
         this.getStatsOwnership().accept(mapObjectRenderer);
         mapObjectRenderer.visit(this);
+    }
+    
+    @Override
+    public String talk() {
+        (new LaunchScreenCommand(new TradeScreen())).forward();
+        return "WEEELCOOOMEEE";
     }
 }

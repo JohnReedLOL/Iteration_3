@@ -146,210 +146,220 @@ public class Model {
     }
 
     // Thread operations
-        private synchronized void updateView() {
-            currentMode.updateView();
-        }
+    private synchronized void updateView() {
+        currentMode.updateView();
+    }
 
-        private synchronized void takeEnviornmentGameStep() {
-            currentMode.takeEnviornmentGameStep();
-        }
+    private synchronized void takeEnviornmentGameStep() {
+        currentMode.takeEnviornmentGameStep();
+    }
 
-        private synchronized void takeStandardGameStep() {
-            currentMode.takeStandardGameStep();
-        }
+    private synchronized void takeStandardGameStep() {
+        currentMode.takeStandardGameStep();
+    }
 
-        // Controller Interface
-        public synchronized void queueCommandForExecution(ModelCommand command) {
-            // TODO: better to implement as a queue?
-            if (to_execute_ == null) {
-                to_execute_ = new ConcurrentLinkedQueue<ModelCommand>();
-            }
-            to_execute_.add(command); // store command to be executed when the model
+    // Controller Interface
+    public synchronized void queueCommandForExecution(ModelCommand command) {
+        // TODO: better to implement as a queue?
+        if (to_execute_ == null) {
+            to_execute_ = new ConcurrentLinkedQueue<ModelCommand>();
         }
+        to_execute_.add(command); // store command to be executed when the model
+    }
 
-        // Command Interface
-        public void exit() {
-            System.exit(0);
-        }
+    // Command Interface
+    public void exit() {
+        System.exit(0);
+    }
 
-        public void setupPhysicalControllerForRebind(ControlMap controlMap) {
-            UserSettings userSettings = mvb.getUserSettings();
-            userSettings.updateForRebind(controlMap);
-            //
-            application.listenForRebind(controlMap);
-        }
+    public void setupPhysicalControllerForRebind(ControlMap controlMap) {
+        UserSettings userSettings = mvb.getUserSettings();
+        userSettings.updateForRebind(controlMap);
+        //
+        application.listenForRebind(controlMap);
+    }
 
-        public void save(File file) {
-            // TODO
-            String filename = file.getAbsolutePath();
-        }
+    public void save(File file) {
+        // TODO
+        String filename = file.getAbsolutePath();
+    }
 
-        public void load(File file) {
-            // TODO
-            String filename = file.getAbsolutePath();
-        }
+    public void load(File file) {
+        // TODO
+        String filename = file.getAbsolutePath();
+    }
 
-        public void setSneakOccupation(Entity entity) {
-            Application.print("User created Sneak");
-            entity.setInstance(OccupationFactory.generateAvatarSneakOccupation());
-        }
+    public void setSneakOccupation(Entity entity) {
+        Application.print("User created Sneak");
+        entity.setInstance(OccupationFactory.generateAvatarSneakOccupation());
+    }
 
-        public void setSummonerOccupation(Entity entity) {
-            Application.print("User created Summoner");
-            entity.setInstance(OccupationFactory.generateAvatarSummonerOccupation());
-        }
+    public void setSummonerOccupation(Entity entity) {
+        Application.print("User created Summoner");
+        entity.setInstance(OccupationFactory.generateAvatarSummonerOccupation());
+    }
 
-        public void setSmasherOccupation(Entity entity) {
-            Application.print("User created Smasher");
-            entity.setInstance(OccupationFactory.generateAvatarSmasherOccupation());
-        }
+    public void setSmasherOccupation(Entity entity) {
+        Application.print("User created Smasher");
+        entity.setInstance(OccupationFactory.generateAvatarSmasherOccupation());
+    }
 
-        public void beginNewGame() {
-            // TODO
-        }
+    public void beginNewGame() {
+        // TODO
+    }
 
-        public void levelupStat(Stat stat) {
-            stat.level();
-        }
+    public void levelupStat(Stat stat) {
+        stat.level();
+    }
 
 	// /* -------------------- LEVEL UP COMMANDS -------------------- */
-        // public void levelStrength(Entity a) {
-        // a.getStatsOwnership().upStrength();
-        // }
-        //
-        // public void levelAgility(Entity a) {
-        // a.getStatsOwnership().upAgility();
-        // }
-        public boolean move(Entity entity, Direction direction) {
-            entity.move(direction);
-            return true;
+    // public void levelStrength(Entity a) {
+    // a.getStatsOwnership().upStrength();
+    // }
+    //
+    // public void levelAgility(Entity a) {
+    // a.getStatsOwnership().upAgility();
+    // }
+    public boolean move(Entity entity, Direction direction) {
+        entity.move(direction);
+        return true;
+    }
+
+    public boolean storeInInventory(Avatar avatar, SackboundItem item) {
+        return avatar.getInventoryOwnership().addItem(item);
+    }
+
+    public boolean equip(Avatar avatar, Item item) {
+        item.apply(avatar);
+        return true;
+    }
+
+    public void unequip(Avatar avatar, EquipItem item) {
+        avatar.getArmoryOwnership().unequip(item);
+    }
+
+    public void drop(Avatar avatar) {
+
+    }
+
+    public void dismount(Avatar avatar) {
+        avatar.dismount();
+    }
+
+    public boolean activateAbility(Avatar avatar, Ability ability) {
+        avatar.useAbility(ability);
+        return false;
+    }
+
+    public void talk() {
+        Avatar avatar = mvb.getAvatar();
+        GameMap gameMap = mvb.getMap();
+        Direction direction = avatar.getDirection();
+        Location avatarLocation = gameMap.getLocationByMapObject(avatar);
+        Location targetLocation = gameMap.getLocationFromDirection(avatarLocation, direction);
+        ArrayList<MapObject> mapObjects = (ArrayList<MapObject>) targetLocation.getMapObjects();
+        if (mapObjects != null) {
+            MapObject target = mapObjects.get(0);
+            if (target != null) {
+                mvb.setCurrentDialogue(target.talk());
+            }
         }
+    }
 
-        public boolean storeInInventory(Avatar avatar, SackboundItem item) {
-            return avatar.getInventoryOwnership().addItem(item);
-        }
+    public boolean purchase(Avatar avatar, Item item, int price) {
+        // TODO
+        return false;
+    }
 
-        public boolean equip(Avatar avatar, Item item) {
-            item.apply(avatar);
-            return true;
-        }
+    // Misc
+    public void setMode(Mode mode) {
+        currentMode = mode;
+    }
 
-        public void unequip(Avatar avatar, EquipItem item) {
-            avatar.getArmoryOwnership().unequip(item);
-        }
-
-        public void drop(Avatar avatar) {
-
-        }
-
-        public void dismount(Avatar avatar) {
-            avatar.dismount();
-        }
-
-        public boolean activateAbility(Avatar avatar, Ability ability) {
-            avatar.useAbility(ability);
-            return false;
-        }
-
-        public void talk() {
-            // TOdO
-        }
-
-        public boolean purchase(Avatar avatar, Item item, int price) {
-            // TODO
-            return false;
-        }
-
-        // Misc
-        public void setMode(Mode mode) {
-            currentMode = mode;
-        }
-
-        public void launch(Application application) {
-            this.application = application;
-            startTheClock(application.getUpdateTimings());
-            launchFirstScreen();
-            Model.viewClock_.execute(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        try {
-                            Thread.sleep(refreshTime_);
+    public void launch(Application application) {
+        this.application = application;
+        startTheClock(application.getUpdateTimings());
+        launchFirstScreen();
+        Model.viewClock_.execute(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(refreshTime_);
 //						SwingUtilities.invokeLater(new Runnable() {
 //							@Override
 //							public void run() {
-                            currentScreen.updateView(mvb);
+                        currentScreen.updateView(mvb);
 //							}
 //						});
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-            });
-        }
-
-        private void launchFirstScreen() {
-            Screen firstScreen = new HomeScreen();
-            launchScreen(firstScreen);
-        }
-
-        public void launchScreen(Screen screen) {
-            currentScreen = screen;
-            application.launchScreen(screen, mvb.getUserSettings());
-        }
-
-        /* Get-Sets */
-
-        /* Inner-classes */
-        private abstract class Mode { // Begin Mode Inner-Class
-
-            protected abstract void updateView();
-
-            protected abstract void takeEnviornmentGameStep();
-
-            protected abstract void takeStandardGameStep();
-
-        } // End Mode Inner-Class
-
-        private class RunMode extends Mode { // Begin RunMode Inner-Class
-
-            @Override
-            protected final void updateView() {
-                currentScreen.updateView(mvb);
             }
-
-            @Override
-            protected void takeEnviornmentGameStep() {
-
-            }
-
-            @Override
-            protected final void takeStandardGameStep() {
-                GameWorld.getCurrentMap().onMapTick();
-            }
-
-        } // End RunMode Inner-Class
-
-        private class PauseMode extends Mode { // Begin RunMode Inner-Class
-
-            @Override
-            protected final void updateView() {
-                currentScreen.updateView(mvb);
-            }
-
-            @Override
-            protected final void takeEnviornmentGameStep() {
-                // Do nothing
-            }
-
-            @Override
-            protected final void takeStandardGameStep() {
-                // Do nothing
-            }
-
-        } // End RunMode Inner-Class
-
-        /* Test Main Method */
-
+        });
     }
+
+    private void launchFirstScreen() {
+        Screen firstScreen = new HomeScreen();
+        launchScreen(firstScreen);
+    }
+
+    public void launchScreen(Screen screen) {
+        currentScreen = screen;
+        application.launchScreen(screen, mvb.getUserSettings());
+    }
+
+    /* Get-Sets */
+
+    /* Inner-classes */
+    private abstract class Mode { // Begin Mode Inner-Class
+
+        protected abstract void updateView();
+
+        protected abstract void takeEnviornmentGameStep();
+
+        protected abstract void takeStandardGameStep();
+
+    } // End Mode Inner-Class
+
+    private class RunMode extends Mode { // Begin RunMode Inner-Class
+
+        @Override
+        protected final void updateView() {
+            currentScreen.updateView(mvb);
+        }
+
+        @Override
+        protected void takeEnviornmentGameStep() {
+
+        }
+
+        @Override
+        protected final void takeStandardGameStep() {
+            GameWorld.getCurrentMap().onMapTick();
+        }
+
+    } // End RunMode Inner-Class
+
+    private class PauseMode extends Mode { // Begin RunMode Inner-Class
+
+        @Override
+        protected final void updateView() {
+            currentScreen.updateView(mvb);
+        }
+
+        @Override
+        protected final void takeEnviornmentGameStep() {
+            // Do nothing
+        }
+
+        @Override
+        protected final void takeStandardGameStep() {
+            // Do nothing
+        }
+
+    } // End RunMode Inner-Class
+
+    /* Test Main Method */
+}
