@@ -9,6 +9,7 @@ import model.MapObject;
 import model.entity.ai.AIClassicEntity;
 import model.entity.avatar.Avatar;
 import model.entity.npc.NPC;
+import model.entity.npc.mount.Mount;
 import model.entity.stats.SmasherStatsOwnership;
 import model.entity.stats.SneakStatsOwnership;
 import model.entity.stats.StatsOwnership;
@@ -22,8 +23,7 @@ import model.item.sackbound.UnlimitedConsumptionItem;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.WeaponItem;
 
-public class MiniGameObjectRenderer extends MiniRenderer implements
-		ObjectRenderer {
+public class MiniGameObjectRenderer extends MiniRenderer implements ObjectRenderer {
 
 	private List<MapObject> mapObjects;
 
@@ -55,6 +55,16 @@ public class MiniGameObjectRenderer extends MiniRenderer implements
 		g.fillRect(drawx + SIZE_OF_MAP_PIXEL / 4,
 				drawy + SIZE_OF_MAP_PIXEL / 4, SIZE_OF_MAP_PIXEL / 2,
 				SIZE_OF_MAP_PIXEL / 2);
+	}
+
+	@Override
+	public void visit(Mount mount) {
+		if (mapObjects.contains(mount)) {
+			scaleXandY(x, y);
+			g.setColor(new Color(80, 24, 115));
+			g.fillRect(drawx + SIZE_OF_MAP_PIXEL / 4, drawy + SIZE_OF_MAP_PIXEL
+					/ 4, SIZE_OF_MAP_PIXEL / 2, SIZE_OF_MAP_PIXEL / 2);
+		}
 	}
 
 	public void visit(NPC npc) {
