@@ -12,7 +12,7 @@ public class MoveCommand extends ModelCommand {
     /*Properties*/
 
     private Direction direction;
-    
+
     /*Constructors*/
 
     public MoveCommand(Direction direction) {
@@ -25,6 +25,13 @@ public class MoveCommand extends ModelCommand {
     public void execute() {
         // TODO (maybe?): Have a check to make sure the move was successfull, if not, display a message to the user using a Logging system.
         getModel().move(GameWorld.getAvatar(), direction);
+    }
+
+    @Override
+    public String getDisplayString() {
+
+
+        return "Move " + direction.getClass().getSimpleName().toString();
     }
 
     /*Get-Sets*/
