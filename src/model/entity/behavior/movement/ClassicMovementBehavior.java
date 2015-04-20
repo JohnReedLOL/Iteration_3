@@ -40,6 +40,7 @@ public class ClassicMovementBehavior extends MovementBehavior {
 	 */
 
 	public boolean move(Entity target, Direction direction) {
+		target.setDirection(direction);
 		DiscreteMap map = GameWorld.getCurrentMap();
 		HexCoordinate prev = (HexCoordinate) map.getMapObjectCoordinate(target);
 		HexCoordinate candidate = direction.deriveCoordinate(prev);
