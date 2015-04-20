@@ -26,7 +26,7 @@ public class Merchant extends NPC {
     
     @Override
     public String talk() {
-        (new LaunchScreenCommand(new TradeScreen())).forward();
+        (new LaunchScreenCommand(new TradeScreen())).execute();
         return "WEEELCOOOMEEE";
     }
 }
