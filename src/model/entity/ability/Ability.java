@@ -39,13 +39,14 @@ public class Ability {
 		return true;
 	}
 	
-	public void performEffect(Entity user){
-		if(!meetsUsePrerequisites(user)) return;
+	public boolean performEffect(Entity user){
+		if(!meetsUsePrerequisites(user)) return false;
 		for(InfluenceSet i : affectedAreas){
 			i.setSourceLocation(GameWorld.getCurrentMap().getLocationByCoordinate(GameWorld.getCurrentMap().getMapObjectCoordinate(user)));
 			for(Effect e : myEffects){
 				GameWorld.getCurrentMap().performEffect(e, i);
 			}
 		}
+		return true;
 	}
 }

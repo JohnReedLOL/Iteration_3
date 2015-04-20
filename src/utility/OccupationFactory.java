@@ -9,6 +9,9 @@ import model.entity.stats.SmasherStatsOwnership;
 import model.entity.stats.SneakStatsOwnership;
 import model.entity.stats.SummonerStatsOwnership;
 import model.inventory.Sack;
+import model.map.GameWorld;
+import model.map.coordinate.Coordinate2D;
+import model.map.coordinate.HexCoordinate;
 
 public class OccupationFactory {
     /**
@@ -35,37 +38,44 @@ public class OccupationFactory {
      */
 
     public static Avatar generateAvatarSmasherOccupation() {
-        Avatar smasher = new Avatar(new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new SmasherStatsOwnership(null));
+        // TODO: Add default location in the GameMap.
+        Avatar smasher = new Avatar(new HexCoordinate(1, 1));
+        smasher.setStatsOwnership(new SmasherStatsOwnership(smasher));
 
         return smasher;
     }
 
     public static Avatar generateAvatarSneakOccupation() {
-        Avatar sneak = new Avatar(new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new SneakStatsOwnership(null));
+        Avatar sneak = new Avatar(new HexCoordinate(1, 1));
+        sneak.setStatsOwnership(new SneakStatsOwnership(sneak));
 
         return sneak;
     }
 
     public static Avatar generateAvatarSummonerOccupation() {
-        Avatar summoner = new Avatar(new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new SummonerStatsOwnership(null));
+        Avatar summoner = new Avatar(new HexCoordinate(1, 1));
+        summoner.setStatsOwnership(new SummonerStatsOwnership(summoner));
 
         return summoner;
     }
 
     public static NPC generateNpcSmasherOccupation() {
-        NPC smasher = new NPC(new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new SmasherStatsOwnership(null));
+        NPC smasher = new NPC(new HexCoordinate(1, 1));
+        smasher.setStatsOwnership(new SmasherStatsOwnership(smasher));
 
         return smasher;
     }
 
     public static NPC generateNpcSneakOccupation() {
-        NPC sneak = new NPC(new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new SneakStatsOwnership(null));
+        NPC sneak = new NPC(new HexCoordinate(1, 1));
+        sneak.setStatsOwnership(new SneakStatsOwnership(sneak));
 
         return sneak;
     }
 
     public static NPC generateNpcSummonerOccupation() {
-        NPC summoner = new NPC(new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new SummonerStatsOwnership(null));
+        NPC summoner = new NPC(new HexCoordinate(1, 1));
+        summoner.setStatsOwnership(new SummonerStatsOwnership(summoner));
 
         return summoner;
     }

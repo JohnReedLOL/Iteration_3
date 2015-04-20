@@ -95,14 +95,14 @@ public abstract class Tile extends Location {
 
 	public abstract void accept(TileRenderer tileRendererVisitor);
 
-//    @Override
-//    public boolean equals(Object object) {
-//        if (object instanceof Tile) {
-//            Tile obj = (Tile) object;
-//
-//            return (this.mapObjects.equals(obj.mapObjects) && this.areaEffects.equals(obj.areaEffects));
-//        }
-//
-//        return false;
-//    }
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Tile) {
+            Tile obj = (Tile) object;
+
+            return this == obj;
+        }
+
+        return false;
+    }
 }

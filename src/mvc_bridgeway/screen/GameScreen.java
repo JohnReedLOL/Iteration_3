@@ -4,9 +4,17 @@ package mvc_bridgeway.screen;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
 import model.UserSettings;
+import model.map.direction.NorthDirection;
+import model.map.direction.NorthEastDirection;
+import model.map.direction.NorthWestDirection;
+import model.map.direction.SouthDirection;
+import model.map.direction.SouthEastDirection;
+import model.map.direction.SouthWestDirection;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
+import mvc_bridgeway.command.model_command.MoveCommand;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.Viewport;
@@ -40,6 +48,21 @@ public class GameScreen extends Screen {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
         controlMaps.add( new ControlMap( new KeyboardControl(KeyEvent.VK_O), new LaunchScreenCommand(new OptionsScreen() ) ) );
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_X),new ExitCommand() ) );
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_1), new MoveCommand(new NorthDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_2), new MoveCommand(new SouthDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_3), new MoveCommand(new NorthWestDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_4), new MoveCommand(new NorthEastDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_5), new MoveCommand(new SouthWestDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_6), new MoveCommand(new SouthEastDirection())));
+
+        //OTHER THINGS FOR SANE PEOPLE
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD8), new MoveCommand(new NorthDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD2), new MoveCommand(new SouthDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD7), new MoveCommand(new NorthWestDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD9), new MoveCommand(new NorthEastDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD1), new MoveCommand(new SouthWestDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD3), new MoveCommand(new SouthEastDirection())));
+
         return controlMaps;
     }
 

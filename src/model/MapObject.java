@@ -54,4 +54,9 @@ public abstract class MapObject implements Derivable {
     public void accept(Effect effect) {
         effect.performEffect(this);
     }
+
+    public boolean interact( MapObject interactor ) {
+
+        return false;
+    }
 }

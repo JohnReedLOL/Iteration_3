@@ -56,7 +56,7 @@ public class Model {
     //
     private Application application;
     private Screen currentScreen;
-    private ModelViewBundle mvb = new ModelViewBundle(); //for testing
+    private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
     //
     private Mode currentMode;
     public final RunMode RUN = new RunMode();
@@ -123,7 +123,7 @@ public class Model {
         return singleton;
     }
 
-    public static Entity getAvatar() {
+    public static Avatar getAvatar() {
         return GameWorld.getAvatar();
     }
 

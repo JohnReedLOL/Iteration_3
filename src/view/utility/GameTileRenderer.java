@@ -9,10 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import model.MapObject;
+import model.map.GameWorld;
 import model.map.location.GrassTile;
 import model.map.location.MountainTile;
 import model.map.location.WaterTile;
@@ -21,10 +23,10 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		TileRenderer {
 
 	// Tile images
-	private BufferedImage grass;
-	private BufferedImage mountain;
-	private BufferedImage water;
-	private BufferedImage dim;
+	private static BufferedImage grass;
+	private static BufferedImage mountain;
+	private static BufferedImage water;
+	private static BufferedImage dim;
 
 	// MapObjectsRenderer
 	private ObjectRenderer mapObjectRenderer;
@@ -32,15 +34,15 @@ public class GameTileRenderer extends GameScreenRenderer implements
 	// FOR DEBUG
 	private final boolean DEBUG = false;
 
-	public GameTileRenderer(Graphics g) {
-		//TODO how do we set AVATAR and Location
+	public GameTileRenderer(Graphics g, List<MapObject> mapObjects) {
+		// TODO how do we set AVATAR and Location
 		super(g);
 		this.startx = 0;
 		this.starty = 0;
-		mapObjectRenderer = new GameObjectRenderer(g);
+		mapObjectRenderer = new GameObjectRenderer(g, mapObjects);
 		initializeImages();
-		//TODO fix this
-		generateViewDistanceBounds(avatarx, avatary, viewDistance);
+		// TODO fix this
+		//generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	public GameTileRenderer(Graphics g, int startx, int starty) {
@@ -49,25 +51,26 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		this.starty = starty;
 		mapObjectRenderer = new GameObjectRenderer(g, startx, starty);
 		initializeImages();
-		//TODO fix this
-		generateViewDistanceBounds(avatarx, avatary, viewDistance);
+		// TODO fix this
+		//generateViewDistanceBounds(avatarx, avatary, viewDistance);
 	}
 
 	private void initializeImages() {
-		try {
-			System.out.println();
-			ClassLoader classLoader = Thread.currentThread()
-					.getContextClassLoader();
-			URL url = classLoader.getResource("resources/png/grass.png");
-			grass = ImageIO.read(new File(url.getPath()));
-			url = classLoader.getResource("resources/png/mountain.png");
-			mountain = ImageIO.read(new File(url.getPath()));
-			url = classLoader.getResource("resources/png/water.png");
-			water = ImageIO.read(new File(url.getPath()));
-			url = classLoader.getResource("resources/png/dim.png");
-			dim = ImageIO.read(new File(url.getPath()));
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (grass == null || mountain == null || water == null) {
+			try {
+				ClassLoader classLoader = Thread.currentThread()
+						.getContextClassLoader();
+				URL url = classLoader.getResource("resources/png/grass.png");
+				grass = ImageIO.read(new File(url.getPath()));
+				url = classLoader.getResource("resources/png/mountain.png");
+				mountain = ImageIO.read(new File(url.getPath()));
+				url = classLoader.getResource("resources/png/water.png");
+				water = ImageIO.read(new File(url.getPath()));
+				url = classLoader.getResource("resources/png/dim.png");
+				dim = ImageIO.read(new File(url.getPath()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -87,8 +90,14 @@ public class GameTileRenderer extends GameScreenRenderer implements
 		scaleXandY(x, y);
 		g.drawImage(img, drawx, drawy, 100, 100, null);
 		drawMapObjects(mapObjects);
-		if (!withinAvatarViewDistance(x, y))
+		// brightness 0 is full
+		if (brightness > 0 && brightness <= 50) {
 			g.drawImage(dim, drawx, drawy, 100, 100, null);
+		} else if (brightness >= 100) {
+			g.drawImage(dim, drawx, drawy, 100, 100, null);
+			g.drawImage(dim, drawx, drawy, 100, 100, null);
+			g.drawImage(dim, drawx, drawy, 100, 100, null);
+		}
 		drawDebug();
 	}
 

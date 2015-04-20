@@ -6,17 +6,19 @@
 package view.viewport;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.util.ArrayList;
+import java.util.List;
 
+import model.MapObject;
 import model.ModelViewBundle;
+import model.entity.avatar.Avatar;
 import model.map.GameMap;
+import model.map.GameWorld;
 import model.map.location.Tile;
 import mvc_bridgeway.control_map.ControlMap;
 import view.utility.GameTileRenderer;
+import view.utility.ObjectRenderer;
 import view.utility.TileRenderer;
-import application.Application;
 
 /**
  *
@@ -24,42 +26,66 @@ import application.Application;
  */
 public class GameViewport extends Viewport {
 
+    /*Properties*/
+    
+    @SuppressWarnings("unchecked")
     private GameMap gameMap;
+    private Avatar avatar;
     private int[][] brightness;
-
+    private List<MapObject> mapObjects;
+    //
     private TileRenderer tileRendererVisitor;
+    private ObjectRenderer objectRendererVisitor;
+    
+    /*Constructors*/
 
-    /**
-     * Creates new form MainScreen
-     */
     public GameViewport() {
         initComponents();
-
-        //TODO fake map
-        gameMap = new GameMap();
-        brightness = gameMap.getBrightness();
+        generateView();
+        /* //TODO fake map
+         gameMap = (GameMap) GameWorld.getCurrentMap();
+         Application.check(gameMap.getAvatar() != null, "Avatar is null cannot get brightness table");
+         brightness = gameMap.getAvatar().getBrightnessTable();
+         */
     }
     
+    /*Methods*/
+
+    @Override
+    public ArrayList<ControlMap> getControlMaps() {
+        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
+        // TODOD
+        return controlMaps;
+    }
+
     @Override
     public void update(ModelViewBundle mvb) {
+        brightness = GameWorld.getCurrentMap().getAvatar().getBrightnessTable();
+        gameMap = (GameMap) (GameWorld.getCurrentMap());
+        avatar = gameMap.getAvatar();
+        mapObjects = avatar.getVisibleMapObjects();
         repaint();
     }
-    
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         // Tile visitor
-        tileRendererVisitor = new GameTileRenderer(g);
-        displayMap(tileRendererVisitor, gameMap.getTiles());
+        if (gameMap != null) {
+            tileRendererVisitor = new GameTileRenderer(g, mapObjects);
+            displayMap(tileRendererVisitor, gameMap.getTiles());
+        }
     }
-    
+
     @Override
     protected void generateView() {
+
     }
 
     /**
      *
      * @param tileRendererVisitor - this components Graphics object
+     * @param objectRendererVisitor
      * @param map - Tile[][] of the GameMap
      * @param starty - where to begin rendering on y axis
      * @param startx - where to begin rendering on x axis
@@ -74,15 +100,6 @@ public class GameViewport extends Viewport {
 
             }
         }
-    }
-
-    
-
-    @Override
-    public ArrayList<ControlMap> getControlMaps() {
-        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-        // TODOD
-        return controlMaps;
     }
 
     /**

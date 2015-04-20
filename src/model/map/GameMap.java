@@ -15,6 +15,7 @@ import model.map.location.Location;
 import model.map.location.MountainTile;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
+import utility.CoordUtil;
 
 import java.util.Collection;
 
@@ -24,16 +25,17 @@ import java.util.Collection;
 public class GameMap extends DiscreteMap {
 
     private Tile[][] tiles;
-    private int[][] brightness;
     private BidirectionalMap<HexCoordinate, Tile> tileMap = new BidirectionalMap<HexCoordinate, Tile>();
 
     public GameMap() {
         super();
+    }
 
+    @Override
+    public void populate() {
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
-        brightness = new int[tiles.length][tiles[0].length];
 
         for ( int i = 0; i < tiles.length; ++i ) {
             for (int j=0; j < tiles[0].length; ++j ) {
@@ -51,18 +53,15 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void insert( MapObject m, Location l ) {
-        l.createMapObjectAssociation(m);
+        if (l != null) {
+            l.createMapObjectAssociation(m);
+        }
     }
 
     @Override
     public void remove( MapObject m ) {
-        Tile tile = tileMap.getValue( getMapObjectCoordinate( m ) );
+        Tile tile = tileMap.getValue(getMapObjectCoordinate(m));
         tile.removeMapObjectAssociation(m);
-    }
-
-    @Override
-    public void relocate( MapObject m, Location l ) {
-        l.createMapObjectAssociation(m);
     }
 
     @Override
@@ -72,6 +71,11 @@ public class GameMap extends DiscreteMap {
 
         previous.removeMapObjectAssociation( m );
         newPos.removeMapObjectAssociation(m);
+
+        for ( MapObject mapObject : newPos.getMapObjects() ) {
+            mapObject.interact( m );
+        }
+
         newPos.createMapObjectAssociation(m);
 
         GameWorld.updateVisibleMap();
@@ -86,7 +90,9 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void teleport(MapObject m, DiscreteMap d) {
-        //TODO
+        //OVERRIDE THIS METHOD IN ANY GAMEMAP SUBCLASSES TO CORRECTLY PLACE YOUR AVATAR ON A TELEPORT.
+        remove( m );
+        d.insert( m , d.getPreferredTeleportLocation() );
     }
 
     @Override
@@ -94,7 +100,7 @@ public class GameMap extends DiscreteMap {
         Tile tile = (Tile) l;
         HexCoordinate coord = tileMap.getKey(tile);
 
-        HexCoordinate newLoc = d.deriveCoordinate( coord );
+        HexCoordinate newLoc = d.deriveCoordinate(coord);
         return tileMap.getValue( newLoc );
     }
 
@@ -107,13 +113,8 @@ public class GameMap extends DiscreteMap {
     public Tile[][] getTiles() {
         return tiles;
     }
-    
-    
-    public int[][] getBrightness() {
-        return brightness;
-    }
 
-    private MapBuilder getMapBuilder() {
+    protected MapBuilder getMapBuilder() {
         return new FirstLevelMapBuilder();
     }
 
@@ -144,11 +145,13 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public HexCoordinate getCoordinateByLocation(Location l) {
-        Tile t = (Tile) l;
-        for ( int i = 0; i < tiles.length; ++i ) {
-            for (int j = 0; j < tiles[0].length; ++j ) {
-                if ( tiles[i][j].equals( t ) ) {
-                    return new HexCoordinate( i, j );
+        if (l != null) {
+            Tile t = (Tile) l;
+            for (int i = 0; i < tiles.length; ++i) {
+                for (int j = 0; j < tiles[0].length; ++j) {
+                    if (tiles[i][j].equals(t)) {
+                        return new HexCoordinate(i, j);
+                    }
                 }
             }
         }
@@ -158,6 +161,11 @@ public class GameMap extends DiscreteMap {
     @Override
     public Location getLocationByMapObject( MapObject m ) {
         return getLocationByCoordinate( getMapObjectCoordinate( m ) );
+    }
+
+    @Override
+    public Location getPreferredTeleportLocation() {
+        return getLocationByCoordinate( CoordUtil.MAP_1_DEFAULT_COORDINATE );
     }
 
     public void performEffect(Effect effect, InfluenceSet influence) {
@@ -183,6 +191,14 @@ public class GameMap extends DiscreteMap {
         System.out.println( t.getX() + ", " + t.getY() );
     }
 
+    public boolean inBounds( HexCoordinate coord ) {
+        if ( coord.getX() >= 0 && coord.getX() < getHeight()  &&
+           ( coord.getY() >= 0 && coord.getY() < getWidth() ) ) {
+            return true;
+        }
+        return false;
+
+    }
 
 
     // CAN WE DELETE THIS ALREADY?

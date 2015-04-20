@@ -22,6 +22,10 @@ public class VisibleMap {
 	public VisibleMap(InfluenceSet i, Entity o){
 		vision = i;
 		owner = o;
+		tiles = new ArrayList<Tile>();
+		mapObjects = new ArrayList<List<MapObject>>();
+		coordinates = new ArrayList<Coordinate2D>();
+		GameWorld.getInstance().register(this);
 	}
 	
 	public void setVision(InfluenceSet i){
@@ -47,6 +51,7 @@ public class VisibleMap {
 	
 	public void update(){
 		owner.remember(this);
+		vision.setSourceLocation(GameWorld.getCurrentMap().getLocationByMapObject(owner));
 		Collection<InfluenceTile> iTilesSeen = vision.getInfluenceSet();
 		ArrayList<Tile> tilesSeen = new ArrayList<Tile>();
 		for(InfluenceTile i : iTilesSeen){
