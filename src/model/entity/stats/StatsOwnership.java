@@ -40,6 +40,8 @@ public class StatsOwnership {
 		this.stats = generateStats();
 		stats.setOwnership(this);
 		this.owner = owner;
+		skillPoints = 10;
+		statPoints = 10;
 	}
 	
 	/* -------------------- ACCESSORS -------------------- */

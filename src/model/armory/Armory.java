@@ -18,6 +18,9 @@ public class Armory {
 
     public Armory() {
         this.contents = new ArrayList<EquipItem>();
+        for (int i = 0; i < MAX_CAPACITY; ++i) {
+        	contents.add(null);
+        }
     }
 
     /**
