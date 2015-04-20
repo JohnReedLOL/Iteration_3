@@ -66,7 +66,7 @@ public class LoadSaveViewport extends Viewport {
     
     /*Inner-Classes*/
     
-    private abstract class Mode {
+    private abstract static class Mode {
         
         protected JFileChooser fileChooser;
         protected JButton button;
