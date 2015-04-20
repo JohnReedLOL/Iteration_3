@@ -10,10 +10,8 @@ import java.util.concurrent.Executors;
 import model.entity.Entity;
 import model.entity.ability.Ability;
 import model.entity.avatar.Avatar;
-import model.entity.occupation.Occupation;
 import model.item.Item;
 import model.item.sackbound.SackboundItem;
-import model.item.sackbound.equip.EquipItem;
 import model.map.GameWorld;
 import model.map.direction.Direction;
 import mvc_bridgeway.command.model_command.ModelCommand;
@@ -21,6 +19,7 @@ import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
+import utility.OccupationFactory;
 
 public class Model {
 
@@ -57,7 +56,7 @@ public class Model {
     //
     private Application application;
     private Screen currentScreen;
-    private ModelViewBundle mvb = new ModelViewBundle(); //for testing
+    private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
     //
     private Mode currentMode;
     public final RunMode RUN = new RunMode();
@@ -124,7 +123,7 @@ public class Model {
         return singleton;
     }
 
-    public static Entity getAvatar() {
+    public static Avatar getAvatar() {
         return GameWorld.getAvatar();
     }
 
@@ -160,9 +159,10 @@ public class Model {
     }
 
     public void setupPhysicalControllerForRebind(ControlMap controlMap) {
-        PhysicalControl oldControl = application.listenForRebind(controlMap);
         UserSettings userSettings = mvb.getUserSettings();
-        userSettings.updateFromRebind(controlMap);
+        userSettings.updateForRebind(controlMap);
+        //
+        application.listenForRebind(controlMap);
     }
     
     public void save() {
@@ -173,8 +173,19 @@ public class Model {
         //TODO
     }
     
-    public void setOccupation(Entity entity, Occupation occupation) {
-        entity.setOccupation(occupation);
+    public void setSneakOccupation(Entity entity) {
+        Application.print("User created Sneak");
+        entity.setInstance(OccupationFactory.generateAvatarSneakOccupation());
+    }
+
+    public void setSummonerOccupation(Entity entity) {
+        Application.print("User created Summoner");
+        entity.setInstance(OccupationFactory.generateAvatarSummonerOccupation());
+    }
+
+    public void setSmasherOccupation(Entity entity) {
+        Application.print("User created Smasher");
+        entity.setInstance(OccupationFactory.generateAvatarSmasherOccupation());
     }
     
     public void beginNewGame() {

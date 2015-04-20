@@ -3,6 +3,7 @@ package model.map;
 import model.MapObject;
 import model.effect.Effect;
 import model.entity.Entity;
+import model.entity.avatar.Avatar;
 import model.influence_set.InfluenceSet;
 import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
@@ -15,10 +16,11 @@ import utility.ScalingUtil;
  */
 public abstract class DiscreteMap {
     private String name;
-    private Entity avatar;
+    private Avatar avatar;
     private int height;
     private int width;
 
+    public abstract void populate();
     public abstract void insert( MapObject m, Location l );
     public abstract void remove( MapObject m );
     public abstract void relocate( MapObject m, Location l);
@@ -36,7 +38,7 @@ public abstract class DiscreteMap {
         return name;
     }
 
-    public Entity getAvatar() {
+    public Avatar getAvatar() {
         return this.avatar;
     }
 
@@ -52,7 +54,7 @@ public abstract class DiscreteMap {
         this.name = name;
     }
 
-    public void setAvatar(Entity avatar) {
+    public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
 

@@ -10,15 +10,14 @@ import model.ModelViewBundle;
 import model.armory.Armory;
 import model.entity.avatar.Avatar;
 import model.entity.behavior.movement.ClassicMovementBehavior;
-import model.entity.occupation.SmasherOccupation;
-import model.entity.occupation.SneakOccupation;
-import model.entity.occupation.SummonerOccupation;
+import model.entity.stats.StatsOwnership;
 import model.inventory.Sack;
-import mvc_bridgeway.command.model_command.LaunchScreenCommand;
-import mvc_bridgeway.command.model_command.SetOccupationCommand;
+import model.map.coordinate.HexCoordinate;
+import mvc_bridgeway.command.model_command.*;
 import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.GameScreen;
+import utility.CoordUtil;
 
 /**
  *
@@ -46,9 +45,9 @@ public class NewGameViewport extends Viewport {
     @Override
     public ArrayList<ControlMap> getControlMaps() {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new SetOccupationCommand(new Avatar("Smasher", "Smasher Desc", new Armory(), new Sack(), null, ClassicMovementBehavior.getInstance()), new SmasherOccupation()), new LaunchScreenCommand(new GameScreen())));
-            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new SetOccupationCommand(new Avatar("Sneak", "Sneak Desc", new Armory(), new Sack(), null, ClassicMovementBehavior.getInstance()), new SneakOccupation()), new LaunchScreenCommand(new GameScreen())));
-            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new SetOccupationCommand(new Avatar("Summoner", "Summoner Desc", new Armory(), new Sack(), null, ClassicMovementBehavior.getInstance()), new SummonerOccupation()), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(smasher_button_), new SetSmasherOccupationCommand(new Avatar(CoordUtil.MAP_1_DEFAULT_COORDINATE)), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(sneak_button_), new SetSneakOccupationCommand(new Avatar(CoordUtil.MAP_1_DEFAULT_COORDINATE)), new LaunchScreenCommand(new GameScreen())));
+            controlMaps.add(new ControlMap(new ButtonSwingControl(summoner_button_), new SetSummonerOccupationCommand(new Avatar(CoordUtil.MAP_1_DEFAULT_COORDINATE)), new LaunchScreenCommand(new GameScreen())));
             return controlMaps;
     }
 

@@ -1,10 +1,9 @@
 package model;
 
 import model.effect.Effect;
-import view.utility.GameObjectRenderer;
-import view.utility.MiniGameObjectRenderer;
-import view.utility.ObjectRenderer;
+import model.entity.Entity;
 import model.map.location.Location;
+import view.utility.ObjectRenderer;
 
 /**
  * Created by Troy on 4/16/2015.
@@ -42,6 +41,10 @@ public abstract class MapObject implements Derivable {
     /**
      * IMPLEMENTATIONS
      */
+    
+    public boolean canSee(Entity observer){
+    	return true;
+    }
 
     // Eric - Leaving for Troy todo.
     public abstract boolean createLocationAssociation(Location location);

@@ -53,7 +53,7 @@ public class Application {
     public static synchronized void check(boolean assertion, String message) {
         if(! assertion) {
             final StackTraceElement stack_trace[] = Thread.currentThread().getStackTrace();
-            final int max_rows = 6;
+            final int max_rows = 10;
             final int first_row = 2;
             System.err.println(message);
             System.err.println("Assertion failed in Thread: " +  Thread.currentThread().getName());
@@ -98,9 +98,8 @@ public class Application {
         mainWindow.displayScreen(screen);
     }   
     
-    public PhysicalControl listenForRebind(ControlMap controlMap) {
-        PhysicalControl oldControl = physicalController.setupForRebind(controlMap);
-        return oldControl;
+    public void listenForRebind(ControlMap controlMap) {
+        physicalController.setupForRebind(controlMap);
     }
     
     private Model initModel() {

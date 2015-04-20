@@ -35,4 +35,14 @@ public class InfluenceTile {
     public void setRadius(int radius) {
         this.radius = radius;
     }
+
+    @Override
+    public boolean equals( Object object ) {
+        if ( object instanceof InfluenceTile ) {
+            if (getTile().equals( ((InfluenceTile) object).getTile() ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

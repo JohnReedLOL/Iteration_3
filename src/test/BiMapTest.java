@@ -1,5 +1,6 @@
 package test;
 
+import model.map.GameMap;
 import utility.BidirectionalMap;
 
 /**
@@ -8,12 +9,10 @@ import utility.BidirectionalMap;
 public class BiMapTest {
 
     public static void main(String[] args) {
-        BidirectionalMap<String, Integer> map = new BidirectionalMap<String, Integer>();
+        GameMap map = new GameMap();
 
-//        String troy = "TROY";
+        map.testBiMap();
 
-        map.insert( "TROY", new Integer(5));
 
-        System.out.println(map.getKey( 5 ));
     }
 }

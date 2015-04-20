@@ -107,6 +107,9 @@ public class StatsOwnership {
 	public void modifyStatPoints(int modifier){
 		statPoints += modifier;
 	}
+	public void setOwner(Entity owner) {
+		this.owner = owner;
+	}
 	
 	
 	/* -------------------- VISITORS -------------------- */

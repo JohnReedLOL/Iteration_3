@@ -19,6 +19,11 @@ public class ArmoryOwnership {
         this.owner = entity;
         this.equipment = armory;
     }
+    
+    public ArmoryOwnership(Entity entity) {
+        this.owner = entity;
+        this.equipment = new Armory();
+    }
 
     /**
      * GETTERS

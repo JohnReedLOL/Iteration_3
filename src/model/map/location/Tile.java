@@ -100,7 +100,7 @@ public abstract class Tile extends Location {
         if (object instanceof Tile) {
             Tile obj = (Tile) object;
 
-            return (this.mapObjects.equals(obj.mapObjects) && this.areaEffects.equals(obj.areaEffects));
+            return this == obj;
         }
 
         return false;

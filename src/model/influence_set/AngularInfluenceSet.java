@@ -1,7 +1,9 @@
 package model.influence_set;
 
+import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
+import model.map.direction.HexMapDirection;
 import model.map.location.Location;
 import model.map.location.Tile;
 
@@ -16,60 +18,97 @@ import java.util.Queue;
 public class AngularInfluenceSet extends DirectionalInfluenceSet {
 
     private ArrayList<Direction> directions = new ArrayList<Direction>();   //OTHER DIRECTIONS TO BE USED BY THE ANGULAR SET
+    QueueInfluenceTile[][] mapInfluenceTiles;
 
     public AngularInfluenceSet() {
         super();
     }
 
     public AngularInfluenceSet( Direction direction, int radius, Location location) {
-        super( direction, radius, location );
+        super(direction, radius, location);
         HexCoordinate coord = getMap().getCoordinateByLocation( location );
         directions.add( direction.getCounterClockwiseDirection( coord ) );
         directions.add( direction );
-        directions.add( direction.getClockwiseDirection( coord ) );
+        directions.add( direction.getClockwiseDirection(coord));
+        initializeMapInfluenceTiles();
     }
 
     @Override
     public Collection<InfluenceTile> getInfluenceSet() {
         Collection<InfluenceTile> tiles = new ArrayList<InfluenceTile>();
-        InfluenceTile currentTile = new InfluenceTile( (Tile) getSourceLocation(), 0 );
-        if ( getUseSourceLocation() ) {
-            tiles.add( currentTile );
+        QueueInfluenceTile currentTile = new QueueInfluenceTile( (Tile) getSourceLocation(), 0 );
+
+        QueueInfluenceTile iTile = new QueueInfluenceTile( (Tile) getSourceLocation(), 0) ;
+        if ( getUseSourceLocation() ) { //SHould we add the center tile?
+            tiles.add( iTile );
         }
 
-        Queue<InfluenceTile> queue = new ArrayDeque<InfluenceTile>();
+        Queue<QueueInfluenceTile> queue = new ArrayDeque<QueueInfluenceTile>();
         queue.offer(currentTile);
 
-        Tile next = currentTile.getTile();
 
+        HexCoordinate currentCoord = null;
+        HexCoordinate nextCoord = null;
         while( !queue.isEmpty() ) {
-            if ( queue.peek().getRadius() < getRadius() ) {
-                InfluenceTile grabbed = queue.poll();
-                if ( grabbed.getRadius() % 2 == 0 ) {  //for determining direction stuff: if even, go in direction. if odd, go in dir and clock/counterclockwise direcitons
-                    next = getMap().getLocationFromDirection( grabbed.getTile(), getDirection() );
-                    if ( next != null ) {
-                        InfluenceTile tile = new InfluenceTile( next, grabbed.getRadius() + 1 );
-                        tiles.add( tile );
-                        queue.offer( tile );
+            iTile = queue.poll();
+            if ( iTile.getRadius() < getRadius() ) {
+                recomputeDirections(getMap().getCoordinateByLocation(iTile.getTile()));
+                if ( iTile.getRadius() % 2 == 0 ) {  //for determining direction stuff: if even, go in direction. if odd, go in dir and clock/counterclockwise direcitons
+                    currentCoord = getMap().getCoordinateByLocation( iTile.getTile() );
+                    nextCoord = getDirection().deriveCoordinate( currentCoord );
+                    if ( getMap().inBounds( nextCoord ) ) {
+                        QueueInfluenceTile t = mapInfluenceTiles[nextCoord.getX()][nextCoord.getY()];
+                        //System.out.println( getMap().getCoordinateByLocation(tile.getTile()).getX() + ", " + getMap().getCoordinateByLocation(tile.getTile()).getX() );
+                        if ( !t.getVisited() && !tiles.contains( t ) ) {
+                            t.setRadius( iTile.getRadius() + 1 );
+                            tiles.add(t);
+                            queue.offer(t);
+                        }
+                        t.setVisited( true );
                     }
                 }
                 else {  //we have an odd tile: get other directions, add them all.
                     for (Direction d : directions ) {
-                        next = getMap().getLocationFromDirection( grabbed.getTile(), d );
-                        if ( next != null ) {
-                            InfluenceTile tile = new InfluenceTile( next, grabbed.getRadius() + 1 );
+                        currentCoord = getMap().getCoordinateByLocation( iTile.getTile() );
+                        nextCoord = d.deriveCoordinate( currentCoord );
+                        if ( getMap().inBounds( nextCoord ) ) {
+                            QueueInfluenceTile t = mapInfluenceTiles[nextCoord.getX()][nextCoord.getY()];
                             //System.out.println( getMap().getCoordinateByLocation(tile.getTile()).getX() + ", " + getMap().getCoordinateByLocation(tile.getTile()).getX() );
-                            tiles.add( tile );
-                            queue.offer(tile);
+                            if ( !t.getVisited() && !tiles.contains( t ) ) {
+                                t.setRadius( iTile.getRadius() + 1 );
+                                tiles.add(t);
+                                queue.offer(t);
+                            }
+                            t.setVisited( true );
                         }
                     }
                 }
             }
-            else queue.poll();
         }
 
 
 
         return tiles;
+    }
+
+    private void recomputeDirections( HexCoordinate coordinate ) {
+        directions.clear();
+        HexMapDirection[] d = new HexMapDirection[] {   (HexMapDirection) getDirection(),
+                                                        (HexMapDirection) getDirection().getClockwiseDirection( coordinate ),
+                                                        (HexMapDirection) getDirection().getCounterClockwiseDirection( coordinate ) };
+        for (int i = 0; i < d.length; ++i ) {
+            directions.add( d[i] );
+        }
+    }
+
+    private void initializeMapInfluenceTiles() {
+        Tile[][] someTiles = getMap().getTiles();
+        mapInfluenceTiles = new QueueInfluenceTile[someTiles.length][someTiles[0].length];
+
+        for( int i = 0; i < someTiles.length; ++i ) {
+            for( int j = 0; j < someTiles[0].length; ++j ) {
+                mapInfluenceTiles[i][j] = new QueueInfluenceTile( someTiles[i][j] );
+            }
+        }
     }
 }

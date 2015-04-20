@@ -2,11 +2,11 @@ package mvc_bridgeway.screen;
 
 // @author comcc_000
 
-import controller.physicalController.PhysicalController;
-import controller.virtual_controller.VirtualController;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import model.Model;
 import model.UserSettings;
+import mvc_bridgeway.command.model_command.LaunchScreenCommand;
+import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.OptionsViewport;
 import view.viewport.Viewport;
@@ -36,7 +36,9 @@ public class OptionsScreen extends Screen {
 
     @Override
     protected ArrayList<ControlMap> generateDefaultPhysicalControlMaps() {
-        return new ArrayList<ControlMap>();
+        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
+        controlMaps.add( new ControlMap( new KeyboardControl(KeyEvent.VK_G), new LaunchScreenCommand(new GameScreen() ) ) );
+        return controlMaps;
     }
 
     @Override

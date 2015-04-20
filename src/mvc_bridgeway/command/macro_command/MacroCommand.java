@@ -43,6 +43,23 @@ public class MacroCommand extends Command {
         return display;
     }
     
+    public int getNumCommands() {
+        return commands.size();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        MacroCommand macro = (MacroCommand)o;
+        if (this.getNumCommands() != macro.getNumCommands()) {
+            return false;
+        }
+        boolean allEqual = true;
+        for (int i=0; i<getNumCommands(); i++) {
+            allEqual = allEqual && this.commands.get(i).equals( macro.getCommands().get(i) );
+        }
+        return allEqual;
+    }
+    
     private ArrayList<Command> initCommands(Command command, Command[] cmds) {
         ArrayList<Command> temp = new ArrayList<Command>();
         temp.add(command);
@@ -53,6 +70,10 @@ public class MacroCommand extends Command {
     }
     
     /*Get-Sets*/
+    
+    public ArrayList<Command> getCommands() {
+        return commands;
+    }
 
     /*Inner-classes*/
 

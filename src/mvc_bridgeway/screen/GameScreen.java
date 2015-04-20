@@ -5,8 +5,11 @@ package mvc_bridgeway.screen;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import model.UserSettings;
+import model.map.direction.NorthDirection;
+import model.map.direction.SouthDirection;
 import mvc_bridgeway.command.model_command.ExitCommand;
 import mvc_bridgeway.command.model_command.LaunchScreenCommand;
+import mvc_bridgeway.command.model_command.MoveCommand;
 import mvc_bridgeway.control.physical_control.KeyboardControl;
 import mvc_bridgeway.control_map.ControlMap;
 import view.viewport.Viewport;
@@ -32,7 +35,7 @@ public class GameScreen extends Screen {
 
     @Override
     protected ArrayList<ControlMap> getUserControls(UserSettings userSettings) {
-        return null;
+        return userSettings.getGameScreenControls();
     }
 
     @Override
@@ -40,6 +43,8 @@ public class GameScreen extends Screen {
         ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
         controlMaps.add( new ControlMap( new KeyboardControl(KeyEvent.VK_O), new LaunchScreenCommand(new OptionsScreen() ) ) );
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_X),new ExitCommand() ) );
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_1), new MoveCommand(new NorthDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_2), new MoveCommand(new SouthDirection())));
         return controlMaps;
     }
 

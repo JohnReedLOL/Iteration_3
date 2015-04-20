@@ -2,9 +2,12 @@ package model.entity.npc;
 
 import model.armory.Armory;
 import model.entity.Entity;
+import model.entity.behavior.movement.ClassicMovementBehavior;
 import model.entity.behavior.movement.MovementBehavior;
-import model.entity.occupation.Occupation;
+import model.entity.stats.StatsOwnership;
 import model.inventory.Sack;
+import model.map.coordinate.Coordinate2D;
+import model.map.coordinate.HexCoordinate;
 import model.map.location.Location;
 import view.utility.ObjectRenderer;
 
@@ -17,14 +20,21 @@ public class NPC extends Entity {
      * CONSTRUCTORS
      */
 
-    public NPC(Armory armory, Sack sack, Occupation occupation, MovementBehavior movement) {
-        this("NPC", "NPC Desc", armory, sack, occupation, movement);
+    public NPC(HexCoordinate coord) {
+        super(coord);
     }
 
-    public NPC(String name, String description, Armory armory, Sack sack, Occupation occupation,
-               MovementBehavior movement) {
-        super(name, description, armory, sack, occupation, movement);
-    }
+//    public NPC(String name, String description) {
+//        this(name, description, new Armory(), new Sack(), ClassicMovementBehavior.getInstance(), new StatsOwnership(null));
+//    }
+//
+//    public NPC(Armory armory, Sack sack, MovementBehavior movement, StatsOwnership stats) {
+//        this("NPC", "NPC Desc", armory, sack, movement, stats);
+//    }
+//
+//    public NPC(String name, String description, Armory armory, Sack sack, MovementBehavior movement, StatsOwnership stats) {
+//        super(name, description, armory, sack, movement, stats);
+//    }
 
     /**
      * GETTERS

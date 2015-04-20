@@ -42,4 +42,10 @@ public abstract class HexMapDirection extends Direction {
     private void setDeltaY(int deltaY) {
         this.deltaY = deltaY;
     }
+
+    public void recomputeDelta( HexCoordinate coord ) {
+        HexCoordinate newCoord = deriveCoordinate( coord );
+        setDeltaX( coord.getX() - newCoord.getX() );
+        setDeltaY( coord.getY() - newCoord.getY() );
+    }
 }

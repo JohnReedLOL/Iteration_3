@@ -3,7 +3,6 @@ package model.map;
 import application.Application;
 import model.MapObject;
 import model.effect.Effect;
-import model.entity.Entity;
 import model.influence_set.InfluenceSet;
 import model.influence_set.InfluenceTile;
 import model.map.builder.FirstLevelMapBuilder;
@@ -11,11 +10,12 @@ import model.map.builder.MapBuilder;
 import model.map.coordinate.Coordinate2D;
 import model.map.coordinate.HexCoordinate;
 import model.map.direction.Direction;
+import model.map.location.GrassTile;
 import model.map.location.Location;
+import model.map.location.MountainTile;
 import model.map.location.Tile;
 import utility.BidirectionalMap;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -29,7 +29,10 @@ public class GameMap extends DiscreteMap {
 
     public GameMap() {
         super();
+    }
 
+    @Override
+    public void populate() {
         setName( generateNextMapName() );
         MapBuilder mapBuilder = getMapBuilder();
         tiles = mapBuilder.generateMap();
@@ -51,7 +54,9 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void insert( MapObject m, Location l ) {
-        l.createMapObjectAssociation(m);
+        if (l != null) {
+            l.createMapObjectAssociation(m);
+        }
     }
 
     @Override
@@ -73,6 +78,8 @@ public class GameMap extends DiscreteMap {
         previous.removeMapObjectAssociation( m );
         newPos.removeMapObjectAssociation(m);
         newPos.createMapObjectAssociation(m);
+
+        GameWorld.updateVisibleMap();
     }
 
     // Leaving here just in case it might need to be used. //
@@ -84,7 +91,9 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public void teleport(MapObject m, DiscreteMap d) {
-        //TODO
+
+        remove( m );
+        d.insert( m , d.getLocationByCoordinate( new HexCoordinate( 5, 5 )));
     }
 
     @Override
@@ -111,7 +120,7 @@ public class GameMap extends DiscreteMap {
         return brightness;
     }
 
-    private MapBuilder getMapBuilder() {
+    protected MapBuilder getMapBuilder() {
         return new FirstLevelMapBuilder();
     }
 
@@ -142,11 +151,13 @@ public class GameMap extends DiscreteMap {
 
     @Override
     public HexCoordinate getCoordinateByLocation(Location l) {
-        Tile t = (Tile) l;
-        for ( int i = 0; i < tiles.length; ++i ) {
-            for (int j = 0; j < tiles[0].length; ++j ) {
-                if ( tiles[i][j].equals( t ) ) {
-                    return new HexCoordinate( i, j );
+        if (l != null) {
+            Tile t = (Tile) l;
+            for (int i = 0; i < tiles.length; ++i) {
+                for (int j = 0; j < tiles[0].length; ++j) {
+                    if (tiles[i][j].equals(t)) {
+                        return new HexCoordinate(i, j);
+                    }
                 }
             }
         }
@@ -167,6 +178,27 @@ public class GameMap extends DiscreteMap {
                 obj.accept(effect);
             }
         }
+    }
+
+    public void testBiMap() {
+        tileMap = new BidirectionalMap< HexCoordinate, Tile >();
+
+        GrassTile grassTile = new GrassTile();
+        MountainTile mountainTile = new MountainTile();
+        tileMap.insert( new HexCoordinate( 3, 9 ), grassTile );
+        tileMap.insert( new HexCoordinate( 5, 5 ), mountainTile );
+
+        HexCoordinate t = tileMap.getKey( mountainTile );
+        System.out.println( t.getX() + ", " + t.getY() );
+    }
+
+    public boolean inBounds( HexCoordinate coord ) {
+        if ( coord.getX() >= 0 && coord.getX() < getHeight()  &&
+           ( coord.getY() >= 0 && coord.getY() < getWidth() ) ) {
+            return true;
+        }
+        return false;
+
     }
 
 

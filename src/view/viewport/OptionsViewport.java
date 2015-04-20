@@ -7,16 +7,20 @@ package view.viewport;
 
 import application.Application;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.ModelViewBundle;
+import mvc_bridgeway.command.Command;
 import mvc_bridgeway.command.model_command.RebindCommand;
 import mvc_bridgeway.command.view_command.ClearRebindButtonCommand;
+import mvc_bridgeway.control.Control;
 import mvc_bridgeway.control.physical_control.PhysicalControl;
 import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
+import mvc_bridgeway.control.virtual_control.swing_control.SwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 import utility.ImageUtil;
 
@@ -89,6 +93,8 @@ public class OptionsViewport extends Viewport {
             mapRows.remove(mapRow);
             i--; //compensate for size decrease
         }
+        mapRows = new ArrayList<MapRow>();
+//        this.removeAll();
     }
     
     private class MapRow {
@@ -97,46 +103,100 @@ public class OptionsViewport extends Viewport {
         
         private JLabel label;
         private JButton button;
+        private JPanel panel;
         //
-        private JPanel panel = jPanel4;
+        private JPanel masterPanel;
         private OptionsViewport viewport;
+        //
+        private ControlMap controlMap = null;
+        //
+        private ControlMap<SwingControl> vcm = null;
         
         /*Constructors*/
         
-        public MapRow(JPanel panel, OptionsViewport viewport) {
-            this.panel = panel;
+        public MapRow(JPanel masterPanel, OptionsViewport viewport) {
+            this.masterPanel = masterPanel;
             this.viewport = viewport;
             
+            init();
         }
         
         public void update(ControlMap controlMap) {
-            String action = controlMap.getCommand().getDisplayString();
-            String key = controlMap.getControl().toString();
-            displayAction(action);
-            displayKey(key);
-            setControl(controlMap);
+//            boolean sameMap;
+//            if (this.controlMap != null ) {
+//               sameMap = !this.controlMap.equals(controlMap);
+//            }
+            //this.controlMap == null || !this.controlMap.equals(controlMap) 
+            if ( true ) {
+                displayAction(getAction(controlMap));
+                displayKey(getKey(controlMap));
+                setControl(controlMap);
+                this.controlMap = controlMap;
+            } else {
+                //do nothing
+            }
+            
         }
         
-        private void displayAction(String action) {
+        private String getAction(ControlMap controlMap) {
+            Command command = controlMap.getCommand();
+            if (command!= null) {
+                return command.getDisplayString();
+            }
+            return "";
+        }
+        
+        private String getKey(ControlMap controlMap) {
+            Control control = controlMap.getControl();
+            if (control != null) {
+                return control.toString();
+            }
+            return "";
+        }
+        
+        private void init() {
+            initPanel();
             if (label == null) {
                 label = new JLabel();
                 panel.add(label);
             }
-            label.setText(action);
-        }
-        
-        private void displayKey(String key) {
             if (button == null) {
                 button = new JButton();
                 panel.add(button);
             }
+            masterPanel.add(panel);
+        }
+        
+        private void initPanel() {
+            GridLayout gridLayout = new GridLayout(2,2);
+            panel = new JPanel(gridLayout);
+        }
+        
+        private void displayAction(String action) {
+//            if (label == null) {
+//                label = new JLabel();
+//                masterPanel.add(label);
+//            }
+            label.setText(action);
+        }
+        
+        private void displayKey(String key) {
+//            if (button == null) {
+//                button = new JButton();
+//                masterPanel.add(button);
+//            }
             button.setText(key);
         }
         
         private void setControl(ControlMap controlMap) {
-            //set control
+            //remove old control(s)
             ButtonSwingControl bsc = new ButtonSwingControl(button);
-            cms.add(new ControlMap( bsc, new RebindCommand(controlMap), new ClearRebindButtonCommand(viewport, bsc)) );
+            bsc.removeAllActionListeners();
+            //set control
+            cms.remove(vcm);
+            vcm = new ControlMap( bsc, new RebindCommand(controlMap), new ClearRebindButtonCommand(viewport, bsc));
+            cms.add(vcm);
+            flagRefreshController();
         }
         
         private void remove() {
@@ -145,6 +205,9 @@ public class OptionsViewport extends Viewport {
             }
             if (button != null) {
                 panel.remove(button);
+            }
+            if (panel != null) {
+                masterPanel.remove(panel);
             }
         }
         
@@ -163,7 +226,7 @@ public class OptionsViewport extends Viewport {
 
         setLayout(new java.awt.GridBagLayout());
 
-        jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanel4.setLayout(new java.awt.GridLayout());
         add(jPanel4, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 

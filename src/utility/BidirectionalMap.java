@@ -36,6 +36,8 @@ public class BidirectionalMap<K, V> {
     }
 
     public V getValue( K key ) {
+        // If shit starts going cray when querying for MapObject's Location in the GameMap, this is
+        // what you need to uncomment.
 //        for (K k : keys()) { // <== LOLOLOLOLOL
 //            if (k.equals(key)) {
 //                return keyToValueMap.get(k);
