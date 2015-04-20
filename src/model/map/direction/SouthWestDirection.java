@@ -37,4 +37,9 @@ public class SouthWestDirection extends HexMapDirection {
                 new HexCoordinate( coordinate.getX(), coordinate.getY() - 1) :   //IF IT'S AN EVEN Y
                 new HexCoordinate( coordinate.getX() + 1, coordinate.getY() - 1);    //IF IT'S AN ODD Y
     }
+
+    @Override
+    public String toString() {
+        return "SW";
+    }
 }
