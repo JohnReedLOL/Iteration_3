@@ -63,6 +63,13 @@ public class GameScreen extends Screen {
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD1), new MoveCommand(new SouthWestDirection())));
         controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_NUMPAD3), new MoveCommand(new SouthEastDirection())));
 
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_W), new MoveCommand(new NorthDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_S), new MoveCommand(new SouthDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_Q), new MoveCommand(new NorthWestDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_E), new MoveCommand(new NorthEastDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_A), new MoveCommand(new SouthWestDirection())));
+        controlMaps.add(new ControlMap( new KeyboardControl(KeyEvent.VK_D), new MoveCommand(new SouthEastDirection())));
+
         return controlMaps;
     }
 

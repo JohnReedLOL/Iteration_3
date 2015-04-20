@@ -75,9 +75,9 @@ public class Application {
      * @param message - message to be printed
      */
     public static synchronized void print(String message) {
-        final String thread_name = Thread.currentThread().getName() + " thread";
-        final String location_of_print_statement = Thread.currentThread().getStackTrace()[2].toString();
-        System.out.println(thread_name + ": " + location_of_print_statement + "\n" + message + "\n");
+//        final String thread_name = Thread.currentThread().getName() + " thread";
+//        final String location_of_print_statement = Thread.currentThread().getStackTrace()[2].toString();
+//        System.out.println(thread_name + ": " + location_of_print_statement + "\n" + message + "\n");
     }
     
     public static Application getApplication() {
