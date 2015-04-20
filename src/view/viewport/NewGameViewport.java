@@ -32,9 +32,9 @@ public class NewGameViewport extends Viewport {
     @Override
     protected void generateView() {
         int margin = 200;
-        setupButton("./resources/png/sneak_S.png", sneak_button_, margin);
-        setupButton("./resources/png/smasher_S.png", smasher_button_, margin);
-        setupButton("./resources/png/summoner_S.png", summoner_button_, margin);
+        setupButton("./src/resources/png/sorority_girl.png", sneak_button_, margin);
+        setupButton("./src/resources/png/frat_boy.png", smasher_button_, margin);
+        setupButton("./src/resources/png/nerd.png", summoner_button_, margin);
     }
     
     private void setupButton(String filepath, JButton button, int margin) {
