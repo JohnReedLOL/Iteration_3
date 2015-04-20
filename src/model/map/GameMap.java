@@ -82,7 +82,6 @@ public class GameMap extends DiscreteMap {
         }
 
         if (canMoveInto) {
-
             previous.removeMapObjectAssociation(m);
             newPos.removeMapObjectAssociation(m);
 

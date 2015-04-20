@@ -2,6 +2,7 @@ package model.factories;
 
 import model.effect.movementeffects.TeleportEffect;
 import model.effect.statseffect.*;
+import model.entity.behavior.movement.FlyingBehavior;
 import model.entity.npc.mount.Mount;
 import model.influence_set.InfluenceSet;
 import model.influence_set.LinearInfluenceSet;
@@ -261,6 +262,9 @@ public class ItemFactory {
     }
 
     public static Mount generateVespaMap1() {
-        return new Mount( new HexCoordinate( 3, 1 ) );
+        Mount vespa = new Mount( new HexCoordinate( 3, 1 ) );
+        vespa.setMovementBehavior( FlyingBehavior.getInstance() );
+
+        return vespa;
     }
 }

@@ -69,4 +69,5 @@ public class Mount extends NPC {
         super.move( direction );
         System.out.println("WEEEEEE VESPA");
     }
+
 }

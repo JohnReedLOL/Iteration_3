@@ -58,7 +58,6 @@ public class FlyingBehavior extends MovementBehavior {
             map.move(entity, previous, toMove);
             return true;
         }
-
         return false;
     }
 }
