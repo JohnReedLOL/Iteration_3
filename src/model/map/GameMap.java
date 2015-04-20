@@ -69,14 +69,26 @@ public class GameMap extends DiscreteMap {
         Tile previous = tileMap.getValue( (HexCoordinate) from );
         Tile newPos = tileMap.getValue( (HexCoordinate) to );
 
-        previous.removeMapObjectAssociation(m);
-        newPos.removeMapObjectAssociation(m);
+//        previous.removeMapObjectAssociation(m);
+//        newPos.removeMapObjectAssociation(m);
 
+
+        boolean canMoveInto = true;
         for ( MapObject mapObject : newPos.getMapObjects() ) {
-            mapObject.interact( m );
+
+            if ( !mapObject.interact( m ) ) {
+                canMoveInto = false;
+            }
         }
 
-        newPos.createMapObjectAssociation(m);
+        if (canMoveInto) {
+
+            previous.removeMapObjectAssociation(m);
+            newPos.removeMapObjectAssociation(m);
+
+
+            newPos.createMapObjectAssociation(m);
+        }
 
         GameWorld.updateVisibleMap();
     }

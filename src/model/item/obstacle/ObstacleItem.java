@@ -2,6 +2,7 @@ package model.item.obstacle;
 
 import java.util.ArrayList;
 
+import model.MapObject;
 import model.effect.Effect;
 import model.entity.Entity;
 import model.item.Item;
@@ -81,4 +82,9 @@ public class ObstacleItem extends Item {
 	public void accept(ObjectRenderer mapObjectRenderer) {
 		mapObjectRenderer.visit(this);
 	}
+
+    @Override
+    public boolean interact( MapObject m ) {
+        return false;
+    }
 }
