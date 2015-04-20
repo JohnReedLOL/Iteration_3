@@ -64,7 +64,7 @@ public class FirstLevelMapBuilder extends MapBuilder {
         tiles[2][9].createMapObjectAssociation(ItemFactory.generateTreasureChest());
         tiles[0][0].createMapObjectAssociation(ItemFactory.generateLevel3Shield());
 
-        tiles[3][1].createMapObjectAssociation(new Mount( new HexCoordinate( 3, 1 ) ) );
+        tiles[3][1].createMapObjectAssociation(ItemFactory.generateVespaMap1());
         tiles[2][3].addAreaEffect(AreaEffectFactory.generateTeleport());
 
         return tiles;
