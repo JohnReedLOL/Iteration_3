@@ -42,17 +42,20 @@ public class ArmoryViewport extends Viewport {
     }
     
     private void displayEquipItem(EquipItem ei) {
+        if (ei == null) {
+            return;
+        }
         EquipSlot es = ei.getEquipSlot();
         if (es.equals(es.HEAD)) {
             displayItem(ei, head_slot_);
         } else if (es.equals(es.TORSO)) {
-            displayItem(ei, head_slot_);
+            displayItem(ei, body_slot_);
         } else if (es.equals(es.MAINHAND)) {
-            displayItem(ei, head_slot_);
+            displayItem(ei, right_slot_);
         } else if (es.equals(es.OFFHAND)) {
-            displayItem(ei, head_slot_);
+            displayItem(ei, left_slot_);
         } else if (es.equals(es.LEGS)) {
-            displayItem(ei, head_slot_);
+            displayItem(ei, legs_slot_);
         }
     }
     
