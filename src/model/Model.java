@@ -97,8 +97,8 @@ public class Model {
                                 // probabaly better to implement commands in a queue 
                                 // and remove done command from queue
                                 to_execute_ = null;
+                                currentScreen.updateView(mvb);
                             }
-                            currentScreen.updateView(mvb);
                         }
                     };
                     model_thread_.execute(turn_taker);
