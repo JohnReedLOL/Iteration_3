@@ -26,328 +26,332 @@ import view.utility.stat.Stat;
 
 public class Model {
 
-    /*Properties*/
-    private static Model singleton = null;
-    //
-    private static final String model_thread_name_ = "Model Modifier";
-    private static final String model_clock_thread_name_ = "Model Clock";
-    private static final ExecutorService model_thread_ = Executors.newSingleThreadExecutor();
-    private static final ExecutorService model_clock_ = Executors.newSingleThreadExecutor();
-    private static ConcurrentLinkedQueue<ModelCommand> to_execute_ = null;
-    private static final ExecutorService viewClock_ = Executors.newSingleThreadExecutor();
-    private final static int refreshTime_ = 60;
-    public static final String view_clock_name = "View_Clock";
+	/* Properties */
+	private static Model singleton = null;
+	//
+	private static final String model_thread_name_ = "Model Modifier";
+	private static final String model_clock_thread_name_ = "Model Clock";
+	private static final ExecutorService model_thread_ = Executors
+			.newSingleThreadExecutor();
+	private static final ExecutorService model_clock_ = Executors
+			.newSingleThreadExecutor();
+	private static ConcurrentLinkedQueue<ModelCommand> to_execute_ = new ConcurrentLinkedQueue<ModelCommand>();
+	private static final ExecutorService viewClock_ = Executors
+			.newSingleThreadExecutor();
+	private final static int refreshTime_ = 60;
+	public static final String view_clock_name = "View_Clock";
 
-    static {
-        viewClock_.execute(new Runnable() {
-            @Override
-            public void run() {
-                Thread.currentThread().setName(view_clock_name);
-            }
-        });
-    }
+	static {
+		viewClock_.execute(new Runnable() {
+			@Override
+			public void run() {
+				Thread.currentThread().setName(view_clock_name);
+			}
+		});
+	}
 
-    static {
-        // name model thread
-        Runnable name_setter = new Runnable() {
-            @Override
-            public void run() {
-                Thread.currentThread().setName(model_thread_name_);
-                Application.print("name set!");
-            }
-        };
-        model_thread_.execute(name_setter);
-        // name model clock
-        Runnable clock_name_setter = new Runnable() {
-            @Override
-            public void run() {
-                Thread.currentThread().setName(model_clock_thread_name_);
-                Application.print("name set!");
-            }
-        };
-        model_clock_.execute(clock_name_setter);
+	static {
+		// name model thread
+		Runnable name_setter = new Runnable() {
+			@Override
+			public void run() {
+				Thread.currentThread().setName(model_thread_name_);
+				Application.print("name set!");
+			}
+		};
+		model_thread_.execute(name_setter);
+		// name model clock
+		Runnable clock_name_setter = new Runnable() {
+			@Override
+			public void run() {
+				Thread.currentThread().setName(model_clock_thread_name_);
+				Application.print("name set!");
+			}
+		};
+		model_clock_.execute(clock_name_setter);
 
-    }
-    //
-    private Application application;
-    private Screen currentScreen;
-    private ModelViewBundle mvb = ModelViewBundle.getInstance(); //for testing
-    //
-    public final RunMode RUN = new RunMode();
-    public final PauseMode PAUSE = new PauseMode();
-    private Mode currentMode = RUN;
+	}
+	//
+	private Application application;
+	private Screen currentScreen;
+	private ModelViewBundle mvb = ModelViewBundle.getInstance(); // for testing
+	//
+	public final RunMode RUN = new RunMode();
+	public final PauseMode PAUSE = new PauseMode();
+	private Mode currentMode = RUN;
 
-    /*Constructors*/
-    private Model() {
-        //defaults
-    }
+	/* Constructors */
+	private Model() {
+		// defaults
+	}
 
-    /**
-     * Starts the clock that runs the model.
-     */
-    private void startTheClock(UpdateTimings updateTimings) {
-        final int numUpdatesPerSecond = updateTimings.getFastestStep();
-        final int sleepTimeInMs = 1000 / numUpdatesPerSecond;
-        final int num_repeats = 3;
+	/**
+	 * Starts the clock that runs the model.
+	 */
+	private void startTheClock(UpdateTimings updateTimings) {
+		final int numUpdatesPerSecond = updateTimings.getFastestStep();
+		final int sleepTimeInMs = 1000 / numUpdatesPerSecond;
+		final int num_repeats = 3;
 
-        Runnable clock_runner = new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    //for (int i = 0; i < num_repeats; ++i) {
-                    try {
-                        Thread.sleep(sleepTimeInMs);
-                    } catch (InterruptedException ie) {
+		Runnable clock_runner = new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					// for (int i = 0; i < num_repeats; ++i) {
+					try {
+						Thread.sleep(sleepTimeInMs);
+					} catch (InterruptedException ie) {
 
-                    }
-                    //}
-                    Runnable turn_taker = new Runnable() {
-                        @Override
-                        public void run() {
-                            if (to_execute_ != null) {
-                                for (ModelCommand command : to_execute_) {
-                                    command.execute();
-                                }
-                                // After executing, set it to null
-                                // probabaly better to implement commands in a queue 
-                                // and remove done command from queue
-                                to_execute_ = null;
-                                takeEnviornmentGameStep();
-                                takeStandardGameStep();
+					}
+					// }
+					Runnable turn_taker = new Runnable() {
+						@Override
+						public void run() {
+							if (to_execute_ != null) {
+								for (ModelCommand command : to_execute_) {
+									command.execute();
+								}
+								to_execute_.clear();
+								// After executing, set it to null
+								// probabaly better to implement commands in a
+								// queue
+								// and remove done command from queue
+								takeEnviornmentGameStep();
+								takeStandardGameStep();
 
-                            }
-                        }
-                    };
-                    model_thread_.execute(turn_taker);
-                }
-            }
-        };
-        model_clock_.execute(clock_runner);
-    }
+							}
+						}
+					};
+					model_thread_.execute(turn_taker);
+				}
+			}
+		};
+		model_clock_.execute(clock_runner);
+	}
 
-    /*Methods*/
-    //Singleton
-    public static Model getModel() {
-        if (singleton == null) {
-            singleton = new Model();
-        }
-//       else {
-//            throw new RuntimeException("Why are you trying to create the model again!!!???");
-//        }
+	/* Methods */
+	// Singleton
+	public static Model getModel() {
+		if (singleton == null) {
+			singleton = new Model();
+		}
+		// else {
+		// throw new
+		// RuntimeException("Why are you trying to create the model again!!!???");
+		// }
 
-        return singleton;
-    }
+		return singleton;
+	}
 
-    public static Avatar getAvatar() {
-        return GameWorld.getAvatar();
-    }
+	public static Avatar getAvatar() {
+		return GameWorld.getAvatar();
+	}
 
-    //Thread operations
-    private synchronized void updateView() {
-        currentMode.updateView();
-    }
+	// Thread operations
+	private synchronized void updateView() {
+		currentMode.updateView();
+	}
 
-    private synchronized void takeEnviornmentGameStep() {
-        currentMode.takeEnviornmentGameStep();
-    }
+	private synchronized void takeEnviornmentGameStep() {
+		currentMode.takeEnviornmentGameStep();
+	}
 
-    private synchronized void takeStandardGameStep() {
-        currentMode.takeStandardGameStep();
-    }
+	private synchronized void takeStandardGameStep() {
+		currentMode.takeStandardGameStep();
+	}
 
-    //Controller Interface
-    public synchronized void queueCommandForExecution(ModelCommand command) {
-        // TODO: better to implement as a queue?
-        if (to_execute_ == null) {
-            to_execute_ = new ConcurrentLinkedQueue<ModelCommand>();
-        }
-        to_execute_.add(command); // store command to be executed when the model clock tells it to execute AKA lag compensation
-        //command.execute(); //for now
-    }
+	// Controller Interface
+	public synchronized void queueCommandForExecution(ModelCommand command) {
+		// TODO: better to implement as a queue?
+		to_execute_.add(command); // store command to be executed when the model
+									// clock tells it to execute AKA lag
+									// compensation
+		// command.execute(); //for now
+	}
 
-    //Command Interface
-    public void exit() {
-        System.exit(0);
-    }
+	// Command Interface
+	public void exit() {
+		System.exit(0);
+	}
 
-    public void setupPhysicalControllerForRebind(ControlMap controlMap) {
-        UserSettings userSettings = mvb.getUserSettings();
-        userSettings.updateForRebind(controlMap);
-        //
-        application.listenForRebind(controlMap);
-    }
+	public void setupPhysicalControllerForRebind(ControlMap controlMap) {
+		UserSettings userSettings = mvb.getUserSettings();
+		userSettings.updateForRebind(controlMap);
+		//
+		application.listenForRebind(controlMap);
+	}
 
-    public void save(File file) {
-        //TODO
-        String filename = file.getAbsolutePath();
-    }
+	public void save(File file) {
+		// TODO
+		String filename = file.getAbsolutePath();
+	}
 
-    public void load(File file) {
-        //TODO
-        String filename = file.getAbsolutePath();
-    }
+	public void load(File file) {
+		// TODO
+		String filename = file.getAbsolutePath();
+	}
 
-    public void setSneakOccupation(Entity entity) {
-        Application.print("User created Sneak");
-        entity.setInstance(OccupationFactory.generateAvatarSneakOccupation());
-    }
+	public void setSneakOccupation(Entity entity) {
+		Application.print("User created Sneak");
+		entity.setInstance(OccupationFactory.generateAvatarSneakOccupation());
+	}
 
-    public void setSummonerOccupation(Entity entity) {
-        Application.print("User created Summoner");
-        entity.setInstance(OccupationFactory.generateAvatarSummonerOccupation());
-    }
+	public void setSummonerOccupation(Entity entity) {
+		Application.print("User created Summoner");
+		entity.setInstance(OccupationFactory.generateAvatarSummonerOccupation());
+	}
 
-    public void setSmasherOccupation(Entity entity) {
-        Application.print("User created Smasher");
-        entity.setInstance(OccupationFactory.generateAvatarSmasherOccupation());
-    }
+	public void setSmasherOccupation(Entity entity) {
+		Application.print("User created Smasher");
+		entity.setInstance(OccupationFactory.generateAvatarSmasherOccupation());
+	}
 
-    public void beginNewGame() {
-        //TODO
-    }
-    
-    public void levelupStat(Stat stat) {
-        stat.level();
-    }
-    
-//    /* -------------------- LEVEL UP COMMANDS -------------------- */
-//    public void levelStrength(Entity a) {
-//        a.getStatsOwnership().upStrength();
-//    }
-//
-//    public void levelAgility(Entity a) {
-//        a.getStatsOwnership().upAgility();
-//    }
+	public void beginNewGame() {
+		// TODO
+	}
 
-    public boolean move(Entity entity, Direction direction) {
-        entity.move( direction );
-        return true;
-    }
+	public void levelupStat(Stat stat) {
+		stat.level();
+	}
 
-    public boolean storeInInventory(Avatar avatar, SackboundItem item) {
-        return avatar.getInventoryOwnership().addItem(item);
-    }
+	// /* -------------------- LEVEL UP COMMANDS -------------------- */
+	// public void levelStrength(Entity a) {
+	// a.getStatsOwnership().upStrength();
+	// }
+	//
+	// public void levelAgility(Entity a) {
+	// a.getStatsOwnership().upAgility();
+	// }
 
-    public boolean equip(Avatar avatar, Item item) {
-        item.apply(avatar);
-        return true;
-    }
-    
-    public void unequip(Avatar avatar, EquipItem item) {
-        avatar.getArmoryOwnership().unequip(item);
-    }
+	public boolean move(Entity entity, Direction direction) {
+		entity.move(direction);
+		return true;
+	}
 
-    public void drop(Avatar avatar) {
+	public boolean storeInInventory(Avatar avatar, SackboundItem item) {
+		return avatar.getInventoryOwnership().addItem(item);
+	}
 
-    }
+	public boolean equip(Avatar avatar, Item item) {
+		item.apply(avatar);
+		return true;
+	}
 
-    public void dismount(Avatar avatar) {
-        avatar.dismount();
-    }
+	public void unequip(Avatar avatar, EquipItem item) {
+		avatar.getArmoryOwnership().unequip(item);
+	}
 
-    public boolean activateAbility(Avatar avatar, Ability ability) {
-        avatar.useAbility(ability);
-        return false;
-    }
+	public void drop(Avatar avatar) {
 
-    public void talk() {
-        //TOdO
-    }
+	}
 
-    public boolean purchase(Avatar avatar, Item item, int price) {
-        //TODO
-        return false;
-    }
+	public void dismount(Avatar avatar) {
+		avatar.dismount();
+	}
 
-    //Misc
-    public void setMode(Mode mode) {
-        currentMode = mode;
-    }
+	public boolean activateAbility(Avatar avatar, Ability ability) {
+		avatar.useAbility(ability);
+		return false;
+	}
 
-    public void launch(Application application) {
-        this.application = application;
-        startTheClock(application.getUpdateTimings());
-        launchFirstScreen();
-        Model.viewClock_.execute(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(refreshTime_);
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                currentScreen.updateView(mvb);
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
+	public void talk() {
+		// TOdO
+	}
 
-    private void launchFirstScreen() {
-        Screen firstScreen = new HomeScreen();
-        launchScreen(firstScreen);
-    }
+	public boolean purchase(Avatar avatar, Item item, int price) {
+		// TODO
+		return false;
+	}
 
-    public void launchScreen(Screen screen) {
-        currentScreen = screen;
-        application.launchScreen(screen, mvb.getUserSettings());
-    }
+	// Misc
+	public void setMode(Mode mode) {
+		currentMode = mode;
+	}
 
-    /*Get-Sets*/
+	public void launch(Application application) {
+		this.application = application;
+		startTheClock(application.getUpdateTimings());
+		launchFirstScreen();
+		Model.viewClock_.execute(new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						Thread.sleep(refreshTime_);
+//						SwingUtilities.invokeLater(new Runnable() {
+//							@Override
+//							public void run() {
+								currentScreen.updateView(mvb);
+//							}
+//						});
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+	}
 
-    /*Inner-classes*/
-    private abstract class Mode { //Begin Mode Inner-Class
+	private void launchFirstScreen() {
+		Screen firstScreen = new HomeScreen();
+		launchScreen(firstScreen);
+	}
 
-        protected abstract void updateView();
+	public void launchScreen(Screen screen) {
+		currentScreen = screen;
+		application.launchScreen(screen, mvb.getUserSettings());
+	}
 
-        protected abstract void takeEnviornmentGameStep();
+	/* Get-Sets */
 
-        protected abstract void takeStandardGameStep();
+	/* Inner-classes */
+	private abstract class Mode { // Begin Mode Inner-Class
 
-    } //End Mode Inner-Class
+		protected abstract void updateView();
 
-    private class RunMode extends Mode { //Begin RunMode Inner-Class
+		protected abstract void takeEnviornmentGameStep();
 
-        @Override
-        protected final void updateView() {
-            currentScreen.updateView(mvb);
-        }
+		protected abstract void takeStandardGameStep();
 
-        @Override
-        protected void takeEnviornmentGameStep() {
+	} // End Mode Inner-Class
 
-        }
+	private class RunMode extends Mode { // Begin RunMode Inner-Class
 
-        @Override
-        protected final void takeStandardGameStep() {
-            GameWorld.getCurrentMap().onMapTick();
-        }
+		@Override
+		protected final void updateView() {
+			currentScreen.updateView(mvb);
+		}
 
-    } //End RunMode Inner-Class
+		@Override
+		protected void takeEnviornmentGameStep() {
 
-    private class PauseMode extends Mode { //Begin RunMode Inner-Class
+		}
 
-        @Override
-        protected final void updateView() {
-            currentScreen.updateView(mvb);
-        }
+		@Override
+		protected final void takeStandardGameStep() {
+			GameWorld.getCurrentMap().onMapTick();
+		}
 
-        @Override
-        protected final void takeEnviornmentGameStep() {
-            //Do nothing
-        }
+	} // End RunMode Inner-Class
 
-        @Override
-        protected final void takeStandardGameStep() {
-            //Do nothing
-        }
+	private class PauseMode extends Mode { // Begin RunMode Inner-Class
 
-    } //End RunMode Inner-Class
+		@Override
+		protected final void updateView() {
+			currentScreen.updateView(mvb);
+		}
 
-    /*Test Main Method*/
+		@Override
+		protected final void takeEnviornmentGameStep() {
+			// Do nothing
+		}
+
+		@Override
+		protected final void takeStandardGameStep() {
+			// Do nothing
+		}
+
+	} // End RunMode Inner-Class
+
+	/* Test Main Method */
 }
