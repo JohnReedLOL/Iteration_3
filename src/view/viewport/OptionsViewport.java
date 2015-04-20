@@ -41,16 +41,16 @@ public class OptionsViewport extends Viewport {
     
     @Override
     protected void generateView() {
-//        ControlMap controlMap = new ControlMap(new KeyboardControl(KeyEvent.VK_X), new ExitCommand());
-//        displayPhysicalControlMap(controlMap);
-//        this.validate();
+        add(new JButton("Stuff"));
+        validate();
     }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Image background = ImageUtil.getImage("./resources/png/campus_map.gif");
-        g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
+        Application.print("Cannot find ./resources/png/campus_map.gif");
+        //Image background = ImageUtil.getImage("./resources/png/campus_map.gif");
+        //g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
     }
     
     @Override

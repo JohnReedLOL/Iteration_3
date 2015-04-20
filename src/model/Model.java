@@ -5,8 +5,10 @@ import application.Application;
 import application.Application.UpdateTimings;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import javax.swing.SwingUtilities;
 
 import model.entity.Entity;
 import model.entity.ability.Ability;
@@ -20,18 +22,31 @@ import mvc_bridgeway.control_map.ControlMap;
 import mvc_bridgeway.screen.HomeScreen;
 import mvc_bridgeway.screen.Screen;
 import model.factories.OccupationFactory;
+import view.utility.stat.Stat;
 
 public class Model {
 
     /*Properties*/
-
     private static Model singleton = null;
     //
     private static final String model_thread_name_ = "Model Modifier";
     private static final String model_clock_thread_name_ = "Model Clock";
     private static final ExecutorService model_thread_ = Executors.newSingleThreadExecutor();
     private static final ExecutorService model_clock_ = Executors.newSingleThreadExecutor();
-    private static volatile ArrayList<ModelCommand> to_execute_ = null;
+    private static ConcurrentLinkedQueue<ModelCommand> to_execute_ = null;
+    private static final ExecutorService viewClock_ = Executors.newSingleThreadExecutor();
+    private final static int refreshTime_ = 20;
+    public static final String view_clock_name = "View_Clock";
+
+    static {
+        viewClock_.execute(new Runnable() {
+            @Override
+            public void run() {
+                Thread.currentThread().setName(view_clock_name);
+            }
+        });
+    }
+
     static {
         // name model thread
         Runnable name_setter = new Runnable() {
@@ -97,8 +112,7 @@ public class Model {
                                 // probabaly better to implement commands in a queue 
                                 // and remove done command from queue
                                 to_execute_ = null;
-                                currentScreen.updateView(mvb);
-                                
+
                             }
                         }
                     };
@@ -110,9 +124,7 @@ public class Model {
     }
 
     /*Methods*/
-    
-        //Singleton
-    
+    //Singleton
     public static Model getModel() {
         if (singleton == null) {
             singleton = new Model();
@@ -128,8 +140,7 @@ public class Model {
         return GameWorld.getAvatar();
     }
 
-        //Thread operations
-    
+    //Thread operations
     private synchronized void updateView() {
         currentMode.updateView();
     }
@@ -142,19 +153,17 @@ public class Model {
         currentMode.takeStandardGameStep();
     }
 
-        //Controller Interface
-    
+    //Controller Interface
     public synchronized void queueCommandForExecution(ModelCommand command) {
         // TODO: better to implement as a queue?
         if (to_execute_ == null) {
-            to_execute_ = new ArrayList<ModelCommand>();
+            to_execute_ = new ConcurrentLinkedQueue<ModelCommand>();
         }
         to_execute_.add(command); // store command to be executed when the model clock tells it to execute AKA lag compensation
         //command.execute(); //for now
     }
 
-        //Command Interface
-    
+    //Command Interface
     public void exit() {
         System.exit(0);
     }
@@ -165,17 +174,17 @@ public class Model {
         //
         application.listenForRebind(controlMap);
     }
-    
+
     public void save(File file) {
         //TODO
         String filename = file.getAbsolutePath();
     }
-    
+
     public void load(File file) {
         //TODO
         String filename = file.getAbsolutePath();
     }
-    
+
     public void setSneakOccupation(Entity entity) {
         Application.print("User created Sneak");
         entity.setInstance(OccupationFactory.generateAvatarSneakOccupation());
@@ -190,54 +199,57 @@ public class Model {
         Application.print("User created Smasher");
         entity.setInstance(OccupationFactory.generateAvatarSmasherOccupation());
     }
-    
+
     public void beginNewGame() {
         //TODO
     }
     
+    public void levelupStat(Stat stat) {
+        stat.level();
+    }
+    
     /* -------------------- LEVEL UP COMMANDS -------------------- */
-    public void levelStrength(Entity a){
-    	a.getStatsOwnership().upStrength();	
+    public void levelStrength(Entity a) {
+        a.getStatsOwnership().upStrength();
     }
-    
-    public void levelAgility(Entity a){
-    	a.getStatsOwnership().upAgility();	
+
+    public void levelAgility(Entity a) {
+        a.getStatsOwnership().upAgility();
     }
-    
+
     public boolean move(Entity entity, Direction direction) {
         entity.move( direction );
         return true;
     }
-    
+
     public boolean storeInInventory(Avatar avatar, SackboundItem item) {
         return avatar.getInventoryOwnership().addItem(item);
     }
-    
+
     public boolean equip(Avatar avatar, Item item) {
         item.apply(avatar);
         return true;
     }
-    
+
     public void drop(Avatar avatar) {
-        
+
     }
-    
+
     public boolean activateAbility(Avatar avatar, Ability ability) {
-        //TODO
+        avatar.useAbility(ability);
         return false;
     }
-    
+
     public void talk(Avatar avatar, Entity entity) {
         //TOdO
     }
-    
+
     public boolean purchase(Avatar avatar, Item item, int price) {
         //TODO
         return false;
     }
 
-        //Misc
-    
+    //Misc
     public void setMode(Mode mode) {
         currentMode = mode;
     }
@@ -246,6 +258,24 @@ public class Model {
         this.application = application;
         startTheClock(application.getUpdateTimings());
         launchFirstScreen();
+        Model.viewClock_.execute(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(refreshTime_);
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                currentScreen.updateView(mvb);
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     private void launchFirstScreen() {
