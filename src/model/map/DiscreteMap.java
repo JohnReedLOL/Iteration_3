@@ -33,6 +33,7 @@ public abstract class DiscreteMap {
     public abstract Coordinate2D getCoordinateByLocation( Location l );
     public abstract Location getLocationByMapObject( MapObject m );
     public abstract Location getPreferredTeleportLocation();
+    public abstract int getDistance( MapObject m1, MapObject m2 );
 
     public String getName() {
         return name;

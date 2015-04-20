@@ -69,7 +69,7 @@ public class GameMap extends DiscreteMap {
         Tile previous = tileMap.getValue( (HexCoordinate) from );
         Tile newPos = tileMap.getValue( (HexCoordinate) to );
 
-        previous.removeMapObjectAssociation( m );
+        previous.removeMapObjectAssociation(m);
         newPos.removeMapObjectAssociation(m);
 
         for ( MapObject mapObject : newPos.getMapObjects() ) {
@@ -166,6 +166,17 @@ public class GameMap extends DiscreteMap {
     @Override
     public Location getPreferredTeleportLocation() {
         return getLocationByCoordinate( CoordUtil.MAP_1_DEFAULT_COORDINATE );
+    }
+
+    @Override
+    public int getDistance(MapObject m1, MapObject m2) {
+        HexCoordinate h1 = getMapObjectCoordinate( m1 );
+        HexCoordinate h2 = getMapObjectCoordinate( m2 );
+
+        if (h1.getX() == -1 || h1.getY() == -1 || h2.getX() == -1 || h2.getY() == -1)
+            return -1;
+
+        return (int) Math.sqrt( Math.pow( h1.getX() - h2.getX(), 2) + Math.pow( h1.getY() - h2.getY(), 2) );
     }
 
     public void performEffect(Effect effect, InfluenceSet influence) {
