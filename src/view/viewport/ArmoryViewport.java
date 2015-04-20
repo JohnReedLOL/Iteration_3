@@ -10,8 +10,11 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import model.ModelViewBundle;
+import model.entity.avatar.Avatar;
 import model.item.sackbound.equip.EquipItem;
 import model.item.sackbound.equip.EquipItem.EquipSlot;
+import mvc_bridgeway.command.model_command.Unequip;
+import mvc_bridgeway.control.virtual_control.swing_control.ButtonSwingControl;
 import mvc_bridgeway.control_map.ControlMap;
 import utility.ImageUtil;
 
@@ -21,9 +24,10 @@ import utility.ImageUtil;
  */
 public class ArmoryViewport extends Viewport {
 
-    /**
-     * Creates new form MainScreen
-     */
+    private ArrayList<ControlMap> cms = new ArrayList<ControlMap>();
+    //
+    private int prevNumEquipItems = -1;
+    
     public ArmoryViewport() {
         initComponents();
     }
@@ -36,40 +40,53 @@ public class ArmoryViewport extends Viewport {
     @Override
     public void update(ModelViewBundle mvb) {
         List<EquipItem> equippedItems = mvb.getEquipment();
-        for (EquipItem equipItem : equippedItems) {
-            displayEquipItem(equipItem);
+        Avatar avatar = mvb.getAvatar();
+        int numEquippedItems = equippedItems.size();
+        if (numEquippedItems != prevNumEquipItems) {
+            clearCMs();
+            for (EquipItem equipItem : equippedItems) {
+                displayEquipItem(equipItem, avatar);
+            }
         }
     }
     
-    private void displayEquipItem(EquipItem ei) {
+    private void displayEquipItem(EquipItem ei, Avatar avatar) {
         if (ei == null) {
             return;
         }
         EquipSlot es = ei.getEquipSlot();
         if (es.equals(es.HEAD)) {
-            displayItem(ei, head_slot_);
+            displayItem(ei, head_slot_, avatar);
         } else if (es.equals(es.TORSO)) {
-            displayItem(ei, body_slot_);
+            displayItem(ei, body_slot_, avatar);
         } else if (es.equals(es.MAINHAND)) {
-            displayItem(ei, right_slot_);
+            displayItem(ei, right_slot_, avatar);
         } else if (es.equals(es.OFFHAND)) {
-            displayItem(ei, left_slot_);
+            displayItem(ei, left_slot_, avatar);
         } else if (es.equals(es.LEGS)) {
-            displayItem(ei, legs_slot_);
+            displayItem(ei, legs_slot_, avatar);
         }
     }
     
-    private void displayItem(EquipItem ei, JButton button) {
+    private void displayItem(EquipItem ei, JButton button, Avatar avatar) {
         ImageIcon imageIcon = ImageUtil.getImageIcon("./src/resources/png/grass.png");
         button.setIcon(imageIcon);
+        setControl(ei, button, avatar);
+    }
+    
+    private void setControl(EquipItem ei, JButton button, Avatar avatar) {
+        cms.add(new ControlMap(new ButtonSwingControl(button), new Unequip(avatar, ei)));
+    }
+    
+    private void clearCMs() {
+        cms = new ArrayList<ControlMap>();
     }
 
     @Override
     public ArrayList<ControlMap> getControlMaps() {
-        ArrayList<ControlMap> controlMaps = new ArrayList<ControlMap>();
-
-        return controlMaps;
+        return cms;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
